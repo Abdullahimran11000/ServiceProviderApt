@@ -20,6 +20,7 @@ import Message from './src/screnns/Message';
 import Notifications from './src/screnns/Notifications';
 import VideoCalling from './src/screnns/VideoCalling';
 import Chat from './src/screnns/Chat';
+import Appointments from './src/screnns/Appointments';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -31,8 +32,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="AppIntro" component={AppIntro} /> */}
+        <Stack.Navigator initialRouteName='Appointments' screenOptions={{headerShown: false}}>
+          <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
@@ -52,6 +53,7 @@ const App = () => {
           <Stack.Screen name="Message" component={Message} />
           <Stack.Screen name="Chat" component={Chat}/>
           <Stack.Screen name="VideoCalling" component={VideoCalling} />
+          <Stack.Screen name="Appointments" component={Appointments}/>
 
         </Stack.Navigator>
       </AppProvider>
