@@ -1,6 +1,7 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   SafeAreaView,
+  FlatList,
   Text,
   View,
   Image,
@@ -28,162 +29,116 @@ import AppContext from '../assets/context/AppContext';
 import BackButton from '../components/ScrennHeader/BackButton';
 import RNFetchBlob from 'rn-fetch-blob';
 import SearchBar from '../components/SearchBar/SerachBar';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import NeoButton from '../components/NeoMorphButton/NeoButton'
+import CompleteAppointmentCard from '../components/Appointments/CompleteAppointmentCard';
+import UpcomingAppointmentCard from '../components/Appointments/UpcomingAppointment';
+
 const Dashboard = ({pressHandler}) => {
   const navigation = useNavigation();
-  const {storeAllCategoriesFromContext} = useContext(AppContext);
-  const {storeYearsOfExperienceFromContext} = useContext(AppContext);
-  const {storeConsultationPriceFromContext} = useContext(AppContext);
+  const [warningCardShow , setWarningCardShow] = useState(true)
 
-  const loadAllCategories = () => {
-    RNFetchBlob.fetch('GET', 'https://jsonplaceholder.typicode.com/todos', {
-      'Content-type': 'application/json',
-    })
-      .then(resp => resp.json())
-      .then(response => {
-        let responsee = [
-          {
-            id: 1,
-            deptName: 'Radiology',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.1)',
-          },
-          {
-            id: 2,
-            deptName: 'radiology',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.2)',
-          },
-          {
-            id: 3,
-            deptName: 'Cardiology',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.3)',
-          },
-          {
-            id: 4,
-            deptName: 'Dentist',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.4)',
-          },
-          {
-            id: 5,
-            deptName: 'Psychology',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.5)',
-          },
-          {
-            id: 6,
-            deptName: 'Neradiology',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.6)',
-          },
-          {
-            id: 7,
-            deptName: 'Gynacology',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.7)',
-          },
-          {
-            id: 8,
-            deptName: 'Radiology',
-            source: require('../assets/images/radiology.png'),
-            color: 'rgba(195, 140, 222, 0.8)',
-          },
-        ];
+  const [todayAppointmentInfo, setTodayAppointmentInfo] = useState([
+    {
+      id: 1,
+      name: 'Amanda Johnson',
+      gender: 'Female',
+      age: '23',
+      date: '22 March 2022',
+      time: '10:30',
+      appDestination: 'Hospital',
+    },
+    {
+      id: 2,
+      name: 'Johnson james',
+      gender: 'Male',
+      age: '32',
+      date: '24 March 2022',
+      time: '10:30',
+      appDestination: 'Chat',
+    },
+    {
+      id: 3,
+      name: 'Elizbeth',
+      gender: 'Female',
+      age: '21',
+      date: '22 March 2022',
+      time: '10:30',
+      appDestination: 'Video',
+    },
+  ]);
 
-        storeAllCategoriesFromContext(responsee);
-      });
-  };
+  const renderItemUpcomingAppointments = ({item}) => (
+    <UpcomingAppointmentCard
+      item={item}
+      onPress={() => {
+        console.log("Hello")
+      }}
+    />
+  );
 
-  const loadDoctorsByFilters = () => {
-    RNFetchBlob.fetch('GET', 'https://jsonplaceholder.typicode.com/todos', {
-      'Content-type': 'application/json',
-    })
-      .then(resp => resp.json())
-      .then(response => {
-        storeAllCategoriesFromContext(response.allCategories);
-      });
-  };
+  const renderItemCompeletedAppointments = ({item}) => (
+    <CompleteAppointmentCard
+      item={item}
+      onPress={() => {
+        console.log("Hello")
+      }}
+    />
+  );
 
-  const loadSingleCategoryDoctors = () => {
-    RNFetchBlob.fetch('GET', 'https://jsonplaceholder.typicode.com/todos', {
-      'Content-type': 'application/json',
-    })
-      .then(resp => resp.json())
-      .then(response => {
-        storeAllCategoriesFromContext(response.allCategories);
-      });
-  };
-
-  const loadYearsOfExperience = () => {
-    RNFetchBlob.fetch('GET', 'https://jsonplaceholder.typicode.com/todos', {
-      'Content-type': 'application/json',
-    })
-      .then(resp => resp.json())
-      .then(response => {
-        let data = [
-          {key: '1', value: '5-10 years'},
-          {key: '2', value: '10-15 years'},
-          {key: '3', value: '15-20 years'},
-          {key: '4', value: '20-25 years'},
-        ];
-        storeYearsOfExperienceFromContext(data);
-      });
-  };
-
-  const loadConsultationPrice = () => {
-    RNFetchBlob.fetch('GET', 'https://jsonplaceholder.typicode.com/todos', {
-      'Content-type': 'application/json',
-    })
-      .then(resp => resp.json())
-      .then(response => {
-        let price = [
-          {key: '1', value: '5-100 Dollars'},
-          {key: '2', value: '100-1160 Dollars'},
-          {key: '3', value: '160-210 years'},
-          {key: '4', value: '210-260 years'},
-        ];
-        storeConsultationPriceFromContext(price);
-      });
-  };
-
-  useEffect(() => {
-    loadAllCategories();
-    loadYearsOfExperience();
-    loadConsultationPrice();
-  }, []);
 
   return (
-    <ScrollView style={DashboardStyle.scrollViewStyle}>
-      <SafeAreaView>
+    <ScrollView>
+      <SafeAreaView style={DashboardStyle.scrollViewStyle}>
         <ScrollView>
           <View style={DashboardStyle.headCont}>
             <View style={DashboardStyle.headContInnerCont}>
-            <TouchableOpacity
+              <TouchableOpacity
                 style={DashboardStyle.headContMenuCont}
                 onPress={pressHandler}>
                <Ionicons name='menu' color={AppColor.black} size={wp("7")} />
               </TouchableOpacity>
+              <TouchableOpacity style={DashboardStyle.textCont}><Text style={DashboardStyle.textStyle} >Dashboard</Text></TouchableOpacity>
+              
+            </View>
+          </View>
+          <View style={DashboardStyle.doctorInfoCard}>
+            <View style={DashboardStyle.doctorInfoInnerCont}>
               <TouchableOpacity
-                style={DashboardStyle.headContImageCont}>
+                style={DashboardStyle.doctorProfileImageCont}>
                 <Image
-                  style={DashboardStyle.headContImageStyle}
+                  style={DashboardStyle.doctorProfileImage}
                   source={require('../assets/images/selfieOne.jpg')}
                   resizeMode="cover"
                 />
               </TouchableOpacity>
-              <View style={DashboardStyle.headContMiddleCont}>
-                <View style={DashboardStyle.middleInnerFirstCont}>
-                  <Text style={DashboardStyle.middleInnerContFirstHeading}>
-                    Hello Dara
+              <View style={DashboardStyle.doctorNameContView}>
+                <View style={DashboardStyle.doctorNameCont}>
+                  <Text style={DashboardStyle.doctorNameTextStyle}>
+                    Muhammad Imran
                   </Text>
                 </View>
-                <View style={DashboardStyle.middleInnerSecondCont}>
-                  <Text style={DashboardStyle.middleInnerContSecondHeading}>
-                    How can you today?
+                <View style={DashboardStyle.doctorCertificatesView}>
+                  <Text style={DashboardStyle.doctorCertificatesTextStyle}>
+                    M.B.B.S, R.D.B.S
                   </Text>
+                </View>
+                <View style={DashboardStyle.doctorSpecialistView}>
+                  <Text style={DashboardStyle.doctorSpecialistTextStyle}>
+                    Dentist
+                  </Text>
+                  <View style={DashboardStyle.ratingView}>
+                    <View style={DashboardStyle.doctorLowerFlexViewInnerView}>
+                      <TouchableOpacity>
+                        <AntDesign name="star" size={wp('4')} color="#FFD700" />
+                      </TouchableOpacity>
+                      <Text style={DashboardStyle.doctorLowerFlexTextOne}>4.5</Text>
+                    </View>
+                  </View>
                 </View>
               </View>
+
               <View style={DashboardStyle.headContLastCont}>
                 <TouchableOpacity
                   onPress={() => {
@@ -202,8 +157,132 @@ const Dashboard = ({pressHandler}) => {
               </View>
             </View>
           </View>
+          
+          {warningCardShow ? <View style={DashboardStyle.warningCard}>
+            <Neomorph style={DashboardStyle.neoCard} darkShadowColor={AppColor.black}>
+              <LinearGradient style={DashboardStyle.dashCard} colors={[
+                  'rgba(181, 27, 27, 0.3)',
+                  'rgba(181, 27, 27, 0.4)',
+                  'rgba(181, 27, 27,0.5)',
+                ]}
+                start={{x: 0.3, y: 0}}
+                end={{x: 0.7, y: 1}}
+                locations={[0.1, 0.3, 0.9]}>
 
-          <SearchBar />
+                  <View style={DashboardStyle.warningParaCont}>
+                    <Ionicons name="md-warning" color={AppColor.white} size={wp('12')}/>
+                    <View style={DashboardStyle.warningTextCont}>
+                     <Text style={DashboardStyle.warningParaText} numberOfLines={4} ellipsizeMode={'tail'}>We have found that you have not uploaded your certificates. Please upload and verify your documents!</Text>
+                    </View>
+                  </View>
+
+                  <View style={DashboardStyle.certificatesButtonView}>
+                    <Neomorph
+                      lightShadowColor={AppColor.whiteShade}
+                      darkShadowColor={AppColor.blackOpacity4}
+                      style={DashboardStyle.neoCertificatesButton}>
+                      <TouchableOpacity style={DashboardStyle.neoCertificatesButton}>
+                        <Text style={DashboardStyle.certificatesButtonText}>
+                          Go To Certificates
+                        </Text>
+                      </TouchableOpacity>
+                    </Neomorph>
+                  </View>
+              </LinearGradient>
+            </Neomorph>
+          </View>
+          : null}
+          
+          <DoctorBar
+            One={"Today's Appointment"}
+            Two={'See all'}
+            onPress={() => {
+              navigation.navigate('MyAppointment');
+            }}
+          />
+
+          <FlatList
+            data={todayAppointmentInfo}
+            renderItem={renderItemUpcomingAppointments}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+
+          <DoctorBar
+            One={"Completed Appointment"}
+            Two={'See all'}
+            onPress={() => {
+              navigation.navigate('Splash');
+            }}
+          />
+
+          <FlatList
+            data={todayAppointmentInfo}
+            renderItem={renderItemCompeletedAppointments}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+          
+
+          {/* <View style={DashboardStyle.appCard}>
+            <Neomorph style={DashboardStyle.neoCard2} darkShadowColor={AppColor.black}>
+                <View style={{display: 'flex', flexDirection: 'row', width: wp('80'), alignSelf: 'center', marginTop: wp('3')}}>
+                  <View style={DashboardStyle.patientProfileImageCont}>
+                    <Image
+                      style={DashboardStyle.patientProfileImage}
+                      source={require('../assets/images/selfieOne.jpg')}
+                      resizeMode="cover"
+                    />
+                  </View>
+                  <View style={{position: 'absolute', left: wp('18'), top: wp('1.5'), display: 'flex', flexDirection: 'column'}}>
+                    <Text style={{fontFamily: 'Poppins-Bold', fontSize: wp('4.8'), color: AppColor.black}}>Hira Mani</Text>
+                    <Text style={{fontFamily: 'Poppins-Medium', fontSize: wp('3'), color: AppColor.blackOpacity6, marginTop: wp("-1.5")}}>Female, 25 years old</Text>
+                  </View>
+                  <View style={{position: 'absolute', right: wp('3'), top: wp('1.5')}}>
+                    <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', width: wp('6'), height: wp('6'), borderRadius: wp('6')}} onPress={() => console.log()}>
+                      <NeoButton inner={false} width={wp('6')} height={wp('6')} borderRadius={wp('6')} backgroundColor={AppColor.whiteShade} lightShadowColor={AppColor.white}><Icon name="angle-down" size={15}/></NeoButton> 
+                    </TouchableOpacity>
+                  </View>
+                </View>
+
+                <View style={{display: 'flex', flexDirection: 'row', width: wp('80'), alignSelf: 'center', top: hp('11.5')}}>
+                  <Icon size={wp('4')} name="calendar" color={AppColor.black}></Icon>
+                  <Text style={{fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('5')}}>28 Jan 2023</Text>
+                  <Icon size={wp('4')} name="clock-o" color={AppColor.black} style={{left: wp('36'), position: 'absolute'}}></Icon>
+                  <Text style={{fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('41')}}>10:30</Text>
+                  <Icon size={wp('4')} name="wechat" color={AppColor.black} style={{position: 'absolute', left: wp('63')}}></Icon>
+                  <TouchableOpacity><Text style={{fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('66')}}>Call</Text></TouchableOpacity>
+                </View>
+
+                <View style={{width: wp('90'), display: 'flex', flexDirection: 'row', marginTop: wp('27'), justifyContent: 'space-evenly'}}>
+                  <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', width: wp('30'), height: hp('5'), borderRadius: wp('6')}} onPress={() => console.log()}>
+                    <NeoButton inner={false} width={wp('30')} height={hp('5')} borderRadius={wp('6')} backgroundColor={AppColor.whiteShade} lightShadowColor={AppColor.white}>
+                      <LinearGradient style={{justifyContent: 'center', alignItems: 'center', width: wp('30'), height: hp('5'), borderRadius: wp('6')}} colors={[
+                          'rgba(181, 27, 27, 0.4)',
+                          'rgba(181, 27, 27, 0.5)',
+                          'rgba(181, 27, 27,0.5)',
+                        ]}
+                        start={{x: 0.3, y: 0}}
+                        end={{x: 0.7, y: 1}}
+                        locations={[0.1, 0.3, 0.9]}>
+                        <Text style={{fontFamily: "Poppins-Medium", fontSize: wp('4'), color: AppColor.black}}>Cancel</Text>
+                      </LinearGradient>
+                    </NeoButton> 
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', width: wp('30'), height: hp('5'), borderRadius: wp('6')}} onPress={() => console.log()}>
+                    <NeoButton inner={false} width={wp('30')} height={hp('5')} borderRadius={wp('6')} backgroundColor={AppColor.whiteShade} lightShadowColor={AppColor.white}>
+                      <Text style={{fontFamily: "Poppins-Medium", fontSize: wp('4'), color: AppColor.black}}>Reschedule</Text>
+                    </NeoButton> 
+                  </TouchableOpacity>
+                </View>
+            </Neomorph>
+          </View> */}
+
+         
+        
+          {/* <SearchBar />
 
           <Neomorph
             darkShadowColor={AppColor.black}
@@ -292,7 +371,7 @@ const Dashboard = ({pressHandler}) => {
 
           <View style={DashboardStyle.doctorsView}>
             <DoctorsFlatList horizontal={true} marginRight={wp('5')} />
-          </View>
+          </View> */}
 
           {/* <Modal isVisible={categoriesModalOpen}>
             <SafeAreaView style={DoctorDepartmentStyle.mainView}>
