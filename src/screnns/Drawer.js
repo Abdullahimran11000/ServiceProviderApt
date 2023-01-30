@@ -7,7 +7,7 @@ import Dashboard from './Dashboard';
 import {DrawerStyle} from '../assets/styles/AnimatedDrawerStyle/DrawerStyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Octicons from 'react-native-vector-icons/Octicons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Animated, {
@@ -71,6 +71,21 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView}>
           <View style={DrawerStyle.menuItemView}>
+            <MaterialIcons
+              name={'dashboard'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={pressHandler}>
+              <Text style={DrawerStyle.menuItemText}>Dashboard</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={DrawerStyle.menuView2}>
+          <View style={DrawerStyle.menuItemView}>
             <FontAwesome
               name={'user-o'}
               size={wp('5')}
@@ -80,6 +95,21 @@ const Drawer = () => {
               style={DrawerStyle.touchableView}
               onPress={() => navigation.navigate('MyProfile')}>
               <Text style={DrawerStyle.menuItemText}>My Profile</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={DrawerStyle.menuView2}>
+          <View style={DrawerStyle.menuItemView}>
+            <MaterialCommunityIcons
+              name={'card-account-details-star-outline'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('MyProfile')}>
+              <Text style={DrawerStyle.menuItemText}>Certificates</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -101,6 +131,21 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
+            <MaterialCommunityIcons
+              name={'clock-time-eleven-outline'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('Message')}>
+              <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={DrawerStyle.menuView2}>
+          <View style={DrawerStyle.menuItemView}>
             <Ionicons
               name={'notifications-outline'}
               size={wp('5')}
@@ -116,26 +161,11 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
-            <MaterialIcons
-              name={'message'}
-              size={wp('5')}
-              color={AppColor.white}
-            />
-            <TouchableOpacity
-              style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('Message')}>
-              <Text style={DrawerStyle.menuItemText}>Message</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={DrawerStyle.menuView2}>
-          <View style={DrawerStyle.menuItemView}>
-            <AntDesign name={'setting'} size={wp('5')} color={AppColor.white} />
+            <Octicons name={'key'} size={wp('5')} color={AppColor.white} />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
               onPress={() => navigation.navigate('MyProfile')}>
-              <Text style={DrawerStyle.menuItemText}>Setting</Text>
+              <Text style={DrawerStyle.menuItemText}>Password</Text>
             </TouchableOpacity>
           </View>
         </View>
