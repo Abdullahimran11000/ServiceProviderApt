@@ -33,8 +33,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
+
         <Stack.Navigator initialRouteName='Drawer' screenOptions={{headerShown: false}}>
           {/* <Stack.Screen name="AppIntro" component={AppIntro} /> */}
+
           {/* <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
@@ -58,6 +60,7 @@ const App = () => {
           <Stack.Screen name="Chat" component={Chat} />
           <Stack.Screen name="VideoCalling" component={VideoCalling} />
           <Stack.Screen name="Appointments" component={Appointments}/>
+
         </Stack.Navigator>
       </AppProvider>
     </NavigationContainer>
