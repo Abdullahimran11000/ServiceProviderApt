@@ -5,19 +5,22 @@ import { AppColor } from "../assets/colors/AppColors";
 import { Neomorph } from "react-native-neomorph-shadows";
 import { AppointmentStyle } from "../assets/styles/AppointmentStyle";
 import NeoButton from "../components/NeoMorphButton/NeoButton";
-import Lottie from "lottie-react-native"
+import Lottie from "lottie-react-native";
+import { useNavigation } from "@react-navigation/native";
 const Appointments = () => {
+    const navigation = useNavigation();
     return(
+        
         <SafeAreaView>
             <ScrollView>
-            <View style={{width:wp(100) , height: hp(100)}}>
-                <View style={{alignSelf:"center" ,marginTop: hp(10), marginBottom:hp(5)}}>
+            <View  style={{display: 'flex', flex: 1 , backgroundColor:AppColor.whiteShade}}>
+                <View style={{alignSelf:"center" ,marginTop: hp(5), marginBottom:hp(5)}}>
                     <TouchableOpacity>
                     <NeoButton  height={hp(18)} width={wp(90)} 
                                 borderRadius={20} backgroundColor={AppColor.whiteOpacity} 
                                 darkShadowColor={AppColor.black}
                                 >
-                     <View style={{flexDirection:"row" , backgroundColor:"#f57ad2" , borderRadius:20}}>               
+                     <View style={{flexDirection:"row" , backgroundColor:AppColor.primary , borderRadius:20}}>               
                         <View style={{flex:5 , top:hp(4)}}>
                             <Text style={{fontSize:wp(10), left:wp(5) , color:AppColor.white}}>105</Text>
                             <Text style={{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white}}>Total Appointment Slots</Text>
@@ -36,7 +39,7 @@ const Appointments = () => {
                     <NeoButton  height={hp(18)} width={wp(90)} 
                                 borderRadius={20} backgroundColor={AppColor.whiteOpacity} 
                                 darkShadowColor={AppColor.black}>
-                     <View style={{flexDirection:"row" , backgroundColor:"#c7afde" , borderRadius:20}}>               
+                     <View style={{flexDirection:"row" , backgroundColor:"#c3e0f7" , borderRadius:20}}>               
                         <View style={{flex:5 , top:hp(4)}}>
                             <Text style={{fontSize:wp(10), left:wp(5) , color:AppColor.white}}>10</Text>
                             <Text style={{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white}}>Upcoming Appointments</Text>
@@ -56,7 +59,7 @@ const Appointments = () => {
                                 borderRadius={20} backgroundColor={AppColor.whiteOpacity} 
                                 darkShadowColor={AppColor.black}
                                 >
-                     <View style={{flexDirection:"row" , backgroundColor:"#dbc3c7" , borderRadius:20}}>               
+                     <View style={{flexDirection:"row" , backgroundColor:"#81c5fc" , borderRadius:20}}>               
                         <View style={{flex:5 , top:hp(4)}}>
                             <Text style={{fontSize:wp(10), left:wp(5) , color:AppColor.white}}>20</Text>
                             <Text style={{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white}}>Completed Appointments</Text>
@@ -76,7 +79,7 @@ const Appointments = () => {
                                 borderRadius={20} backgroundColor={AppColor.whiteOpacity} 
                                 darkShadowColor={AppColor.black}
                                 >
-                     <View style={{flexDirection:"row" , backgroundColor:"#e6b39e" , borderRadius:20}}>               
+                     <View style={{flexDirection:"row" , backgroundColor:"#fcc2c2" , borderRadius:20}}>               
                         <View style={{flex:5 , top:hp(4)}}>
                             <Text style={{fontSize:wp(10), left:wp(5) , color:AppColor.white}}>105</Text>
                             <Text style={{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white}}>Cancelled Appointments</Text>
@@ -89,10 +92,32 @@ const Appointments = () => {
                      </View>
                     </NeoButton>
                 </TouchableOpacity>
-                </View>                
+                </View>   
+                <View style={{alignSelf:"center" ,marginTop: hp(5)}}>
+                <TouchableOpacity onPress={() => {navigation.navigate('NewSchedule')}}>
+                    <NeoButton  height={hp(18)} width={wp(90)} 
+                                borderRadius={20} backgroundColor={AppColor.whiteOpacity} 
+                                darkShadowColor={AppColor.black}
+                                marginBottom={hp(5)}
+                                >
+                     <View style={{flexDirection:"row" , backgroundColor:"#e6b39e" , borderRadius:20}}>               
+                        <View style={{flex:5 , top:hp(4)}}>
+                            <Text style={{fontSize:wp(5), fontFamily:'Poppins-SemiBold', left:wp(6), top: hp(5),color:AppColor.white}}>Add New Schedule</Text>
+                        </View>
+                        <View style={{flex:3 , width:wp(30), height:hp(20)}}>
+                            <Lottie style={{alignSelf:"center" , width: wp(20) , height: hp(15) , top:hp(1)}} 
+                            source={require('../assets/animations/addNewSchedule.json')}
+                            loop autoPlay/>
+                        </View>
+                     </View>
+                    </NeoButton>
+                </TouchableOpacity>
+                </View>               
             </View>
             </ScrollView>
-        </SafeAreaView>
+            </SafeAreaView>
+            
+        
     )
 }
 export default Appointments;
