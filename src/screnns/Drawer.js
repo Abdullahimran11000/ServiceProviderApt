@@ -109,7 +109,7 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('MyProfile')}>
+              onPress={() => navigation.navigate('Certificates')}>
               <Text style={DrawerStyle.menuItemText}>Certificates</Text>
             </TouchableOpacity>
           </View>

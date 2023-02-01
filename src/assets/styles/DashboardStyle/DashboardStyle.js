@@ -10,7 +10,7 @@ const DashboardStyle = StyleSheet.create({
     headContInnerCont: {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
     headContMenuCont: {width: wp('11.5'), height: wp('11.5'), borderRadius: wp('14'), position: 'absolute', left:wp('0'), justifyContent: 'center'},
     textCont : {position: 'absolute', right: 0},
-    textStyle: {fontFamily: "Poppins-Bold", fontSize: wp('5'), color: AppColor.blackOpacity6},
+    textStyle: {fontFamily: "Poppins-Bold", fontSize: wp('4.5'), color: AppColor.blackOpacity6},
 
     doctorInfoCard : {width: wp('90'), height: hp('15'), marginTop: wp('0'), marginLeft:  wp('4.5'), marginRight:  wp('4.5'), alignSelf: 'center'},
     doctorInfoInnerCont : {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
@@ -28,6 +28,8 @@ const DashboardStyle = StyleSheet.create({
     doctorSpecialistView: {marginTop:wp('-0.6'), flex: 1, flexDirection: 'row', width: wp('43.5')},
     doctorSpecialistTextStyle: {fontFamily: 'Poppins-Medium', fontSize:wp('3.3'), color: 'rgba(0, 0, 0, 0.4)', position: 'absolute', left: 0},
     ratingView: {position: 'absolute', right:0},
+    doctorLowerFlexViewInnerView: {display: 'flex' , flex: 1, flexDirection: "row"},
+    doctorLowerFlexTextOne: {fontFamily: 'Poppins-Bold', fontSize: wp('3'), color: AppColor.black, marginLeft: wp('1')},
 
     headContLastCont: {position: 'absolute', right: wp('2.5'), top: wp('6')},
     notificationButton: {width: wp('10'), height: wp('10'), shadowRadius: 4, borderRadius: wp('12'), backgroundColor: AppColor.whiteShade, alignItems: 'center', justifyContent: 'center'},
@@ -48,45 +50,6 @@ const DashboardStyle = StyleSheet.create({
     neoCard2: {width: wp('90'), height: hp('18'), borderRadius: wp('8'), shadowRadius: 4, backgroundColor: AppColor.whiteShade, alignSelf: 'center', overflow: 'hidden'},
     patientProfileImageCont : {width: wp('15'), height: wp('15'), borderRadius: wp('14'), position: 'absolute', left:wp('0')},
     patientProfileImage: {width: wp('15'), height: wp('15'), borderRadius: wp('14')},
-
-
-    searchCont: {width: wp('90'), height: hp('8'), borderRadius: wp('8'), marginTop: wp('5'), marginLeft: wp('4.5'), marginRight: wp('4.5'), alignSelf: 'center'},
-    searchInnerCont: {display: 'flex', flex: 1, flexDirection: 'row',alignItems: 'center', justifyContent: 'center'},
-    seacrhIconOneInnerCont: {width: wp('8'), height: hp('6'), position: 'absolute', marginLeft: wp('3.5'), justifyContent: 'center'},
-    searchTextInputCont: {width: wp('50'), height: hp('6'), justifyContent: 'center', alignItems: 'center', marginLeft: wp('12')},
-    searchIconTwoCont: {position: 'absolute' , right: wp('2.5'),},
-    searchIconTwoTouchable: {width: wp('9'), height: wp('9'), borderRadius: wp('9'), backgroundColor: AppColor.white, alignItems: 'center', justifyContent: 'center'},
-    searchNeoView: {marginLeft: wp("-25"), width:wp('65') , height:hp('6'), borderRadius: wp('6'), shadowRadius: 4, backgroundColor: AppColor.whiteShade},
-    searchTextInput: {width: wp('50') , fontFamily: 'Poppins-Medium', fontSize: wp('4'), color: AppColor.blackOpacity4, marginBottom: wp('-1.5')},
-    filterButton: {width: wp('10'), height: wp('10'), shadowRadius: 4, borderRadius: wp('12'), backgroundColor: AppColor.whiteShade, alignItems: 'center', justifyContent: 'center'},
-
-
-    leftCont: {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
-    leftContInnerCont: {left: wp('6')},
-    leftContFirstHeading: {width: wp('45')},
-    leftContFirstHeadingText: {fontFamily: 'Poppins-Bold', color: 'white', fontSize: wp('3.5')},
-    leftContSecondHeading: {width: wp('40'), marginTop: wp('2')},
-    leftContSecondHeadingText: {fontFamily: 'Poppins-SemiBold', color: AppColor.white, fontSize: wp('2.5'), textAlignVertical: 'center'},
-    dashContImage: {width: wp('40'), height: hp('25')},
-    touchableView: {marginTop: wp('8')},
-
-    
-
-    categoriesView: {width: wp('100'), height: hp('22')},
-    doctorsView: {marginLeft: wp("4.5")},
-    
-    doctorCardImage: {width: wp('31'), height: wp('36')},
-    doctorHeaderCont: {display: 'flex', flex:1, flexDirection: 'row'},
-    doctorHeaderContInnerCont: {position: 'absolute', right:wp('-1') , marginTop: wp('4.5')},
-    doctorHeaderContTouchable: {width: wp('6'), height: wp('6'), borderRadius: wp('6'), backgroundColor: AppColor.whiteOpacity5, alignItems: 'center', justifyContent: 'center'},
-    doctorLowerContFirstHeading: {marginTop: wp('2')},
-    doctorLowerContFirstHeadingText: {fontFamily: 'Poppins-Bold', fontSize: wp('3.7'), color: AppColor.black},
-    doctorLowerContSecondHeadingText: {fontFamily: 'Poppins-Light', fontSize: wp('3.3'), color: AppColor.blackOpacity5},
-
-    doctorLowerFlexView: {display: 'flex', flex: 1, flexDirection: 'row', marginTop: wp('-4')},
-    doctorLowerFlexViewInnerView: {display: 'flex' , flex: 1, flexDirection: "row"},
-    doctorLowerFlexTextOne: {fontFamily: 'Poppins-Bold', fontSize: wp('3'), color: AppColor.black, marginLeft: wp('1')},
-    doctorLowerFlexTextTwo: {fontFamily: 'Poppins-Bold', fontSize: wp('3'), color: AppColor.black, marginLeft: wp('1')}
 
 });
 

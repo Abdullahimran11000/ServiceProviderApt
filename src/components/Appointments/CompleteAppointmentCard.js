@@ -1,67 +1,63 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {ChatStyle} from '../../assets/styles/DashboardStyle/ChatStyle';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { AppColor } from '../../assets/colors/AppColors';
+import {AppColor} from '../../assets/colors/AppColors';
 import {Neomorph} from 'react-native-neomorph-shadows';
-import NeoButton from '../NeoMorphButton/NeoButton';
 import {AppointmentStyle} from '../../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
-import {DashboardStyle} from '../../assets/styles/DashboardStyle/DashboardStyle';
-import LinearGradient from 'react-native-linear-gradient';
-import Lottie from 'lottie-react-native'
+import Lottie from 'lottie-react-native';
 
-const CompleteAppointmentCard = ({item, onPress}) => {
-  const [showButton, setShowButton] = useState(false);
+const CompleteAppointmentCard = ({item}) => {
   return (
-    <View style={DashboardStyle.appCard}>
-      <Neomorph style={DashboardStyle.neoCard2} darkShadowColor={AppColor.black}>
-          <View style={{display: 'flex', flexDirection: 'row', width: wp('80'), alignSelf: 'center', marginTop: wp('3')}}>
-            <View style={DashboardStyle.patientProfileImageCont}>
-              <Image
-                style={DashboardStyle.patientProfileImage}
-                source={require('../../assets/images/selfieOne.jpg')}
-                resizeMode="cover"
-              />
-            </View>
-            <View style={{position: 'absolute', left: wp('18'), top: wp('1.5'), display: 'flex', flexDirection: 'column'}}>
-              <Text style={{fontFamily: 'Poppins-Bold', fontSize: wp('4.5'), color: AppColor.black}}>{item.name}</Text>
-              <Text style={{fontFamily: 'Poppins-Medium', fontSize: wp('3'), color: AppColor.blackOpacity6, marginTop: wp("-1.5")}}>{item.gender}, {item.age} years old</Text>
-            </View>
-            <View style={{position: 'absolute', right: wp('-15'), top: wp('-15')}}>
-              {/* <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', width: wp('6'), height: wp('6'), borderRadius: wp('6')}} onPress={() => console.log()}>
-                <NeoButton inner={false} width={wp('6')} height={wp('6')} borderRadius={wp('6')} backgroundColor={AppColor.whiteShade} lightShadowColor={AppColor.white}><Icon name="angle-down" size={15}/></NeoButton> 
-              </TouchableOpacity> */}
-              <Lottie style={{width: wp("30"), height: wp("30")}}
+    <View style={AppointmentStyle.appCard}>
+      <Neomorph
+        style={AppointmentStyle.neoCard2}
+        darkShadowColor={AppColor.black}>
+        <View style={AppointmentStyle.patientCard}>
+          <View style={AppointmentStyle.patientProfileImageCont}>
+            <Image
+              style={AppointmentStyle.patientProfileImage}
+              source={require('../../assets/images/selfieOne.jpg')}
+              resizeMode="cover"
+            />
+          </View>
+          <View style={AppointmentStyle.patientInfoView}>
+            <Text style={AppointmentStyle.patientNameText}>{item.name}</Text>
+            <Text style={AppointmentStyle.patientGenderText}>
+              {item.gender}, {item.age} years old
+            </Text>
+          </View>
+          <View style={AppointmentStyle.lottieView}>
+            <Lottie
+              style={AppointmentStyle.lottieStyle}
               source={require('../../assets/animations/completedTag.json')}
               autoPlay></Lottie>
-            </View>
           </View>
+        </View>
 
-          <View style={{display: 'flex', flexDirection: 'row', width: wp('80'), alignSelf: 'center', top: hp('11.5')}}>
-            <Icon size={wp('4')} name="calendar" color={AppColor.black}></Icon>
-            <Text style={{fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('5')}}>{item.date}</Text>
-            <Icon size={wp('4')} name="clock-o" color={AppColor.black} style={{left: wp('36'), position: 'absolute'}}></Icon>
-            <Text style={{fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('41')}}>{item.time}</Text>
-            <Icon size={wp('4')} name="wechat" color={AppColor.black} style={{position: 'absolute', left: wp('63')}}></Icon>
-            <TouchableOpacity><Text style={{fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('66')}}>{item.appDestination}</Text></TouchableOpacity>
-          </View>
+        <View style={AppointmentStyle.detailView}>
+          <Icon size={wp('4')} name="calendar" color={AppColor.black}></Icon>
+          <Text style={AppointmentStyle.dateStyle}>{item.date}</Text>
+          <Icon
+            size={wp('4')}
+            name="clock-o"
+            style={AppointmentStyle.timeIconStyle}></Icon>
+          <Text style={AppointmentStyle.timeStyle}>{item.time}</Text>
+          <Icon
+            size={wp('4')}
+            name="wechat"
+            style={AppointmentStyle.callIconStyle}></Icon>
+          <TouchableOpacity>
+            <Text style={AppointmentStyle.destinationStyle}>
+              {item.appDestination}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-          {/* <View style={{width: wp('90'), display: 'flex', flexDirection: 'row', marginTop: wp('27'), justifyContent: 'space-evenly'}}>
+        {/* <View style={{width: wp('90'), display: 'flex', flexDirection: 'row', marginTop: wp('27'), justifyContent: 'space-evenly'}}>
             <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', width: wp('30'), height: hp('5'), borderRadius: wp('6')}} onPress={() => console.log()}>
               <NeoButton inner={false} width={wp('30')} height={hp('5')} borderRadius={wp('6')} backgroundColor={AppColor.whiteShade} lightShadowColor={AppColor.white}>
                 <LinearGradient style={{justifyContent: 'center', alignItems: 'center', width: wp('30'), height: hp('5'), borderRadius: wp('6')}} colors={[
