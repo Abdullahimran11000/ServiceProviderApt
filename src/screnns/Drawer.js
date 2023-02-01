@@ -10,6 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Octicons from 'react-native-vector-icons/Octicons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -125,6 +126,21 @@ const Drawer = () => {
               style={DrawerStyle.touchableView}
               onPress={() => navigation.navigate('MyAppointment')}>
               <Text style={DrawerStyle.menuItemText}>Appointment</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={DrawerStyle.menuView2}>
+          <View style={DrawerStyle.menuItemView}>
+            <AntDesign
+              name={'wallet'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('MyAppointment')}>
+              <Text style={DrawerStyle.menuItemText}>Wallet</Text>
             </TouchableOpacity>
           </View>
         </View>

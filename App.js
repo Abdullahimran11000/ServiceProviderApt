@@ -22,6 +22,7 @@ import VideoCalling from './src/screnns/VideoCalling';
 import Chat from './src/screnns/Chat';
 import Appointments from './src/screnns/Appointments';
 import Splash from './src/screnns/Splash';
+import Wallet from './src/screnns/Wallet';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppProvider} from './src/assets/context/AppContext';
@@ -32,9 +33,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-        <Stack.Navigator initialRouteName='Appointments' screenOptions={{headerShown: false}}>
-          <Stack.Screen name="AppIntro" component={AppIntro} />
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='Drawer' screenOptions={{headerShown: false}}>
+          {/* <Stack.Screen name="AppIntro" component={AppIntro} /> */}
           {/* <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
@@ -42,6 +42,7 @@ const App = () => {
           <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Verification" component={Verification} />
           <Stack.Screen name="Congratulation" component={Congratulation} /> */}
+          <Stack.Screen name="Wallet" component={Wallet}></Stack.Screen>
           <Stack.Screen name="Drawer" component={Drawer} />
           <Stack.Screen name="Splash" component={Splash} />          
           <Stack.Screen name="MyProfile" component={MyProfile} />
