@@ -11,7 +11,9 @@ const Wallet = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View></View>
+        <View>
+          <Text>hi</Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
