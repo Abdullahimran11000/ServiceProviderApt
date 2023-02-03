@@ -196,7 +196,7 @@ const Dashboard = ({pressHandler}) => {
                       darkShadowColor={AppColor.blackOpacity4}
                       style={DashboardStyle.neoCertificatesButton}>
                       <TouchableOpacity
-                        style={DashboardStyle.neoCertificatesButton}>
+                        style={DashboardStyle.neoCertificatesButton} onPress={()=>{navigation.navigate("Certificates")}}>
                         <Text style={DashboardStyle.certificatesButtonText}>
                           Go To Certificates
                         </Text>
