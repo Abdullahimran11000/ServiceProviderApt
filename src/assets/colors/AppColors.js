@@ -15,5 +15,8 @@ const AppColor = {
   blackOpacity7: 'rgba(0, 0, 0, 0.7)',
   blackOpacity8: 'rgba(0, 0, 0, 0.8)',
   blackOpacity4: 'rgba(0, 0, 0, 0.4)',
+  blackOpacity3: 'rgba(0, 0, 0, 0.3)',
+  blackOpacity2: 'rgba(0, 0, 0, 0.2)',
+  blackOpacity1: 'rgba(0, 0, 0, 0.1)',
 };
 export {AppColor};

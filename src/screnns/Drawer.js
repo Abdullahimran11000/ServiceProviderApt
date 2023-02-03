@@ -10,6 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Octicons from 'react-native-vector-icons/Octicons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -109,6 +110,9 @@ const Drawer = () => {
             <TouchableOpacity
               style={DrawerStyle.touchableView}
               onPress={() => navigation.navigate('MyProfile')}>
+=======
+              onPress={() => navigation.navigate('Certificates')}>
+
               <Text style={DrawerStyle.menuItemText}>Certificates</Text>
             </TouchableOpacity>
           </View>
@@ -131,13 +135,45 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
+
             <MaterialCommunityIcons
               name={'clock-time-eleven-outline'}
+=======
+            <AntDesign
+              name={'wallet'}
+
               size={wp('5')}
               color={AppColor.white}
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
+
+              onPress={() => navigation.navigate('Message')}>
+              <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
+=======
+              onPress={() => navigation.navigate('Wallet')}>
+              <Text style={DrawerStyle.menuItemText}>Wallet</Text>
+
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={DrawerStyle.menuView2}>
+          <View style={DrawerStyle.menuItemView}>
+
+            <Ionicons
+              name={'notifications-outline'}
+=======
+            <MaterialCommunityIcons
+              name={'clock-time-eleven-outline'}
+
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+
+=======
               onPress={() => navigation.navigate('Message')}>
               <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
             </TouchableOpacity>
@@ -153,6 +189,7 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
+
               onPress={() => navigation.navigate('Notifications')}>
               <Text style={DrawerStyle.menuItemText}>Notification</Text>
             </TouchableOpacity>
