@@ -63,7 +63,7 @@ const MyProfile = () => {
                   imageStyle={{borderRadius: wp('15')}}
                   style={MyProfileStyle.imageStyle}
                   source={{uri: uploadImageList[0].url}}
-                  resizeMode="cover"></ImageBackground>
+                  resizeMode='cover'></ImageBackground>
               )}
 
               <TouchableOpacity
