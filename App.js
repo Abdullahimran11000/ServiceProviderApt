@@ -22,8 +22,6 @@ import VideoCalling from './src/screnns/VideoCalling';
 import Chat from './src/screnns/Chat';
 import Appointments from './src/screnns/AppointmentsCards';
 import NewSchedule from './src/screnns/NewSchedule';
-=======
-import Appointments from './src/screnns/Appointments';
 import Splash from './src/screnns/Splash';
 import Wallet from './src/screnns/Wallet';
 import Certificates from './src/screnns/Certificates';
@@ -38,20 +36,14 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-          <Stack.Navigator initialRouteName='NewSchedule' screenOptions={{headerShown: false}}>
-          <Stack.Screen name="AppIntro" component={AppIntro} />
-
-
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="AppIntro" component={AppIntro} /> */}
-
           {/* <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Verification" component={Verification} />
-          <Stack.Screen name="Congratulation" component={Congratulation} />
+          <Stack.Screen name="Congratulation" component={Congratulation} /> */}
           <Stack.Screen name="Drawer" component={Drawer} />
           <Stack.Screen name="Certificates" component={Certificates}></Stack.Screen>
           <Stack.Screen name="Wallet" component={Wallet}></Stack.Screen>
