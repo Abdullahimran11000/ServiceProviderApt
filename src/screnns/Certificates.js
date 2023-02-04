@@ -26,7 +26,6 @@ import {useNavigation} from '@react-navigation/core';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
-import App from '../../App';
 
 const Certificates = () => {
   const navigation = useNavigation();

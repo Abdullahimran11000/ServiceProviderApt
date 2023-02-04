@@ -13,12 +13,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import RadioButtonRN from 'radio-buttons-react-native';
 import BackButton from '../components/ScrennHeader/BackButton';
-import { AppColor } from '../assets/colors/AppColors';
+import {AppColor} from '../assets/colors/AppColors';
+import {launchImageLibrary} from 'react-native-image-picker';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import {useNavigation} from '@react-navigation/native';
 import {MyProfileStyle} from '../assets/styles/DashboardStyle/MyProfileStyle';
+import {useState} from 'react';
+import Feather from 'react-native-vector-icons/Feather';
 
 const MyProfile = () => {
   const navigation = useNavigation();
@@ -26,6 +28,16 @@ const MyProfile = () => {
     {key: '1', value: 'Male'},
     {key: '2', value: 'FeMale'},
   ];
+
+  const [uploadImageList, setUploadImageList] = useState([]);
+  const [selectedImageUrl, setSelectedImageUrl] = useState('');
+  const imagePickerHandler = async () => {
+    await launchImageLibrary({}, arr => {
+      if (arr.assets != undefined) {
+        setSelectedImageUrl(setUploadImageList([{url: arr.assets[0].uri}]));
+      }
+    });
+  };
 
   return (
     <ScrollView>
@@ -37,18 +49,31 @@ const MyProfile = () => {
             }}>
             My Profile
           </BackButton>
-          <View style={MyProfileStyle.ProfileView}>
-            <ImageBackground
-              imageStyle={{borderRadius: wp('15')}}
-              style={MyProfileStyle.imageStyle}
-              resizeMode="cover"
-              source={require('../assets/images/profile.jpg')}>
-              <TouchableOpacity style={MyProfileStyle.IconButtonStyle}>
-                <Icon size={wp('5')} name="camera"></Icon>
-              </TouchableOpacity>
-            </ImageBackground>
-          </View>
 
+          <View style={MyProfileStyle.ProfileView}>
+            <View style={MyProfileStyle.innerProfileView}>
+              {selectedImageUrl === '' ? (
+                <Feather
+                  name="camera-off"
+                  size={wp('10')}
+                  color={AppColor.black}
+                />
+              ) : (
+                <ImageBackground
+                  imageStyle={{borderRadius: wp('15')}}
+                  style={MyProfileStyle.imageStyle}
+                  source={{uri: uploadImageList[0].url}}
+                  resizeMode="cover"></ImageBackground>
+              )}
+
+              <TouchableOpacity
+                onPress={imagePickerHandler}
+                style={MyProfileStyle.iconTouchableStyle}>
+                <Icon size={wp('4')} name="camera"></Icon>
+              </TouchableOpacity>
+            </View>
+          </View>
+          
           <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Full Name</Text>
 
