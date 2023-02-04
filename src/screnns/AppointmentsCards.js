@@ -13,28 +13,27 @@ const Appointments = () => {
         
         <SafeAreaView>
             <ScrollView>
-            <View  style={{display: 'flex', flex: 1 , backgroundColor:AppColor.whiteShade}}>
-                <View style={{alignSelf:"center" ,marginTop: hp(5), marginBottom:hp(5)}}>
+            <View  style={AppointmentStyle.mainView}>
+                <View style={AppointmentStyle.viewOneContainer}>
                     <TouchableOpacity>
                     <NeoButton  height={hp(18)} width={wp(90)} 
                                 borderRadius={20} backgroundColor={AppColor.whiteOpacity} 
-                                darkShadowColor={AppColor.black}
-                                >
-                     <View style={{flexDirection:"row" , backgroundColor:AppColor.primary , borderRadius:20}}>               
+                                darkShadowColor={AppColor.black}>
+                     <View style={AppointmentStyle.viewOneContainerInnerView}>               
                         <View style={{flex:5 , top:hp(4)}}>
-                            <Text style={{fontSize:wp(10), left:wp(5) , color:AppColor.white}}>105</Text>
-                            <Text style={{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white}}>Total Appointment Slots</Text>
+                            <Text style={AppointmentStyle.viewOneContainerInnerViewFirstText}>105</Text>
+                            <Text style={AppointmentStyle.viewOneContainerInnerViewSecondText}>Total Appointment Slots</Text>
                         </View>
-                     <View style={{flex:3 , width:wp(30), height:hp(20)}}>
-                        <Lottie style={{alignSelf:"center"}} 
-                        source={require('../assets/animations/slots.json')}
-                        loop autoPlay/>
-                     </View>
+                        <View style={{flex:3 , width:wp(30), height:hp(20)}}>
+                            <Lottie style={{alignSelf:"center"}} 
+                            source={require('../assets/animations/slots.json')}
+                            loop autoPlay/>
+                        </View>
                      </View>
                     </NeoButton>
                     </TouchableOpacity>
                 </View>
-                <View style={{alignSelf:"center"}}>
+                <View style={AppointmentStyle.viewSecondContainerInnerViewTwo}>
                     <TouchableOpacity>
                     <NeoButton  height={hp(18)} width={wp(90)} 
                                 borderRadius={20} backgroundColor={AppColor.whiteOpacity} 
