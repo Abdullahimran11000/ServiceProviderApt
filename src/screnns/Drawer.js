@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Text, TouchableOpacity, View, Image} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import { AppColor } from '../assets/colors/AppColors';
+import {AppColor} from '../assets/colors/AppColors';
 import Dashboard from './Dashboard';
 import {DrawerStyle} from '../assets/styles/AnimatedDrawerStyle/DrawerStyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -10,7 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Octicons from 'react-native-vector-icons/Octicons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -61,10 +61,15 @@ const Drawer = () => {
         <TouchableOpacity
           style={DrawerStyle.baseViewProfilePic}
           onPress={pressHandler}>
-          <NeoButton width={wp('16')} height={wp('16')} borderRadius={wp('8')} backgroundColor={AppColor.whiteShade} lightShadowColor={AppColor.primary}>  
-          <Image
-            style={DrawerStyle.imageStyle}
-            source={require('../assets/images/profile.jpg')}></Image>
+          <NeoButton
+            width={wp('16')}
+            height={wp('16')}
+            borderRadius={wp('8')}
+            backgroundColor={AppColor.whiteShade}
+            lightShadowColor={AppColor.primary}>
+            <Image
+              style={DrawerStyle.imageStyle}
+              source={require('../assets/images/profile.jpg')}></Image>
           </NeoButton>
         </TouchableOpacity>
         <Text style={DrawerStyle.nameText}>Dara Amanda</Text>
@@ -132,8 +137,6 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
-
-            
             <AntDesign
               name={'wallet'}
 
@@ -142,28 +145,24 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-
+            <AntDesign name={'wallet'} size={wp('5')} color={AppColor.white} />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
               onPress={() => navigation.navigate('Wallet')}>
               <Text style={DrawerStyle.menuItemText}>Wallet</Text>
-
             </TouchableOpacity>
           </View>
         </View>
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
-
-
             <MaterialCommunityIcons
               name={'clock-time-eleven-outline'}
-
               size={wp('5')}
               color={AppColor.white}
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-
-
               onPress={() => navigation.navigate('NewSchedule')}>
               <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
             </TouchableOpacity>
@@ -179,7 +178,6 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-
               onPress={() => navigation.navigate('Notifications')}>
               <Text style={DrawerStyle.menuItemText}>Notification</Text>
             </TouchableOpacity>

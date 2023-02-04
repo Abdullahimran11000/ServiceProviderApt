@@ -10,11 +10,9 @@ const MyProfileStyle = StyleSheet.create({
     backgroundColor: AppColor.whiteShade,
     height: hp('100'),
   },
-  ProfileView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: wp('4'),
-  },
+  ProfileView: {width: wp('90'), height: hp('15'), alignSelf: 'center', marginBottom: wp('5'), alignItems: 'center', justifyContent: 'center'},
+  innerProfileView: {width: wp('25'), height: wp('25'), borderRadius: wp('15'), backgroundColor: AppColor.white, justifyContent: 'center', alignItems: 'center'},
+
   IconButtonStyle: {
     width: wp('9'),
     height: hp('5'),
@@ -26,12 +24,10 @@ const MyProfileStyle = StyleSheet.create({
     marginVertical: wp('18'),
   },
 
-  imageStyle: {
-    width: wp('27'),
-    height: hp('15'),
-    borderRadius: wp('20'),
-  },
+  imageStyle:{width: wp('25'), height: wp('25')},
   inputFeildsView: {width: wp('89'), alignSelf: 'center'},
+  iconTouchableStyle: {position: 'absolute', right: -3, top: 60, width: wp('8'), height: wp('8'), borderRadius: wp('6'), backgroundColor: AppColor.white, alignItems: 'center', justifyContent: 'center'},
+  
   TextStyle: {
     fontFamily: 'Poppins-Bold',
     color: 'black',

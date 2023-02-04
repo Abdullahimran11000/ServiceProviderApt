@@ -39,23 +39,39 @@ const Certificates = () => {
         ...oldImageList,
         {id: Math.random(), url: arr.assets[0].uri},
       ]);
+      setSelectedImageUri(
+        setUploadImageListForZoom([{url: arr.assets[0].uri}]),
+      );
     });
   };
 
   const flatListUpdation = (id, url) => {
-    const filteredArray = uploadImageList.filter(item => item.id !== id);
-    if (uploadImageListForZoom[0].url === url) {
-      setUploadImageListForZoom([]);
-      setSelectedImageUri('');
-    } //if
-    setUploadImageList([...filteredArray]);
+    let filtereImagedArray = [];
+    if ((id != '') & (url != '')) {
+      uploadImageList.map((item, index) => {
+        if (item.id === id) {
+          filtereImagedArray = uploadImageList.filter(item => item.id !== id);
+          setUploadImageList([...filtereImagedArray]);
+        }
+      });
+
+      uploadImageListForZoom.map(item => {
+        if (item.url === url) {
+          if (uploadImageList.length === 1) {
+            setUploadImageListForZoom([]);
+            setSelectedImageUri('');
+          } else {
+            setUploadImageListForZoom([{url: filtereImagedArray[0].url}]);
+          }
+        }
+      });
+    }
   };
 
   const renderImageList = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          setUploadImageListForZoom([]);
           setSelectedImageUri(setUploadImageListForZoom([{url: item.url}]));
         }}>
         <Neomorph style={CertificatesStyle.neumorphListView}>
@@ -110,6 +126,7 @@ const Certificates = () => {
                 <ImageViewer
                   imageUrls={uploadImageListForZoom}
                   style={{width: wp('90'), height: hp('60')}}
+                  backgroundColor={AppColor.whiteShade}
                 />
               </View>
             )}

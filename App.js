@@ -39,12 +39,15 @@ const App = () => {
       <AppProvider>
           <Stack.Navigator  screenOptions={{headerShown: false}}>
           <Stack.Screen name="AppIntro" component={AppIntro} />
+
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          {/* <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Verification" component={Verification} />
-          <Stack.Screen name="Congratulation" component={Congratulation} />
+          <Stack.Screen name="Congratulation" component={Congratulation} /> */}
           <Stack.Screen name="Drawer" component={Drawer} />
           <Stack.Screen name="Dashboard" component={Dashboard}/>
           <Stack.Screen name="Certificates" component={Certificates}></Stack.Screen>
