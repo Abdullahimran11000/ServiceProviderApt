@@ -26,6 +26,7 @@ import {useNavigation} from '@react-navigation/core';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
+import App from '../../App';
 
 const Certificates = () => {
   const navigation = useNavigation();
@@ -39,23 +40,39 @@ const Certificates = () => {
         ...oldImageList,
         {id: Math.random(), url: arr.assets[0].uri},
       ]);
+      setSelectedImageUri(
+        setUploadImageListForZoom([{url: arr.assets[0].uri}]),
+      );
     });
   };
 
   const flatListUpdation = (id, url) => {
-    const filteredArray = uploadImageList.filter(item => item.id !== id);
-    if (uploadImageListForZoom[0].url === url) {
-      setUploadImageListForZoom([]);
-      setSelectedImageUri('');
-    } //if
-    setUploadImageList([...filteredArray]);
+    let filtereImagedArray = [];
+    if ((id != '') & (url != '')) {
+      uploadImageList.map((item, index) => {
+        if (item.id === id) {
+          filtereImagedArray = uploadImageList.filter(item => item.id !== id);
+          setUploadImageList([...filtereImagedArray]);
+        }
+      });
+
+      uploadImageListForZoom.map(item => {
+        if (item.url === url) {
+          if (uploadImageList.length === 1) {
+            setUploadImageListForZoom([]);
+            setSelectedImageUri('');
+          } else {
+            setUploadImageListForZoom([{url: filtereImagedArray[0].url}]);
+          }
+        }
+      });
+    }
   };
 
   const renderImageList = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          setUploadImageListForZoom([]);
           setSelectedImageUri(setUploadImageListForZoom([{url: item.url}]));
         }}>
         <Neomorph style={CertificatesStyle.neumorphListView}>
@@ -110,6 +127,7 @@ const Certificates = () => {
                 <ImageViewer
                   imageUrls={uploadImageListForZoom}
                   style={{width: wp('90'), height: hp('60')}}
+                  backgroundColor={AppColor.whiteShade}
                 />
               </View>
             )}
