@@ -13,7 +13,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Neomorph } from 'react-native-neomorph-shadows';
 import { widthPercentageToDP as wp , heightPercentageToDP as hp } from 'react-native-responsive-screen';
 const Notifications = props => {
-  const [show, setShow] = useState(true);
 
   const TodayData = [
     {
@@ -90,15 +89,12 @@ const Notifications = props => {
           <View style={NotificationStyle.innerViewOfFirstContainer}>
             <Text style={NotificationStyle.renderItemHeaderFontFirst}> Today </Text>
             <TouchableOpacity style={NotificationStyle.renderItemHeaderFontSecond} onPress={() => setShow(!show)}>
-              <Text style={NotificationStyle.renderItemHeaderFontSecondTextStyle}>  Mark all as read </Text>
             </TouchableOpacity>
           </View>
-          {show ? (
+          
             <FlatList data={TodayData} renderItem={renderItem} keyExtractor={item => item.id}> 
             </FlatList>
-          ) : (
-            ''
-          )}
+          
         </View>
 
         {/* 2nd render  */}
@@ -107,7 +103,6 @@ const Notifications = props => {
           <View style={NotificationStyle.innerViewOfSecondContainer}>
             <Text style={NotificationStyle.renderItemHeaderFontFirst}> Yesterday </Text>
             <TouchableOpacity style={NotificationStyle.renderItemHeaderFontSecond}>
-              <Text style={NotificationStyle.renderItemHeaderFontSecondTextStyle}> Mark all as read </Text>
             </TouchableOpacity>
           </View>
           <FlatList data={TodayData} renderItem={renderItem} keyExtractor={item => item.id}>
