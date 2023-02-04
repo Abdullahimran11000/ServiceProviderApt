@@ -109,10 +109,7 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('MyProfile')}>
-=======
               onPress={() => navigation.navigate('Certificates')}>
-
               <Text style={DrawerStyle.menuItemText}>Certificates</Text>
             </TouchableOpacity>
           </View>
@@ -127,7 +124,7 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('MyAppointment')}>
+              onPress={() => navigation.navigate('AppointmentsCards')}>
               <Text style={DrawerStyle.menuItemText}>Appointment</Text>
             </TouchableOpacity>
           </View>
@@ -136,9 +133,7 @@ const Drawer = () => {
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
 
-            <MaterialCommunityIcons
-              name={'clock-time-eleven-outline'}
-=======
+            
             <AntDesign
               name={'wallet'}
 
@@ -148,9 +143,6 @@ const Drawer = () => {
             <TouchableOpacity
               style={DrawerStyle.touchableView}
 
-              onPress={() => navigation.navigate('Message')}>
-              <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
-=======
               onPress={() => navigation.navigate('Wallet')}>
               <Text style={DrawerStyle.menuItemText}>Wallet</Text>
 
@@ -161,9 +153,7 @@ const Drawer = () => {
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
 
-            <Ionicons
-              name={'notifications-outline'}
-=======
+
             <MaterialCommunityIcons
               name={'clock-time-eleven-outline'}
 
@@ -173,8 +163,8 @@ const Drawer = () => {
             <TouchableOpacity
               style={DrawerStyle.touchableView}
 
-=======
-              onPress={() => navigation.navigate('Message')}>
+
+              onPress={() => navigation.navigate('NewSchedule')}>
               <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
             </TouchableOpacity>
           </View>
