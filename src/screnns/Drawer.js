@@ -129,7 +129,7 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('MyAppointment')}>
+              onPress={() => navigation.navigate('AppointmentsCards')}>
               <Text style={DrawerStyle.menuItemText}>Appointment</Text>
             </TouchableOpacity>
           </View>
@@ -137,6 +137,14 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
+            <AntDesign
+              name={'wallet'}
+
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
             <AntDesign name={'wallet'} size={wp('5')} color={AppColor.white} />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
@@ -155,7 +163,7 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('Message')}>
+              onPress={() => navigation.navigate('NewSchedule')}>
               <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
             </TouchableOpacity>
           </View>
