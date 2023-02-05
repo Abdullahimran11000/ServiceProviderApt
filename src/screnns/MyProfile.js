@@ -20,7 +20,9 @@ import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import {useNavigation} from '@react-navigation/native';
 import {MyProfileStyle} from '../assets/styles/DashboardStyle/MyProfileStyle';
 import {useState} from 'react';
-import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { CertificatesStyle } from '../assets/styles/CertificatesStyle';
+import NeoButton from '../components/NeoMorphButton/NeoButton';
 
 const MyProfile = () => {
   const navigation = useNavigation();
@@ -53,8 +55,8 @@ const MyProfile = () => {
           <View style={MyProfileStyle.ProfileView}>
             <View style={MyProfileStyle.innerProfileView}>
               {selectedImageUrl === '' ? (
-                <Feather
-                  name="camera-off"
+                <FontAwesome
+                  name={'user-o'}
                   size={wp('10')}
                   color={AppColor.black}
                 />
@@ -63,7 +65,7 @@ const MyProfile = () => {
                   imageStyle={{borderRadius: wp('15')}}
                   style={MyProfileStyle.imageStyle}
                   source={{uri: uploadImageList[0].url}}
-                  resizeMode='cover'></ImageBackground>
+                  resizeMode="cover"></ImageBackground>
               )}
 
               <TouchableOpacity
@@ -73,7 +75,7 @@ const MyProfile = () => {
               </TouchableOpacity>
             </View>
           </View>
-          
+
           <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Full Name</Text>
 
@@ -119,7 +121,6 @@ const MyProfile = () => {
 
           <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
-
             <NeoTextInput
               width={wp('90')}
               marginBottom={wp('3')}
@@ -128,6 +129,18 @@ const MyProfile = () => {
               placeholder={'Enter your number'}
             />
           </View>
+
+          <View style={MyProfileStyle.buttonView}>
+          <TouchableOpacity>
+            <NeoButton
+              width={wp('45')}
+              height={hp('8')}
+              backgroundColor={AppColor.primary}
+              borderRadius={wp('7')}>
+              <Text style={MyProfileStyle.buttonText}>Save</Text>
+            </NeoButton>
+          </TouchableOpacity>
+        </View>
         </View>
       </SafeAreaView>
     </ScrollView>
