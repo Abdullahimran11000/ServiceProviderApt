@@ -37,9 +37,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-          <Stack.Navigator  screenOptions={{headerShown: false}}>
-          <Stack.Screen name="AppIntro" component={AppIntro} />
-
         <Stack.Navigator screenOptions={{headerShown: false}}>
           {/* <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
