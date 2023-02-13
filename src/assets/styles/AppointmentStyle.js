@@ -10,7 +10,7 @@ const AppointmentStyle = StyleSheet.create({
      viewOneContainerInnerViewFirstText:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
      viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
      viewTwoContainer:{alignSelf:"center"},
-     viewTwoContainerInnerView:{flexDirection:"row" , backgroundColor:"#c3e0f7" , borderRadius:20},
+     viewTwoContainerInnerView:{flexDirection:"row" , backgroundColor: "#c45252" , borderRadius:20},
      viewTwoContainerInnerViewOne:{flex:5 , top:hp(4)},
      viewTwoContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20)},
      viewTwoContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5) , color:AppColor.white},

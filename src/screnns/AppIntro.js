@@ -3,7 +3,7 @@ import {SafeAreaView, View, Text, ScrollView} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {AppIntroStyle} from '../assets/styles/AuthStyle/AppIntroStyle';
 import Lottie from 'lottie-react-native';
-import SwipeButton from './SwipeButton';
+import SwipeButton from '../components/Swiper/SwipeButton';
 
 const AppIntro = (props) => {
   const slides = [

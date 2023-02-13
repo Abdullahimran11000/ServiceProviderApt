@@ -1,8 +1,8 @@
+import React, {useState} from 'react'
 import {
   SafeAreaView,
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   ScrollView,
   ImageBackground,
@@ -19,9 +19,7 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import {useNavigation} from '@react-navigation/native';
 import {MyProfileStyle} from '../assets/styles/DashboardStyle/MyProfileStyle';
-import {useState} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { CertificatesStyle } from '../assets/styles/CertificatesStyle';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 
 const MyProfile = () => {

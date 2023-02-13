@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import Swiper from 'rn-swipe-button';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import { AppColor } from '../assets/colors/AppColors';
+import { AppColor } from '../../assets/colors/AppColors';
 import { useNavigation } from '@react-navigation/native';
 
 const SwipeButton = () => {

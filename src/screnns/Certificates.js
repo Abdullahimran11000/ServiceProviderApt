@@ -6,12 +6,9 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Image,
   ImageBackground,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import {DashboardStyle} from '../assets/styles/DashboardStyle/DashboardStyle';
-import DocumentPicker from 'react-native-document-picker';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
