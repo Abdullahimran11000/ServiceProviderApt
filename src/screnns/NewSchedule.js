@@ -18,7 +18,11 @@ import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment-timezone';
 import {NewScheduleStyle} from '../assets/styles/NewScheduleStyle';
+import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 const NewSchedule = () => {
+  const navigation = useNavigation()
   const [showStartDate, setShowStartDate] = useState(false);
   const [showEndDate, setShowEndDate] = useState(false);
   const [showStartSelectedDate, setShowStartSelectedDate] =
@@ -70,9 +74,26 @@ const NewSchedule = () => {
     isEndTimeHide();
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
       <ScrollView>
         <View style={NewScheduleStyle.mainView}>
+          <View style={CertificatesStyle.headCont}>
+            <View style={CertificatesStyle.headContInnerCont}>
+              <TouchableOpacity
+                style={CertificatesStyle.headContMenuCont}
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
+                <Text style={CertificatesStyle.textStyle1}>
+                  Go To Dashboard
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={CertificatesStyle.textCont}>
+                <Text style={CertificatesStyle.textStyle}>Schedule</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
           <View style={NewScheduleStyle.viewOne}>
             <TouchableOpacity>
               <NeoButton

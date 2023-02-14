@@ -9,11 +9,14 @@ import {
 import ii from 'react-native-vector-icons/Ionicons';
 import ad from 'react-native-vector-icons/AntDesign';
 import {NotificationStyle} from '../assets/styles/AnimatedDrawerStyle/NotificationStyle';
+import { CertificatesStyle } from '../assets/styles/CertificatesStyle';
+import { AppColor } from '../assets/colors/AppColors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Neomorph } from 'react-native-neomorph-shadows';
 import { widthPercentageToDP as wp , heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
 const Notifications = props => {
-
+  const navigation = useNavigation()
   const TodayData = [
     {
       id: 1,
@@ -74,14 +77,31 @@ const Notifications = props => {
   return (
     <SafeAreaView>
       <View style={NotificationStyle.mainView}>
-        <View style={NotificationStyle.headerMainView}>
+        {/* <View style={NotificationStyle.headerMainView}>
           <Neomorph style={NotificationStyle.header}>
               <TouchableOpacity onPress={() => props.navigation.goBack()} style={NotificationStyle.headerbackButton}>
                 <Ionicons name="chevron-back-sharp" size={wp('6')} />
               </TouchableOpacity>
               <Text style={NotificationStyle.headerText}>Notifications</Text>
           </Neomorph>
-        </View>
+        </View> */}
+        <View style={CertificatesStyle.headCont}>
+            <View style={CertificatesStyle.headContInnerCont}>
+              <TouchableOpacity
+                style={CertificatesStyle.headContMenuCont}
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
+                <Text style={CertificatesStyle.textStyle1}>
+                  Go To Dashboard
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={CertificatesStyle.textCont}>
+                <Text style={CertificatesStyle.textStyle}>Notification</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
 
         {/* 1st render  */}
 

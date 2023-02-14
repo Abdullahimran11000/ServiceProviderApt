@@ -65,9 +65,9 @@ const LogIn = props => {
                 </View>
               </TouchableOpacity>
             </NeoButton>
-            <Text style={LoginStyle.orText}>or</Text>
+            {/* <Text style={LoginStyle.orText}>or</Text> */}
           </View>
-          <View style={{justifyContent: 'center', alignSelf: 'center'}}>
+          {/* <View style={{justifyContent: 'center', alignSelf: 'center'}}>
             <NeoButton
               width={wp('86 ')}
               height={hp('6')}
@@ -81,9 +81,9 @@ const LogIn = props => {
                 <Text style={LoginStyle.GoogleText}>Login With Google</Text>
               </TouchableOpacity>
             </NeoButton>
-          </View>
+          </View> */}
           <View style={LoginStyle.LastView}>
-            <Text>Don't have an account? </Text>
+            <Text style={{fontFamily: 'Poppins-Light'}}>Don't have an account? </Text>
             <TouchableOpacity
               onPress={() => props.navigation.navigate('SignUp')}>
               <Text style={LoginStyle.SignUpText}>Sign Up</Text>

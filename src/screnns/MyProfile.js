@@ -13,13 +13,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import BackButton from '../components/ScrennHeader/BackButton';
+import { CertificatesStyle } from '../assets/styles/CertificatesStyle';
 import {AppColor} from '../assets/colors/AppColors';
 import {launchImageLibrary} from 'react-native-image-picker';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import {useNavigation} from '@react-navigation/native';
 import {MyProfileStyle} from '../assets/styles/DashboardStyle/MyProfileStyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 
 const MyProfile = () => {
@@ -43,12 +44,23 @@ const MyProfile = () => {
     <ScrollView>
       <SafeAreaView style={MyProfileStyle.mainView}>
         <View>
-          <BackButton
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            My Profile
-          </BackButton>
+        <View style={CertificatesStyle.headCont}>
+            <View style={CertificatesStyle.headContInnerCont}>
+              <TouchableOpacity
+                style={CertificatesStyle.headContMenuCont}
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
+                <Text style={CertificatesStyle.textStyle1}>
+                  Go To Dashboard
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={CertificatesStyle.textCont}>
+                <Text style={CertificatesStyle.textStyle}>Profile</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
 
           <View style={MyProfileStyle.ProfileView}>
             <View style={MyProfileStyle.innerProfileView}>
