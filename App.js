@@ -18,6 +18,7 @@ import NewSchedule from './src/screnns/NewSchedule';
 import Wallet from './src/screnns/Wallet';
 import Certificates from './src/screnns/Certificates';
 import AppointmentsCards from './src/screnns/AppointmentsCards';
+import Notifications from './src/screnns/Notifications';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -48,6 +49,7 @@ const App = () => {
           <Stack.Screen name="VideoCalling" component={VideoCalling} />
           <Stack.Screen name="AppointmentsCards" component={AppointmentsCards}/>
           <Stack.Screen name="NewSchedule" component={NewSchedule}/>
+          <Stack.Screen name="Notifications" component={Notifications}/>
         </Stack.Navigator>
       </AppProvider>
     </NavigationContainer>
