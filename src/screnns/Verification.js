@@ -15,12 +15,12 @@ import Lottie from 'lottie-react-native';
 import {VerificationStyle} from '../assets/styles/AuthStyle/VerificationStyle';
 import BackButton from '../components/ScrennHeader/BackButton';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
-import { AppColor } from '../assets/colors/AppColors';
+import {AppColor} from '../assets/colors/AppColors';
 
 const Verification = props => {
   return (
-    <SafeAreaView style={VerificationStyle.mainView}>
-      <ScrollView>
+    <ScrollView>
+      <SafeAreaView style={VerificationStyle.mainView}>
         <View>
           <BackButton onPress={() => props.navigation.goBack()}>
             {'Verification'}
@@ -83,8 +83,8 @@ const Verification = props => {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
