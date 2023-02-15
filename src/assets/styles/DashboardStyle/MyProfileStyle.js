@@ -57,14 +57,18 @@ const MyProfileStyle = StyleSheet.create({
     color: 'black',
   },
   GenderView: {marginLeft: wp('6'), marginTop: wp('4')},
-
+  selectListBox: {
+    borderRadius: wp('4'),
+    marginTop: wp('2'),
+    width: wp('90'),
+    backgroundColor: AppColor.whiteShade,
+  },
   SelectPriceListBoxStyle: {
     borderRadius: wp('4'),
-
-    width: wp('91'),
-    marginLeft: wp('4.5'),
+    marginTop: wp('2'),
+    width: wp('90'),
+    alignSelf: 'center',
     borderColor: AppColor.whiteShade,
-    backgroundColor: AppColor.whiteShade,
   },
 
   buttonView: {
