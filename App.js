@@ -30,7 +30,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='MyProfile' screenOptions={{headerShown: false}}>
           <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
