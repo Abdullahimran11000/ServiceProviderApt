@@ -64,11 +64,9 @@ const NewSchedule = () => {
             <ScrollView>
                 <View style={NewScheduleStyle.mainView}>
                     <View style={NewScheduleStyle.viewOne}>
-                        <TouchableOpacity>
                             <NeoButton width={wp(82)} height={hp(10)} backgroundColor={AppColor.primary} borderRadius={wp(20)}>
                                 <Text style={NewScheduleStyle.viewOneText}>Add New Schedule</Text>    
                             </NeoButton>
-                        </TouchableOpacity>
                     </View>
                     <View style={NewScheduleStyle.viewTwo}>
                         <View>
@@ -79,7 +77,7 @@ const NewSchedule = () => {
                                 </NeoButton>
                             </TouchableOpacity>
                             <View>
-                                <DateTimePicker mode="date" isVisible={showStartDate} onConfirm={startDateHandler} onCancel={isDateStartHide} /> 
+                                <DateTimePicker mode="date" isVisible={showStartDate} display="spinner" onConfirm={startDateHandler} onCancel={isDateStartHide} /> 
                             </View>
                         </View>
                         <View>
@@ -90,7 +88,7 @@ const NewSchedule = () => {
                                 </NeoButton>
                             </TouchableOpacity>
                             <View>
-                                <DateTimePicker2 mode="date" isVisible={showEndDate}  onConfirm={endDateHandler} onCancel={isDateEndHide} /> 
+                                <DateTimePicker2  mode="date" isVisible={showEndDate}  display="spinner"  onConfirm={endDateHandler} onCancel={isDateEndHide} /> 
                             </View> 
                         </View>  
                     </View>
@@ -123,7 +121,7 @@ const NewSchedule = () => {
                         <NeoButton height={hp(8)} width={wp(82)} borderRadius={wp(20)} backgroundColor={AppColor.whiteShade}>
                             <TextInput style={NewScheduleStyle.viewFourTextInput} placeholder='Enter Your Consultation fee' />
                         </NeoButton>
-                        <Icon style={{position:"absolute" , right:wp(5) , top:hp(2.3)}} name="cash" size={wp(6)} color={'#567a49'}/>
+                        <Icon style={{position:"absolute" , marginTop: hp(2.2), alignSelf:"flex-end" ,right:wp(4)}} name="cash" size={wp(6)} color={'#567a49'}/>
                     </View>
                     <View style={NewScheduleStyle.viewFive}>
                         <TouchableOpacity>

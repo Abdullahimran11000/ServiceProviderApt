@@ -145,9 +145,6 @@ const Drawer = () => {
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-            <AntDesign name={'wallet'} size={wp('5')} color={AppColor.white} />
-            <TouchableOpacity
-              style={DrawerStyle.touchableView}
               onPress={() => navigation.navigate('Wallet')}>
               <Text style={DrawerStyle.menuItemText}>Wallet</Text>
             </TouchableOpacity>

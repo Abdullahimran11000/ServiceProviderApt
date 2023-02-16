@@ -3,8 +3,6 @@ import React from 'react';
 import AppIntro from './src/screnns/AppIntro';
 import LogIn from './src/screnns/LogIn';
 import SignUp from './src/screnns/SignUp';
-import Schedule from './src/screnns/Schedule';
-import Maps from './src/screnns/Maps';
 import RecoverPassword from './src/screnns/RecoverPassword';
 import ForgotPassword from './src/screnns/ForgotPassword';
 import Verification from './src/screnns/Verification';
@@ -37,17 +35,14 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-          <Stack.Navigator  screenOptions={{headerShown: false}}>
+          <Stack.Navigator  initialRouteName='NewSchedule' screenOptions={{headerShown: false}}>
           <Stack.Screen name="AppIntro" component={AppIntro} />
-
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Verification" component={Verification} />
-          <Stack.Screen name="Congratulation" component={Congratulation} /> */}
+          <Stack.Screen name="Congratulation" component={Congratulation} />
           <Stack.Screen name="Drawer" component={Drawer} />
           <Stack.Screen name="Dashboard" component={Dashboard}/>
           <Stack.Screen name="Certificates" component={Certificates}></Stack.Screen>
@@ -55,8 +50,6 @@ const App = () => {
           <Stack.Screen name="Splash" component={Splash} />          
           <Stack.Screen name="MyProfile" component={MyProfile} />
           <Stack.Screen name="DoctorSpecialist" component={DoctorSpecialist} />
-          <Stack.Screen name="Maps" component={Maps} />
-          <Stack.Screen name="Schedule" component={Schedule} />
           <Stack.Screen name="DoctorNearby" component={DoctorNearby} />
           <Stack.Screen name="DoctorInfo" component={DoctorInfo} />
           <Stack.Screen name="SearchDoctor" component={SearchDoctor} />
