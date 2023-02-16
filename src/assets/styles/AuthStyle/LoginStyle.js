@@ -3,12 +3,18 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { AppColor } from '../../colors/AppColors';
+import {AppColor} from '../../colors/AppColors';
 const LoginStyle = StyleSheet.create({
   MainView: {flex: 1},
 
-  headerView: {alignSelf:'center' , color:AppColor.black , fontFamily:'Poppins-Bold', marginTop:hp(3)  ,fontSize:wp('5')},
-  
+  headerView: {
+    alignSelf: 'center',
+    color: AppColor.black,
+    fontFamily: 'Poppins-Bold',
+    marginTop: hp(3),
+    fontSize: wp('5'),
+  },
+
   inputFieldsView: {
     marginTop: wp('15'),
     justifyContent: 'center',
@@ -29,16 +35,14 @@ const LoginStyle = StyleSheet.create({
     color: 'black',
   },
 
-  iconOpacity: {
-    width: wp('5'),
-    height: hp('5'),
+  icon: {
     position: 'absolute',
-    alignSelf: 'flex-end',
-    marginVertical: wp('13'),
-  },
+     marginVertical: hp(7),
+      right: wp(3)
+    },
 
   MainLoginButtonView: {
-    marginTop:wp('4'),
+    marginTop: wp('4'),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -77,22 +81,23 @@ const LoginStyle = StyleSheet.create({
     height: hp(3),
     marginLeft: wp(20),
     position: 'absolute',
-    backgroundColor:AppColor.white
+    backgroundColor: AppColor.white,
   },
 
   GoogleText: {
     color: 'black',
     textAlign: 'center',
     fontFamily: 'Poppins-Light',
-    marginLeft:wp('3')
+    marginLeft: wp('3'),
   },
 
-  LastView:{
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginTop:wp('5')},
-  SignUpText:{fontFamily: 'Poppins-SemiBold', color: 'black'}
+  LastView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: wp('5'),
+  },
+  SignUpText: {fontFamily: 'Poppins-SemiBold', color: 'black'},
 });
 
 export {LoginStyle};
