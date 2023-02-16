@@ -99,7 +99,7 @@ const Verification = props => {
               maxLength={1}
               keyboardType={'numeric'}
               ref={fourthTextInputRef}
-              returnKeyType="previous"
+              returnKeyType="go"
               onChangeText={value => {
                 if (value.length == 0) {
                   thirdTextInputRef.current.focus();
