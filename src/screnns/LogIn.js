@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
+import { useState } from 'react';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,8 +16,11 @@ import {AppColor} from '../assets/colors/AppColors'
 import BackButton from '../components/ScrennHeader/BackButton';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
+import Entypo from 'react-native-vector-icons/Entypo';
+
 import { LoginStyle } from '../assets/styles/AuthStyle/LoginStyle';
 const LogIn = props => {
+  const [eye, setEye] = useState(false);
   return (
     <SafeAreaView style={{backgroundColor: AppColor.whiteShade, height: hp('100')}}>
       <ScrollView>
@@ -38,11 +42,25 @@ const LogIn = props => {
                 width={wp('90')}
                 marginBottom={wp('5')}
                 placeholder={'Enter your password'}
-                secureTextEntry={true}
+                secureTextEntry={!eye}
               />
-              <TouchableOpacity style={LoginStyle.iconOpacity}>
-                <Icon name="eye-slash" size={15} />
-              </TouchableOpacity>
+               <TouchableOpacity style={LoginStyle.icon}  onPress={() => {
+              if (eye === true) {
+                setEye(false);
+              } else {
+                setEye(true);
+              }
+            }}>
+            {!eye ? (
+              <Entypo
+                name="eye-with-line"
+                size={wp('4.5')}
+                color="black"
+              />
+            ) : (
+              <Entypo name="eye" size={wp('4.5')} color="black" />
+            )}
+            </TouchableOpacity>
             </View>
           </View>
           <TouchableOpacity
@@ -64,24 +82,8 @@ const LogIn = props => {
                   <Text style={LoginStyle.LoginText}>Log In</Text>
                 </View>
               </TouchableOpacity>
-            </NeoButton>
-            {/* <Text style={LoginStyle.orText}>or</Text> */}
+            </NeoButton>          
           </View>
-          {/* <View style={{justifyContent: 'center', alignSelf: 'center'}}>
-            <NeoButton
-              width={wp('86 ')}
-              height={hp('6')}
-              backgroundColor={AppColor.whiteShade}
-              borderRadius={wp('10')}>
-              <TouchableOpacity style={LoginStyle.TouchableGoogle}>
-                <Image
-                  style={LoginStyle.GoogleImage}
-                  source={require('../assets/images/monoGoogle.jpg')}
-                />
-                <Text style={LoginStyle.GoogleText}>Login With Google</Text>
-              </TouchableOpacity>
-            </NeoButton>
-          </View> */}
           <View style={LoginStyle.LastView}>
             <Text style={{fontFamily: 'Poppins-Light'}}>Don't have an account? </Text>
             <TouchableOpacity
