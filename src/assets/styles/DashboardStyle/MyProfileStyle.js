@@ -14,9 +14,10 @@ const MyProfileStyle = StyleSheet.create({
     width: wp('90'),
     height: hp('15'),
     alignSelf: 'center',
-    marginBottom: wp('5'),
+    marginBottom: wp('10'),
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: wp('5')
   },
   innerProfileView: {
     width: wp('25'),
@@ -56,7 +57,7 @@ const MyProfileStyle = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     color: 'black',
   },
-  GenderView: {marginLeft: wp('6'), marginTop: wp('4')},
+  GenderView: {marginLeft: wp('6')},
   selectListBox: {
     borderRadius: wp('4'),
     marginTop: wp('2'),

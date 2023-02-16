@@ -101,7 +101,7 @@ const MyProfile = () => {
 
             <NeoTextInput
               width={wp('90')}
-              marginBottom={hp('3')}
+              marginBottom={wp('5')}
               placeholder={'Enter your name'}
               keyboardType={'default'}
             />
@@ -111,19 +111,19 @@ const MyProfile = () => {
 
             <NeoTextInput
               width={wp('90')}
-              marginBottom={hp('1')}
+              marginBottom={wp('5')}
               placeholder={'Enter your birth'}
               keyboardType={'numeric'}
             />
           </View>
 
-          <View style={MyProfileStyle.GenderView}>
+          <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Gender</Text>
           </View>
 
           <MenuProvider>
             <Menu
-              onSelect={(value) => {
+              onSelect={value => {
                 setNeumorphHeight(true);
                 setOptionShow(value);
               }}>
@@ -139,8 +139,8 @@ const MyProfile = () => {
                     shadowRadius: 4,
                     marginLeft: wp('5'),
                     borderRadius: wp('3'),
-                    marginTop: wp('3'),
-                    marginBottom: neumorphHeight ? wp('5') : hp('12'),
+                    marginTop: wp('2'),
+                    marginBottom: neumorphHeight ? wp('5') : hp('14'),
                     justifyContent: 'center',
                   }}>
                   <Text
@@ -160,7 +160,7 @@ const MyProfile = () => {
                   marginLeft: wp('40'),
                   marginTop: hp('10'),
                 }}>
-                <MenuOption value={"Male"}>
+                <MenuOption value={'Male'}>
                   <Text
                     style={{
                       fontFamily: 'Poppins-Light',
@@ -170,7 +170,7 @@ const MyProfile = () => {
                     Male
                   </Text>
                 </MenuOption>
-                <MenuOption value={"Female"}>
+                <MenuOption value={'Female'}>
                   <Text
                     style={{
                       fontFamily: 'Poppins-Light',
@@ -184,58 +184,22 @@ const MyProfile = () => {
             </Menu>
           </MenuProvider>
 
-          {/* <Neomorph
-            style={[
-              MyProfileStyle.selectListBox,
-              {
-                shadowRadius: 4,
-                height: neumorphHeight? wp('15'): wp('47'),
-                marginLeft: wp('5'),
-                marginBottom: wp('5'),
-              },
-            ]}
-            inner={false}>
-            <SelectList
-              onPress={()=>{console.log("Hello")}}
-              fontFamily="Poppins-Medium"
-              boxStyles={[MyProfileStyle.SelectPriceListBoxStyle]}
-              dropdownStyles={{
-                borderColor: AppColor.whiteShade,
-                width: wp('90'),
-                alignSelf: 'center',
-                borderRadius: wp('4'),
-                marginBottom: wp('5'),
-              }}
-              placeholder="Gender"
-              data={gender}
-            />
-          </Neomorph> */}
-
-          {/* <SelectList
-            fontFamily="Poppins-Medium"
-            boxStyles={MyProfileStyle.SelectPriceListBoxStyle}
-            dropdownStyles={{borderColor: AppColor.black, width: wp('90'), alignSelf: 'center', borderRadius: wp('4'), marginBottom: wp('5')}}
-            placeholder="Gender"
-            data={gender}
-          /> */}
-
           <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Email</Text>
 
             <NeoTextInput
-              marginBottom={wp('3')}
+              marginBottom={wp('5')}
               width={wp('90')}
               keyboardType={'email-address'}
               placeholder={'Enter your email'}
             />
           </View>
 
-          <View style={MyProfileStyle.inputFeildsView}>
+          <View style={[MyProfileStyle.inputFeildsView]}>
             <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
             <NeoTextInput
               width={wp('90')}
-              marginBottom={wp('3')}
-              styles={{marginBottom: wp('3')}}
+              marginBottom={wp('8')}
               keyboardType={'number-pad'}
               placeholder={'Enter your number'}
             />
