@@ -91,7 +91,7 @@ const LoginStyle = StyleSheet.create({
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  marginTop:wp('3')},
+  marginTop:wp('5')},
   SignUpText:{fontFamily: 'Poppins-SemiBold', color: 'black'}
 });
 

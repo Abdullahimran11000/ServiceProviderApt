@@ -21,7 +21,7 @@ const NotificationStyle = StyleSheet.create({
     header: {display: 'flex',flexDirection: 'row',backgroundColor: AppColor.whiteShade,width: wp(90),height: hp(7),margin: hp(2.5),alignItems: 'center',borderRadius: 30,shadowRadius:4},
     headerbackButton: {width: wp('10'), height: wp('10'), borderRadius: wp('9'), backgroundColor: AppColor.white, marginLeft: wp('2'), alignItems: 'center', justifyContent: 'center',},
     headerText:{fontFamily: 'Poppins-SemiBold', width: wp('40'), marginLeft: wp('20'), fontSize: 14, color: 'black',},
-    firstContainerOfMainView: {backgroundColor: AppColor.whiteShade, height: hp(40), width: wp(95), alignSelf: 'center', borderRadius: 20, overflow: 'hidden',},
+    firstContainerOfMainView: {backgroundColor: AppColor.whiteShade, height: hp(40), width: wp(95), alignSelf: 'center', borderRadius: 20, overflow: 'hidden', marginTop: wp('3')},
     innerViewOfFirstContainer: {height: hp(5),justifyContent: 'center', width: wp(90), alignSelf: 'center',},
     secondContainerOfMainView: {backgroundColor: AppColor.whiteShade, height: hp(40), width: wp(95), alignSelf: 'center', borderRadius: 20, marginBottom: hp(1), marginTop: hp(3), overflow: 'hidden', },
     innerViewOfSecondContainer:{height: hp(5), justifyContent: 'center', width: wp(90), alignSelf: 'center',},

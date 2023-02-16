@@ -6,12 +6,9 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Image,
   ImageBackground,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import {DashboardStyle} from '../assets/styles/DashboardStyle/DashboardStyle';
-import DocumentPicker from 'react-native-document-picker';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -35,13 +32,15 @@ const Certificates = () => {
 
   const imagePickerHandler = async () => {
     await launchImageLibrary({}, arr => {
-      setUploadImageList(oldImageList => [
-        ...oldImageList,
-        {id: Math.random(), url: arr.assets[0].uri},
-      ]);
-      setSelectedImageUri(
-        setUploadImageListForZoom([{url: arr.assets[0].uri}]),
-      );
+      if (arr.assets != undefined) {
+        setUploadImageList(oldImageList => [
+          ...oldImageList,
+          {id: Math.random(), url: arr.assets[0].uri},
+        ]);
+        setSelectedImageUri(
+          setUploadImageListForZoom([{url: arr.assets[0].uri}]),
+        );
+      }
     });
   };
 
@@ -177,7 +176,7 @@ const Certificates = () => {
         <View style={CertificatesStyle.buttonView}>
           <TouchableOpacity onPress={imagePickerHandler}>
             <NeoButton
-              width={wp('40')}
+              width={wp('60')}
               height={hp('8')}
               backgroundColor={AppColor.primary}
               borderRadius={wp('7')}>

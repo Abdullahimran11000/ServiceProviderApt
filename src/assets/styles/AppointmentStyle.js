@@ -9,10 +9,12 @@ const AppointmentStyle = StyleSheet.create({
      viewOneContainerInnerViewOne:{flex:5},
      viewOneContainerInnerViewFirstText:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
      viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
+
      viewTwoContainer:{alignSelf:"center", marginTop: hp('5')},
      viewTwoContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(18) , alignItems:'center' },
      viewTwoContainerInnerViewOne:{flex:5 },
      viewTwoContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , alignItems:'center' , justifyContent:'center'},
+
      viewTwoContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
      viewTwoContainerInnerViewOneTextTwo:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
      viewThreeContainer:{alignSelf:"center"},

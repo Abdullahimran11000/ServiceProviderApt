@@ -62,9 +62,9 @@ const SignUp = props => {
                 <Text style={SignUpStyle.SignUpText}>Sign Up</Text>
               </NeoButton>
             </TouchableOpacity>
-            <Text style={SignUpStyle.middleTextBetweenButtons}>Or</Text>
+            {/* <Text style={SignUpStyle.middleTextBetweenButtons}>Or</Text> */}
           </View>
-          <View style={SignUpStyle.buttonTwoView}>
+          {/* <View style={SignUpStyle.buttonTwoView}>
             <TouchableOpacity>
               <NeoButton lightShadowColor={AppColor.white} darkShadowColor={AppColor.black} marginTop={wp('4')} width={wp('83')}height={hp('6')} borderRadius={wp('15')} backgroundColor={AppColor.whiteShade}>
                 <Image style={SignUpStyle.image} source={require('../assets/images/monoGoogle.jpg')}/>
@@ -79,7 +79,7 @@ const SignUp = props => {
             <TouchableOpacity style={SignUpStyle.loginButton} onPress={() => props.navigation.goBack()}>
               <Text style={SignUpStyle.loginText}>Log in</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </SafeAreaView>
     </ScrollView>

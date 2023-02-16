@@ -5,7 +5,6 @@ import {
   View,
   TouchableOpacity,
   Image,
-  ScrollView,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
@@ -52,7 +51,7 @@ const VideoCalling = () => {
 
         <Image
           style={VideoCallingStyle.imageStyle}
-          source={require('../assets/images/doctorsInfo.png')}
+          source={require('../assets/images/profile.jpg')}
         />
       </View>
 
