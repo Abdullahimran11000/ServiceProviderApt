@@ -43,10 +43,6 @@ const App = () => {
           <Stack.Screen name="Certificates" component={Certificates}/>
           <Stack.Screen name="Wallet" component={Wallet}/>
           <Stack.Screen name="MyProfile" component={MyProfile} />
-          <Stack.Screen name="DoctorSpecialist" component={DoctorSpecialist} />
-          <Stack.Screen name="DoctorNearby" component={DoctorNearby} />
-          <Stack.Screen name="DoctorInfo" component={DoctorInfo} />
-          <Stack.Screen name="SearchDoctor" component={SearchDoctor} />
           <Stack.Screen name="MyAppointment" component={MyAppointment} />
           <Stack.Screen name="Message" component={Message} />
           <Stack.Screen name="Chat" component={Chat} />

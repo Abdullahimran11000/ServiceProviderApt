@@ -30,7 +30,7 @@ const SignUp = props => {
           </View>
           <View style={SignUpStyle.views}>
             <Text style={SignUpStyle.text}>Password</Text>
-            <NeoTextInput width={wp('90')} keyboardType={'default'} secureTextEntry={true} placeholder={'Enter your Password'} />
+            <NeoTextInput width={wp('90')} keyboardType={'default'} secureTextEntry={!eye} placeholder={'Enter your Password'} />
             <TouchableOpacity style={SignUpStyle.icon}  onPress={() => {
               if (eye === true) {
                 setEye(false);
