@@ -40,8 +40,8 @@ const App = () => {
           <Stack.Screen name="Congratulation" component={Congratulation} />
           <Stack.Screen name="Drawer" component={Drawer} />
           <Stack.Screen name="Dashboard" component={Dashboard}/>
-          <Stack.Screen name="Certificates" component={Certificates}></Stack.Screen>
-          <Stack.Screen name="Wallet" component={Wallet}></Stack.Screen>
+          <Stack.Screen name="Certificates" component={Certificates}/>
+          <Stack.Screen name="Wallet" component={Wallet}/>
           <Stack.Screen name="MyProfile" component={MyProfile} />
           <Stack.Screen name="MyAppointment" component={MyAppointment} />
           <Stack.Screen name="Message" component={Message} />
