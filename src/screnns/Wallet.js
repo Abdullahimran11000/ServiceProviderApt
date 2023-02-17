@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -12,7 +12,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AppColor} from '../assets/colors/AppColors';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
-
+import Modal from 'react-native-modal'
+import Lottie from 'lottie-react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -23,9 +24,25 @@ import {useNavigation} from '@react-navigation/core';
 
 const Wallet = () => {
   const navigation = useNavigation();
+  const [modalOpen , setModalOpen] = useState(false)
   return (
     <SafeAreaView style={WalletStyle.mainView}>
       <ScrollView>
+        <Modal isVisible={modalOpen} onBackdropPress={()=>{setModalOpen(false)}}>
+          <View style={{width: wp('80'), height: hp('70'), borderRadius: wp('15'), backgroundColor: AppColor.whiteShade, alignSelf: 'center', alignItems: 'center'}}>
+            <Lottie source={require('../assets/animations/paymentError.json')} style={{width: wp('60'), height: wp('60'), marginTop: wp('3')}} loop autoPlay/>
+            <Text style={{fontFamily: "Poppins-Light", fontSize: wp('4'), textAlign: 'center', color: AppColor.black, width: wp('70')}}>Your balance is insufficient for this transaction.</Text>
+            <TouchableOpacity style={{marginTop: wp('25')}}>
+              <NeoButton
+                width={wp('35')}
+                height={hp('7')}
+                backgroundColor={AppColor.primary}
+                borderRadius={wp('7')}>
+                <Text style={{fontFamily: "Poppins-Bold", fontSize: wp('4'), color: AppColor.white}}>Close</Text>
+              </NeoButton>
+            </TouchableOpacity>
+          </View>
+        </Modal>
         <View style={WalletStyle.headCont}>
           <View style={WalletStyle.headContInnerCont}>
             <TouchableOpacity
@@ -140,9 +157,10 @@ const Wallet = () => {
           />
           <TextInput
             style={WalletStyle.TextinputStyle}
-            placeholder={'Enter Amount'}></TextInput>
+            keyboardType={'decimal-pad'}
+            placeholder={'Enter Amount'}/>
           
-          <TouchableOpacity style={WalletStyle.sendOpacity}>
+          <TouchableOpacity style={WalletStyle.sendOpacity} onPress={()=>{setModalOpen(true)}}>
             <NeoButton
               width={wp("12")}
               height={wp("12")}
@@ -205,8 +223,6 @@ const Wallet = () => {
             </TouchableOpacity>
           </View>
         </Neomorph>
-
-        {/* </View> */}
       </ScrollView>
     </SafeAreaView>
   );
