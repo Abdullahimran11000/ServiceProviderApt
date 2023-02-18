@@ -7,7 +7,6 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import {SelectList} from 'react-native-dropdown-select-list';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   widthPercentageToDP as wp,
@@ -33,15 +32,11 @@ import {
 
 const MyProfile = () => {
   const navigation = useNavigation();
-  const gender = [
-    {key: '1', value: 'Male'},
-    {key: '2', value: 'FeMale'},
-  ];
-
   const [neumorphHeight, setNeumorphHeight] = useState(true);
   const [optionShow, setOptionShow] = useState('Gender');
   const [uploadImageList, setUploadImageList] = useState([]);
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
+
   const imagePickerHandler = async () => {
     await launchImageLibrary({}, arr => {
       if (arr.assets != undefined) {

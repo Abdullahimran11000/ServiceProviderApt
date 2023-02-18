@@ -39,7 +39,7 @@ const Dashboard = ({pressHandler}) => {
     },
     {
       id: 2,
-      name: 'Johnson james',
+      name: 'Ellyse Perry',
       gender: 'Male',
       age: '32',
       date: '24 March 2022',
@@ -48,7 +48,7 @@ const Dashboard = ({pressHandler}) => {
     },
     {
       id: 3,
-      name: 'Elizbeth',
+      name: 'Miranda Jones',
       gender: 'Female',
       age: '21',
       date: '22 March 2022',
