@@ -11,10 +11,23 @@ import {AppColor} from '../../assets/colors/AppColors';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import NeoButton from '../NeoMorphButton/NeoButton';
 import {AppointmentStyle} from '../../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
+import {useNavigation} from '@react-navigation/native';
 
 const UpcomingAppointmentCard = ({item}) => {
+  const navigation = useNavigation();
   return (
-    <View style={AppointmentStyle.appCardUpcoming}>
+    <TouchableOpacity
+      style={AppointmentStyle.appCardUpcoming}
+      onPress={() => {
+        navigation.navigate('PatientProfile', {
+          name: item.name,
+          gender: item.gender,
+          age: item.age,
+          date: item.date,
+          time: item.time,
+          appDes: item.appDestination
+        });
+      }}>
       <Neomorph
         style={AppointmentStyle.neoCard2Upcoming}
         darkShadowColor={AppColor.black}>
@@ -95,7 +108,7 @@ const UpcomingAppointmentCard = ({item}) => {
           </TouchableOpacity>
         </View>
       </Neomorph>
-    </View>
+    </TouchableOpacity>
   );
 };
 

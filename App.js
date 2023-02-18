@@ -19,6 +19,7 @@ import Wallet from './src/screnns/Wallet';
 import Certificates from './src/screnns/Certificates';
 import AppointmentsCards from './src/screnns/AppointmentsCards';
 import Notifications from './src/screnns/Notifications';
+import PatientProfile from './src/screnns/PatientProfile';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -30,7 +31,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-        <Stack.Navigator initialRouteName='Wallet' screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='Drawer' screenOptions={{headerShown: false}}>
+          <Stack.Screen name="PatientProfile" component={PatientProfile} />
           <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
