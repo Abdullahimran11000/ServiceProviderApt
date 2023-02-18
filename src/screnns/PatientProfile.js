@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text, View, TouchableOpacity, Image, ImageBackground, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+  FlatList,
+} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -88,128 +96,141 @@ const PatientProfile = () => {
   };
 
   return (
-    <ScrollView>
-      <SafeAreaView
-        style={{
-          display: 'flex',
-          flex: 1,
-          backgroundColor: AppColor.whiteShade,
-        }}>
-        <View>
-          <View style={CertificatesStyle.headCont}>
-            <View style={CertificatesStyle.headContInnerCont}>
-              <TouchableOpacity style={CertificatesStyle.headContMenuCont}>
-                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-                <Text style={CertificatesStyle.textStyle1}>
-                  Go To Dashboard
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={CertificatesStyle.textCont}>
-                <Text style={CertificatesStyle.textStyle}>Detail</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-
-        <Neomorph
-          style={[
-            AppointmentStyle.neoCard2Upcoming,
-            {marginLeft: wp('5'), height: hp('20'), marginTop: wp('7')},
-          ]}
-          darkShadowColor={AppColor.black}>
-          <View style={AppointmentStyle.patientCard}>
-            <View style={AppointmentStyle.patientProfileImageCont}>
-              <Image
-                style={AppointmentStyle.patientProfileImage}
-                source={require('../assets/images/selfieOne.jpg')}
-                resizeMode="cover"
-              />
-            </View>
-            <View style={AppointmentStyle.patientInfoView}>
-              <Text style={AppointmentStyle.patientNameText}>{name}</Text>
-              <Text style={AppointmentStyle.patientGenderText}>
-                {gender}, {age} years old
-              </Text>
-            </View>
-            <View style={AppointmentStyle.lottieViewUpcoming}>
-              <Lottie
-                style={AppointmentStyle.lottieStyleUpcoming}
-                source={require('../assets/animations/upcomingTag.json')}
-                autoPlay></Lottie>
-            </View>
-          </View>
-
-          <View style={AppointmentStyle.detailView}>
-            <Icon size={wp('4')} name="calendar" color={AppColor.black}></Icon>
-            <Text style={AppointmentStyle.dateStyle}>{date}</Text>
-            <Icon
-              size={wp('4')}
-              name="clock-o"
-              style={AppointmentStyle.timeIconStyle}></Icon>
-            <Text style={AppointmentStyle.timeStyle}>{time}</Text>
-            <Icon
-              size={wp('4')}
-              name="wechat"
-              style={AppointmentStyle.callIconStyle}></Icon>
-            <TouchableOpacity>
-              <Text style={AppointmentStyle.destinationStyle}>{appDes}</Text>
+    <SafeAreaView style={{display: 'flex', flex: 1}}>
+      <View>
+        <View style={CertificatesStyle.headCont}>
+          <View style={CertificatesStyle.headContInnerCont}>
+            <TouchableOpacity style={CertificatesStyle.headContMenuCont}>
+              <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
+              <Text style={CertificatesStyle.textStyle1}>Go To Dashboard</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={CertificatesStyle.textCont}>
+              <Text style={CertificatesStyle.textStyle}>Detail</Text>
             </TouchableOpacity>
           </View>
-        </Neomorph>
-
-        <View style={[CertificatesStyle.imageViewCard, {marginTop: wp('8')}]}>
+        </View>
+      </View>
+      <ScrollView>
+        <SafeAreaView
+          style={{
+            display: 'flex',
+            backgroundColor: AppColor.whiteShade,
+          }}>
           <Neomorph
-            style={[CertificatesStyle.imageNeumorphCard, {height: hp('50')}]}>
-            {selectedImageUri === '' ? (
-              <View style={CertificatesStyle.noImageView}>
-                <Feather
-                  name="camera-off"
-                  size={wp('30')}
-                  color={AppColor.black}
+            style={[
+              AppointmentStyle.neoCard2Upcoming,
+              {marginLeft: wp('5'), height: hp('20'), marginTop: wp('7')},
+            ]}
+            darkShadowColor={AppColor.black}>
+            <View style={AppointmentStyle.patientCard}>
+              <View style={AppointmentStyle.patientProfileImageCont}>
+                <Image
+                  style={AppointmentStyle.patientProfileImage}
+                  source={require('../assets/images/selfieOne.jpg')}
+                  resizeMode="cover"
                 />
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Bold',
-                    fontSize: wp('4'),
-                    color: AppColor.blackOpacity7,
-                    marginTop: wp('2'),
-                  }}>
-                  No History Found!
+              </View>
+              <View style={AppointmentStyle.patientInfoView}>
+                <Text style={AppointmentStyle.patientNameText}>{name}</Text>
+                <Text style={AppointmentStyle.patientGenderText}>
+                  {gender}, {age} years old
                 </Text>
               </View>
-            ) : (
-              <View style={CertificatesStyle.noImageView}>
-                <ImageViewer
-                  imageUrls={uploadImageListForZoom}
-                  style={{width: wp('90'), height: hp('60')}}
-                  backgroundColor={AppColor.whiteShade}
-                />
+              <View style={AppointmentStyle.lottieViewUpcoming}>
+                <Lottie
+                  style={AppointmentStyle.lottieStyleUpcoming}
+                  source={require('../assets/animations/upcomingTag.json')}
+                  autoPlay/>
               </View>
-            )}
+            </View>
+
+            <View style={AppointmentStyle.detailView}>
+              <Icon
+                size={wp('4')}
+                name="calendar"
+                color={AppColor.black}></Icon>
+              <Text style={AppointmentStyle.dateStyle}>{date}</Text>
+              <Icon
+                size={wp('4')}
+                name="clock-o"
+                style={AppointmentStyle.timeIconStyle}></Icon>
+              <Text style={AppointmentStyle.timeStyle}>{time}</Text>
+              <Icon
+                size={wp('4')}
+                name="wechat"
+                style={AppointmentStyle.callIconStyle}></Icon>
+              <TouchableOpacity>
+                <Text style={AppointmentStyle.destinationStyle}>{appDes}</Text>
+              </TouchableOpacity>
+            </View>
           </Neomorph>
-        </View>
 
-        <FlatList
-        style={{width: wp('60')}}
-          renderItem={renderImageList}
-          data={uploadImageList}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
+          <View style={[CertificatesStyle.imageViewCard, {marginTop: wp('8')}]}>
+            <Neomorph
+              style={[CertificatesStyle.imageNeumorphCard, {height: hp('50')}]}>
+              {selectedImageUri === '' ? (
+                <View style={CertificatesStyle.noImageView}>
+                  <Feather
+                    name="camera-off"
+                    size={wp('30')}
+                    color={AppColor.black}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Bold',
+                      fontSize: wp('4'),
+                      color: AppColor.blackOpacity7,
+                      marginTop: wp('2'),
+                    }}>
+                    No History Found!
+                  </Text>
+                </View>
+              ) : (
+                <View style={CertificatesStyle.noImageView}>
+                  <ImageViewer
+                    imageUrls={uploadImageListForZoom}
+                    style={{width: wp('90'), height: hp('60')}}
+                    backgroundColor={AppColor.whiteShade}
+                  />
+                </View>
+              )}
+            </Neomorph>
+          </View>
+          
+          <View style={{display: 'flex', flexDirection: 'row', width: wp('90'), alignSelf: 'center', marginBottom: wp('10')}}>
+            <View style={{width: wp('60'), marginRight: wp('5')}}>
+              <FlatList
+                renderItem={renderImageList}
+                data={uploadImageList}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>
+            <TouchableOpacity onPress={imagePickerHandler}>
+              <Neomorph style={{width: wp('25'), height: hp('15'), backgroundColor: AppColor.whiteShade, borderRadius: wp('5'), shadowRadius: 4, alignItems: 'center', justifyContent: 'center'}}>
+                <Lottie
+                  style={{width: wp('15'), height: wp('20')}}
+                  source={require('../assets/animations/Upload.json')}
+                  autoPlay/>
+              </Neomorph>
+            </TouchableOpacity>
+          </View>
+          
 
-        <View style={CertificatesStyle.buttonView}>
-          <TouchableOpacity onPress={imagePickerHandler}>
-            <NeoButton
-              width={wp('60')}
-              height={hp('8')}
-              backgroundColor={AppColor.primary}
-              borderRadius={wp('7')}>
-              <Text style={CertificatesStyle.buttonText}>UPLOAD</Text>
-            </NeoButton>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    </ScrollView>
+          {/* <View style={CertificatesStyle.buttonView}>
+            <TouchableOpacity onPress={imagePickerHandler}>
+              <NeoButton
+                width={wp('60')}
+                height={hp('8')}
+                backgroundColor={AppColor.primary}
+                borderRadius={wp('7')}>
+                <Text style={CertificatesStyle.buttonText}>UPLOAD</Text>
+              </NeoButton>
+            </TouchableOpacity>
+          </View> */}
+        </SafeAreaView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
