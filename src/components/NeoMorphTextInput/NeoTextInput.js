@@ -17,7 +17,9 @@ const NeoTextInput = ({
   marginBottom,
   value,
   onChangeText,
-  children
+  children,
+  onEndEditing,
+  returnKeyType
 }) => {
   return (
     <View
@@ -44,6 +46,8 @@ const NeoTextInput = ({
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}
           onChangeText={onChangeText}
+          onEndEditing={onEndEditing}
+          returnKeyType={returnKeyType}
         />
         {children}
       </Neomorph>

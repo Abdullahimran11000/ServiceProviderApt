@@ -31,8 +31,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-        <Stack.Navigator initialRouteName='Drawer' screenOptions={{headerShown: false}}>
-          <Stack.Screen name="PatientProfile" component={PatientProfile} />
+        <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
@@ -52,6 +51,7 @@ const App = () => {
           <Stack.Screen name="AppointmentsCards" component={AppointmentsCards}/>
           <Stack.Screen name="NewSchedule" component={NewSchedule}/>
           <Stack.Screen name="Notifications" component={Notifications}/>
+          <Stack.Screen name="PatientProfile" component={PatientProfile} />
         </Stack.Navigator>
       </AppProvider>
     </NavigationContainer>
