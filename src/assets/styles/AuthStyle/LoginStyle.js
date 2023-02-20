@@ -22,7 +22,7 @@ const LoginStyle = StyleSheet.create({
   },
 
   TextStyle: {
-    marginLeft: wp('2'),
+    marginLeft: wp('0'),
     color: AppColor.black,
     fontFamily: 'Poppins-Bold',
   },
