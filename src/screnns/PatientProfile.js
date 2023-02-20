@@ -32,18 +32,19 @@ const PatientProfile = () => {
   const {name, age, gender, date, time, appDes} = route.params;
   const [selectedImageUri, setSelectedImageUri] = useState('');
   const [uploadImageList, setUploadImageList] = useState([]);
-  const [uploadImageListForZoom, setUploadImageListForZoom] = useState([]);
 
   const imagePickerHandler = async () => {
-    await launchImageLibrary({}, arr => {
+    await launchImageLibrary({includeExtra: true}, arr => {
       if (arr.assets != undefined) {
         setUploadImageList(oldImageList => [
           ...oldImageList,
-          {id: Math.random(), url: arr.assets[0].uri},
+          {
+            id: Math.random(),
+            url: arr.assets[0].uri,
+            date: JSON.stringify(arr.assets[0].timestamp).substring(1, 11),
+          },
         ]);
-        setSelectedImageUri(
-          setUploadImageListForZoom([{url: arr.assets[0].uri}]),
-        );
+        setSelectedImageUri(arr.assets[0].uri);
       }
     });
   };
@@ -55,16 +56,8 @@ const PatientProfile = () => {
         if (item.id === id) {
           filtereImagedArray = uploadImageList.filter(item => item.id !== id);
           setUploadImageList([...filtereImagedArray]);
-        }
-      });
-
-      uploadImageListForZoom.map(item => {
-        if (item.url === url) {
-          if (uploadImageList.length === 1) {
-            setUploadImageListForZoom([]);
+          if (filtereImagedArray.length === 0) {
             setSelectedImageUri('');
-          } else {
-            setUploadImageListForZoom([{url: filtereImagedArray[0].url}]);
           }
         }
       });
@@ -73,25 +66,47 @@ const PatientProfile = () => {
 
   const renderImageList = ({item}) => {
     return (
-      <TouchableOpacity
-        onPress={() => {
-          setSelectedImageUri(setUploadImageListForZoom([{url: item.url}]));
-        }}>
-        <Neomorph style={CertificatesStyle.neumorphListView}>
-          <ImageBackground
-            imageStyle={{borderRadius: wp('5')}}
-            source={{uri: item.url}}
-            style={CertificatesStyle.listImageView}>
+      <Neomorph style={CertificatesStyle.neumorphListView}>
+        <ImageBackground
+          imageStyle={{borderRadius: wp('5')}}
+          source={{uri: item.url}}
+          style={CertificatesStyle.listImageView}
+          resizeMode={'contain'}>
+          <View style={CertificatesStyle.crossSign}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Medium',
+                fontSize: wp('3.7'),
+                color: AppColor.white,
+                marginLeft: wp('0.5'),
+              }}>
+              {item.date}
+            </Text>
             <TouchableOpacity
-              style={CertificatesStyle.crossSign}
               onPress={() => {
                 flatListUpdation(item.id, item.url);
               }}>
-              <Foundation name="x" size={wp('4')} color={AppColor.whiteShade} />
+              <Neomorph
+                style={{
+                  width: wp('8'),
+                  height: wp('8'),
+                  borderRadius: wp('8'),
+                  backgroundColor: AppColor.red,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  shadowRadius: 0,
+                  marginRight: wp('-1'),
+                }}>
+                <Foundation
+                  name="x"
+                  size={wp('4.5')}
+                  color={AppColor.whiteShade}
+                />
+              </Neomorph>
             </TouchableOpacity>
-          </ImageBackground>
-        </Neomorph>
-      </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      </Neomorph>
     );
   };
 
@@ -140,7 +155,8 @@ const PatientProfile = () => {
                 <Lottie
                   style={AppointmentStyle.lottieStyleUpcoming}
                   source={require('../assets/animations/upcomingTag.json')}
-                  autoPlay/>
+                  autoPlay
+                />
               </View>
             </View>
 
@@ -165,10 +181,14 @@ const PatientProfile = () => {
             </View>
           </Neomorph>
 
-          <View style={[CertificatesStyle.imageViewCard, {marginTop: wp('8')}]}>
-            <Neomorph
-              style={[CertificatesStyle.imageNeumorphCard, {height: hp('50')}]}>
-              {selectedImageUri === '' ? (
+          {selectedImageUri === '' ? (
+            <View
+              style={[CertificatesStyle.imageViewCard, {marginTop: wp('8')}]}>
+              <Neomorph
+                style={[
+                  CertificatesStyle.imageNeumorphCard,
+                  {height: hp('50')},
+                ]}>
                 <View style={CertificatesStyle.noImageView}>
                   <Feather
                     name="camera-off"
@@ -185,20 +205,18 @@ const PatientProfile = () => {
                     No History Found!
                   </Text>
                 </View>
-              ) : (
-                <View style={CertificatesStyle.noImageView}>
-                  <ImageViewer
-                    imageUrls={uploadImageListForZoom}
-                    style={{width: wp('90'), height: hp('60')}}
-                    backgroundColor={AppColor.whiteShade}
-                  />
-                </View>
-              )}
-            </Neomorph>
-          </View>
-          
-          <View style={{display: 'flex', flexDirection: 'row', width: wp('90'), alignSelf: 'center', marginBottom: wp('10')}}>
-            <View style={{width: wp('60'), marginRight: wp('5')}}>
+              </Neomorph>
+            </View>
+          ) : (
+            <View
+              style={{
+                height: hp('52'),
+                width: wp('100'),
+                overflow: 'hidden',
+                marginTop: wp('10'),
+                marginBottom: wp('6'),
+                backgroundColor: AppColor.whiteShade,
+              }}>
               <FlatList
                 renderItem={renderImageList}
                 data={uploadImageList}
@@ -206,28 +224,51 @@ const PatientProfile = () => {
                 showsHorizontalScrollIndicator={false}
               />
             </View>
+          )}
+
+          <Neomorph
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              width: wp('90'),
+              height: hp('17'),
+              marginBottom: wp('10'),
+              marginLeft: wp('5'),
+              shadowRadius: 4,
+              backgroundColor: AppColor.whiteShade,
+              borderRadius: wp(5),
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+            }}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Medium',
+                color: AppColor.black,
+                fontSize: wp('4'),
+              }}>
+              Upload Prescription
+            </Text>
+
             <TouchableOpacity onPress={imagePickerHandler}>
-              <Neomorph style={{width: wp('25'), height: hp('15'), backgroundColor: AppColor.whiteShade, borderRadius: wp('5'), shadowRadius: 4, alignItems: 'center', justifyContent: 'center'}}>
+              <Neomorph
+                style={{
+                  width: wp('30'),
+                  height: hp('12'),
+                  backgroundColor: AppColor.whiteShade,
+                  borderRadius: wp('5'),
+                  shadowRadius: 4,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
                 <Lottie
                   style={{width: wp('15'), height: wp('20')}}
                   source={require('../assets/animations/Upload.json')}
-                  autoPlay/>
+                  loop
+                  autoPlay
+                />
               </Neomorph>
             </TouchableOpacity>
-          </View>
-          
-
-          {/* <View style={CertificatesStyle.buttonView}>
-            <TouchableOpacity onPress={imagePickerHandler}>
-              <NeoButton
-                width={wp('60')}
-                height={hp('8')}
-                backgroundColor={AppColor.primary}
-                borderRadius={wp('7')}>
-                <Text style={CertificatesStyle.buttonText}>UPLOAD</Text>
-              </NeoButton>
-            </TouchableOpacity>
-          </View> */}
+          </Neomorph>
         </SafeAreaView>
       </ScrollView>
     </SafeAreaView>

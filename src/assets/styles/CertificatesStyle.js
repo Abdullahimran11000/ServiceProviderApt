@@ -13,17 +13,17 @@ const CertificatesStyle = StyleSheet.create({
     textStyle1: {fontFamily: "Poppins-Bold", fontSize: wp('4.5'), color: AppColor.blackOpacity6, width: wp('50'), position: 'absolute', left: wp('8')},
 
     imageViewCard: {alignSelf: 'center', marginBottom: wp('6')},
-    imageNeumorphCard: {width: wp(90),height: hp('60'),backgroundColor: AppColor.whiteShade,marginTop: wp('4'),shadowRadius: 4,borderRadius: wp('4'),display: 'flex',flex: 10,alignItems: 'center',justifyContent: 'center',},
-    noImageView: {display: 'flex',flex: 8.5,width: wp('75'),height: hp('45'),alignItems: 'center',justifyContent: 'center'},
+    imageNeumorphCard: {width: wp("90"),height: hp('60'),backgroundColor: AppColor.whiteShade,marginTop: wp('4'),shadowRadius: 4,borderRadius: wp('5'),display: 'flex',flex: 10,alignItems: 'center',justifyContent: 'center',},
+    noImageView: {display: 'flex',flex: 8.5,width: wp('75'),height: hp('50'),alignItems: 'center',justifyContent: 'center'},
     imageView: {width: wp('90'),height: hp('60')},
 
-    neumorphListView: {width: wp('20'),height: hp('15'),borderRadius: wp('5'),backgroundColor: AppColor.blackOpacity4,shadowRadius: 4,marginBottom: wp('3'),marginRight: wp('3'),marginLeft: wp('5')},
-    listImageView: {width: wp('20'), height: hp('15'), borderRadius: wp('5')},
+    neumorphListView: {width: wp('90'),height: hp('50'),borderRadius: wp('5'),backgroundColor: AppColor.black,shadowRadius: 4, overflow: 'hidden', marginLeft: wp('5'), marginRight: wp('5')},
+    listImageView: {width: wp('90'), height: hp('50'), borderRadius: wp('5')},
 
     buttonView: {width: wp('90'),alignSelf: 'center',marginTop: wp('5'),marginBottom: wp('8'),alignItems: 'center'},
     buttonText: {fontFamily: 'Poppins-Bold',fontSize: wp('4.5'),color: AppColor.white},
 
-    crossSign: {position: 'absolute', top: wp('1.5'), right: wp('2'), width: wp('6'), height: wp('6'), borderRadius: wp('6'), backgroundColor: '#f79c9c', alignItems: 'center', justifyContent: 'center'},
+    crossSign: {position: 'absolute', display: 'flex', flexDirection: 'row',  top: wp('3'), right: wp('3'), width: wp('35'), height: wp('10'), borderRadius: wp('6'), backgroundColor: AppColor.black, alignItems: 'center', justifyContent: 'space-evenly'},
 
 })
 
