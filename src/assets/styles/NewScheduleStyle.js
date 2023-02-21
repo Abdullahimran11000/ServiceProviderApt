@@ -3,18 +3,18 @@ import { widthPercentageToDP as wp , heightPercentageToDP as hp } from "react-na
 import { AppColor } from "../colors/AppColors";
 
 const NewScheduleStyle = StyleSheet.create({
-    mainView:{justifyContent:"center" , alignItems:"center",},
-    viewOne:{marginTop: wp('7')},
+    mainView:{},
+    viewOne:{marginTop: wp('7'), width: wp('90'), alignSelf: 'center'},
     viewOneText:{fontFamily:'Poppins-SemiBold' , fontSize:wp("4.5") , color:AppColor.whiteOpacity},
-    viewTwo:{display:"flex" , flexDirection: "row", marginRight:wp(10), marginTop: wp('10')},
+    viewTwo:{display:"flex" , flexDirection: "row", marginTop: wp('10'), width: wp('90'), alignSelf: 'center', justifyContent: 'space-around'},
     viewTwoTextOne:{fontFamily:'Poppins-SemiBold' , fontSize:wp(3)},
     viewTwoTextTwo:{fontFamily:'Poppins-SemiBold' , fontSize:wp(3)},
     viewThree:{display:"flex" , flexDirection: "row",justifyContent:"space-evenly",marginTop: hp(5),marginRight:wp(10)},
     viewThreeTextOne:{fontFamily:'Poppins-SemiBold', fontSize:wp(3)},
     viewThreeTextTwo:{fontFamily:'Poppins-SemiBold', fontSize:wp(3)},
-    viewFour:{marginTop:hp(5) , alignSelf:"center" },
-    viewFourTextInput:{ left:wp(7) , width:wp(82), fontFamily:'Poppins-SemiBold' ,alignSelf:"flex-start"},
-    viewFive:{marginTop:hp(5) , alignSelf:"center", marginBottom: wp('5') },
+    viewFour:{marginTop:hp(5), width: wp('90'), alignSelf: 'center' },
+    viewFourTextInput:{ width:wp(82), fontFamily:'Poppins-SemiBold'},
+    viewFive:{marginTop:hp(5) , marginBottom: wp('5'), width: wp('90'), alignSelf: 'center' },
     viewFiveText:{fontFamily:'Poppins-SemiBold', color:'white'},
 })
 export {NewScheduleStyle}
