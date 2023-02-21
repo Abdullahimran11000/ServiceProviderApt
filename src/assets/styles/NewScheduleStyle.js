@@ -5,7 +5,7 @@ import { AppColor } from "../colors/AppColors";
 const NewScheduleStyle = StyleSheet.create({
     mainView:{justifyContent:"center" , alignItems:"center",},
     viewOne:{marginTop: wp('7')},
-    viewOneText:{fontFamily:'Poppins-SemiBold' , fontSize:wp(6) , color:AppColor.whiteOpacity},
+    viewOneText:{fontFamily:'Poppins-SemiBold' , fontSize:wp("4.5") , color:AppColor.whiteOpacity},
     viewTwo:{display:"flex" , flexDirection: "row", marginRight:wp(10), marginTop: wp('10')},
     viewTwoTextOne:{fontFamily:'Poppins-SemiBold' , fontSize:wp(3)},
     viewTwoTextTwo:{fontFamily:'Poppins-SemiBold' , fontSize:wp(3)},

@@ -15,6 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Neomorph } from 'react-native-neomorph-shadows';
 import { widthPercentageToDP as wp , heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
+import Header from '../components/ScreenHeader/Header';
 const Notifications = props => {
   const navigation = useNavigation()
   const TodayData = [
@@ -77,31 +78,8 @@ const Notifications = props => {
   return (
     <SafeAreaView>
       <View style={NotificationStyle.mainView}>
-        {/* <View style={NotificationStyle.headerMainView}>
-          <Neomorph style={NotificationStyle.header}>
-              <TouchableOpacity onPress={() => props.navigation.goBack()} style={NotificationStyle.headerbackButton}>
-                <Ionicons name="chevron-back-sharp" size={wp('6')} />
-              </TouchableOpacity>
-              <Text style={NotificationStyle.headerText}>Notifications</Text>
-          </Neomorph>
-        </View> */}
-        <View style={CertificatesStyle.headCont}>
-            <View style={CertificatesStyle.headContInnerCont}>
-              <TouchableOpacity
-                style={CertificatesStyle.headContMenuCont}
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-                <Text style={CertificatesStyle.textStyle1}>
-                  Go To Dashboard
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={CertificatesStyle.textCont}>
-                <Text style={CertificatesStyle.textStyle}>Notification</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+        
+        <Header buttonColor={AppColor.whiteShade}>{"Notification"}</Header>
 
         {/* 1st render  */}
 

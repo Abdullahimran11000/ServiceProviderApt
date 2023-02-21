@@ -37,9 +37,8 @@ const LoginStyle = StyleSheet.create({
 
   icon: {
     position: 'absolute',
-     marginVertical: hp(7),
-      right: wp(3)
-    },
+    right: wp('5'),
+  },
 
   MainLoginButtonView: {
     marginTop: wp('4'),

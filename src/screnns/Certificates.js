@@ -8,7 +8,6 @@ import {
   FlatList,
   ImageBackground,
 } from 'react-native';
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,13 +15,13 @@ import {
 import {AppColor} from '../assets/colors/AppColors';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Feather from 'react-native-vector-icons/Feather';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {useNavigation} from '@react-navigation/core';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
+import Header from '../components/ScreenHeader/Header';
 
 const Certificates = () => {
   const navigation = useNavigation();
@@ -94,21 +93,7 @@ const Certificates = () => {
   return (
     <SafeAreaView style={CertificatesStyle.mainView}>
       <ScrollView>
-        <View style={CertificatesStyle.headCont}>
-          <View style={CertificatesStyle.headContInnerCont}>
-            <TouchableOpacity
-              style={CertificatesStyle.headContMenuCont}
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-              <Text style={CertificatesStyle.textStyle1}>Go To Dashboard</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={CertificatesStyle.textCont}>
-              <Text style={CertificatesStyle.textStyle}>Certificates</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <Header buttonColor={AppColor.whiteShade}>{'Certificate'}</Header>
 
         <View style={CertificatesStyle.imageViewCard}>
           <Neomorph style={CertificatesStyle.imageNeumorphCard}>
@@ -176,7 +161,7 @@ const Certificates = () => {
         <View style={CertificatesStyle.buttonView}>
           <TouchableOpacity onPress={imagePickerHandler}>
             <NeoButton
-              width={wp('60')}
+              width={wp('85')}
               height={hp('8')}
               backgroundColor={AppColor.primary}
               borderRadius={wp('7')}>

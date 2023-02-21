@@ -18,8 +18,9 @@ import {AppointmentStyle} from '../assets/styles/AppointmentStyle';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Lottie from 'lottie-react-native';
 import {useNavigation} from '@react-navigation/native';
-import { CertificatesStyle } from '../assets/styles/CertificatesStyle';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Header from '../components/ScreenHeader/Header';
 const AppointmentsCards = () => {
   const navigation = useNavigation();
   return (
@@ -33,23 +34,7 @@ const AppointmentsCards = () => {
             height: hp(40),
             backgroundColor: AppColor.blackOpacity8,
           }}>
-          <View style={CertificatesStyle.headCont}>
-            <View style={CertificatesStyle.headContInnerCont}>
-              <TouchableOpacity
-                style={CertificatesStyle.headContMenuCont}
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Ionicons name="menu" color={"#f7c6d9"} size={wp('7')} />
-                <Text style={[CertificatesStyle.textStyle1, {color: "#f7c6d9"}]}>
-                  Go To Dashboard
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={CertificatesStyle.textCont}>
-                <Text style={[CertificatesStyle.textStyle, {color: "#f7c6d9"}]}>Appointment</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <Header styles={{color: '#f7c6d9'}} stylesText={{color: '#f7c6d9'}} buttonColor={'#f7c6d9'}>{'Appointment'}</Header>
           <Text
             style={[
               AppointmentStyle.viewOneContainerInnerViewSecondText,

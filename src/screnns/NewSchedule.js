@@ -18,9 +18,8 @@ import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment-timezone';
 import {NewScheduleStyle} from '../assets/styles/NewScheduleStyle';
-import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import Header from '../components/ScreenHeader/Header';
 const NewSchedule = () => {
   const navigation = useNavigation()
   const [showStartDate, setShowStartDate] = useState(false);
@@ -77,28 +76,12 @@ const NewSchedule = () => {
     <SafeAreaView style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
       <ScrollView>
         <View style={NewScheduleStyle.mainView}>
-          <View style={CertificatesStyle.headCont}>
-            <View style={CertificatesStyle.headContInnerCont}>
-              <TouchableOpacity
-                style={CertificatesStyle.headContMenuCont}
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-                <Text style={CertificatesStyle.textStyle1}>
-                  Go To Dashboard
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={CertificatesStyle.textCont}>
-                <Text style={CertificatesStyle.textStyle}>Schedule</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <Header buttonColor={AppColor.whiteShade}>{"Schedule"}</Header>
           <View style={NewScheduleStyle.viewOne}>
             <TouchableOpacity>
               <NeoButton
-                width={wp(82)}
-                height={hp(10)}
+                width={wp(85)}
+                height={hp(8)}
                 backgroundColor={AppColor.primary}
                 borderRadius={wp(20)}>
                 <Text style={NewScheduleStyle.viewOneText}>
@@ -233,7 +216,7 @@ const NewSchedule = () => {
             <TouchableOpacity>
               <NeoButton
                 height={hp(8)}
-                width={wp(82)}
+                width={wp(85)}
                 borderRadius={wp(10)}
                 backgroundColor={AppColor.primary}>
                 <Text style={NewScheduleStyle.viewFiveText}>
