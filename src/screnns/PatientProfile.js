@@ -13,22 +13,26 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
 import {AppColor} from '../assets/colors/AppColors';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import Lottie from 'lottie-react-native';
 import {AppointmentStyle} from '../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
 import {ScrollView} from 'react-native-virtualized-view';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {launchImageLibrary} from 'react-native-image-picker';
-import ImageViewer from 'react-native-image-zoom-viewer';
+import Header from '../components/ScreenHeader/Header';
+import moment from 'moment-timezone';
+import CustomModal from '../components/Modal/CustomModal';
 
 const PatientProfile = () => {
   const route = useRoute();
+  const navigation = useNavigation();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalTypeOpen, setModalTypeOpen] = useState(false);
   const {name, age, gender, date, time, appDes} = route.params;
   const [selectedImageUri, setSelectedImageUri] = useState('');
   const [uploadImageList, setUploadImageList] = useState([]);
@@ -37,14 +41,16 @@ const PatientProfile = () => {
     await launchImageLibrary({includeExtra: true}, arr => {
       if (arr.assets != undefined) {
         setUploadImageList(oldImageList => [
-          ...oldImageList,
           {
             id: Math.random(),
             url: arr.assets[0].uri,
             date: JSON.stringify(arr.assets[0].timestamp).substring(1, 11),
           },
+          ...oldImageList,
         ]);
         setSelectedImageUri(arr.assets[0].uri);
+      } else {
+        setModalTypeOpen(false);
       }
     });
   };
@@ -52,12 +58,13 @@ const PatientProfile = () => {
   const flatListUpdation = (id, url) => {
     let filtereImagedArray = [];
     if ((id != '') & (url != '')) {
-      uploadImageList.map((item, index) => {
+      uploadImageList.map(item => {
         if (item.id === id) {
           filtereImagedArray = uploadImageList.filter(item => item.id !== id);
           setUploadImageList([...filtereImagedArray]);
           if (filtereImagedArray.length === 0) {
             setSelectedImageUri('');
+            setModalTypeOpen(false);
           }
         }
       });
@@ -112,19 +119,34 @@ const PatientProfile = () => {
 
   return (
     <SafeAreaView style={{display: 'flex', flex: 1}}>
-      <View>
-        <View style={CertificatesStyle.headCont}>
-          <View style={CertificatesStyle.headContInnerCont}>
-            <TouchableOpacity style={CertificatesStyle.headContMenuCont}>
-              <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-              <Text style={CertificatesStyle.textStyle1}>Go To Dashboard</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={CertificatesStyle.textCont}>
-              <Text style={CertificatesStyle.textStyle}>Detail</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+      <CustomModal
+        isVisible={modalOpen}
+        onBackdropPress={() => {
+          setModalOpen(false);
+        }}
+        source={
+          modalTypeOpen
+            ? require('../assets/animations/success.json')
+            : require('../assets/animations/failed.json')
+        }
+        text={
+          modalTypeOpen
+            ? 'File upload successfully.'
+            : 'You did not upload any photo yet today! Please upload patient prescription.'
+        }
+        style={{marginTop: modalTypeOpen ? wp('20') : wp('10')}}
+        modalButtonPress={() => {
+          if (modalTypeOpen === true) {
+            setModalOpen(false);
+            navigation.goBack();
+          } else {
+            setModalOpen(false);
+          }
+        }}
+        buttonBackgroundColor={modalTypeOpen ? AppColor.primary : '#FA7070'}
+      />
+
+      <Header buttonColor={AppColor.whiteShade}>{'Detail'}</Header>
       <ScrollView>
         <SafeAreaView
           style={{
@@ -269,6 +291,44 @@ const PatientProfile = () => {
               </Neomorph>
             </TouchableOpacity>
           </Neomorph>
+          <TouchableOpacity
+            style={{
+              width: wp('90'),
+              alignSelf: 'center',
+              alignItems: 'center',
+              marginBottom: wp('10'),
+            }}
+            onPress={() => {
+              if (uploadImageList.length > 0) {
+                uploadImageList.map(item => {
+                  if (item.date === moment().toJSON().slice(0, 10)) {
+                    setModalOpen(true);
+                    setModalTypeOpen(true);
+                  } else {
+                    setModalOpen(true);
+                    setModalTypeOpen(false);
+                  }
+                });
+              } else {
+                setModalOpen(true);
+                setModalTypeOpen(false);
+              }
+            }}>
+            <NeoButton
+              width={wp('85')}
+              height={hp('8')}
+              backgroundColor={AppColor.primary}
+              borderRadius={wp('7')}>
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Bold',
+                  fontSize: wp('4.5'),
+                  color: AppColor.white,
+                }}>
+                Completed
+              </Text>
+            </NeoButton>
+          </TouchableOpacity>
         </SafeAreaView>
       </ScrollView>
     </SafeAreaView>

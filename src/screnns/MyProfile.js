@@ -47,7 +47,6 @@ const MyProfile = () => {
       <SafeAreaView style={MyProfileStyle.mainView}>
         <View>
           <Header buttonColor={AppColor.whiteShade}>{'Profile'}</Header>
-
           <View style={MyProfileStyle.ProfileView}>
             <View style={MyProfileStyle.innerProfileView}>
               {selectedImageUrl === '' ? (
