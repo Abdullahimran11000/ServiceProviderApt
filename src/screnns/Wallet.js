@@ -8,7 +8,6 @@ import {
   TextInput,
 } from 'react-native';
 import {WalletStyle} from '../assets/styles/WalletStyle';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AppColor} from '../assets/colors/AppColors';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
@@ -20,10 +19,9 @@ import {
 } from 'react-native-responsive-screen';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {Neomorph} from 'react-native-neomorph-shadows';
-import {useNavigation} from '@react-navigation/core';
+import Header from '../components/ScreenHeader/Header';
 
 const Wallet = () => {
-  const navigation = useNavigation();
   const [amountInput, setAmountInput] = useState('');
   const [availableBalance, setAvailableBalance] = useState('409');
   const [completedWithdrawl , setCompletedWithdrawl] = useState('428')
@@ -124,29 +122,7 @@ const Wallet = () => {
           </View>
         </Modal>
 
-        <View style={WalletStyle.headCont}>
-          <View style={WalletStyle.headContInnerCont}>
-            <TouchableOpacity
-              style={WalletStyle.headContMenuCont}
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-              <Text
-                style={[
-                  WalletStyle.textStyle,
-                  {width: wp('50'), position: 'absolute', left: wp('8')},
-                ]}>
-                Go To Dashboard
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={WalletStyle.textCont}>
-              <Text style={[WalletStyle.textStyle, {width: wp('20')}]}>
-                Wallet
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <Header buttonColor={AppColor.whiteShade}>{'Wallet'}</Header>
 
         <View style={WalletStyle.CardView}>
           <TouchableOpacity style={WalletStyle.OpacityStyle}>

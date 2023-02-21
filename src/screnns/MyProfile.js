@@ -12,15 +12,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
 import {AppColor} from '../assets/colors/AppColors';
 import {launchImageLibrary} from 'react-native-image-picker';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
-import {useNavigation} from '@react-navigation/native';
 import {MyProfileStyle} from '../assets/styles/DashboardStyle/MyProfileStyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
+import Header from '../components/ScreenHeader/Header';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {
   MenuOption,
@@ -31,7 +29,6 @@ import {
 } from 'react-native-popup-menu';
 
 const MyProfile = () => {
-  const navigation = useNavigation();
   const [neumorphHeight, setNeumorphHeight] = useState(true);
   const [optionShow, setOptionShow] = useState('Gender');
   const [uploadImageList, setUploadImageList] = useState([]);
@@ -49,23 +46,7 @@ const MyProfile = () => {
     <ScrollView>
       <SafeAreaView style={MyProfileStyle.mainView}>
         <View>
-          <View style={CertificatesStyle.headCont}>
-            <View style={CertificatesStyle.headContInnerCont}>
-              <TouchableOpacity
-                style={CertificatesStyle.headContMenuCont}
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-                <Text style={CertificatesStyle.textStyle1}>
-                  Go To Dashboard
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={CertificatesStyle.textCont}>
-                <Text style={CertificatesStyle.textStyle}>Profile</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <Header buttonColor={AppColor.whiteShade}>{'Profile'}</Header>
 
           <View style={MyProfileStyle.ProfileView}>
             <View style={MyProfileStyle.innerProfileView}>
@@ -129,7 +110,7 @@ const MyProfile = () => {
                 <Neomorph
                   style={{
                     width: wp('90'),
-                    height: hp('7'),
+                    height: hp('8.5'),
                     backgroundColor: AppColor.whiteShade,
                     shadowRadius: 4,
                     marginLeft: wp('5'),
@@ -153,7 +134,7 @@ const MyProfile = () => {
                   backgroundColor: AppColor.whiteShade,
                   borderRadius: wp('4'),
                   marginLeft: wp('40'),
-                  marginTop: hp('10'),
+                  marginTop: hp('12'),
                 }}>
                 <MenuOption value={'Male'}>
                   <Text
@@ -203,7 +184,7 @@ const MyProfile = () => {
           <View style={MyProfileStyle.buttonView}>
             <TouchableOpacity>
               <NeoButton
-                width={wp('45')}
+                width={wp('85')}
                 height={hp('8')}
                 backgroundColor={AppColor.primary}
                 borderRadius={wp('7')}>

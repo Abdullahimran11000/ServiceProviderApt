@@ -9,7 +9,7 @@ const SignUpStyle = StyleSheet.create({
     inputs: {width: wp(84),marginTop: hp(1),borderRadius: 5, fontFamily: 'Poppins-SemiBold',},
     text: {fontSize: 15,color: 'black',fontFamily: 'Poppins-SemiBold'},
     views: {width: wp('90'),alignSelf: 'center',marginTop: hp(5),},
-    icon: {position: 'absolute',marginVertical: hp(7),right: wp(wp(1)) ,},
+    icon: {position: 'absolute',right: wp('5') ,},
     viewSignUpbutton: {width: wp(64),alignSelf: 'center',marginTop: hp(3),marginRight: wp(19), },
     SignUpbutton: {backgroundColor: AppColor.primary,width: wp('83'),height: hp('6'),alignItems: 'center',justifyContent: 'center',borderRadius: wp('15')},
     SignUpText: {color: 'white', fontFamily: 'Poppins-SemiBold'},

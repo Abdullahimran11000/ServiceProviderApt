@@ -26,7 +26,7 @@ const LogIn = props => {
   const [passwordText, setPasswordText] = useState('');
 
   const submitHandler = () => {
-    if ((emailText === '')) {
+    if (emailText === '') {
       setEmailLabelText('Please enter your email.');
       setCheckEmailTextValid(true);
     } else if (
@@ -34,9 +34,7 @@ const LogIn = props => {
       emailText.includes('@outlook.com')
     ) {
       setCheckEmailTextValid(false);
-      setEmailText('');
-      setPasswordText('');
-      navigation.navigate('Drawer')
+      navigation.navigate('Drawer');
     } else {
       setEmailText('');
       setPasswordText('');
@@ -47,7 +45,7 @@ const LogIn = props => {
 
   return (
     <SafeAreaView
-      style={{backgroundColor: AppColor.whiteShade, display: 'flex' , flex: 1}}>
+      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}>
       <ScrollView>
         <View styles={LoginStyle.MainView}>
           <Text style={LoginStyle.headerView}> Log in </Text>
@@ -86,23 +84,27 @@ const LogIn = props => {
                 secureTextEntry={!eye}
                 onChangeText={text => {
                   setPasswordText(text);
-                }}
-              />
-              <TouchableOpacity
-                style={LoginStyle.icon}
-                onPress={() => {
-                  if (eye === true) {
-                    setEye(false);
-                  } else {
-                    setEye(true);
-                  }
                 }}>
-                {!eye ? (
-                  <Entypo name="eye-with-line" size={wp('4.5')} color="black" />
-                ) : (
-                  <Entypo name="eye" size={wp('4.5')} color="black" />
-                )}
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={LoginStyle.icon}
+                  onPress={() => {
+                    if (eye === true) {
+                      setEye(false);
+                    } else {
+                      setEye(true);
+                    }
+                  }}>
+                  {!eye ? (
+                    <Entypo
+                      name="eye-with-line"
+                      size={wp('4.5')}
+                      color="black"
+                    />
+                  ) : (
+                    <Entypo name="eye" size={wp('4.5')} color="black" />
+                  )}
+                </TouchableOpacity>
+              </NeoTextInput>
             </View>
           </View>
           <TouchableOpacity
@@ -111,8 +113,8 @@ const LogIn = props => {
           </TouchableOpacity>
           <View style={LoginStyle.MainLoginButtonView}>
             <NeoButton
-              width={wp('87 ')}
-              height={hp('7')}
+              width={wp('85 ')}
+              height={hp('8')}
               backgroundColor={AppColor.primary}
               borderRadius={wp('10')}>
               <TouchableOpacity
