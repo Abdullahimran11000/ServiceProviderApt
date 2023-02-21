@@ -48,11 +48,44 @@ const RecoverPassword = () => {
                 password
               </Text>
             </View>
+            <View style={[RecoverPasswordStyle.inputView,{marginTop:hp('5')}]}>
+              <View style={RecoverPasswordStyle.labelView}>
+                <Text style={RecoverPasswordStyle.labelText}>Current Password</Text>
+              </View>
+              <View style={RecoverPasswordStyle.inputStyleView}>
+                <NeoTextInput
+                  width={wp('90')}
+                  styles={{width: wp('70'), position: 'absolute', left: 0}}
+                  marginBottom={wp('3')}
+                  placeholder={'Enter your password'}
+                  secureTextEntry={!eye}
+                  keyboardType={'ascii-capable'}>
+                  <TouchableOpacity
+                    style={RecoverPasswordStyle.iconTouchableStyle}
+                    onPress={() => {
+                      if (eye === true) {
+                        setEye(false);
+                      } else {
+                        setEye(true);
+                      }
+                    }}>
+                    {!eye ? (
+                      <Entypo
+                        name="eye-with-line"
+                        size={wp('4.5')}
+                        color="black"
+                      />
+                    ) : (
+                      <Entypo name="eye" size={wp('4.5')} color="black" />
+                    )}
+                  </TouchableOpacity>
+                </NeoTextInput>
+              </View>
+            </View>
             <View style={RecoverPasswordStyle.inputView}>
               <View style={RecoverPasswordStyle.labelView}>
                 <Text style={RecoverPasswordStyle.labelText}>New Password</Text>
               </View>
-
               <View style={RecoverPasswordStyle.inputStyleView}>
                 <NeoTextInput
                   width={wp('90')}
@@ -99,13 +132,13 @@ const RecoverPassword = () => {
               />
             </View>
 
-            <View style={RecoverPasswordStyle.touchableView}>
+            {/* <View style={RecoverPasswordStyle.touchableView}>
               <TouchableOpacity>
                 <Text style={RecoverPasswordStyle.touchableText1}>
                   Change Password
                 </Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
             <View style={RecoverPasswordStyle.buttonView}>
               <TouchableOpacity
                 onPress={() => {navigation.navigate('Congratulation')}}>

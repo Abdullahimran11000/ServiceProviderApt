@@ -20,7 +20,7 @@ import Certificates from './src/screnns/Certificates';
 import AppointmentsCards from './src/screnns/AppointmentsCards';
 import Notifications from './src/screnns/Notifications';
 import PatientProfile from './src/screnns/PatientProfile';
-
+import TryAnotherWay from './src/screnns/TryAnotherWay';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppProvider} from './src/assets/context/AppContext';
@@ -31,7 +31,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppProvider>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='TryAnotherWay' screenOptions={{headerShown: false}}>
           <Stack.Screen name="AppIntro" component={AppIntro} />
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
@@ -52,6 +52,7 @@ const App = () => {
           <Stack.Screen name="NewSchedule" component={NewSchedule}/>
           <Stack.Screen name="Notifications" component={Notifications}/>
           <Stack.Screen name="PatientProfile" component={PatientProfile} />
+          <Stack.Screen name="TryAnotherWay" component={TryAnotherWay} />
         </Stack.Navigator>
       </AppProvider>
     </NavigationContainer>
