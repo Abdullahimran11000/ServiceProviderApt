@@ -20,107 +20,59 @@ import {
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import Header from '../components/ScreenHeader/Header';
+import CustomModal from '../components/Modal/CustomModal';
+import {useNavigation} from '@react-navigation/native';
 
 const Wallet = () => {
+  const navigation = useNavigation();
   const [amountInput, setAmountInput] = useState('');
   const [availableBalance, setAvailableBalance] = useState('409');
-  const [completedWithdrawl , setCompletedWithdrawl] = useState('428')
+  const [completedWithdrawl, setCompletedWithdrawl] = useState('428');
   const [modalTypeOpen, setModalTypeOpen] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [labelShow, setLabelShow] = useState(false);
 
   const amountHandler = () => {
     if (Number(amountInput) > Number(availableBalance)) {
       setModalOpen(true);
       setModalTypeOpen(false);
       setAmountInput('');
+      setLabelShow(false);
+    } else if (amountInput === '') {
+      setLabelShow(true);
     } else {
       setModalOpen(true);
       setModalTypeOpen(true);
       setAmountInput('');
       setAvailableBalance(Number(availableBalance) - Number(amountInput));
-      setCompletedWithdrawl(Number(completedWithdrawl)+Number(amountInput))
+      setCompletedWithdrawl(Number(completedWithdrawl) + Number(amountInput));
+      setLabelShow(false);
     }
   };
   return (
     <SafeAreaView style={WalletStyle.mainView}>
       <ScrollView>
-        <Modal
+        <CustomModal
           isVisible={modalOpen}
           onBackdropPress={() => {
             setModalOpen(false);
-          }}>
-          <View
-            style={{
-              width: wp('80'),
-              height: hp('70'),
-              borderRadius: wp('15'),
-              backgroundColor: AppColor.whiteShade,
-              alignSelf: 'center',
-              alignItems: 'center',
-            }}>
-            {modalTypeOpen ? (
-              <Lottie
-                source={require('../assets/animations/paymentDone.json')}
-                style={{width: wp('60'), height: wp('60'), marginTop: wp('3')}}
-                loop
-                autoPlay
-              />
-            ) : (
-              <Lottie
-                source={require('../assets/animations/paymentError.json')}
-                style={{width: wp('60'), height: wp('60'), marginTop: wp('3')}}
-                loop
-                autoPlay
-              />
-            )}
-            {modalTypeOpen ? (
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Light',
-                  fontSize: wp('4'),
-                  textAlign: 'center',
-                  color: AppColor.black,
-                  width: wp('70'),
-                  marginTop: wp('5'),
-                }}>
-                Your transaction is successfully placed.
-              </Text>
-            ) : (
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Light',
-                  fontSize: wp('4'),
-                  textAlign: 'center',
-                  color: AppColor.black,
-                  width: wp('70'),
-                  marginTop: wp('5'),
-                }}>
-                Your balance is insufficient for this transaction.
-              </Text>
-            )}
-
-            <TouchableOpacity
-              style={{marginTop: wp('20')}}
-              onPress={() => {
-                setModalOpen(false);
-              }}>
-              <NeoButton
-                width={wp('35')}
-                height={hp('7')}
-                backgroundColor={modalTypeOpen ? "#00B46E" : AppColor.primary}
-                borderRadius={wp('7')}>
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Bold',
-                    fontSize: wp('4'),
-                    color: AppColor.white,
-                  }}>
-                  Close
-                </Text>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-        </Modal>
+          }}
+          source={
+            modalTypeOpen
+              ? require('../assets/animations/paymentDone.json')
+              : require('../assets/animations/paymentError.json')
+          }
+          text={
+            modalTypeOpen
+              ? 'Your transaction is successfully placed.'
+              : 'Your balance is insufficient for this transaction.'
+          }
+          style={{marginTop: modalTypeOpen ? wp('12') : wp('10')}}
+          modalButtonPress={() => {
+            setModalOpen(false);
+          }}
+          buttonBackgroundColor={modalTypeOpen ? '#00B46E' : AppColor.primary}
+        />
 
         <Header buttonColor={AppColor.whiteShade}>{'Wallet'}</Header>
 
@@ -232,7 +184,9 @@ const Wallet = () => {
                   color={AppColor.railFillColor}
                   style={{marginRight: wp('1')}}
                 />
-                <Text style={WalletStyle.cardAmountText}>{completedWithdrawl}</Text>
+                <Text style={WalletStyle.cardAmountText}>
+                  {completedWithdrawl}
+                </Text>
               </View>
               <Text style={WalletStyle.cardText}>Compeleted Withdrawl</Text>
             </NeoButton>
@@ -258,7 +212,9 @@ const Wallet = () => {
             onSubmitEditing={amountHandler}
           />
 
-          <TouchableOpacity style={WalletStyle.sendOpacity} onPress={amountHandler}>
+          <TouchableOpacity
+            style={WalletStyle.sendOpacity}
+            onPress={amountHandler}>
             <NeoButton
               width={wp('12')}
               height={wp('12')}
@@ -272,6 +228,18 @@ const Wallet = () => {
             </NeoButton>
           </TouchableOpacity>
         </Neomorph>
+        {labelShow ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3.8'),
+              color: AppColor.red,
+              marginLeft: wp('5'),
+              marginTop: wp('2'),
+            }}>
+            Please enter your amount!
+          </Text>
+        ) : null}
 
         <Text
           style={{
