@@ -18,10 +18,12 @@ import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment-timezone';
 import {NewScheduleStyle} from '../assets/styles/NewScheduleStyle';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import Header from '../components/ScreenHeader/Header';
 const NewSchedule = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const [amountInput, setAmountInput] = useState('');
+  const [labelShow, setLabelShow] = useState(false);
   const [showStartDate, setShowStartDate] = useState(false);
   const [showEndDate, setShowEndDate] = useState(false);
   const [showStartSelectedDate, setShowStartSelectedDate] =
@@ -73,14 +75,15 @@ const NewSchedule = () => {
     isEndTimeHide();
   };
   return (
-    <SafeAreaView style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
+    <SafeAreaView
+      style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
       <ScrollView>
         <View style={NewScheduleStyle.mainView}>
-          <Header buttonColor={AppColor.whiteShade}>{"Schedule"}</Header>
+          <Header buttonColor={AppColor.whiteShade}>{'Schedule'}</Header>
           <View style={NewScheduleStyle.viewOne}>
             <TouchableOpacity>
               <NeoButton
-                width={wp(85)}
+                width={wp(90)}
                 height={hp(8)}
                 backgroundColor={AppColor.primary}
                 borderRadius={wp(20)}>
@@ -118,9 +121,7 @@ const NewSchedule = () => {
               </View>
             </View>
             <View>
-              <TouchableOpacity
-                onPress={isDateEndVisible}
-                style={{left: wp(10)}}>
+              <TouchableOpacity onPress={isDateEndVisible}>
                 <NeoButton
                   height={hp(14)}
                   width={wp(36)}
@@ -146,7 +147,7 @@ const NewSchedule = () => {
               </View>
             </View>
           </View>
-          <View style={NewScheduleStyle.viewThree}>
+          <View style={NewScheduleStyle.viewTwo}>
             <View>
               <TouchableOpacity onPress={isStartTimeShow}>
                 <NeoButton
@@ -171,7 +172,7 @@ const NewSchedule = () => {
               </View>
             </View>
             <View>
-              <TouchableOpacity onPress={isEndTimeShow} style={{left: wp(10)}}>
+              <TouchableOpacity onPress={isEndTimeShow}>
                 <NeoButton
                   height={hp(14)}
                   width={wp(36)}
@@ -196,13 +197,26 @@ const NewSchedule = () => {
           </View>
           <View style={NewScheduleStyle.viewFour}>
             <NeoButton
-              height={hp(8)}
-              width={wp(82)}
+              height={hp(8.5)}
+              width={wp(90)}
               borderRadius={wp(20)}
               backgroundColor={AppColor.whiteShade}>
               <TextInput
+                value={amountInput}
                 style={NewScheduleStyle.viewFourTextInput}
                 placeholder="Enter Your Consultation fee"
+                keyboardType="decimal-pad"
+                returnKeyType="go"
+                onChangeText={text => {
+                  setAmountInput(text);
+                }}
+                onSubmitEditing={() => {
+                  if (amountInput === '') {
+                    setLabelShow(true);
+                  } else {
+                    setLabelShow(false);
+                  }
+                }}
               />
             </NeoButton>
             <Icon
@@ -212,11 +226,30 @@ const NewSchedule = () => {
               color={'#567a49'}
             />
           </View>
+          {labelShow ? (
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3.8'),
+                color: AppColor.red,
+                marginLeft: wp('5'),
+                marginTop: wp('3'),
+              }}>
+              Please enter your amount!
+            </Text>
+          ) : null}
           <View style={NewScheduleStyle.viewFive}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (amountInput === '') {
+                  setLabelShow(true);
+                } else {
+                  setLabelShow(false);
+                }
+              }}>
               <NeoButton
                 height={hp(8)}
-                width={wp(85)}
+                width={wp(90)}
                 borderRadius={wp(10)}
                 backgroundColor={AppColor.primary}>
                 <Text style={NewScheduleStyle.viewFiveText}>
@@ -230,6 +263,5 @@ const NewSchedule = () => {
     </SafeAreaView>
   );
 };
-
 
 export default NewSchedule;
