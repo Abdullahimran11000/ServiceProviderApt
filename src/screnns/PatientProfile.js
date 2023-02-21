@@ -25,8 +25,8 @@ import {AppointmentStyle} from '../assets/styles/AnimatedDrawerStyle/Appointment
 import {ScrollView} from 'react-native-virtualized-view';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {launchImageLibrary} from 'react-native-image-picker';
-import ImageViewer from 'react-native-image-zoom-viewer';
-
+import ImageZoom from 'react-native-image-pan-zoom';
+import {Dimensions} from 'react-native';
 const PatientProfile = () => {
   const route = useRoute();
   const {name, age, gender, date, time, appDes} = route.params;
@@ -159,7 +159,6 @@ const PatientProfile = () => {
                 />
               </View>
             </View>
-
             <View style={AppointmentStyle.detailView}>
               <Icon
                 size={wp('4')}
@@ -179,8 +178,7 @@ const PatientProfile = () => {
                 <Text style={AppointmentStyle.destinationStyle}>{appDes}</Text>
               </TouchableOpacity>
             </View>
-          </Neomorph>
-
+          </Neomorph>         
           {selectedImageUri === '' ? (
             <View
               style={[CertificatesStyle.imageViewCard, {marginTop: wp('8')}]}>
@@ -217,12 +215,12 @@ const PatientProfile = () => {
                 marginBottom: wp('6'),
                 backgroundColor: AppColor.whiteShade,
               }}>
-              <FlatList
-                renderItem={renderImageList}
-                data={uploadImageList}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-              />
+                  <FlatList
+                    renderItem={renderImageList}
+                    data={uploadImageList}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                  />   
             </View>
           )}
 
@@ -248,7 +246,6 @@ const PatientProfile = () => {
               }}>
               Upload Prescription
             </Text>
-
             <TouchableOpacity onPress={imagePickerHandler}>
               <Neomorph
                 style={{

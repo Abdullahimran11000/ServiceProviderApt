@@ -53,7 +53,7 @@ const ForgotPassword = () => {
             />
           </View>
           <View style={ForgotPasswordStyle.touchableView}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('TryAnotherWay')}>
               <Text style={ForgotPasswordStyle.touchableText1}>
                 Try another way
               </Text>

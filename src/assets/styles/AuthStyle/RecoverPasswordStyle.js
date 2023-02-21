@@ -13,7 +13,7 @@ const RecoverPasswordStyle = StyleSheet.create({
   tagText: {fontFamily: 'Poppins-SemiBold', fontSize: wp('4.5'), color: "black"},
   paraView: {alignItems: 'center', width: wp('80'), alignSelf: 'center', marginTop: wp('5')},
   paraText: {color: AppColor.black, fontFamily: 'Poppins-Light',fontSize: wp('3.8'),textAlign: 'center'},
-  inputView: {marginTop: wp('10'), alignItems: "center", marginBottom: wp('2')},
+  inputView: {alignItems: "center"},
   labelView: {width: wp('90')},
   labelText: {color: AppColor.black, fontFamily: 'Poppins-Bold',fontSize: wp('3.9')},
   inputStyleView: {flex: 1, flexDirection: 'row' , marginTop:wp('2'), marginBottom: wp('3'), width:wp('90'), height: hp('6.5'), borderRadius:wp('3'), backgroundColor: AppColor.white, alignItems: 'center'},
