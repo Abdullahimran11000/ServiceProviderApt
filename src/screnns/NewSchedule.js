@@ -20,19 +20,26 @@ import moment from 'moment-timezone';
 import {NewScheduleStyle} from '../assets/styles/NewScheduleStyle';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../components/ScreenHeader/Header';
+import CustomModal from '../components/Modal/CustomModal';
 const NewSchedule = () => {
   const navigation = useNavigation();
   const [amountInput, setAmountInput] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
   const [labelShow, setLabelShow] = useState(false);
+
   const [showStartDate, setShowStartDate] = useState(false);
-  const [showEndDate, setShowEndDate] = useState(false);
+  const [startDateValid, setStartDateValid] = useState(false);
   const [showStartSelectedDate, setShowStartSelectedDate] =
     useState('start-date');
+  const [showEndDate, setShowEndDate] = useState(false);
+  const [endDateValid, setEndDateValid] = useState(false);
   const [showEndSelectedDate, setShowEndSelectedDate] = useState('end-date');
   const [showStartTime, setShowStartTime] = useState(false);
-  const [showEndTime, setShowEndTime] = useState(false);
+  const [startTimeValid, setStartTimeValid] = useState(false);
   const [showStartSelectedTime, setShowStartSelectedTime] =
     useState('start-time');
+  const [showEndTime, setShowEndTime] = useState(false);
+  const [endTimeValid, setEndTimeValid] = useState(false);
   const [showEndSelectedTime, setShowEndSelectedTime] = useState('end-time');
   const isDateStartVisible = () => {
     setShowStartDate(true);
@@ -48,10 +55,12 @@ const NewSchedule = () => {
   };
   const startDateHandler = date => {
     setShowStartSelectedDate(moment(date).format('MMM Do YYYY'));
+    setStartDateValid(false);
     isDateStartHide();
   };
   const endDateHandler = date => {
     setShowEndSelectedDate(moment(date).format('MMM Do YYYY'));
+    setEndDateValid(false);
     isDateEndHide();
   };
   const isStartTimeShow = () => {
@@ -68,10 +77,12 @@ const NewSchedule = () => {
   };
   const StartTimeHandler = time => {
     setShowStartSelectedTime(moment(time).format('h:mm a'));
+    setStartTimeValid(false);
     isStartTimeHide();
   };
   const EndTimeHandler = time => {
     setShowEndSelectedTime(moment(time).format('h:mm a'));
+    setEndTimeValid(false);
     isEndTimeHide();
   };
   return (
@@ -79,7 +90,21 @@ const NewSchedule = () => {
       style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
       <ScrollView>
         <View style={NewScheduleStyle.mainView}>
+          <CustomModal
+            isVisible={modalOpen}
+            onBackdropPress={() => {
+              setModalOpen(false);
+            }}
+            source={require('../assets/animations/success.json')}
+            text={'Time Slot is added'}
+            style={{marginTop: wp('12')}}
+            modalButtonPress={() => {
+              setModalOpen(false);
+            }}
+            buttonBackgroundColor={AppColor.primary}
+          />
           <Header buttonColor={AppColor.whiteShade}>{'Schedule'}</Header>
+
           <View style={NewScheduleStyle.viewOne}>
             <TouchableOpacity>
               <NeoButton
@@ -106,7 +131,11 @@ const NewSchedule = () => {
                     size={wp(15)}
                     color={AppColor.primary}
                   />
-                  <Text style={NewScheduleStyle.viewTwoTextOne}>
+                  <Text
+                    style={[
+                      NewScheduleStyle.viewTwoTextOne,
+                      {color: startDateValid ? AppColor.red : AppColor.black},
+                    ]}>
                     {showStartSelectedDate}
                   </Text>
                 </NeoButton>
@@ -132,7 +161,11 @@ const NewSchedule = () => {
                     size={wp(15)}
                     color={AppColor.primary}
                   />
-                  <Text style={NewScheduleStyle.viewTwoTextTwo}>
+                  <Text
+                    style={[
+                      NewScheduleStyle.viewTwoTextTwo,
+                      {color: endDateValid ? AppColor.red : AppColor.black},
+                    ]}>
                     {showEndSelectedDate}
                   </Text>
                 </NeoButton>
@@ -156,7 +189,11 @@ const NewSchedule = () => {
                   backgroundColor={AppColor.whiteShade}
                   borderRadius={15}>
                   <Icon name="time" size={wp(15)} />
-                  <Text style={NewScheduleStyle.viewThreeTextOne}>
+                  <Text
+                    style={[
+                      NewScheduleStyle.viewThreeTextOne,
+                      {color: startTimeValid ? AppColor.red : AppColor.black},
+                    ]}>
                     {showStartSelectedTime}
                   </Text>
                 </NeoButton>
@@ -179,7 +216,11 @@ const NewSchedule = () => {
                   backgroundColor={AppColor.whiteShade}
                   borderRadius={15}>
                   <Icon name="time" size={wp(15)} />
-                  <Text style={NewScheduleStyle.viewThreeTextTwo}>
+                  <Text
+                    style={[
+                      NewScheduleStyle.viewThreeTextTwo,
+                      {color: endTimeValid ? AppColor.red : AppColor.black},
+                    ]}>
                     {showEndSelectedTime}
                   </Text>
                 </NeoButton>
@@ -197,9 +238,9 @@ const NewSchedule = () => {
           </View>
           <View style={NewScheduleStyle.viewFour}>
             <NeoButton
-              height={hp(8.5)}
-              width={wp(90)}
-              borderRadius={wp(20)}
+              height={hp('8.5')}
+              width={wp('90')}
+              borderRadius={wp('5')}
               backgroundColor={AppColor.whiteShade}>
               <TextInput
                 value={amountInput}
@@ -243,8 +284,32 @@ const NewSchedule = () => {
               onPress={() => {
                 if (amountInput === '') {
                   setLabelShow(true);
-                } else {
-                  setLabelShow(false);
+                }
+                if (showStartSelectedDate === 'start-date') {
+                  setStartDateValid(true);
+                }
+                if (showEndSelectedDate === 'end-date') {
+                  setEndDateValid(true);
+                }
+                if (showStartSelectedTime === 'start-time') {
+                  setStartTimeValid(true);
+                }
+                if (showEndSelectedTime === 'end-time') {
+                  setEndTimeValid(true);
+                }
+                if (
+                  showStartSelectedDate != 'start-date' &&
+                  showEndSelectedDate != 'end-date' &&
+                  showStartSelectedTime != 'start-time' &&
+                  showEndSelectedTime != 'end-time' &&
+                  amountInput != ''
+                ) {
+                  setModalOpen(true);
+                  setShowStartSelectedDate('start-time');
+                  setShowEndSelectedDate('end-date');
+                  setShowStartSelectedTime('start-time');
+                  setShowEndSelectedTime('end-time');
+                  setAmountInput('');
                 }
               }}>
               <NeoButton
