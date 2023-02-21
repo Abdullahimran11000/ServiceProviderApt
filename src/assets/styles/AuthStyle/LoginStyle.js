@@ -22,7 +22,7 @@ const LoginStyle = StyleSheet.create({
   },
 
   TextStyle: {
-    marginLeft: wp('2'),
+    marginLeft: wp('0'),
     color: AppColor.black,
     fontFamily: 'Poppins-Bold',
   },
@@ -37,9 +37,8 @@ const LoginStyle = StyleSheet.create({
 
   icon: {
     position: 'absolute',
-     marginVertical: hp(7),
-      right: wp(3)
-    },
+    right: wp('5'),
+  },
 
   MainLoginButtonView: {
     marginTop: wp('4'),

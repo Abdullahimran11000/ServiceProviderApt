@@ -10,7 +10,7 @@ const TextInputStyle = StyleSheet.create({
     backgroundColor: AppColor.whiteShade,
     padding: wp('3'),
     fontFamily: 'Poppins-Light',
-    alignSelf: 'center'
+    fontSize: wp('4')
   },
 });
 

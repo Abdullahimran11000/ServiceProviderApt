@@ -17,13 +17,15 @@ const NeoTextInput = ({
   marginBottom,
   value,
   onChangeText,
-  children
+  children,
+  onEndEditing,
+  returnKeyType
 }) => {
   return (
     <View
       style={{
         width: wp('90'),
-        height: hp('7'),
+        height: hp('8.5'),
         alignSelf: 'center',
         borderRadius: wp('3'),
         marginBottom: marginBottom,
@@ -31,11 +33,13 @@ const NeoTextInput = ({
       <Neomorph
         style={{
           width: width,
-          height: hp('7'),
+          height: hp('8.5'),
           borderRadius: wp('3'),
           marginTop: wp('2'),
           shadowRadius: 4,
           backgroundColor: AppColor.whiteShade,
+          alignItems: 'center',
+          justifyContent: 'center'
         }}>
         <TextInput
           value={value}
@@ -44,6 +48,8 @@ const NeoTextInput = ({
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}
           onChangeText={onChangeText}
+          onEndEditing={onEndEditing}
+          returnKeyType={returnKeyType}
         />
         {children}
       </Neomorph>
