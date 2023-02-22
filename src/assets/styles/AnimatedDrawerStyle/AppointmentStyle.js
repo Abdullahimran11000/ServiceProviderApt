@@ -29,11 +29,11 @@ const AppointmentStyle = StyleSheet.create({
   lottieStyleUpcoming: {width: wp("40"), height: wp("40")},
 
   detailView: {display: 'flex', flexDirection: 'row', width: wp('80'), alignSelf: 'center', top: hp('11.5')},
-  dateStyle: {fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('5')},
+  dateStyle: {fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('5'), color: AppColor.blackOpacity8},
   timeIconStyle: {left: wp('36'), position: 'absolute', color: AppColor.black},
-  timeStyle: {fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('41')},
+  timeStyle: {fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('41'), color: AppColor.blackOpacity8},
   callIconStyle: {position: 'absolute', left: wp('63'), color: AppColor.black},
-  destinationStyle: {fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('66')},
+  destinationStyle: {fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('66'), color: AppColor.blackOpacity8},
 
   appCardUpcoming : {width: wp('90'), height: hp('28'), alignSelf: 'center', marginTop: wp('3'),  marginLeft: wp('5'), marginBottom: wp('5'), marginRight: wp('5')},
   neoCard2Upcoming: {width: wp('90'), height: hp('28'), borderRadius: wp('8'), shadowRadius: 4, backgroundColor: AppColor.whiteShade, alignSelf: 'center', overflow: 'hidden'},
