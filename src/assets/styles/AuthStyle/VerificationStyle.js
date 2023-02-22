@@ -21,7 +21,7 @@ const VerificationStyle = StyleSheet.create({
   touchableText: {color: AppColor.white , fontFamily: "Poppins-Bold" , fontSize: wp('4.2'), textAlign: "center"},
   textView: {flex: 1 , flexDirection: 'row' , justifyContent: 'space-evenly' , padding: wp('3')},
   buttonView:{alignItems:'center' , marginTop: wp('6'), marginBottom: wp('5')},
-  newInputs: {width: wp("16") , height: wp('16') , borderRadius: wp('5') , backgroundColor: AppColor.white , fontFamily: "Poppins-Bold" , fontSize: wp('7') , padding: wp('1') , textAlign: 'center'},
+  newInputs: {width: wp("16") , height: wp('16') , borderRadius: wp('5') , backgroundColor: AppColor.white , fontFamily: "Poppins-Bold" , fontSize: wp('7') , padding: wp('1') , textAlign: 'center', color: AppColor.black},
 });
 
 export {VerificationStyle};

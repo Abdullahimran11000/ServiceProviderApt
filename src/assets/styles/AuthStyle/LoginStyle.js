@@ -57,7 +57,7 @@ const LoginStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  LoginText: {color: AppColor.white, fontFamily: 'Poppins-SemiBold'},
+  LoginText: {color: AppColor.white, fontFamily: 'Poppins-Bold', fontSize: wp('4')},
 
   orText: {
     color: AppColor.black,

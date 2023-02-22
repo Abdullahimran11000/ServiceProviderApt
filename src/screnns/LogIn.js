@@ -127,7 +127,7 @@ const LogIn = props => {
             </NeoButton>
           </View>
           <View style={LoginStyle.LastView}>
-            <Text style={{fontFamily: 'Poppins-Light'}}>
+            <Text style={{fontFamily: 'Poppins-Light', color: AppColor.blackOpacity8}}>
               Don't have an account?{' '}
             </Text>
             <TouchableOpacity

@@ -122,7 +122,11 @@ const MyProfile = () => {
                     style={{
                       fontFamily: 'Poppins-Light',
                       marginLeft: wp('3'),
-                      color: AppColor.blackOpacity6,
+                      color:
+                        optionShow === 'Gender'
+                          ? AppColor.blackOpacity3
+                          : AppColor.blackOpacity8,
+                      fontSize: wp('4'),
                     }}>
                     {optionShow}
                   </Text>
