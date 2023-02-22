@@ -44,11 +44,10 @@ const RecoverPassword = () => {
             </View>
             <View style={RecoverPasswordStyle.paraView}>
               <Text style={RecoverPasswordStyle.paraText}>
-                Please enter your email address to recover your forgoton
-                password
+                Please enter your current & new password.
               </Text>
             </View>
-            <View style={[RecoverPasswordStyle.inputView,{marginTop:hp('5')}]}>
+            <View style={RecoverPasswordStyle.inputView}>
               <View style={RecoverPasswordStyle.labelView}>
                 <Text style={RecoverPasswordStyle.labelText}>Current Password</Text>
               </View>
@@ -131,14 +130,6 @@ const RecoverPassword = () => {
                 keyboardType={'ascii-capable'}
               />
             </View>
-
-            {/* <View style={RecoverPasswordStyle.touchableView}>
-              <TouchableOpacity>
-                <Text style={RecoverPasswordStyle.touchableText1}>
-                  Change Password
-                </Text>
-              </TouchableOpacity>
-            </View> */}
             <View style={RecoverPasswordStyle.buttonView}>
               <TouchableOpacity
                 onPress={() => {navigation.navigate('Congratulation')}}>
