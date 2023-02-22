@@ -16,7 +16,7 @@ const DrawerStyle = StyleSheet.create({
     logOutView: {position: 'absolute', bottom: 0, flexDirection: 'row', marginLeft: wp('5'), marginBottom: wp('7')},
 
     smallAnimatedView: {flex: 1, backgroundColor: 'rgba(255,255,255,0.3)', position: 'absolute', left: 0, right: 0, bottom: 0,top: 0},
-    largeAnimatedView: {flex: 1, backgroundColor: AppColor.whiteShade, position: 'absolute', left: 0, right: 0, bottom: 0,top: 0},
+    largeAnimatedView: {flex: 1, backgroundColor: AppColor.whiteShade, overflow: 'hidden', position: 'absolute', left: 0, right: 0, bottom: 0,top: 0},
 
 })
 

@@ -24,13 +24,12 @@ const Verification = props => {
   const fourthTextInputRef = useRef(null);
 
   return (
-    <ScrollView>
-      <SafeAreaView style={VerificationStyle.mainView}>
+    <SafeAreaView style={VerificationStyle.mainView}>
+      <BackButton onPress={() => props.navigation.goBack()}>
+        {'Verification'}
+      </BackButton>
+      <ScrollView>
         <View>
-          <BackButton onPress={() => props.navigation.goBack()}>
-            {'Verification'}
-          </BackButton>
-
           <View style={VerificationStyle.animationView}>
             <Lottie
               style={VerificationStyle.animationStyle}
@@ -105,7 +104,7 @@ const Verification = props => {
                   thirdTextInputRef.current.focus();
                 }
               }}
-              onEndEditing={()=>{}}
+              onEndEditing={() => {}}
             />
           </View>
           <View style={VerificationStyle.touchableView}>
@@ -118,9 +117,9 @@ const Verification = props => {
             <TouchableOpacity
               onPress={() => props.navigation.navigate('RecoverPassword')}>
               <NeoButton
-                width={wp('90')}
+                width={wp('85')}
                 backgroundColor={AppColor.primary}
-                height={hp('7')}
+                height={hp('8')}
                 borderRadius={wp('10')}
                 marginBottom={wp('5')}>
                 <Text style={VerificationStyle.touchableText}>Verify</Text>
@@ -128,8 +127,8 @@ const Verification = props => {
             </TouchableOpacity>
           </View>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

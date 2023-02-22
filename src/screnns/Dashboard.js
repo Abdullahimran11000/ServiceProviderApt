@@ -76,21 +76,21 @@ const Dashboard = ({pressHandler}) => {
   );
 
   return (
-    <ScrollView>
-      <SafeAreaView style={DashboardStyle.scrollViewStyle}>
-        <ScrollView>
-          <View style={DashboardStyle.headCont}>
-            <View style={DashboardStyle.headContInnerCont}>
-              <TouchableOpacity
-                style={DashboardStyle.headContMenuCont}
-                onPress={pressHandler}>
-                <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
-              </TouchableOpacity>
-              <TouchableOpacity style={DashboardStyle.textCont}>
-                <Text style={DashboardStyle.textStyle}>Dashboard</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+    <SafeAreaView style={{display: 'flex', flex: 1, overflow: 'hidden'}}>
+      <View style={DashboardStyle.headCont}>
+        <View style={DashboardStyle.headContInnerCont}>
+          <TouchableOpacity
+            style={DashboardStyle.headContMenuCont}
+            onPress={pressHandler}>
+            <Ionicons name="menu" color={AppColor.black} size={wp('7')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={DashboardStyle.textCont}>
+            <Text style={DashboardStyle.textStyle}>Dashboard</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <ScrollView>
+        <SafeAreaView>
           <View style={DashboardStyle.doctorInfoCard}>
             <View style={DashboardStyle.doctorInfoInnerCont}>
               <TouchableOpacity style={DashboardStyle.doctorProfileImageCont}>
@@ -185,7 +185,10 @@ const Dashboard = ({pressHandler}) => {
                       darkShadowColor={AppColor.blackOpacity4}
                       style={DashboardStyle.neoCertificatesButton}>
                       <TouchableOpacity
-                        style={DashboardStyle.neoCertificatesButton} onPress={()=>{navigation.navigate("Certificates")}}>
+                        style={DashboardStyle.neoCertificatesButton}
+                        onPress={() => {
+                          navigation.navigate('Certificates');
+                        }}>
                         <Text style={DashboardStyle.certificatesButtonText}>
                           Go To Certificates
                         </Text>
@@ -228,9 +231,9 @@ const Dashboard = ({pressHandler}) => {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
-        </ScrollView>
-      </SafeAreaView>
-    </ScrollView>
+        </SafeAreaView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
