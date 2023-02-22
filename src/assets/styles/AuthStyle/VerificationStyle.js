@@ -6,7 +6,7 @@ import {
 import { AppColor } from '../../colors/AppColors';
 
 const VerificationStyle = StyleSheet.create({
-  mainView: {backgroundColor: AppColor.whiteShade, display: 'flex'},
+  mainView: {backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1},
   headingView:{alignItems:'center'},
   animationView: {alignItems: 'center' , marginTop: wp("6")},
   animationStyle: {width: wp('90'), height: hp('35')},

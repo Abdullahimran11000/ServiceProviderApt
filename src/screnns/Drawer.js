@@ -182,7 +182,7 @@ const Drawer = () => {
             <Octicons name={'key'} size={wp('5')} color={AppColor.white} />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('RecoverPassword')}>
+              onPress={() => navigation.navigate('PasswordManagement')}>
               <Text style={DrawerStyle.menuItemText}>Password</Text>
             </TouchableOpacity>
           </View>

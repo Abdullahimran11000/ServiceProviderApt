@@ -3,6 +3,7 @@ import React from 'react';
 import AppIntro from './src/screnns/AppIntro';
 import LogIn from './src/screnns/LogIn';
 import SignUp from './src/screnns/SignUp';
+import PasswordManagement from './src/screnns/PasswordManagement';
 import RecoverPassword from './src/screnns/RecoverPassword';
 import ForgotPassword from './src/screnns/ForgotPassword';
 import Verification from './src/screnns/Verification';
@@ -36,6 +37,7 @@ const App = () => {
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+          <Stack.Screen name="PasswordManagement" component={PasswordManagement} />
           <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Verification" component={Verification} />
           <Stack.Screen name="Congratulation" component={Congratulation} />

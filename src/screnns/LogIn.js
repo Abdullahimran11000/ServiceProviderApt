@@ -20,10 +20,10 @@ import {useNavigation} from '@react-navigation/native';
 const LogIn = props => {
   const navigation = useNavigation();
   const [eye, setEye] = useState(false);
-  const [emailText, setEmailText] = useState('');
+  const [emailText, setEmailText] = useState('f@gmail.com');
   const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
   const [emailLabelText, setEmailLabelText] = useState('');
-  const [passwordText, setPasswordText] = useState('');
+  const [passwordText, setPasswordText] = useState('123');
 
   const submitHandler = () => {
     if (emailText === '') {
