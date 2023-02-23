@@ -7,6 +7,7 @@ import { Neomorph } from "react-native-neomorph-shadows";
 import Lottie from "lottie-react-native";
 import NeoButton from "../components/NeoMorphButton/NeoButton";
 const TryAnotherWay = () => {
+    
     return(
         <SafeAreaView style={{backgroundColor:AppColor.whiteShade , flex:1}}>
             <View style={{alignItems:"center",marginTop:hp('10')}}>

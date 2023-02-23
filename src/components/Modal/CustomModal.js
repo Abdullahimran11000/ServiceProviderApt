@@ -47,11 +47,7 @@ const CustomModal = ({isVisible, onBackdropPress, source, text, style, modalButt
               justifyContent: 'center',
             }}>
             <Lottie
-            //   source={
-            //     modalTypeOpen
-            //       ? require('../assets/animations/success.json')
-            //       : require('../assets/animations/failed.json')
-            //   }
+           
               source={source}
               style={{width: wp('35'), height: wp('35')}}
               loop
