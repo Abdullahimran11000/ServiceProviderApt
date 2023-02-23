@@ -35,8 +35,8 @@ const AppointmentStyle = StyleSheet.create({
   callIconStyle: {position: 'absolute', left: wp('63'), color: AppColor.black},
   destinationStyle: {fontFamily: "Poppins-Medium", fontSize: wp('3'), position: 'absolute', left: wp('66'), color: AppColor.blackOpacity8},
 
-  appCardUpcoming : {width: wp('90'), height: hp('28'), alignSelf: 'center', marginTop: wp('3'),  marginLeft: wp('5'), marginBottom: wp('5'), marginRight: wp('5')},
-  neoCard2Upcoming: {width: wp('90'), height: hp('28'), borderRadius: wp('8'), shadowRadius: 4, backgroundColor: AppColor.whiteShade, alignSelf: 'center', overflow: 'hidden'},
+  appCardUpcoming : {width: wp('90'), alignSelf: 'center', marginTop: wp('3'),  marginLeft: wp('5'), marginBottom: wp('5'), marginRight: wp('5')},
+  neoCard2Upcoming: {width: wp('90'), borderRadius: wp('8'), shadowRadius: 4, backgroundColor: AppColor.whiteShade, alignSelf: 'center', overflow: 'hidden'},
 
   buttonView: {width: wp('90'), display: 'flex', flexDirection: 'row', marginTop: wp('27'), justifyContent: 'space-evenly'},
   buttonTouchStyle: {justifyContent: 'center', alignItems: 'center', width: wp('30'), height: hp('5'), borderRadius: wp('6')},

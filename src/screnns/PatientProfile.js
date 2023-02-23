@@ -4,29 +4,26 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
   FlatList,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
 import Feather from 'react-native-vector-icons/Feather';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {AppColor} from '../assets/colors/AppColors';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import Lottie from 'lottie-react-native';
-import {AppointmentStyle} from '../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
 import {ScrollView} from 'react-native-virtualized-view';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {launchImageLibrary} from 'react-native-image-picker';
-
+import {PatientProfileStyle} from '../assets/styles/PatientProfileStyle';
 import Header from '../components/ScreenHeader/Header';
 import moment from 'moment-timezone';
 import CustomModal from '../components/Modal/CustomModal';
 import PatientProfileRender from '../components/RenderFunction/PatientProfileRender';
+import UpcomingAppointmentCard from '../components/Appointments/UpcomingAppointment';
 
 const PatientProfile = () => {
   const route = useRoute();
@@ -41,9 +38,12 @@ const PatientProfile = () => {
   const imagePickerHandler = async () => {
     await launchImageLibrary({includeExtra: true}, arr => {
       if (arr.assets != undefined) {
+        console.log('%%%%%%%%%%%%%%%');
+        console.log(uploadImageList.length);
+        console.log('%%%%%%%%%%%%%%%');
         setUploadImageList(oldImageList => [
           {
-            id: Math.random() + 1,
+            id: uploadImageList.length + 1,
             url: arr.assets[0].uri,
             date: JSON.stringify(arr.assets[0].timestamp).substring(1, 11),
           },
@@ -89,7 +89,7 @@ const PatientProfile = () => {
   };
 
   return (
-    <SafeAreaView style={{display: 'flex', flex: 1}}>
+    <SafeAreaView style={PatientProfileStyle.parentView}>
       <CustomModal
         isVisible={modalOpen}
         onBackdropPress={() => {
@@ -116,172 +116,79 @@ const PatientProfile = () => {
         }}
         buttonBackgroundColor={modalTypeOpen ? AppColor.primary : '#FA7070'}
       />
-
-      <Header buttonColor={AppColor.whiteShade}>{'Detail'}</Header>
+      <Header
+        buttonColor={AppColor.whiteShade}
+        styles={{color: AppColor.black}}
+        stylesText={{color: AppColor.black}}
+        backgroundColor={AppColor.whiteShade}>
+        {'Detail'}
+      </Header>{' '}
       <ScrollView>
-        <SafeAreaView
-          style={{
-            display: 'flex',
-            backgroundColor: AppColor.whiteShade,
-          }}>
-          <Neomorph
-            style={[
-              AppointmentStyle.neoCard2Upcoming,
-              {marginLeft: wp('5'), height: hp('20'), marginTop: wp('7')},
-            ]}
-            darkShadowColor={AppColor.black}>
-            <View style={AppointmentStyle.patientCard}>
-              <View style={AppointmentStyle.patientProfileImageCont}>
-                <Image
-                  style={AppointmentStyle.patientProfileImage}
-                  source={require('../assets/images/selfieOne.jpg')}
-                  resizeMode="cover"
-                />
-              </View>
-              <View style={AppointmentStyle.patientInfoView}>
-                <Text style={AppointmentStyle.patientNameText}>{name}</Text>
-                <Text style={AppointmentStyle.patientGenderText}>
-                  {gender}, {age} years old
-                </Text>
-              </View>
-              <View style={AppointmentStyle.lottieViewUpcoming}>
-                <Lottie
-                  style={AppointmentStyle.lottieStyleUpcoming}
-                  source={require('../assets/animations/upcomingTag.json')}
-                  autoPlay
-                />
-              </View>
-            </View>
-            <View style={AppointmentStyle.detailView}>
-              <Icon
-                size={wp('4')}
-                name="calendar"
-                color={AppColor.black}></Icon>
-              <Text style={AppointmentStyle.dateStyle}>{date}</Text>
-              <Icon
-                size={wp('4')}
-                name="clock-o"
-                style={AppointmentStyle.timeIconStyle}></Icon>
-              <Text style={AppointmentStyle.timeStyle}>{time}</Text>
-              <Icon
-                size={wp('4')}
-                name="wechat"
-                style={AppointmentStyle.callIconStyle}></Icon>
-              <TouchableOpacity>
-                <Text style={AppointmentStyle.destinationStyle}>{appDes}</Text>
-              </TouchableOpacity>
-            </View>
-          </Neomorph>
+        <SafeAreaView style={PatientProfileStyle.innerView}>
+          <View style={PatientProfileStyle.patientParentCard}>
+            <UpcomingAppointmentCard
+              item={''}
+              p_name={name}
+              p_age={age}
+              p_gender={gender}
+              p_date={date}
+              p_time={time}
+              p_appDest={appDes}
+              buttonShow={false}
+            />
+          </View>
+
           {selectedImageUri === '' ? (
-            <View
-              style={[CertificatesStyle.imageViewCard, {marginTop: wp('8')}]}>
-              <Neomorph
-                style={[
-                  CertificatesStyle.imageNeumorphCard,
-                  {height: hp('50')},
-                ]}>
-                <View style={CertificatesStyle.noImageView}>
+            <View style={PatientProfileStyle.imageViewCard}>
+              <Neomorph style={PatientProfileStyle.imageNeumorphCard}>
+                <View style={PatientProfileStyle.noImageView}>
                   <Feather
                     name="camera-off"
                     size={wp('30')}
                     color={AppColor.black}
                   />
-                  <Text
-                    style={{
-                      fontFamily: 'Poppins-Bold',
-                      fontSize: wp('4'),
-                      color: AppColor.blackOpacity7,
-                      marginTop: wp('2'),
-                    }}>
+                  <Text style={PatientProfileStyle.iconTextStyle}>
                     No History Found!
                   </Text>
                 </View>
               </Neomorph>
             </View>
           ) : (
-            <View
-              style={{
-                height: hp('52'),
-                width: wp('100'),
-                overflow: 'hidden',
-                marginTop: wp('10'),
-                marginBottom: wp('2'),
-                backgroundColor: AppColor.whiteShade,
-              }}>
+            <View style={PatientProfileStyle.flatListView}>
               <FlatList
                 renderItem={renderImageList}
                 data={uploadImageList}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
+                keyExtractor={item => {
+                  item.id;
+                  console.log(`ID ${item.id} `);
+                }}
               />
             </View>
           )}
 
           {paginationRightShow ? (
-            <View
-              style={{
-                width: wp('90'),
-                height: wp('12'),
-                alignSelf: 'center',
-                justifyContent: 'center',
-                marginBottom: wp('8'),
-              }}>
-              <Neomorph
-                style={{
-                  width: wp('10'),
-                  height: wp('10'),
-                  borderRadius: wp('8'),
-                  backgroundColor: AppColor.whiteShade,
-                  shadowRadius: 4,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'absolute',
-                  right: 0,
-                }}>
+            <View style={PatientProfileStyle.forwardButtonView}>
+              <Neomorph style={PatientProfileStyle.forwardButtonInnerView}>
                 <Lottie
                   source={require('../assets/animations/forward.json')}
-                  style={{width: wp('8'), height: wp('8')}}
+                  style={PatientProfileStyle.forwardLottie}
                   loop
-                  autoPlay></Lottie>
+                  autoPlay
+                />
               </Neomorph>
             </View>
           ) : null}
 
-          <Neomorph
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              width: wp('90'),
-              height: hp('17'),
-              marginBottom: wp('10'),
-              marginLeft: wp('5'),
-              shadowRadius: 4,
-              backgroundColor: AppColor.whiteShade,
-              borderRadius: wp(5),
-              alignItems: 'center',
-              justifyContent: 'space-evenly',
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Medium',
-                color: AppColor.black,
-                fontSize: wp('4'),
-              }}>
+          <Neomorph style={PatientProfileStyle.uploadParentView}>
+            <Text style={PatientProfileStyle.uploadTextStyle}>
               Upload Prescription
             </Text>
             <TouchableOpacity onPress={imagePickerHandler}>
-              <Neomorph
-                style={{
-                  width: wp('30'),
-                  height: hp('12'),
-                  backgroundColor: AppColor.whiteShade,
-                  borderRadius: wp('5'),
-                  shadowRadius: 4,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
+              <Neomorph style={PatientProfileStyle.lottieView}>
                 <Lottie
-                  style={{width: wp('15'), height: wp('20')}}
+                  style={PatientProfileStyle.lottieStyle}
                   source={require('../assets/animations/Upload.json')}
                   loop
                   autoPlay
@@ -290,12 +197,7 @@ const PatientProfile = () => {
             </TouchableOpacity>
           </Neomorph>
           <TouchableOpacity
-            style={{
-              width: wp('90'),
-              alignSelf: 'center',
-              alignItems: 'center',
-              marginBottom: wp('10'),
-            }}
+            style={PatientProfileStyle.submitButtonView}
             onPress={() => {
               if (uploadImageList.length > 0) {
                 uploadImageList.map(item => {
@@ -317,14 +219,7 @@ const PatientProfile = () => {
               height={hp('8')}
               backgroundColor={AppColor.primary}
               borderRadius={wp('7')}>
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Bold',
-                  fontSize: wp('4.5'),
-                  color: AppColor.white,
-                }}>
-                Completed
-              </Text>
+              <Text style={PatientProfileStyle.buttonText}>Completed</Text>
             </NeoButton>
           </TouchableOpacity>
         </SafeAreaView>

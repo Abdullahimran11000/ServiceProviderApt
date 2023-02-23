@@ -46,7 +46,13 @@ const MyProfile = () => {
     <ScrollView>
       <SafeAreaView style={MyProfileStyle.mainView}>
         <View>
-          <Header buttonColor={AppColor.whiteShade}>{'Profile'}</Header>
+          <Header
+            buttonColor={AppColor.whiteShade}
+            styles={{color: AppColor.black}}
+            stylesText={{color: AppColor.black}}
+            backgroundColor={AppColor.whiteShade}>
+            {'My Profile'}
+          </Header>
           <View style={MyProfileStyle.ProfileView}>
             <View style={MyProfileStyle.innerProfileView}>
               {selectedImageUrl === '' ? (
@@ -70,7 +76,6 @@ const MyProfile = () => {
               </TouchableOpacity>
             </View>
           </View>
-
           <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Full Name</Text>
 
@@ -91,11 +96,9 @@ const MyProfile = () => {
               keyboardType={'numeric'}
             />
           </View>
-
           <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Gender</Text>
           </View>
-
           <MenuProvider>
             <Menu
               onSelect={value => {
@@ -162,7 +165,6 @@ const MyProfile = () => {
               </MenuOptions>
             </Menu>
           </MenuProvider>
-
           <View style={MyProfileStyle.inputFeildsView}>
             <Text style={MyProfileStyle.TextStyle}>Email</Text>
 
@@ -173,7 +175,6 @@ const MyProfile = () => {
               placeholder={'Enter your email'}
             />
           </View>
-
           <View style={[MyProfileStyle.inputFeildsView]}>
             <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
             <NeoTextInput
@@ -183,7 +184,6 @@ const MyProfile = () => {
               placeholder={'Enter your number'}
             />
           </View>
-
           <View style={MyProfileStyle.buttonView}>
             <TouchableOpacity>
               <NeoButton

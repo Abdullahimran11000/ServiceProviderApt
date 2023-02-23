@@ -60,6 +60,7 @@ const Dashboard = ({pressHandler}) => {
   const renderItemUpcomingAppointments = ({item}) => (
     <UpcomingAppointmentCard
       item={item}
+      buttonShow={true}
       onPress={() => {
         console.log('Hello');
       }}
@@ -204,7 +205,7 @@ const Dashboard = ({pressHandler}) => {
             One={"Today's Appointment"}
             Two={'See all'}
             onPress={() => {
-              navigation.navigate('MyAppointment');
+              navigation.navigate('UpcomingApp');
             }}
           />
 
@@ -220,7 +221,7 @@ const Dashboard = ({pressHandler}) => {
             One={'Completed Appointment'}
             Two={'See all'}
             onPress={() => {
-              navigation.navigate('Splash');
+              navigation.navigate('CompletedApp');
             }}
           />
 

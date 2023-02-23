@@ -11,7 +11,6 @@ import Congratulation from './src/screnns/Congratulation';
 import Drawer from './src/screnns/Drawer';
 import Dashboard from './src/screnns/Dashboard';
 import MyProfile from './src/screnns/MyProfile';
-import MyAppointment from './src/screnns/MyAppointment';
 import Message from './src/screnns/Message';
 import VideoCalling from './src/screnns/VideoCalling';
 import Chat from './src/screnns/Chat';
@@ -22,9 +21,12 @@ import AppointmentsCards from './src/screnns/AppointmentsCards';
 import Notifications from './src/screnns/Notifications';
 import PatientProfile from './src/screnns/PatientProfile';
 import TryAnotherWay from './src/screnns/TryAnotherWay';
+import CancelledApp from './src/screnns/CancelledApp';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppProvider} from './src/assets/context/AppContext';
+import UpcomingApp from './src/screnns/UpcomingApp';
+import CompletedApp from './src/screnns/CompletedApp';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -46,7 +48,6 @@ const App = () => {
           <Stack.Screen name="Certificates" component={Certificates}/>
           <Stack.Screen name="Wallet" component={Wallet}/>
           <Stack.Screen name="MyProfile" component={MyProfile} />
-          <Stack.Screen name="MyAppointment" component={MyAppointment} />
           <Stack.Screen name="Message" component={Message} />
           <Stack.Screen name="Chat" component={Chat} />
           <Stack.Screen name="VideoCalling" component={VideoCalling} />
@@ -55,6 +56,9 @@ const App = () => {
           <Stack.Screen name="Notifications" component={Notifications}/>
           <Stack.Screen name="PatientProfile" component={PatientProfile} />
           <Stack.Screen name="TryAnotherWay" component={TryAnotherWay} />
+          <Stack.Screen name="CancelledApp" component={CancelledApp} />
+          <Stack.Screen name="UpcomingApp" component={UpcomingApp} />
+          <Stack.Screen name="CompletedApp" component={CompletedApp} />
         </Stack.Navigator>
       </AppProvider>
     </NavigationContainer>
