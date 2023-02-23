@@ -13,7 +13,7 @@ import {
 } from 'react-native-responsive-screen';
 import {ForgotPasswordStyle} from '../assets/styles/AuthStyle/ForgotPasswordStyle';
 import BackButton from '../components/ScrennHeader/BackButton';
-import { AppColor } from '../assets/colors/AppColors';
+import {AppColor} from '../assets/colors/AppColors';
 import {useNavigation} from '@react-navigation/native';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
@@ -21,12 +21,12 @@ import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 const ForgotPassword = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView>
-      <SafeAreaView style={ForgotPasswordStyle.safeView}>
+    <SafeAreaView style={ForgotPasswordStyle.safeView}>
+      <BackButton onPress={() => navigation.goBack()}>
+        {'Forgot Password'}
+      </BackButton>
+      <ScrollView>
         <View style={ForgotPasswordStyle.mainView}>
-          <BackButton onPress={() => navigation.goBack()}>
-            {'Forgot Password'}
-          </BackButton>
           <View style={ForgotPasswordStyle.animationView}>
             <Lottie
               style={ForgotPasswordStyle.animationStyle}
@@ -53,7 +53,8 @@ const ForgotPassword = () => {
             />
           </View>
           <View style={ForgotPasswordStyle.touchableView}>
-            <TouchableOpacity onPress={() => navigation.navigate('TryAnotherWay')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('TryAnotherWay')}>
               <Text style={ForgotPasswordStyle.touchableText1}>
                 Try another way
               </Text>
@@ -65,18 +66,18 @@ const ForgotPassword = () => {
               <NeoButton
                 darkShadowColor={AppColor.black}
                 marginTop={wp('10')}
-                width={wp('90')}
+                width={wp('85')}
                 backgroundColor={AppColor.primary}
-                height={hp('7')}
+                height={hp('8')}
                 borderRadius={wp('10')}
                 marginBottom={wp('10')}>
                 <Text style={ForgotPasswordStyle.touchableText}>Send</Text>
               </NeoButton>
             </TouchableOpacity>
           </View>
-        </View>  
-     </SafeAreaView>
-    </ScrollView>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

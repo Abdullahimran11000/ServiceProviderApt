@@ -50,6 +50,7 @@ const NeoTextInput = ({
           onChangeText={onChangeText}
           onEndEditing={onEndEditing}
           returnKeyType={returnKeyType}
+          placeholderTextColor={AppColor.blackOpacity3}
         />
         {children}
       </Neomorph>

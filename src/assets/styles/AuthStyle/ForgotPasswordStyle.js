@@ -6,7 +6,7 @@ import {
 import { AppColor } from '../../colors/AppColors';
 
 const ForgotPasswordStyle = StyleSheet.create({
-  safeView: {backgroundColor: AppColor.whiteShade, height: hp('100')},
+  safeView: {backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1},
   headingView:{alignItems:'center',justifyContent:"center"},
   animationView: {alignItems: 'center'},
   animationStyle: {width: wp('90'), height: hp('35')},

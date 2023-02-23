@@ -103,8 +103,13 @@ const NewSchedule = () => {
             }}
             buttonBackgroundColor={AppColor.primary}
           />
-          <Header buttonColor={AppColor.whiteShade}>{'Schedule'}</Header>
-
+          <Header
+            buttonColor={AppColor.whiteShade}
+            styles={{color: AppColor.black}}
+            stylesText={{color: AppColor.black}}
+            backgroundColor={AppColor.whiteShade}>
+            {'Schedule'}
+          </Header>
           <View style={NewScheduleStyle.viewOne}>
             <TouchableOpacity>
               <NeoButton
