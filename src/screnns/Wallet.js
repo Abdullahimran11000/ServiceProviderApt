@@ -73,9 +73,13 @@ const Wallet = () => {
           }}
           buttonBackgroundColor={modalTypeOpen ? '#00B46E' : AppColor.primary}
         />
-
-        <Header buttonColor={AppColor.whiteShade}>{'Wallet'}</Header>
-
+        <Header
+          buttonColor={AppColor.whiteShade}
+          styles={{color: AppColor.black}}
+          stylesText={{color: AppColor.black}}
+          backgroundColor={AppColor.whiteShade}>
+          {'Wallet'}
+        </Header>
         <View style={WalletStyle.CardView}>
           <TouchableOpacity style={WalletStyle.OpacityStyle}>
             <NeoButton

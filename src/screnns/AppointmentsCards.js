@@ -142,7 +142,7 @@ const AppointmentsCards = () => {
           <View style={AppointmentStyle.viewThreeContainer}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('MyAppointment');
+                navigation.navigate('CompletedApp');
               }}>
               <NeoButton
                 height={hp(19)}
@@ -179,7 +179,7 @@ const AppointmentsCards = () => {
           <View style={AppointmentStyle.viewTwoContainer}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('MyAppointment');
+                navigation.navigate('UpcomingApp');
               }}>
               <NeoButton
                 height={hp(19)}
@@ -217,7 +217,7 @@ const AppointmentsCards = () => {
           <View style={AppointmentStyle.viewFourContainer}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('MyAppointment');
+                navigation.navigate('CancelledApp');
               }}>
               <NeoButton
                 height={hp(19)}

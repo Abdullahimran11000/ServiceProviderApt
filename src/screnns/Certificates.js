@@ -93,7 +93,13 @@ const Certificates = () => {
   return (
     <SafeAreaView style={CertificatesStyle.mainView}>
       <ScrollView>
-        <Header buttonColor={AppColor.whiteShade}>{'Certificate'}</Header>
+        <Header
+          buttonColor={AppColor.whiteShade}
+          styles={{color: AppColor.black}}
+          stylesText={{color: AppColor.black}}
+          backgroundColor={AppColor.whiteShade}>
+          {'Certificate'}
+        </Header>
 
         <View style={CertificatesStyle.imageViewCard}>
           <Neomorph style={CertificatesStyle.imageNeumorphCard}>

@@ -5,7 +5,7 @@ import { AppColor } from "../colors/AppColors";
 const CertificatesStyle = StyleSheet.create({
     mainView: {display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade},
 
-    headCont: {width: wp('90'), height: hp('6'), marginTop: wp('4.5'), marginLeft:  wp('4.5'), marginRight:  wp('4.5'), alignSelf: 'center', backgroundColor: AppColor.whiteShade},
+    headCont: {width: wp('90'), height: hp('6'), marginTop: wp('4.5'), marginLeft:  wp('4.5'), marginRight:  wp('4.5'), alignSelf: 'center'},
     headContInnerCont: {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
     headContMenuCont: {width: wp('11.5'), height: wp('11.5'), borderRadius: wp('14'), position: 'absolute', left:wp('0'), justifyContent: 'center'},
     textCont : {position: 'absolute', right: 0},

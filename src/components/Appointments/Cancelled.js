@@ -10,7 +10,7 @@ import {Neomorph} from 'react-native-neomorph-shadows';
 import Lottie from 'lottie-react-native';
 import {AppointmentStyle} from '../../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
 
-const CancelledAppointmentCard = ({item}) => {
+const CancelledAppointmentCard = ({item, onPress}) => {
   return (
     <View style={AppointmentStyle.appCard}>
       <Neomorph
@@ -50,7 +50,7 @@ const CancelledAppointmentCard = ({item}) => {
             size={wp('4')}
             name="wechat"
             style={AppointmentStyle.callIconStyle}></Icon>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onPress}>
             <Text style={AppointmentStyle.destinationStyle}>
               {item.appDestination}
             </Text>
