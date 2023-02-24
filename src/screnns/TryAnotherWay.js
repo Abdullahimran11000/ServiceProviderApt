@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { widthPercentageToDP as wp , heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Text , SafeAreaView , ScrollView , View , TouchableOpacity } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
@@ -6,8 +6,9 @@ import { AppColor } from "../assets/colors/AppColors";
 import { Neomorph } from "react-native-neomorph-shadows";
 import Lottie from "lottie-react-native";
 import NeoButton from "../components/NeoMorphButton/NeoButton";
+import CustomModal from "../components/Modal/CustomModal";
 const TryAnotherWay = () => {
-    
+    const [showMessage , setShowMessage] = useState(false)
     return(
         <SafeAreaView style={{backgroundColor:AppColor.whiteShade , flex:1}}>
             <View style={{alignItems:"center",marginTop:hp('10')}}>
@@ -21,18 +22,32 @@ const TryAnotherWay = () => {
             <View style={{alignSelf:"center"}}>
                 <Neomorph style={{width:wp(90) , marginTop:hp(1),height:hp(13),alignItems:"center" ,justifyContent:"center",borderRadius:20,overflow:"hidden",backgroundColor:AppColor.whiteShade,shadowRadius:4}}>
                     <PhoneInput defaultCode="PK" autoFocus textInputStyle={{fontFamily:'Poppins-SemiBold',fontSize:wp(4),top:hp(.8),}}
-                                        textContainerStyle={{borderRadius:20,backgroundColor:AppColor.white}}
-                                        containerStyle={{backgroundColor:AppColor.whiteShade,width:wp(80),height:hp(10)}}
-                                        codeTextStyle={{fontSize:wp(4)}}/>
+                                textContainerStyle={{borderRadius:20,backgroundColor:AppColor.white}}
+                                containerStyle={{backgroundColor:AppColor.whiteShade,width:wp(80),height:hp(10)}}
+                                codeTextStyle={{fontSize:wp(4)}}/>
                 </Neomorph>
             </View>
             <View style={{alignItems:"center",marginTop:hp(5)}}>
-               <TouchableOpacity>
+               <TouchableOpacity onPress={()=>{setShowMessage(!showMessage)}}>
                     <NeoButton width={wp(90)} height={hp(8)}  backgroundColor={AppColor.primary} borderRadius={30}>
                         <Text style={{fontFamily:'Poppins-SemiBold',color:AppColor.white,fontSize:wp(5)}}>Send</Text>
                     </NeoButton>
                 </TouchableOpacity>
             </View>
+            
+            <CustomModal
+                isVisible={showMessage}
+                onBackdropPress={() => {
+                    setShowMessage(false);
+                }}
+                modalButtonPress={() => {
+                    setShowMessage(false);
+                }}
+                buttonBackgroundColor={AppColor.primary}
+                source={require('../assets/animations/success.json')}
+                text={'We have sent a verification code to your Mobile Number'}
+                style={{marginTop:wp(10)}}
+                />
         </SafeAreaView>
     )
 }

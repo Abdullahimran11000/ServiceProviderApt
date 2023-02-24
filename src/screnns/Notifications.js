@@ -27,7 +27,6 @@ const Notifications = () => {
   const [notify, setNotify] = useState(true);
   const [readNotificationInModal, setReadNotificationInModal] = useState('');
   const [showModal, setShowModal] = useState(false);
-const Notifications = props => {
   const navigation = useNavigation();
   const TodayData = [
     {
@@ -120,15 +119,6 @@ const Notifications = props => {
               color={item.iconColor}
             />
           </View>
-      <Neomorph style={NotificationStyle.innerItems}>
-        <TouchableOpacity
-          style={NotificationStyle.headContImageCont}
-          onPress={props.onPress}>
-          <item.iconprovider
-            style={NotificationStyle.iconstyle}
-            name={item.iconname}
-            size={wp('6')}
-          />
           <View style={NotificationStyle.headContMiddleCont}>
             <View style={NotificationStyle.middleInnerFirstCont}>
               <Text style={NotificationStyle.middleInnerContFirstHeading}>
@@ -152,15 +142,6 @@ const Notifications = props => {
           </View>
         </Neomorph>
       </TouchableOpacity>
-            </View>
-            <View style={NotificationStyle.middleInnerSecondCont}>
-              <Text style={NotificationStyle.middleInnerContSecondHeading}>
-                {item.time}
-              </Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </Neomorph>
     );
   };
 
@@ -168,15 +149,6 @@ const Notifications = props => {
     <SafeAreaView style={{flex: 1, backgroundColor: AppColor.whiteShade}}>
       <Header buttonColor={AppColor.whiteShade}>{'Notification'}</Header>
       <ScrollView>
-    <SafeAreaView>
-      <View style={NotificationStyle.mainView}>
-        <Header
-          buttonColor={AppColor.whiteShade}
-          styles={{color: AppColor.black}}
-          stylesText={{color: AppColor.black}}
-          backgroundColor={AppColor.whiteShade}>
-          {'Notification'}
-        </Header>
         {/* 1st render  */}
         <View style={NotificationStyle.firstContainerOfMainView}>
           <View style={NotificationStyle.innerViewOfFirstContainer}>
@@ -188,14 +160,6 @@ const Notifications = props => {
                 Mark All As Read
               </Text>
             </TouchableOpacity>
-          </View>
-            <Text style={NotificationStyle.renderItemHeaderFontFirst}>
-              {' '}
-              Today{' '}
-            </Text>
-            <TouchableOpacity
-              style={NotificationStyle.renderItemHeaderFontSecond}
-              onPress={() => setShow(!show)}></TouchableOpacity>
           </View>
           <FlatList
             data={TodayData}
@@ -216,26 +180,6 @@ const Notifications = props => {
           style={{marginTop:wp(10)}}
         />
       </ScrollView>
-
-        {/* 2nd render  */}
-
-        <View style={NotificationStyle.secondContainerOfMainView}>
-          <View style={NotificationStyle.innerViewOfSecondContainer}>
-            <Text style={NotificationStyle.renderItemHeaderFontFirst}>
-              {' '}
-              Yesterday{' '}
-            </Text>
-            <TouchableOpacity
-              style={
-                NotificationStyle.renderItemHeaderFontSecond
-              }></TouchableOpacity>
-          </View>
-          <FlatList
-            data={TodayData}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}></FlatList>
-        </View>
-      </View>
     </SafeAreaView>
   );
 };
