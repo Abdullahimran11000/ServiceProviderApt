@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -17,9 +17,10 @@ import {AppColor} from '../assets/colors/AppColors';
 import {useNavigation} from '@react-navigation/native';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
-
+import CustomModal from '../components/Modal/CustomModal';
 const ForgotPassword = () => {
   const navigation = useNavigation();
+  const [showEmailNotificationInModal , setshowEmailNotificationInModal] = useState(false)
   return (
     <SafeAreaView style={ForgotPasswordStyle.safeView}>
       <BackButton onPress={() => navigation.goBack()}>
@@ -62,7 +63,7 @@ const ForgotPassword = () => {
           </View>
           <View style={ForgotPasswordStyle.headingView}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Verification')}>
+              onPress={() => {setshowEmailNotificationInModal(!showEmailNotificationInModal)}}>
               <NeoButton
                 darkShadowColor={AppColor.black}
                 marginTop={wp('10')}
@@ -76,6 +77,20 @@ const ForgotPassword = () => {
             </TouchableOpacity>
           </View>
         </View>
+        <CustomModal
+                isVisible={showEmailNotificationInModal}
+                onBackdropPress={() => {
+                    setshowEmailNotificationInModal(false);
+                }}
+                modalButtonPress={() => {
+                    navigation.navigate('Verification')
+                }}
+                buttonBackgroundColor={AppColor.primary}
+                source={require('../assets/animations/success.json')}
+                text={'We have sent a Automated Password on your Email'}
+                style={{marginTop:wp(10)}}
+                buttonText={'Verify'}
+                />
       </ScrollView>
     </SafeAreaView>
   );

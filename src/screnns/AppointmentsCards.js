@@ -60,7 +60,7 @@ const AppointmentsCards = () => {
           <View style={AppointmentStyle.viewOneContainer}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('MyAppointment');
+                navigation.navigate('TotalAppSlots');
               }}>
               <NeoButton
                 height={hp(19)}
