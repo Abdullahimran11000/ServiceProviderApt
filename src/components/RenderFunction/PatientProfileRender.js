@@ -11,11 +11,11 @@ import Foundation from 'react-native-vector-icons/Foundation';
 
 const PatientProfileRender = ({item, touchPress}) => {
   return (
-    <Neomorph style={CertificatesStyle.neumorphListView}>
+    <Neomorph style={{width: wp('80'),height: hp('50'),borderRadius: wp('5'),backgroundColor: AppColor.black,shadowRadius: 4, overflow: 'hidden', marginLeft: wp('5'), marginRight: wp('5')}}>
       <ImageBackground
         imageStyle={{borderRadius: wp('5')}}
         source={{uri: item.url}}
-        style={CertificatesStyle.listImageView}
+        style={{width: wp('80'), height: hp('50'), borderRadius: wp('5')}}
         resizeMode={'contain'}>
         <View style={CertificatesStyle.crossSign}>
           <Text
