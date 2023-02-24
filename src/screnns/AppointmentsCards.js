@@ -3,10 +3,8 @@ import {
   Text,
   SafeAreaView,
   View,
-  TextInput,
   ScrollView,
   TouchableOpacity,
-  Image,
   ImageBackground,
 } from 'react-native';
 import {
@@ -18,8 +16,6 @@ import {AppointmentStyle} from '../assets/styles/AppointmentStyle';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Lottie from 'lottie-react-native';
 import {useNavigation} from '@react-navigation/native';
-import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Header from '../components/ScreenHeader/Header';
 const AppointmentsCards = () => {
   const navigation = useNavigation();
@@ -34,7 +30,12 @@ const AppointmentsCards = () => {
             height: hp(40),
             backgroundColor: AppColor.blackOpacity8,
           }}>
-          <Header styles={{color: '#f7c6d9'}} stylesText={{color: '#f7c6d9'}} buttonColor={'#f7c6d9'}>{'Appointment'}</Header>
+          <Header
+            styles={{color: '#f7c6d9'}}
+            stylesText={{color: '#f7c6d9'}}
+            buttonColor={'#f7c6d9'}>
+            {'Appointment'}
+          </Header>
           <Text
             style={[
               AppointmentStyle.viewOneContainerInnerViewSecondText,
@@ -257,5 +258,3 @@ const AppointmentsCards = () => {
   );
 };
 export default AppointmentsCards;
-
-//write a paragraph about appointment of 200 characters

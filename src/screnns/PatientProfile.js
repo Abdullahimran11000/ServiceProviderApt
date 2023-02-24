@@ -30,7 +30,6 @@ const PatientProfile = () => {
   const navigation = useNavigation();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTypeOpen, setModalTypeOpen] = useState(false);
-  const [paginationRightShow, setPaginationRightShow] = useState(false);
   const {name, age, gender, date, time, appDes} = route.params;
   const [selectedImageUri, setSelectedImageUri] = useState('');
   const [uploadImageList, setUploadImageList] = useState([]);
@@ -38,9 +37,6 @@ const PatientProfile = () => {
   const imagePickerHandler = async () => {
     await launchImageLibrary({includeExtra: true}, arr => {
       if (arr.assets != undefined) {
-        console.log('%%%%%%%%%%%%%%%');
-        console.log(uploadImageList.length);
-        console.log('%%%%%%%%%%%%%%%');
         setUploadImageList(oldImageList => [
           {
             id: uploadImageList.length + 1,
@@ -52,9 +48,6 @@ const PatientProfile = () => {
         setSelectedImageUri(arr.assets[0].uri);
       } else {
         setModalTypeOpen(false);
-      }
-      if (uploadImageList.length >= 1) {
-        setPaginationRightShow(true);
       }
     });
   };
@@ -69,8 +62,6 @@ const PatientProfile = () => {
           if (filtereImagedArray.length === 0) {
             setSelectedImageUri('');
             setModalTypeOpen(false);
-          } else if (filtereImagedArray.length === 1) {
-            setPaginationRightShow(false);
           }
         }
       });
@@ -122,7 +113,7 @@ const PatientProfile = () => {
         stylesText={{color: AppColor.black}}
         backgroundColor={AppColor.whiteShade}>
         {'Detail'}
-      </Header>{' '}
+      </Header>
       <ScrollView>
         <SafeAreaView style={PatientProfileStyle.innerView}>
           <View style={PatientProfileStyle.patientParentCard}>
@@ -160,26 +151,9 @@ const PatientProfile = () => {
                 data={uploadImageList}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={item => {
-                  item.id;
-                  console.log(`ID ${item.id} `);
-                }}
               />
             </View>
           )}
-
-          {paginationRightShow ? (
-            <View style={PatientProfileStyle.forwardButtonView}>
-              <Neomorph style={PatientProfileStyle.forwardButtonInnerView}>
-                <Lottie
-                  source={require('../assets/animations/forward.json')}
-                  style={PatientProfileStyle.forwardLottie}
-                  loop
-                  autoPlay
-                />
-              </Neomorph>
-            </View>
-          ) : null}
 
           <Neomorph style={PatientProfileStyle.uploadParentView}>
             <Text style={PatientProfileStyle.uploadTextStyle}>
