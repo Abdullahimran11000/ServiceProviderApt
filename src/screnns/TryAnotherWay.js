@@ -7,7 +7,9 @@ import { Neomorph } from "react-native-neomorph-shadows";
 import Lottie from "lottie-react-native";
 import NeoButton from "../components/NeoMorphButton/NeoButton";
 import CustomModal from "../components/Modal/CustomModal";
+import {useNavigation} from '@react-navigation/native';
 const TryAnotherWay = () => {
+    const navigation = useNavigation();
     const [showMessage , setShowMessage] = useState(false)
     return(
         <SafeAreaView style={{backgroundColor:AppColor.whiteShade , flex:1}}>
@@ -41,12 +43,13 @@ const TryAnotherWay = () => {
                     setShowMessage(false);
                 }}
                 modalButtonPress={() => {
-                    setShowMessage(false);
+                    navigation.navigate('Verification')
                 }}
                 buttonBackgroundColor={AppColor.primary}
                 source={require('../assets/animations/success.json')}
                 text={'We have sent a verification code to your Mobile Number'}
                 style={{marginTop:wp(10)}}
+                buttonText={'Verify'}
                 />
         </SafeAreaView>
     )

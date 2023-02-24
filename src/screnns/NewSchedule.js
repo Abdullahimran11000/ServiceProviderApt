@@ -33,14 +33,16 @@ const NewSchedule = () => {
     useState('start-date');
   const [showEndDate, setShowEndDate] = useState(false);
   const [endDateValid, setEndDateValid] = useState(false);
-  const [showEndSelectedDate, setShowEndSelectedDate] = useState('end-date');
+  const [showEndSelectedDate, setShowEndSelectedDate] = 
+    useState('end-date');
   const [showStartTime, setShowStartTime] = useState(false);
   const [startTimeValid, setStartTimeValid] = useState(false);
   const [showStartSelectedTime, setShowStartSelectedTime] =
     useState('start-time');
   const [showEndTime, setShowEndTime] = useState(false);
   const [endTimeValid, setEndTimeValid] = useState(false);
-  const [showEndSelectedTime, setShowEndSelectedTime] = useState('end-time');
+  const [showEndSelectedTime, setShowEndSelectedTime] = 
+    useState('end-time');
   const isDateStartVisible = () => {
     setShowStartDate(true);
   };

@@ -27,6 +27,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppProvider} from './src/assets/context/AppContext';
 import UpcomingApp from './src/screnns/UpcomingApp';
 import CompletedApp from './src/screnns/CompletedApp';
+import TotalAppSlots from './src/screnns/TotalAppSlots';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -56,6 +57,7 @@ const App = () => {
           <Stack.Screen name="Notifications" component={Notifications}/>
           <Stack.Screen name="PatientProfile" component={PatientProfile} />
           <Stack.Screen name="TryAnotherWay" component={TryAnotherWay} />
+          <Stack.Screen name="TotalAppSlots" component={TotalAppSlots} />
           <Stack.Screen name="CancelledApp" component={CancelledApp} />
           <Stack.Screen name="UpcomingApp" component={UpcomingApp} />
           <Stack.Screen name="CompletedApp" component={CompletedApp} />
