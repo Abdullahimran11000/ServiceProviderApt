@@ -129,7 +129,7 @@ const PatientProfile = () => {
             />
           </View>
 
-          {selectedImageUri === '' ? (
+          {uploadImageList.length === 0 ? (
             <View style={PatientProfileStyle.imageViewCard}>
               <Neomorph style={PatientProfileStyle.imageNeumorphCard}>
                 <View style={PatientProfileStyle.noImageView}>

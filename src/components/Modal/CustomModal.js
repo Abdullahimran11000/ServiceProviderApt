@@ -10,7 +10,7 @@ import NeoButton from '../NeoMorphButton/NeoButton';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {AppColor} from '../../assets/colors/AppColors';
 
-const CustomModal = ({isVisible, onBackdropPress, source, text, style, modalButtonPress, buttonBackgroundColor}) => {
+const CustomModal = ({isVisible, onBackdropPress, source, text, buttonText, style, modalButtonPress, buttonBackgroundColor}) => {
   return (
     <Modal
       isVisible={isVisible}
@@ -100,7 +100,7 @@ const CustomModal = ({isVisible, onBackdropPress, source, text, style, modalButt
                 fontSize: wp('4'),
                 color: AppColor.white,
               }}>
-              Close
+              {buttonText}
             </Text>
           </NeoButton>
         </TouchableOpacity>

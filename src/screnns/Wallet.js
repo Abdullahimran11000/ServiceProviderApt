@@ -72,6 +72,7 @@ const Wallet = () => {
             setModalOpen(false);
           }}
           buttonBackgroundColor={modalTypeOpen ? '#00B46E' : AppColor.primary}
+          buttonText={'Close'}
         />
         <Header
           buttonColor={AppColor.whiteShade}
