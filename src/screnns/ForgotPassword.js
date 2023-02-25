@@ -21,13 +21,37 @@ import CustomModal from '../components/Modal/CustomModal';
 const ForgotPassword = () => {
   const navigation = useNavigation();
   const [showEmailNotificationInModal , setshowEmailNotificationInModal] = useState(false)
+  const [emailText, setEmailText] = useState('Abdullah144@gmail.com');
+  const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
+  const [emailLabelText, setEmailLabelText] = useState('');
+
+  const submitHandler = () => {
+    if (emailText === '') {
+      setEmailLabelText('Invalid email format.');
+      setCheckEmailTextValid(true);
+    } else if (
+      emailText.includes('@gmail.com') ||
+      emailText.includes('@outlook.com')
+    ) {
+      setCheckEmailTextValid(false);
+      setshowEmailNotificationInModal(true)
+      // navigation.navigate('Verification');
+    } else {
+      setEmailText('');
+      // setPasswordText('');
+      setEmailLabelText('Your email is not valid.');
+      setCheckEmailTextValid(true);
+    }
+  }
+
+
   return (
     <SafeAreaView style={ForgotPasswordStyle.safeView}>
       <BackButton onPress={() => navigation.goBack()}>
         {'Forgot Password'}
       </BackButton>
       <ScrollView>
-        <View style={ForgotPasswordStyle.mainView}>
+        <View>
           <View style={ForgotPasswordStyle.animationView}>
             <Lottie
               style={ForgotPasswordStyle.animationStyle}
@@ -40,7 +64,7 @@ const ForgotPassword = () => {
           </View>
           <View style={ForgotPasswordStyle.paraView}>
             <Text style={ForgotPasswordStyle.paraText}>
-              Please enter your email address to recover your forgoton password
+              Please enter your email address to recover your forgotton password
             </Text>
           </View>
           <View style={ForgotPasswordStyle.inputView}>
@@ -51,7 +75,21 @@ const ForgotPassword = () => {
               width={wp('90')}
               keyboardType={'email-address'}
               placeholder={'Example@gmail.com'}
+              onChangeText={text => {setEmailText(text)}}
             />
+             {checkEmailTextValid ? (
+                <Text
+                  style={{
+                    fontFamily: 'Poppins-Light',
+                    fontSize: wp('3.5'),
+                    width:wp(90),
+                    marginTop:hp(2),
+                    color: AppColor.red,
+                    
+                  }}>
+                  {emailLabelText}
+                </Text>
+              ) : null}
           </View>
           <View style={ForgotPasswordStyle.touchableView}>
             <TouchableOpacity
@@ -61,12 +99,13 @@ const ForgotPassword = () => {
               </Text>
             </TouchableOpacity>
           </View>
+          <Text style={{textAlign:'center' , fontStyle:'italic'}}>or</Text>
           <View style={ForgotPasswordStyle.headingView}>
             <TouchableOpacity
-              onPress={() => {setshowEmailNotificationInModal(!showEmailNotificationInModal)}}>
+              onPress={submitHandler}>
               <NeoButton
                 darkShadowColor={AppColor.black}
-                marginTop={wp('10')}
+                marginTop={wp('5')}
                 width={wp('85')}
                 backgroundColor={AppColor.primary}
                 height={hp('8')}
