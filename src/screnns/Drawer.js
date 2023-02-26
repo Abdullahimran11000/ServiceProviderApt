@@ -192,7 +192,7 @@ const Drawer = () => {
           <MaterialIcons name="logout" size={wp('5')} color={AppColor.white} />
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('LogIn');
+              navigation.replace('LogIn');
             }}>
             <Text style={DrawerStyle.menuItemText}>Log out</Text>
           </TouchableOpacity>

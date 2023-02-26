@@ -106,6 +106,7 @@ const PatientProfile = () => {
           }
         }}
         buttonBackgroundColor={modalTypeOpen ? AppColor.primary : '#FA7070'}
+        buttonText={'Close'}
       />
       <Header
         buttonColor={AppColor.whiteShade}

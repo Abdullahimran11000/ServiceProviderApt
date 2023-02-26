@@ -14,7 +14,7 @@ const SwipeButton = () => {
           disabled={false}
           width={wp('85')}
           enableRightToLeftSwipe={true}
-          onSwipeSuccess={() => navigation.navigate('LogIn')}
+          onSwipeSuccess={() => navigation.replace('LogIn')}
           title="Swipe to start"
           titleStyles={{
             fontFamily: 'Poppins-Light',
