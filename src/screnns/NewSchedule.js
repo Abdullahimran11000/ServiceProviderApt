@@ -104,6 +104,7 @@ const NewSchedule = () => {
               setModalOpen(false);
             }}
             buttonBackgroundColor={AppColor.primary}
+            buttonText={'Close'}
           />
           <Header
             buttonColor={AppColor.whiteShade}

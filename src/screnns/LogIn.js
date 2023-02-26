@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,15 +15,20 @@ import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {LoginStyle} from '../assets/styles/AuthStyle/LoginStyle';
-import {useNavigation} from '@react-navigation/native';
-
-const LogIn = props => {
-  const navigation = useNavigation();
+import {NavigationActions} from 'react-navigation';
+// import from 'nav'
+const LogIn = ({navigation}) => {
   const [eye, setEye] = useState(false);
   const [emailText, setEmailText] = useState('f@gmail.com');
   const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
   const [emailLabelText, setEmailLabelText] = useState('');
   const [passwordText, setPasswordText] = useState('123');
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('LogIn screen is focusing right now!');
+    });
+  }, [navigation]);
 
   const submitHandler = () => {
     if (emailText === '') {
@@ -34,7 +39,8 @@ const LogIn = props => {
       emailText.includes('@outlook.com')
     ) {
       setCheckEmailTextValid(false);
-      navigation.navigate('Drawer');
+      navigation.replace('Drawer');
+      
     } else {
       setEmailText('');
       setPasswordText('');
@@ -108,7 +114,7 @@ const LogIn = props => {
             </View>
           </View>
           <TouchableOpacity
-            onPress={() => props.navigation.navigate('ForgotPassword')}>
+            onPress={() => navigation.navigate('ForgotPassword')}>
             <Text style={LoginStyle.ForgotText}>Forgot Password?</Text>
           </TouchableOpacity>
           <View style={LoginStyle.MainLoginButtonView}>
@@ -127,11 +133,14 @@ const LogIn = props => {
             </NeoButton>
           </View>
           <View style={LoginStyle.LastView}>
-            <Text style={{fontFamily: 'Poppins-Light', color: AppColor.blackOpacity8}}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                color: AppColor.blackOpacity8,
+              }}>
               Don't have an account?{' '}
             </Text>
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate('SignUp')}>
+            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
               <Text style={LoginStyle.SignUpText}>Sign Up</Text>
             </TouchableOpacity>
           </View>
