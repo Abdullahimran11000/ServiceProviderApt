@@ -21,13 +21,13 @@ import CustomModal from '../components/Modal/CustomModal';
 const ForgotPassword = () => {
   const navigation = useNavigation();
   const [showEmailNotificationInModal , setshowEmailNotificationInModal] = useState(false)
-  const [emailText, setEmailText] = useState('Abdullah144@gmail.com');
+  const [emailText, setEmailText] = useState();
   const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
-  const [emailLabelText, setEmailLabelText] = useState('');
+  const [emailLabelText, setEmailLabelText] = useState();
 
   const submitHandler = () => {
     if (emailText === '') {
-      setEmailLabelText('Invalid email format.');
+      setEmailLabelText('please enter your valid email');
       setCheckEmailTextValid(true);
     } else if (
       emailText.includes('@gmail.com') ||
@@ -38,8 +38,7 @@ const ForgotPassword = () => {
       // navigation.navigate('Verification');
     } else {
       setEmailText('');
-      // setPasswordText('');
-      setEmailLabelText('Your email is not valid.');
+      setEmailLabelText('Invalid email format.');
       setCheckEmailTextValid(true);
     }
   }

@@ -18,11 +18,33 @@ import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {AppColor} from '../assets/colors/AppColors';
 
 const Verification = props => {
+  
   const firstTextInputRef = useRef(null);
   const secondTextInputRef = useRef(null);
   const thirdTextInputRef = useRef(null);
   const fourthTextInputRef = useRef(null);
 
+  const [firstTextInput , setFirstTextInput] = useState()
+  const [secondTextInput , setSecondTextInput] = useState()
+  const [thirdTextInput , setThirdTextInput] = useState()
+  const [fourthTextInput , setFourthTextInput] = useState()
+  const [textInputLabel , setTextInputLabel] = useState()
+  const [textInputValidator , setTextInputValidator] = useState(false)
+
+  const submitHandler = () =>{
+    if(firstTextInput === '' || secondTextInput === '' || thirdTextInput === '' || fourthTextInput === ''){
+      setTextInputLabel('please enter your verification code')
+      setTextInputValidator(true)
+    }
+    else if(firstTextInput != '' || secondTextInput != '' || thirdTextInput != '' || fourthTextInput != '')
+    {
+      setFirstTextInput(firstTextInput)
+      setSecondTextInput(secondTextInput)
+      setThirdTextInput(thirdTextInput)
+      setFourthTextInput(fourthTextInput)
+      setTextInputValidator(false)
+    }
+  }
   return (
     <SafeAreaView style={VerificationStyle.mainView}>
       <BackButton onPress={() => props.navigation.goBack()}>
@@ -62,6 +84,7 @@ const Verification = props => {
                 }}
                 blurOnSubmit={false}
               />
+             
             </View>
             <TextInput
               style={VerificationStyle.newInputs}
@@ -106,6 +129,16 @@ const Verification = props => {
               }}
               onEndEditing={() => {}}
             />
+             {textInputValidator ? 
+              <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3'),
+                color: AppColor.red,
+              }}>
+              {textInputLabel}
+            </Text>
+            : null}
           </View>
           <View style={VerificationStyle.touchableView}>
             <Text style={VerificationStyle.textStyle}>Don't recieve code?</Text>
@@ -115,7 +148,7 @@ const Verification = props => {
           </View>
           <View style={VerificationStyle.buttonView}>
             <TouchableOpacity
-              onPress={() => props.navigation.navigate('RecoverPassword')}>
+              onPress={() =>{props.navigation.navigate('RecoverPassword')}}>
               <NeoButton
                 width={wp('85')}
                 backgroundColor={AppColor.primary}
