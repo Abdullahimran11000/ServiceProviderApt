@@ -175,9 +175,11 @@ const Notifications = () => {
             setShowModal(false);
           }}
           buttonBackgroundColor={AppColor.primary}
-          source={require('../assets/animations/success.json')}
+          source={require('../assets/animations/sms.json')}
+          lottieStyle={{width: wp('35'), height: wp('35')}}
           text={readNotificationInModal}
           style={{marginTop:wp(10)}}
+          buttonText={'Close'}
         />
       </ScrollView>
     </SafeAreaView>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   SafeAreaView,
   View,
@@ -14,35 +14,35 @@ import {
 import {ForgotPasswordStyle} from '../assets/styles/AuthStyle/ForgotPasswordStyle';
 import BackButton from '../components/ScrennHeader/BackButton';
 import {AppColor} from '../assets/colors/AppColors';
-import {useNavigation} from '@react-navigation/native';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import CustomModal from '../components/Modal/CustomModal';
-const ForgotPassword = () => {
-  const navigation = useNavigation();
-  const [showEmailNotificationInModal , setshowEmailNotificationInModal] = useState(false)
-  const [emailText, setEmailText] = useState();
-  const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
-  const [emailLabelText, setEmailLabelText] = useState();
+const ForgotPassword = ({navigation}) => {
+  const [showEmailNotificationInModal, setshowEmailNotificationInModal] =
+    useState(false);
+
+  const [email, setEmail] = useState('');
+  const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
+  const [emailAlert, setEmailAlert] = useState(false);
 
   const submitHandler = () => {
-    if (emailText === '') {
-      setEmailLabelText('please enter your valid email');
-      setCheckEmailTextValid(true);
-    } else if (
-      emailText.includes('@gmail.com') ||
-      emailText.includes('@outlook.com')
-    ) {
-      setCheckEmailTextValid(false);
-      setshowEmailNotificationInModal(true)
-      // navigation.navigate('Verification');
+    if (email === '') {
+      setEmailIsValid(AppColor.red);
     } else {
-      setEmailText('');
-      setEmailLabelText('Invalid email format.');
-      setCheckEmailTextValid(true);
+      if (email.includes('@gmail.com') || email.includes('@outlook.com')) {
+        setEmailAlert(false);
+        setshowEmailNotificationInModal(true)
+      } else {
+        setEmailAlert(true);
+      }
     }
-  }
+  };
 
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('Forgot Password screen is focusing right now!');
+    });
+  }, [navigation]);
 
   return (
     <SafeAreaView style={ForgotPasswordStyle.safeView}>
@@ -71,24 +71,28 @@ const ForgotPassword = () => {
               <Text style={ForgotPasswordStyle.labelText}>Email Address</Text>
             </View>
             <NeoTextInput
+              value={email}
               width={wp('90')}
+              autoFocus={true}
               keyboardType={'email-address'}
               placeholder={'Example@gmail.com'}
-              onChangeText={text => {setEmailText(text)}}
+              placeholderTextColor={emailIsValid}
+              onChangeText={text => {
+                setEmail(text);
+              }}
             />
-             {checkEmailTextValid ? (
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    fontSize: wp('3.5'),
-                    width:wp(90),
-                    marginTop:hp(2),
-                    color: AppColor.red,
-                    
-                  }}>
-                  {emailLabelText}
-                </Text>
-              ) : null}
+            {emailAlert ? (
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Light',
+                  fontSize: wp('3.5'),
+                  width: wp(90),
+                  marginTop: hp(2),
+                  color: AppColor.red,
+                }}>
+                Please enter valid email!
+              </Text>
+            ) : null}
           </View>
           <View style={ForgotPasswordStyle.touchableView}>
             <TouchableOpacity
@@ -98,10 +102,8 @@ const ForgotPassword = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <Text style={{textAlign:'center' , fontStyle:'italic'}}>or</Text>
           <View style={ForgotPasswordStyle.headingView}>
-            <TouchableOpacity
-              onPress={submitHandler}>
+            <TouchableOpacity onPress={submitHandler}>
               <NeoButton
                 darkShadowColor={AppColor.black}
                 marginTop={wp('5')}
@@ -116,19 +118,20 @@ const ForgotPassword = () => {
           </View>
         </View>
         <CustomModal
-                isVisible={showEmailNotificationInModal}
-                onBackdropPress={() => {
-                    setshowEmailNotificationInModal(false);
-                }}
-                modalButtonPress={() => {
-                    navigation.navigate('Verification')
-                }}
-                buttonBackgroundColor={AppColor.primary}
-                source={require('../assets/animations/success.json')}
-                text={'We have sent a Automated Password on your Email'}
-                style={{marginTop:wp(10)}}
-                buttonText={'Verify'}
-                />
+          isVisible={showEmailNotificationInModal}
+          onBackdropPress={() => {
+            setshowEmailNotificationInModal(false);
+          }}
+          lottieStyle={{width: wp('50'), height: wp('50')}}
+          modalButtonPress={() => {
+            navigation.navigate('Verification');
+          }}
+          buttonBackgroundColor={AppColor.primary}
+          source={require('../assets/animations/email.json')}
+          text={'We have sent a Automated Password on your Email'}
+          style={{marginTop: wp('12')}}
+          buttonText={'Verify'}
+        />
       </ScrollView>
     </SafeAreaView>
   );

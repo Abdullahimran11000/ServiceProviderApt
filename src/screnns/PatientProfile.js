@@ -91,6 +91,7 @@ const PatientProfile = () => {
             ? require('../assets/animations/success.json')
             : require('../assets/animations/failed.json')
         }
+        lottieStyle={{width: wp('35'), height: wp('35')}}
         text={
           modalTypeOpen
             ? 'File upload successfully.'

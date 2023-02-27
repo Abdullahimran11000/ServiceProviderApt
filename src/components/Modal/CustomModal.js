@@ -10,11 +10,19 @@ import NeoButton from '../NeoMorphButton/NeoButton';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {AppColor} from '../../assets/colors/AppColors';
 
-const CustomModal = ({isVisible, onBackdropPress, source, text, buttonText, style, modalButtonPress, buttonBackgroundColor}) => {
+const CustomModal = ({
+  isVisible,
+  onBackdropPress,
+  source,
+  text,
+  buttonText,
+  style,
+  modalButtonPress,
+  buttonBackgroundColor,
+  lottieStyle,
+}) => {
   return (
-    <Modal
-      isVisible={isVisible}
-      onBackdropPress={onBackdropPress}>
+    <Modal isVisible={isVisible} onBackdropPress={onBackdropPress}>
       <View
         style={{
           width: wp('80'),
@@ -47,9 +55,8 @@ const CustomModal = ({isVisible, onBackdropPress, source, text, buttonText, styl
               justifyContent: 'center',
             }}>
             <Lottie
-           
               source={source}
-              style={{width: wp('35'), height: wp('35')}}
+              style={lottieStyle}
               loop
               autoPlay
             />
@@ -68,22 +75,22 @@ const CustomModal = ({isVisible, onBackdropPress, source, text, buttonText, styl
           {/* {modalTypeOpen
             ? 'File upload successfully.'
             : 'You did not upload any photo yet today! Please upload patient prescription.'} */}
-            {text}
+          {text}
         </Text>
 
         <TouchableOpacity
-        //   style={{marginTop: modalTypeOpen ? wp('20') : wp('10')}}
-            style={style}
-            onPress={modalButtonPress}
-        //   onPress={() => {
-        //     if (modalTypeOpen === true) {
-        //       setModalOpen(false);
-        //       navigation.goBack();
-        //     } else {
-        //       setModalOpen(false);
-        //     }
-        //   }}
-          >
+          //   style={{marginTop: modalTypeOpen ? wp('20') : wp('10')}}
+          style={style}
+          onPress={modalButtonPress}
+          //   onPress={() => {
+          //     if (modalTypeOpen === true) {
+          //       setModalOpen(false);
+          //       navigation.goBack();
+          //     } else {
+          //       setModalOpen(false);
+          //     }
+          //   }}
+        >
           <NeoButton
             width={wp('35')}
             height={hp('7')}

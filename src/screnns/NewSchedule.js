@@ -98,6 +98,7 @@ const NewSchedule = () => {
               setModalOpen(false);
             }}
             source={require('../assets/animations/success.json')}
+            lottieStyle={{width: wp('35'), height: wp('35')}}
             text={'Time Slot is added'}
             style={{marginTop: wp('12')}}
             modalButtonPress={() => {

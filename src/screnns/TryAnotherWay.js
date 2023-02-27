@@ -47,6 +47,7 @@ const TryAnotherWay = () => {
                 }}
                 buttonBackgroundColor={AppColor.primary}
                 source={require('../assets/animations/success.json')}
+                lottieStyle={{width: wp('35'), height: wp('35')}}
                 text={'We have sent a verification code to your Mobile Number'}
                 style={{marginTop:wp(10)}}
                 buttonText={'Verify'}
