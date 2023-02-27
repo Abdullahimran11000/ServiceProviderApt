@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TextInput} from 'react-native';
 import {TextInputStyle} from '../../assets/styles/ComponentStyle/CustomTextInputStyle/TextInputStyle';
 import {Neomorph} from 'react-native-neomorph-shadows';
-import { AppColor } from '../../assets/colors/AppColors';
+import {AppColor} from '../../assets/colors/AppColors';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -19,7 +19,11 @@ const NeoTextInput = ({
   onChangeText,
   children,
   onEndEditing,
-  returnKeyType
+  returnKeyType,
+  onSubmitEditing,
+  reference,
+  autoFocus,
+  placeholderTextColor
 }) => {
   return (
     <View
@@ -39,10 +43,12 @@ const NeoTextInput = ({
           shadowRadius: 4,
           backgroundColor: AppColor.whiteShade,
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}>
         <TextInput
           value={value}
+          autoFocus={autoFocus}
+          ref={reference}
           style={[TextInputStyle.inputStyle, styles]}
           placeholder={placeholder}
           keyboardType={keyboardType}
@@ -50,7 +56,8 @@ const NeoTextInput = ({
           onChangeText={onChangeText}
           onEndEditing={onEndEditing}
           returnKeyType={returnKeyType}
-          placeholderTextColor={AppColor.blackOpacity3}
+          onSubmitEditing={onSubmitEditing}
+          placeholderTextColor={placeholderTextColor}
         />
         {children}
       </Neomorph>

@@ -17,13 +17,13 @@ const CertificatesStyle = StyleSheet.create({
     noImageView: {display: 'flex',flex: 8.5,width: wp('75'),height: hp('50'),alignItems: 'center',justifyContent: 'center'},
     imageView: {width: wp('90'),height: hp('60')},
 
-    neumorphListView: {width: wp('90'),height: hp('50'),borderRadius: wp('5'),backgroundColor: AppColor.black,shadowRadius: 4, overflow: 'hidden', marginLeft: wp('5'), marginRight: wp('5')},
-    listImageView: {width: wp('90'), height: hp('50'), borderRadius: wp('5')},
+    neumorphListView: {width: wp('28'),height: hp('15'),borderRadius: wp('5'),backgroundColor: AppColor.black,shadowRadius: 4, overflow: 'hidden', marginLeft: wp('5'), marginRight: wp('2'), margin: wp('5')},
+    listImageView: {width: wp('28'), height: hp('15'), borderRadius: wp('5'), overflow: 'hidden'},
 
     buttonView: {width: wp('90'),alignSelf: 'center',marginTop: wp('5'),marginBottom: wp('8'),alignItems: 'center'},
     buttonText: {fontFamily: 'Poppins-Bold',fontSize: wp('4.5'),color: AppColor.white},
 
-    crossSign: {position: 'absolute', display: 'flex', flexDirection: 'row',  top: wp('3'), right: wp('3'), width: wp('35'), height: wp('10'), borderRadius: wp('6'), backgroundColor: AppColor.black, alignItems: 'center', justifyContent: 'space-evenly'},
+    crossSign: {position: 'absolute', display: 'flex', flexDirection: 'row',  top: wp('2'), right: wp('1'), width: wp('6'), height: wp('6'), borderRadius: wp('6'), backgroundColor: AppColor.red, alignItems: 'center', justifyContent: 'space-evenly'},
 
 })
 

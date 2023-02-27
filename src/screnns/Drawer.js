@@ -107,15 +107,15 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
-            <MaterialCommunityIcons
-              name={'card-account-details-star-outline'}
+            <Ionicons
+              name={'notifications-outline'}
               size={wp('5')}
               color={AppColor.white}
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('Certificates')}>
-              <Text style={DrawerStyle.menuItemText}>Certificates</Text>
+              onPress={() => navigation.navigate('Notifications')}>
+              <Text style={DrawerStyle.menuItemText}>Notification</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -137,18 +137,6 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
-            <AntDesign name={'wallet'} size={wp('5')} color={AppColor.white} />
-
-            <TouchableOpacity
-              style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('Wallet')}>
-              <Text style={DrawerStyle.menuItemText}>Wallet</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={DrawerStyle.menuView2}>
-          <View style={DrawerStyle.menuItemView}>
             <MaterialCommunityIcons
               name={'clock-time-eleven-outline'}
               size={wp('5')}
@@ -164,15 +152,27 @@ const Drawer = () => {
 
         <View style={DrawerStyle.menuView2}>
           <View style={DrawerStyle.menuItemView}>
-            <Ionicons
-              name={'notifications-outline'}
+            <AntDesign name={'wallet'} size={wp('5')} color={AppColor.white} />
+
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('Wallet')}>
+              <Text style={DrawerStyle.menuItemText}>Wallet</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={DrawerStyle.menuView2}>
+          <View style={DrawerStyle.menuItemView}>
+            <MaterialCommunityIcons
+              name={'card-account-details-star-outline'}
               size={wp('5')}
               color={AppColor.white}
             />
             <TouchableOpacity
               style={DrawerStyle.touchableView}
-              onPress={() => navigation.navigate('Notifications')}>
-              <Text style={DrawerStyle.menuItemText}>Notification</Text>
+              onPress={() => navigation.navigate('Certificates')}>
+              <Text style={DrawerStyle.menuItemText}>Certificates</Text>
             </TouchableOpacity>
           </View>
         </View>

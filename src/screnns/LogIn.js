@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,14 +15,16 @@ import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {LoginStyle} from '../assets/styles/AuthStyle/LoginStyle';
-import {NavigationActions} from 'react-navigation';
-// import from 'nav'
+
 const LogIn = ({navigation}) => {
   const [eye, setEye] = useState(false);
-  const [emailText, setEmailText] = useState('f@gmail.com');
+  const [emailText, setEmailText] = useState('hamadrana@gmail.com');
   const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
   const [emailLabelText, setEmailLabelText] = useState('');
   const [passwordText, setPasswordText] = useState('123');
+
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   useEffect(() => {
     navigation.addListener('focus', () => {
@@ -40,7 +42,6 @@ const LogIn = ({navigation}) => {
     ) {
       setCheckEmailTextValid(false);
       navigation.replace('Drawer');
-      
     } else {
       setEmailText('');
       setPasswordText('');
@@ -88,6 +89,8 @@ const LogIn = ({navigation}) => {
                 marginBottom={wp('5')}
                 placeholder={'Enter your password'}
                 secureTextEntry={!eye}
+                returnKeyType={'go'}
+                onSubmitEditing={submitHandler}
                 onChangeText={text => {
                   setPasswordText(text);
                 }}>
