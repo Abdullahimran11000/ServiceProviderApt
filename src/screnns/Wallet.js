@@ -62,6 +62,7 @@ const Wallet = () => {
               ? require('../assets/animations/paymentDone.json')
               : require('../assets/animations/paymentError.json')
           }
+          lottieStyle={{width: wp('35'), height: wp('35')}}
           text={
             modalTypeOpen
               ? 'Your transaction is successfully placed.'

@@ -123,6 +123,7 @@ const MyProfile = ({navigation}) => {
             setModalOpen(false);
           }}
           source={require('../assets/animations/profile.json')}
+          lottieStyle={{width: wp('35'), height: wp('35')}}
           text={'Your profile is updated successfully.'}
           style={{marginTop: wp('10')}}
           modalButtonPress={() => {

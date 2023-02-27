@@ -1,12 +1,9 @@
-import React from 'react';
-import {useState} from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import React, {useState, useEffect} from 'react';
 import {Checkbox} from 'react-native-paper';
 import {
   SafeAreaView,
   View,
   Text,
-  Image,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
@@ -21,12 +18,11 @@ import {AppColor} from '../assets/colors/AppColors';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import {SignUpStyle} from '../assets/styles/AuthStyle/SignUpStyle';
 import CustomModal from '../components/Modal/CustomModal';
-import { useNavigation } from '@react-navigation/native';
 
-const SignUp = props => {
-  const navigation = useNavigation();
+const SignUp = ({navigation}) => {
   const [eye, setEye] = useState(false);
-  const [showConfirmationMessageInModal , setshowConfirmationMessageInModal] = useState(false)
+  const [showConfirmationMessageInModal, setshowConfirmationMessageInModal] =
+    useState(false);
   const [emailText, setEmailText] = useState('f@gmail.com');
   const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
   const [emailLabelText, setEmailLabelText] = useState('');
@@ -35,40 +31,43 @@ const SignUp = props => {
   const [passwordValid, setPasswordValid] = useState(false);
 
   const submitHandler = () => {
-    if (emailText === ''){
+    if (emailText === '') {
       setEmailLabelText('Please enter your email.');
       setCheckEmailTextValid(true);
-    } 
-      else if (emailText.includes('@gmail.com') || emailText.includes('@outlook.com')) 
-    {
+    } else if (
+      emailText.includes('@gmail.com') ||
+      emailText.includes('@outlook.com')
+    ) {
       setCheckEmailTextValid(false);
-      setshowConfirmationMessageInModal(true)
-    } 
-      else if (passwordText === '')
-    {
+      setshowConfirmationMessageInModal(true);
+    } else if (passwordText === '') {
       setPasswordLabelText('please enter your password');
-      setPasswordValid(true)
-    } 
-      else if (passwordText.length <= 3)
-    {
-      setPasswordValid(false)
-      setPasswordLabelText(false)
-    }
-      else {
+      setPasswordValid(true);
+    } else if (passwordText.length <= 3) {
+      setPasswordValid(false);
+      setPasswordLabelText(false);
+    } else {
       setEmailText('');
       setPasswordText('');
       setEmailLabelText('Your email is not valid.');
       setPasswordLabelText('password must be maximum upto 8 characters.');
       setCheckEmailTextValid(true);
-      setPasswordValid(true)
+      setPasswordValid(true);
     }
   };
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('SignUp screen is focusing right now!');
+    });
+  }, [navigation]);
+
   return (
     <ScrollView>
       <SafeAreaView
         style={{backgroundColor: AppColor.whiteShade, height: hp('100')}}>
         <View style={SignUpStyle.mainView}>
-          <BackButton onPress={() => props.navigation.goBack()}>
+          <BackButton onPress={() => navigation.goBack()}>
             {'Sign Up'}
           </BackButton>
           <View style={SignUpStyle.views}>
@@ -85,18 +84,20 @@ const SignUp = props => {
               width={wp('90')}
               keyboardType={'email-address'}
               placeholder={'Enter your Email'}
-              onChangeText={text => {setEmailText(text)}}
+              onChangeText={text => {
+                setEmailText(text);
+              }}
             />
             {checkEmailTextValid ? (
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    fontSize: wp('3'),
-                    color: AppColor.red,
-                  }}>
-                  {emailLabelText}
-                </Text>
-              ) : null}
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Light',
+                  fontSize: wp('3'),
+                  color: AppColor.red,
+                }}>
+                {emailLabelText}
+              </Text>
+            ) : null}
           </View>
           <View style={SignUpStyle.views}>
             <Text style={SignUpStyle.text}>Password</Text>
@@ -105,7 +106,9 @@ const SignUp = props => {
               keyboardType={'default'}
               secureTextEntry={!eye}
               placeholder={'Enter your Password'}
-              onChangeText={text => {setPasswordText(text)}}>
+              onChangeText={text => {
+                setPasswordText(text);
+              }}>
               <TouchableOpacity
                 style={SignUpStyle.icon}
                 onPress={() => {
@@ -124,15 +127,15 @@ const SignUp = props => {
             </NeoTextInput>
           </View>
           {passwordValid ? (
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    fontSize: wp('3'),
-                    color: AppColor.red,
-                  }}>
-                  {passwordLabelText}
-                </Text>
-              ) : null}
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3'),
+                color: AppColor.red,
+              }}>
+              {passwordLabelText}
+            </Text>
+          ) : null}
           <View style={{marginLeft: wp(6), marginTop: hp(3)}}>
             <Checkbox status="checked" color="#c28cde" />
             <Text style={SignUpStyle.termsAndPrivacyStyle1}>I agree with</Text>
@@ -154,15 +157,20 @@ const SignUp = props => {
           </View>
         </View>
         <CustomModal
-                isVisible={showConfirmationMessageInModal}
-                onBackdropPress={() => {setshowConfirmationMessageInModal(false)}}
-                modalButtonPress={() => {navigation.navigate('LogIn')}}
-                buttonBackgroundColor={AppColor.primary}
-                source={require('../assets/animations/success.json')}
-                text={'Account Created Successfully'}
-                style={{marginTop:wp(10)}}
-                buttonText={'Start Now'}
-                />
+          isVisible={showConfirmationMessageInModal}
+          onBackdropPress={() => {
+            setshowConfirmationMessageInModal(false);
+          }}
+          modalButtonPress={() => {
+            navigation.navigate('LogIn');
+          }}
+          buttonBackgroundColor={AppColor.primary}
+          source={require('../assets/animations/success.json')}
+          lottieStyle={{width: wp('35'), height: wp('35')}}
+          text={'Account Created Successfully'}
+          style={{marginTop: wp(10)}}
+          buttonText={'Start Now'}
+        />
       </SafeAreaView>
     </ScrollView>
   );
