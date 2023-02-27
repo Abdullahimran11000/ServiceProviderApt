@@ -10,11 +10,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {AppColor} from '../../assets/colors/AppColors';
 
-const Header = ({children, styles, stylesText, buttonColor, backgroundColor}) => {
+const Header = ({
+  children,
+  styles,
+  stylesText,
+  buttonColor,
+  backgroundColor,
+}) => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{backgroundColor: backgroundColor}}>
-      <View style={[CertificatesStyle.headCont, {backgroundColor: backgroundColor}]}>
+      <View
+        style={[
+          CertificatesStyle.headCont,
+          {backgroundColor: backgroundColor},
+        ]}>
         <View style={CertificatesStyle.headContInnerCont}>
           <View style={CertificatesStyle.headContMenuCont}>
             <NeoButton
@@ -35,7 +45,7 @@ const Header = ({children, styles, stylesText, buttonColor, backgroundColor}) =>
               </TouchableOpacity>
             </NeoButton>
             <Text style={[CertificatesStyle.textStyle1, styles]}>
-              Go To Dashboard
+              Dashboard
             </Text>
           </View>
           <Text style={[CertificatesStyle.textStyle, stylesText]}>

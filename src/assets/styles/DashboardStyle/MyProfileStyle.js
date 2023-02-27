@@ -17,7 +17,8 @@ const MyProfileStyle = StyleSheet.create({
     marginBottom: wp('10'),
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: wp('5')
+    marginTop: wp('5'),
+    
   },
   innerProfileView: {
     width: wp('25'),
