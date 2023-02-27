@@ -35,14 +35,12 @@ const SignUp = props => {
   const [passwordValid, setPasswordValid] = useState(false);
 
   const submitHandler = () => {
-    if (emailText === '') {
+    if (emailText === ''){
       setEmailLabelText('Please enter your email.');
       setCheckEmailTextValid(true);
     } 
-      else if (
-      emailText.includes('@gmail.com') ||
-      emailText.includes('@outlook.com')
-    ) {
+      else if (emailText.includes('@gmail.com') || emailText.includes('@outlook.com')) 
+    {
       setCheckEmailTextValid(false);
       setshowConfirmationMessageInModal(true)
     } 

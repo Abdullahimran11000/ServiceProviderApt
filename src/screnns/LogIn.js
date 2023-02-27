@@ -16,7 +16,6 @@ import NeoButton from '../components/NeoMorphButton/NeoButton';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {LoginStyle} from '../assets/styles/AuthStyle/LoginStyle';
 import {NavigationActions} from 'react-navigation';
-// import from 'nav'
 const LogIn = ({navigation}) => {
   const [eye, setEye] = useState(false);
   const [emailText, setEmailText] = useState('f@gmail.com');
