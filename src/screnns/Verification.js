@@ -16,35 +16,55 @@ import {VerificationStyle} from '../assets/styles/AuthStyle/VerificationStyle';
 import BackButton from '../components/ScrennHeader/BackButton';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {AppColor} from '../assets/colors/AppColors';
+import CustomModal from '../components/Modal/CustomModal';
 
 const Verification = props => {
-  
   const firstTextInputRef = useRef(null);
   const secondTextInputRef = useRef(null);
   const thirdTextInputRef = useRef(null);
   const fourthTextInputRef = useRef(null);
+  const [showVerificationMessage, setShowVerificationMessage] = useState(false);
 
-  const [firstTextInput , setFirstTextInput] = useState()
-  const [secondTextInput , setSecondTextInput] = useState()
-  const [thirdTextInput , setThirdTextInput] = useState()
-  const [fourthTextInput , setFourthTextInput] = useState()
-  const [textInputLabel , setTextInputLabel] = useState()
-  const [textInputValidator , setTextInputValidator] = useState(false)
+  const [firstTextInput, setFirstTextInput] = useState();
+  const [secondTextInput, setSecondTextInput] = useState();
+  const [thirdTextInput, setThirdTextInput] = useState();
+  const [fourthTextInput, setFourthTextInput] = useState();
 
-  const submitHandler = () =>{
-    if(firstTextInput === '' || secondTextInput === '' || thirdTextInput === '' || fourthTextInput === ''){
-      setTextInputLabel('please enter your verification code')
-      setTextInputValidator(true)
+  const [firstTextInputValidator, setFirstTextInputValidator] = useState(false);
+  const [secondTextInputValidator, setSecondTextInputValidator] =
+    useState(false);
+  const [thirdTextInputValidator, setThirdTextInputValidator] = useState(false);
+  const [fourthTextInputValidator, setFourthTextInputValidator] =
+    useState(false);
+
+  const [textInputLabel, setTextInputLabel] = useState();
+  // const [textInputValidator , setTextInputValidator] = useState(false)
+
+  const submitHandler = () => {
+    if (
+      firstTextInput === '' ||
+      secondTextInput === '' ||
+      thirdTextInput === '' ||
+      fourthTextInput === ''
+    ) {
+      setTextInputLabel('please enter your verification code');
+      // setTextInputValidator(true)
+      setFirstTextInputValidator(true);
+      setSecondTextInputValidator(true);
+      setThirdTextInputValidator(true);
+      setFourthTextInputValidator(true);
+      console.log('ni chlliiiiiiiiiiiiiiiiiii');
+    } else {
+      // setTextInputValidator(false)
+      // setShowVerificationMessage(true)
+      setFirstTextInputValidator(false);
+      setSecondTextInputValidator(false);
+      setThirdTextInputValidator(false);
+      setFourthTextInputValidator(false);
+      setShowVerificationMessage(true);
+      console.log('chl gaiiiiiiiiiiiiiiiiiiii');
     }
-    else if(firstTextInput != '' || secondTextInput != '' || thirdTextInput != '' || fourthTextInput != '')
-    {
-      setFirstTextInput(firstTextInput)
-      setSecondTextInput(secondTextInput)
-      setThirdTextInput(thirdTextInput)
-      setFourthTextInput(fourthTextInput)
-      setTextInputValidator(false)
-    }
-  }
+  };
   return (
     <SafeAreaView style={VerificationStyle.mainView}>
       <BackButton onPress={() => props.navigation.goBack()}>
@@ -60,12 +80,11 @@ const Verification = props => {
             />
           </View>
           <View style={VerificationStyle.tagView}>
-            <Text style={VerificationStyle.tagText}>Verify your email</Text>
+            <Text style={VerificationStyle.tagText}>Verify</Text>
           </View>
           <View style={VerificationStyle.paraView}>
             <Text style={VerificationStyle.paraText}>
-              Please enter the 4 verification code that we have sent to your
-              email
+              Please enter the 4 verification code that we have sent
             </Text>
           </View>
           <View style={VerificationStyle.textView}>
@@ -81,11 +100,13 @@ const Verification = props => {
                   if (value) {
                     secondTextInputRef.current.focus();
                   }
+                  setFirstTextInput(value);
                 }}
                 blurOnSubmit={false}
               />
-             
             </View>
+              {firstTextInputValidator ? <Text>{textInputLabel}</Text> : null}
+            <View>
             <TextInput
               style={VerificationStyle.newInputs}
               maxLength={1}
@@ -98,9 +119,13 @@ const Verification = props => {
                 } else {
                   thirdTextInputRef.current.focus();
                 }
+                setSecondTextInput(value);
               }}
               blurOnSubmit={false}
             />
+            </View>
+            {secondTextInputValidator ? <Text>-</Text> : null}
+            <View>
             <TextInput
               style={VerificationStyle.newInputs}
               maxLength={1}
@@ -113,9 +138,13 @@ const Verification = props => {
                 } else {
                   fourthTextInputRef.current.focus();
                 }
+                setThirdTextInput(value);
               }}
               blurOnSubmit={false}
             />
+            </View>
+            {thirdTextInputValidator ? <Text>-</Text> : null}
+            <View>
             <TextInput
               style={VerificationStyle.newInputs}
               maxLength={1}
@@ -126,19 +155,12 @@ const Verification = props => {
                 if (value.length == 0) {
                   thirdTextInputRef.current.focus();
                 }
+                setFourthTextInput(value);
               }}
               onEndEditing={() => {}}
             />
-             {textInputValidator ? 
-              <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: wp('3'),
-                color: AppColor.red,
-              }}>
-              {textInputLabel}
-            </Text>
-            : null}
+            </View>
+            {fourthTextInputValidator ? <Text>-</Text> : null}
           </View>
           <View style={VerificationStyle.touchableView}>
             <Text style={VerificationStyle.textStyle}>Don't recieve code?</Text>
@@ -147,8 +169,7 @@ const Verification = props => {
             </TouchableOpacity>
           </View>
           <View style={VerificationStyle.buttonView}>
-            <TouchableOpacity
-              onPress={() =>{props.navigation.navigate('RecoverPassword')}}>
+            <TouchableOpacity onPress={submitHandler}>
               <NeoButton
                 width={wp('85')}
                 backgroundColor={AppColor.primary}
@@ -160,6 +181,21 @@ const Verification = props => {
             </TouchableOpacity>
           </View>
         </View>
+        <CustomModal
+          isVisible={showVerificationMessage}
+          onBackdropPress={() => {
+            setShowVerificationMessage(false);
+          }}
+          lottieStyle={{width: wp('50'), height: wp('50')}}
+          modalButtonPress={() => {
+            navigation.navigate('Congratulation');
+          }}
+          buttonBackgroundColor={AppColor.primary}
+          source={require('../assets/animations/email.json')}
+          text={'your password has been verified'}
+          style={{marginTop: wp('12')}}
+          buttonText={'Verify'}
+        />
       </ScrollView>
     </SafeAreaView>
   );

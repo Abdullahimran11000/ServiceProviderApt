@@ -41,28 +41,27 @@ const RecoverPassword = () => {
       setPasswordValidator(true)
       setConfirmPasswordLabel('Enter your password again')
       setConfirmPasswordValidator(true)
-      // console.log('enter password ??????????')
     }
-    else if(
-      (newPassword.includes('@') || newPassword.includes('!') || newPassword.includes('.')) && 
-      (confirmPassword.includes('@') || confirmPassword.includes('!'))
-           )
-    {
-      setPasswordValidator(false)
-      setConfirmPasswordValidator(false)
-      setShowPasswordMessageInModal(true)
-      console.log('password is correct')
-      // navigation.replace('LogIn')
+    else {
+      if(
+        (newPassword.includes('@') || newPassword.includes('!') || newPassword.includes('.')) && 
+        (confirmPassword.includes('@') || confirmPassword.includes('!'))
+        )
+      {
+        setPasswordValidator(false)
+        setConfirmPasswordValidator(false)
+        setShowPasswordMessageInModal(true)
+        // navigation.replace('LogIn')
+      }
+      else
+      {
+        setNewPassword('')
+        setConfirmPassword('')
+        setPasswordLabel('Enter Valid Password')
+        setConfirmPasswordLabel('Enter your password again')
+        setPasswordValidator(true)
+        setConfirmPasswordValidator(true)
     }
-    else
-    {
-      setNewPassword('')
-      setConfirmPassword('')
-      setPasswordLabel('Enter Valid Password')
-      setConfirmPasswordLabel('Enter your password again')
-      setPasswordValidator(true)
-      setConfirmPasswordValidator(true)
-      // console.log('Not valid')
     }
   }
   return (
@@ -100,11 +99,11 @@ const RecoverPassword = () => {
               <TouchableOpacity onPress={() => {setShowInstructionModal(true)}}>
                 <Icon name='alert-circle' size={wp('5')} color="black"/>
               </TouchableOpacity>
-          </View>
+            </View>
             <View style={RecoverPasswordStyle.inputStyleView}>
               <NeoTextInput
                 width={wp('90')}
-                styles={{width: wp('70'), position: 'absolute', left: 0}}
+                styles={{width: wp('70'), position: 'absolute', left: wp('0')}}
                 marginBottom={wp('3')}
                 placeholder={'Enter your password'}
                 secureTextEntry={!eye}
@@ -136,8 +135,8 @@ const RecoverPassword = () => {
                   style={{
                     fontFamily: 'Poppins-Light',
                     fontSize: wp('3.5'),
-                    marginTop:hp(1),
-                    width:wp(90),
+                    marginTop:hp('1'),
+                    width:wp('90'),
                     alignSelf:'center',
                     color: AppColor.red,
                   }}>
@@ -167,8 +166,8 @@ const RecoverPassword = () => {
                     fontFamily: 'Poppins-Light',
                     fontSize: wp('3.5'),
                     color: AppColor.red,
-                    marginTop:hp(2),
-                    width:wp(90),
+                    marginTop:hp('2'),
+                    width:wp('90'),
                     alignSelf:'center',
                   }}>
                   {confirmPasswordLabel}
@@ -203,7 +202,7 @@ const RecoverPassword = () => {
                 buttonBackgroundColor={AppColor.primary}
                 source={require('../assets/animations/success.json')}
                 text={'Your New Password has been set'}
-                style={{marginTop:wp(10)}}
+                style={{marginTop:hp('10')}}
                 buttonText={'Go to Login'}
                 />
         <CustomModal1

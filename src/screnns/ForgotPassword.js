@@ -18,9 +18,7 @@ import NeoButton from '../components/NeoMorphButton/NeoButton';
 import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import CustomModal from '../components/Modal/CustomModal';
 const ForgotPassword = ({navigation}) => {
-  const [showEmailNotificationInModal, setshowEmailNotificationInModal] =
-    useState(false);
-
+  const [showEmailNotificationInModal, setshowEmailNotificationInModal] = useState(false);
   const [email, setEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
   const [emailAlert, setEmailAlert] = useState(false);
@@ -28,11 +26,13 @@ const ForgotPassword = ({navigation}) => {
   const submitHandler = () => {
     if (email === '') {
       setEmailIsValid(AppColor.red);
-    } else {
+    } 
+    else { 
       if (email.includes('@gmail.com') || email.includes('@outlook.com')) {
         setEmailAlert(false);
         setshowEmailNotificationInModal(true)
-      } else {
+      }
+      else {
         setEmailAlert(true);
       }
     }
