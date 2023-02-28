@@ -16,7 +16,7 @@ const RecoverPasswordStyle = StyleSheet.create({
   labelView: {width: wp('90')},
   labelText1: {color: AppColor.black, fontFamily: 'Poppins-Bold',fontSize: wp('3.9'),width:wp(80),alignSelf:'center'},
   labelText2: {color: AppColor.black, fontFamily: 'Poppins-Bold',fontSize: wp('3.9'),width:wp(80),alignSelf:'center'},
-  inputStyleView: {flex: 1, flexDirection: 'row' , marginTop:wp('3'), marginBottom: wp('3'), width:wp('90'), height: hp('6.5'), borderRadius:wp('3'), backgroundColor: AppColor.white, alignItems: 'center',alignSelf:'center'},
+  inputStyleView: {flex: 1, flexDirection: 'row' , marginBottom: wp('3'), width:wp('90'), height: hp('6.5'), borderRadius:wp('3'), backgroundColor: AppColor.white, alignItems: 'center',alignSelf:'center'},
   iconTouchableStyle: {width: wp('10'), height: hp('7'), marginLeft: wp('6'), justifyContent: 'center', alignItems: 'center', position: 'absolute', right: wp('3')},
   touchableView:{position: 'relative' , alignItems: "center" , marginTop: wp('10')},
   touchableText1: {color: AppColor.red, fontFamily: "Poppins-Light" , fontSize: wp('3.5')},
