@@ -37,7 +37,7 @@ const MyProfile = ({navigation}) => {
   const [dateIsValid, setDateIsValid] = useState(AppColor.blackOpacity3);
   const [email, setEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
-  const [emailAlert , setEmailAlert] = useState(false)
+  const [emailAlert, setEmailAlert] = useState(false);
   const [mobileNo, setMobileNo] = useState('');
   const [mobileNoIsValid, setMobileNoIsValid] = useState(
     AppColor.blackOpacity3,
@@ -72,7 +72,7 @@ const MyProfile = ({navigation}) => {
       (name !== '' && date !== '' && email !== '' && mobileNo !== '',
       optionShow !== 'Gender')
     ) {
-      if(email.includes('@gmail.com') || email.includes('@outlook.com')){
+      if (email.includes('@gmail.com') || email.includes('@outlook.com')) {
         setNameIsValid(AppColor.blackOpacity3);
         setDateIsValid(AppColor.blackOpacity3);
         setEmailIsValid(AppColor.blackOpacity3);
@@ -84,12 +84,11 @@ const MyProfile = ({navigation}) => {
         setMobileNo('');
         setOptionShow('Gender');
         setModalOpen(true);
-      }else{
-        setEmailAlert(true)
-        setEmailIsValid(AppColor.red)
-        setEmail('')
+      } else {
+        setEmailAlert(true);
+        setEmailIsValid(AppColor.red);
+        setEmail('');
       }
-      
     }
 
     if (name === '') {
@@ -128,7 +127,7 @@ const MyProfile = ({navigation}) => {
           style={{marginTop: wp('10')}}
           modalButtonPress={() => {
             setModalOpen(false);
-            navigation.goBack()
+            navigation.goBack();
           }}
           buttonBackgroundColor={'#00B46E'}
           buttonText={'Close'}
@@ -305,18 +304,18 @@ const MyProfile = ({navigation}) => {
             />
           </View>
           {emailAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3.8'),
-              color: AppColor.red,
-              marginLeft: wp('5'),
-              marginTop: wp('1.5'),
-              marginBottom: wp('2')
-            }}>
-            Please enter valid email!
-          </Text>
-        ) : null}
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3.8'),
+                color: AppColor.red,
+                marginLeft: wp('5'),
+                marginTop: wp('1.5'),
+                marginBottom: wp('2'),
+              }}>
+              Please enter valid email!
+            </Text>
+          ) : null}
           <View style={[MyProfileStyle.inputFeildsView]}>
             <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
             <NeoTextInput

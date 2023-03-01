@@ -36,6 +36,9 @@ const RecoverPassword = () => {
   const [confirmPasswordValidator, setConfirmPasswordValidator] =
     useState(false);
 
+  const passwordRef = useRef(null)
+  const confirmRef = useRef(null)
+
   const submitHandler = () => {
     if (newPassword === '' || confirmPassword === '') {
       setPasswordLabel('Please enter your password.');
@@ -113,6 +116,9 @@ const RecoverPassword = () => {
             </View>
             <View style={RecoverPasswordStyle.inputStyleView}>
               <NeoTextInput
+                value={newPassword}
+                reference={passwordRef}
+                autoFocus={true}
                 width={wp('90')}
                 styles={{width: wp('70'), position: 'absolute', left: wp('0')}}
                 marginBottom={wp('3')}
@@ -120,7 +126,8 @@ const RecoverPassword = () => {
                 secureTextEntry={!eye}
                 keyboardType={'ascii-capable'}
                 onChangeText={text => setNewPassword(text)}
-                returnKeyType={'next'}>
+                returnKeyType={'next'}
+                onSubmitEditing={()=>{confirmRef.current.focus()}}>
                 <TouchableOpacity
                   style={RecoverPasswordStyle.iconTouchableStyle}
                   onPress={() => {
@@ -165,6 +172,8 @@ const RecoverPassword = () => {
             </View>
 
             <NeoTextInput
+              value={confirmPassword}
+              reference={confirmRef}
               width={wp('90')}
               placeholder={'Confirm your password'}
               secureTextEntry={!eye}
@@ -173,6 +182,7 @@ const RecoverPassword = () => {
                 setConfirmPassword(text);
               }}
               returnKeyType={'next'}
+              onSubmitEditing={submitHandler}
             />
             {confirmPasswordValidator ? (
               <Text
