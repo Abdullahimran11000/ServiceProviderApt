@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -13,7 +13,7 @@ import {
 import Lottie from 'lottie-react-native';
 import {RecoverPasswordStyle} from '../assets/styles/AuthStyle/RecoverPasswordStyle';
 import Entypo from 'react-native-vector-icons/Entypo';
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons';
 import BackButton from '../components/ScrennHeader/BackButton';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {AppColor} from '../assets/colors/AppColors';
@@ -24,46 +24,54 @@ import CustomModal1 from '../components/Modal/CustomModal';
 
 const RecoverPassword = () => {
   const [eye, setEye] = useState(false);
-  const  navigation = useNavigation();
-  const [showInstructionModal , setShowInstructionModal] = useState(false)
-  const [showPasswordMessageInModal , setShowPasswordMessageInModal] = useState(false)
-  const [newPassword , setNewPassword] = useState();
-  const [passwordLabel , setPasswordLabel] = useState();
-  const [passwordValidator , setPasswordValidator] = useState(false);
-  const [confirmPassword , setConfirmPassword] = useState();
-  const [confirmPasswordLabel , setConfirmPasswordLabel] = useState();
-  const [confirmPasswordValidator , setConfirmPasswordValidator] = useState(false);
+  const navigation = useNavigation();
+  const [showInstructionModal, setShowInstructionModal] = useState(false);
+  const [showPasswordMessageInModal, setShowPasswordMessageInModal] =
+    useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [passwordLabel, setPasswordLabel] = useState('');
+  const [passwordValidator, setPasswordValidator] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [confirmPasswordLabel, setConfirmPasswordLabel] = useState('');
+  const [confirmPasswordValidator, setConfirmPasswordValidator] =
+    useState(false);
 
   const submitHandler = () => {
-    if(newPassword === '' || confirmPassword === '')
-    {
-      setPasswordLabel('please enter your password')
-      setPasswordValidator(true)
-      setConfirmPasswordLabel('Enter your password again')
-      setConfirmPasswordValidator(true)
-    }
-    else {
-      if(
-        (newPassword.includes('@') || newPassword.includes('!') || newPassword.includes('.')) && 
-        (confirmPassword.includes('@') || confirmPassword.includes('!'))
-        )
-      {
-        setPasswordValidator(false)
-        setConfirmPasswordValidator(false)
-        setShowPasswordMessageInModal(true)
-        // navigation.replace('LogIn')
+    if (newPassword === '' || confirmPassword === '') {
+      setPasswordLabel('Please enter your password.');
+      setPasswordValidator(true);
+      setConfirmPasswordLabel('Please confirm your password.');
+      setConfirmPasswordValidator(true);
+    } else {
+      if (
+        (newPassword.includes('@') ||
+          newPassword.includes('!') ||
+          newPassword.includes('.')) &&
+        (confirmPassword.includes('@') ||
+          confirmPassword.includes('!') ||
+          confirmPassword.includes('.'))
+      ) {
+        setPasswordValidator(false);
+        setConfirmPasswordValidator(false);
+        setShowPasswordMessageInModal(true);
+      } else {
+        setNewPassword('');
+        setConfirmPassword('');
+        setPasswordLabel('Enter Valid Password');
+        setConfirmPasswordLabel('Enter your password again');
+        setPasswordValidator(true);
+        setConfirmPasswordValidator(true);
       }
-      else
-      {
-        setNewPassword('')
-        setConfirmPassword('')
-        setPasswordLabel('Enter Valid Password')
-        setConfirmPasswordLabel('Enter your password again')
-        setPasswordValidator(true)
-        setConfirmPasswordValidator(true)
     }
-    }
-  }
+  };
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('Recover Password screen is focusing right now!');
+      setNewPassword('');
+      setConfirmPassword('');
+    });
+  }, [navigation]);
   return (
     <SafeAreaView style={RecoverPasswordStyle.mainView}>
       <BackButton
@@ -95,9 +103,12 @@ const RecoverPassword = () => {
             <View style={RecoverPasswordStyle.labelView}>
               <Text style={RecoverPasswordStyle.labelText1}>New Password</Text>
             </View>
-            <View style={{width:wp(40),bottom:hp(3.4),marginLeft:wp(40)}}>
-              <TouchableOpacity onPress={() => {setShowInstructionModal(true)}}>
-                <Icon name='alert-circle' size={wp('5')} color="black"/>
+            <View style={{width: wp(40), bottom: hp(3.4), marginLeft: wp(40)}}>
+              <TouchableOpacity
+                onPress={() => {
+                  setShowInstructionModal(true);
+                }}>
+                <Icon name="alert-circle" size={wp('5')} color="black" />
               </TouchableOpacity>
             </View>
             <View style={RecoverPasswordStyle.inputStyleView}>
@@ -131,20 +142,21 @@ const RecoverPassword = () => {
                 </TouchableOpacity>
               </NeoTextInput>
             </View>
-            {passwordValidator ? <Text
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    fontSize: wp('3.5'),
-                    marginTop:hp('1'),
-                    width:wp('90'),
-                    alignSelf:'center',
-                    color: AppColor.red,
-                  }}>
-                  {passwordLabel}
-                </Text>
-                : null} 
+            {passwordValidator ? (
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Light',
+                  fontSize: wp('3.5'),
+                  marginTop: hp('1'),
+                  width: wp('90'),
+                  alignSelf: 'center',
+                  color: AppColor.red,
+                }}>
+                {passwordLabel}
+              </Text>
+            ) : null}
           </View>
-         
+
           <View>
             <View style={RecoverPasswordStyle.labelView}>
               <Text style={RecoverPasswordStyle.labelText2}>
@@ -157,27 +169,28 @@ const RecoverPassword = () => {
               placeholder={'Confirm your password'}
               secureTextEntry={!eye}
               keyboardType={'ascii-capable'}
-              onChangeText={text => {setConfirmPassword(text)}}
+              onChangeText={text => {
+                setConfirmPassword(text);
+              }}
               returnKeyType={'next'}
             />
-            {confirmPasswordValidator ? 
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    fontSize: wp('3.5'),
-                    color: AppColor.red,
-                    marginTop:hp('2'),
-                    width:wp('90'),
-                    alignSelf:'center',
-                  }}>
-                  {confirmPasswordLabel}
-                </Text> 
-                : null}
+            {confirmPasswordValidator ? (
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Light',
+                  fontSize: wp('3.5'),
+                  color: AppColor.red,
+                  marginTop: hp('2'),
+                  width: wp('90'),
+                  alignSelf: 'center',
+                }}>
+                {confirmPasswordLabel}
+              </Text>
+            ) : null}
           </View>
 
           <View style={RecoverPasswordStyle.buttonView}>
-            <TouchableOpacity
-              onPress={submitHandler}>
+            <TouchableOpacity onPress={submitHandler}>
               <NeoButton
                 darkShadowColor={AppColor.black}
                 width={wp('85')}
@@ -190,34 +203,36 @@ const RecoverPassword = () => {
             </TouchableOpacity>
           </View>
         </View>
-        
+
         <CustomModal
-                isVisible={showPasswordMessageInModal}
-                onBackdropPress={() => {
-                    setShowPasswordMessageInModal(false);
-                }}
-                modalButtonPress={() => {
-                    navigation.replace('LogIn')
-                }}
-                buttonBackgroundColor={AppColor.primary}
-                source={require('../assets/animations/success.json')}
-                text={'Your New Password has been set'}
-                style={{marginTop:hp('10')}}
-                buttonText={'Go to Login'}
-                />
+          isVisible={showPasswordMessageInModal}
+          onBackdropPress={() => {
+            setShowPasswordMessageInModal(false);
+          }}
+          modalButtonPress={() => {
+            navigation.replace('LogIn');
+          }}
+          buttonBackgroundColor={AppColor.primary}
+          source={require('../assets/animations/success.json')}
+          text={'Your New Password has been set'}
+          style={{marginTop: wp('10')}}
+          buttonText={'Go to Login'}
+        />
         <CustomModal1
-                isVisible={showInstructionModal}
-                onBackdropPress={() => {
-                    setShowInstructionModal(false);
-                }}
-                modalButtonPress={() => {
-                    setShowInstructionModal(false)
-                }}
-                buttonBackgroundColor={AppColor.primary}
-                source={require('../assets/animations/Alert.json')}
-                text={'Your password must have one of the following special character (@ , / , .)'}
-                style={{marginTop:wp(10)}}
-                buttonText={'close'}
+          isVisible={showInstructionModal}
+          onBackdropPress={() => {
+            setShowInstructionModal(false);
+          }}
+          modalButtonPress={() => {
+            setShowInstructionModal(false);
+          }}
+          buttonBackgroundColor={AppColor.primary}
+          source={require('../assets/animations/Alert.json')}
+          text={
+            'Your password must have one of the following special character (@ , / , .)'
+          }
+          style={{marginTop: wp(10)}}
+          buttonText={'close'}
         />
       </ScrollView>
     </SafeAreaView>

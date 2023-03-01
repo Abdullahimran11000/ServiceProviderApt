@@ -40,10 +40,10 @@ const App = () => {
           <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-          <Stack.Screen name="PasswordManagement" component={PasswordManagement} />
-          <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Verification" component={Verification} />
+          <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Congratulation" component={Congratulation} />
+          <Stack.Screen name="PasswordManagement" component={PasswordManagement} />
           <Stack.Screen name="Drawer" component={Drawer} />
           <Stack.Screen name="Dashboard" component={Dashboard}/>
           <Stack.Screen name="Certificates" component={Certificates}/>

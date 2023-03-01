@@ -41,7 +41,7 @@ const SignUp = ({navigation}) => {
       setCheckEmailTextValid(false);
       setshowConfirmationMessageInModal(true);
     } else if (passwordText === '') {
-      setPasswordLabelText('please enter your password');
+      setPasswordLabelText('Please enter your password');
       setPasswordValid(true);
     } else if (passwordText.length <= 3) {
       setPasswordValid(false);
@@ -59,6 +59,8 @@ const SignUp = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('SignUp screen is focusing right now!');
+      setEmailText('')
+      setPasswordText('')
     });
   }, [navigation]);
 

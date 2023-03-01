@@ -18,17 +18,17 @@ import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {AppColor} from '../assets/colors/AppColors';
 import CustomModal from '../components/Modal/CustomModal';
 
-const Verification = props => {
+const Verification = ({navigation}) => {
   const firstTextInputRef = useRef(null);
   const secondTextInputRef = useRef(null);
   const thirdTextInputRef = useRef(null);
   const fourthTextInputRef = useRef(null);
   const [showVerificationMessage, setShowVerificationMessage] = useState(false);
 
-  const [firstTextInput, setFirstTextInput] = useState();
-  const [secondTextInput, setSecondTextInput] = useState();
-  const [thirdTextInput, setThirdTextInput] = useState();
-  const [fourthTextInput, setFourthTextInput] = useState();
+  const [firstTextInput, setFirstTextInput] = useState('1');
+  const [secondTextInput, setSecondTextInput] = useState('2');
+  const [thirdTextInput, setThirdTextInput] = useState('3');
+  const [fourthTextInput, setFourthTextInput] = useState('4');
 
   const [firstTextInputValidator, setFirstTextInputValidator] = useState(false);
   const [secondTextInputValidator, setSecondTextInputValidator] =
@@ -38,7 +38,6 @@ const Verification = props => {
     useState(false);
 
   const [textInputLabel, setTextInputLabel] = useState();
-  // const [textInputValidator , setTextInputValidator] = useState(false)
 
   const submitHandler = () => {
     if (
@@ -48,26 +47,31 @@ const Verification = props => {
       fourthTextInput === ''
     ) {
       setTextInputLabel('please enter your verification code');
-      // setTextInputValidator(true)
       setFirstTextInputValidator(true);
       setSecondTextInputValidator(true);
       setThirdTextInputValidator(true);
       setFourthTextInputValidator(true);
-      console.log('ni chlliiiiiiiiiiiiiiiiiii');
     } else {
-      // setTextInputValidator(false)
-      // setShowVerificationMessage(true)
       setFirstTextInputValidator(false);
       setSecondTextInputValidator(false);
       setThirdTextInputValidator(false);
       setFourthTextInputValidator(false);
       setShowVerificationMessage(true);
-      console.log('chl gaiiiiiiiiiiiiiiiiiiii');
     }
   };
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('Verification screen is focusing right now!');
+      setFirstTextInput('');
+      setSecondTextInput('');
+      setThirdTextInput('');
+      setFourthTextInput('');
+    });
+  }, [navigation]);
   return (
     <SafeAreaView style={VerificationStyle.mainView}>
-      <BackButton onPress={() => props.navigation.goBack()}>
+      <BackButton onPress={() => navigation.goBack()}>
         {'Verification'}
       </BackButton>
       <ScrollView>
@@ -80,7 +84,7 @@ const Verification = props => {
             />
           </View>
           <View style={VerificationStyle.tagView}>
-            <Text style={VerificationStyle.tagText}>Verify</Text>
+            <Text style={VerificationStyle.tagText}>OTP</Text>
           </View>
           <View style={VerificationStyle.paraView}>
             <Text style={VerificationStyle.paraText}>
@@ -90,6 +94,7 @@ const Verification = props => {
           <View style={VerificationStyle.textView}>
             <View>
               <TextInput
+                value={firstTextInput}
                 autoFocus={true}
                 style={VerificationStyle.newInputs}
                 maxLength={1}
@@ -105,63 +110,79 @@ const Verification = props => {
                 blurOnSubmit={false}
               />
             </View>
-              {firstTextInputValidator ? <Text>{textInputLabel}</Text> : null}
             <View>
-            <TextInput
-              style={VerificationStyle.newInputs}
-              maxLength={1}
-              keyboardType={'numeric'}
-              ref={secondTextInputRef}
-              returnKeyType={'next'}
-              onChangeText={value => {
-                if (value.length == 0) {
-                  firstTextInputRef.current.focus();
-                } else {
-                  thirdTextInputRef.current.focus();
-                }
-                setSecondTextInput(value);
-              }}
-              blurOnSubmit={false}
-            />
+              <TextInput
+                value={secondTextInput}
+                style={VerificationStyle.newInputs}
+                maxLength={1}
+                keyboardType={'numeric'}
+                ref={secondTextInputRef}
+                returnKeyType={'next'}
+                onChangeText={value => {
+                  if (value.length == 0) {
+                    firstTextInputRef.current.focus();
+                  } else {
+                    thirdTextInputRef.current.focus();
+                  }
+                  setSecondTextInput(value);
+                }}
+                blurOnSubmit={false}
+              />
             </View>
-            {secondTextInputValidator ? <Text>-</Text> : null}
             <View>
-            <TextInput
-              style={VerificationStyle.newInputs}
-              maxLength={1}
-              keyboardType={'numeric'}
-              ref={thirdTextInputRef}
-              returnKeyType={'next'}
-              onChangeText={value => {
-                if (value.length == 0) {
-                  secondTextInputRef.current.focus();
-                } else {
-                  fourthTextInputRef.current.focus();
-                }
-                setThirdTextInput(value);
-              }}
-              blurOnSubmit={false}
-            />
+              <TextInput
+                value={thirdTextInput}
+                style={VerificationStyle.newInputs}
+                maxLength={1}
+                keyboardType={'numeric'}
+                ref={thirdTextInputRef}
+                returnKeyType={'next'}
+                onChangeText={value => {
+                  if (value.length == 0) {
+                    secondTextInputRef.current.focus();
+                  } else {
+                    fourthTextInputRef.current.focus();
+                  }
+                  setThirdTextInput(value);
+                }}
+                blurOnSubmit={false}
+              />
             </View>
-            {thirdTextInputValidator ? <Text>-</Text> : null}
             <View>
-            <TextInput
-              style={VerificationStyle.newInputs}
-              maxLength={1}
-              keyboardType={'numeric'}
-              ref={fourthTextInputRef}
-              returnKeyType="go"
-              onChangeText={value => {
-                if (value.length == 0) {
-                  thirdTextInputRef.current.focus();
-                }
-                setFourthTextInput(value);
-              }}
-              onEndEditing={() => {}}
-            />
+              <TextInput
+                value={fourthTextInput}
+                style={VerificationStyle.newInputs}
+                maxLength={1}
+                keyboardType={'numeric'}
+                ref={fourthTextInputRef}
+                returnKeyType="go"
+                onChangeText={value => {
+                  if (value.length == 0) {
+                    thirdTextInputRef.current.focus();
+                  }
+                  setFourthTextInput(value);
+                }}
+                onEndEditing={submitHandler}
+              />
             </View>
-            {fourthTextInputValidator ? <Text>-</Text> : null}
           </View>
+          {firstTextInputValidator ? (
+            <View
+              style={{
+                width: wp('100'),
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Light',
+                  fontSize: wp('3'),
+                  color: AppColor.red,
+                }}>
+                {textInputLabel}
+              </Text>
+            </View>
+          ) : null}
           <View style={VerificationStyle.touchableView}>
             <Text style={VerificationStyle.textStyle}>Don't recieve code?</Text>
             <TouchableOpacity>
@@ -188,13 +209,13 @@ const Verification = props => {
           }}
           lottieStyle={{width: wp('50'), height: wp('50')}}
           modalButtonPress={() => {
-            navigation.navigate('Congratulation');
+            navigation.navigate('RecoverPassword');
           }}
           buttonBackgroundColor={AppColor.primary}
           source={require('../assets/animations/email.json')}
-          text={'your password has been verified'}
+          text={'OTP has been verified successfully!'}
           style={{marginTop: wp('12')}}
-          buttonText={'Verify'}
+          buttonText={'Next'}
         />
       </ScrollView>
     </SafeAreaView>

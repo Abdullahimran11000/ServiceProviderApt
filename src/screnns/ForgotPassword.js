@@ -19,9 +19,11 @@ import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 import CustomModal from '../components/Modal/CustomModal';
 const ForgotPassword = ({navigation}) => {
   const [showEmailNotificationInModal, setshowEmailNotificationInModal] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('hamad@gmail.com');
   const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
   const [emailAlert, setEmailAlert] = useState(false);
+
+  const emailRef = useRef(null)
 
   const submitHandler = () => {
     if (email === '') {
@@ -41,6 +43,8 @@ const ForgotPassword = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('Forgot Password screen is focusing right now!');
+      setEmail('')
+      emailRef.current.focus()
     });
   }, [navigation]);
 
@@ -72,6 +76,7 @@ const ForgotPassword = ({navigation}) => {
             </View>
             <NeoTextInput
               value={email}
+              reference={emailRef}
               width={wp('90')}
               autoFocus={true}
               keyboardType={'email-address'}
@@ -80,6 +85,8 @@ const ForgotPassword = ({navigation}) => {
               onChangeText={text => {
                 setEmail(text);
               }}
+              returnKeyType={'next'}
+              onSubmitEditing={submitHandler}
             />
             {emailAlert ? (
               <Text
