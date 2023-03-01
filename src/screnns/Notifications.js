@@ -24,11 +24,10 @@ import Header from '../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
 import CustomModal from '../components/Modal/CustomModal';
 const Notifications = () => {
-  const [notify, setNotify] = useState(true);
   const [readNotificationInModal, setReadNotificationInModal] = useState('');
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
-  const TodayData = [
+  const [TodayData, setTodayData] = useState([
     {
       id: 1,
       title: 'You have an appointment with Dr.Manskurt Slauddin at 10pm today',
@@ -37,6 +36,7 @@ const Notifications = () => {
       iconprovider: ad,
       iconname: 'solution1',
       iconColor: '#a18eab',
+      open: false,
     },
     {
       id: 2,
@@ -46,6 +46,7 @@ const Notifications = () => {
       iconprovider: ii,
       iconname: 'ios-chatbox-ellipses-sharp',
       iconColor: '#708eb3',
+      open: false,
     },
     {
       id: 3,
@@ -55,6 +56,7 @@ const Notifications = () => {
       iconprovider: ii,
       iconname: 'videocam',
       iconColor: '#a582b8',
+      open: false,
     },
     {
       id: 4,
@@ -64,6 +66,7 @@ const Notifications = () => {
       iconprovider: ii,
       iconname: 'documents-sharp',
       iconColor: '#997679',
+      open: false,
     },
     {
       id: 5,
@@ -73,7 +76,7 @@ const Notifications = () => {
       iconprovider: ii,
       iconname: 'call',
       iconColor: '#3c754b',
-      // iconname: 'ios-chatbox-ellipses-sharp',
+      open: false,
     },
     {
       id: 6,
@@ -83,6 +86,7 @@ const Notifications = () => {
       iconprovider: fi,
       iconname: 'menu',
       iconColor: '#a18eab',
+      open: false,
     },
     {
       id: 7,
@@ -92,6 +96,7 @@ const Notifications = () => {
       iconprovider: ii,
       iconname: 'videocam',
       iconColor: '#a582b8',
+      open: false,
     },
     {
       id: 8,
@@ -100,15 +105,57 @@ const Notifications = () => {
       time: '10m ago',
       iconprovider: ii,
       iconname: 'videocam',
+      open: false,
     },
-  ];
+  ]);
+
+  const submitHandler = (
+    id,
+    check,
+    title,
+    message,
+    time,
+    iconname,
+    iconColor,
+    iconprovider,
+  ) => {
+    if (check === false) {
+      setShowModal(true);
+      setReadNotificationInModal(title);
+      const filteredArray = TodayData.filter(item => item.id !== id);
+      setTodayData([
+        ...filteredArray,
+        {
+          id: id,
+          title: title,
+          message: message,
+          time: time,
+          iconprovider: iconprovider,
+          iconname: iconname,
+          iconColor: iconColor,
+          open: true,
+        },
+      ]);
+    } else {
+      setShowModal(true);
+      setReadNotificationInModal(title);
+    }
+  };
 
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          setShowModal(true);
-          setReadNotificationInModal(item.title)
+          submitHandler(
+            item.id,
+            item.open,
+            item.title,
+            item.message,
+            item.time,
+            item.iconname,
+            item.iconColor,
+            item.iconprovider,
+          );
         }}>
         <Neomorph style={NotificationStyle.innerItems}>
           <View style={NotificationStyle.headContImageCont}>
@@ -121,7 +168,10 @@ const Notifications = () => {
           </View>
           <View style={NotificationStyle.headContMiddleCont}>
             <View style={NotificationStyle.middleInnerFirstCont}>
-              <Text style={NotificationStyle.middleInnerContFirstHeading}>
+              <Text
+                style={NotificationStyle.middleInnerContFirstHeading}
+                ellipsizeMode={'tail'}
+                numberOfLines={2}>
                 {item.title}
               </Text>
             </View>
@@ -130,19 +180,28 @@ const Notifications = () => {
                 {item.time}
               </Text>
             </View>
-            {notify ? (
-              <View style={NotificationStyle.iconstyle2}>
-                <Icon
-                  name="checkmark-done-circle-outline"
-                  size={wp('5')}
-                  color={'blue'}
-                />
-              </View>
-            ) : null}
           </View>
+          {item.open ? null : (
+            <View style={NotificationStyle.iconstyle2}>
+              <Icon
+                name="checkmark-done-circle-outline"
+                size={wp('5')}
+                color={'blue'}
+              />
+            </View>
+          )}
         </Neomorph>
       </TouchableOpacity>
     );
+  };
+
+  const submitHandlerTwo = () => {
+    let updatedArray = [];
+    TodayData.map(item => {
+      item.open = true;
+      updatedArray.push(item);
+    });
+    setTodayData(updatedArray);
   };
 
   return (
@@ -152,19 +211,19 @@ const Notifications = () => {
         {/* 1st render  */}
         <View style={NotificationStyle.firstContainerOfMainView}>
           <View style={NotificationStyle.innerViewOfFirstContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                setNotify(false);
-              }}>
+            <TouchableOpacity onPress={submitHandlerTwo}>
               <Text style={NotificationStyle.renderItemHeaderFontFirst}>
                 Mark All As Read
               </Text>
             </TouchableOpacity>
           </View>
-          <FlatList
-            data={TodayData}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}></FlatList>
+          <View style={{marginBottom: wp('10')}}>
+            <FlatList
+              data={TodayData}
+              renderItem={renderItem}
+              keyExtractor={item => (item = item.id)}
+            />
+          </View>
         </View>
         <CustomModal
           isVisible={showModal}
@@ -178,7 +237,7 @@ const Notifications = () => {
           source={require('../assets/animations/sms.json')}
           lottieStyle={{width: wp('35'), height: wp('35')}}
           text={readNotificationInModal}
-          style={{marginTop:wp(10)}}
+          style={{marginTop: wp(10)}}
           buttonText={'Close'}
         />
       </ScrollView>
@@ -186,4 +245,3 @@ const Notifications = () => {
   );
 };
 export default Notifications;
-
