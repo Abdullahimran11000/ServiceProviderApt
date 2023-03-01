@@ -17,11 +17,10 @@ import Lottie from 'lottie-react-native';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import CustomModal from '../components/Modal/CustomModal';
 import {useNavigation} from '@react-navigation/native';
-import {maxLength} from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
 const TryAnotherWay = () => {
   const navigation = useNavigation();
   const [showMessage, setShowMessage] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [phoneNumberValidator, setPhoneNumberValidator] = useState(false);
   const [phoneNumberLabel, setPhoneNumberLabel] = useState();
 
@@ -100,6 +99,7 @@ const TryAnotherWay = () => {
               height: hp(10),
             }}
             codeTextStyle={{fontSize: wp(4)}}
+            value={phoneNumber}
             onChangeText={text => {
               setPhoneNumber(text);
             }}
