@@ -54,12 +54,7 @@ const CustomModal = ({
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Lottie
-              source={source}
-              style={lottieStyle}
-              loop
-              autoPlay
-            />
+            <Lottie source={source} style={lottieStyle} loop autoPlay />
           </Neomorph>
         </Neomorph>
 
@@ -69,32 +64,16 @@ const CustomModal = ({
             fontSize: wp('4'),
             textAlign: 'center',
             color: AppColor.black,
-            width: wp('70'),
+            width: wp('65'),
             marginTop: wp('5'),
           }}>
-          {/* {modalTypeOpen
-            ? 'File upload successfully.'
-            : 'You did not upload any photo yet today! Please upload patient prescription.'} */}
           {text}
         </Text>
 
-        <TouchableOpacity
-          //   style={{marginTop: modalTypeOpen ? wp('20') : wp('10')}}
-          style={style}
-          onPress={modalButtonPress}
-          //   onPress={() => {
-          //     if (modalTypeOpen === true) {
-          //       setModalOpen(false);
-          //       navigation.goBack();
-          //     } else {
-          //       setModalOpen(false);
-          //     }
-          //   }}
-        >
+        <TouchableOpacity style={style} onPress={modalButtonPress}>
           <NeoButton
             width={wp('35')}
             height={hp('7')}
-            // backgroundColor={modalTypeOpen ? AppColor.primary : '#FA7070'}
             backgroundColor={buttonBackgroundColor}
             borderRadius={wp('7')}>
             <Text

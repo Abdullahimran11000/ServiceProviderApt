@@ -18,6 +18,11 @@ import {useNavigation} from '@react-navigation/native';
 
 const Congratulation = () => {
   const navigation = useNavigation();
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('Congratulation screen is focusing right now!');
+    });
+  }, [navigation]);
   return (
     <SafeAreaView style={CongratulationStyle.mainView}>
       <ScrollView>
