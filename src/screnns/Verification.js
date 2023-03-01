@@ -63,10 +63,10 @@ const Verification = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('Verification screen is focusing right now!');
-      setFirstTextInput('');
-      setSecondTextInput('');
-      setThirdTextInput('');
-      setFourthTextInput('');
+      // setFirstTextInput('');
+      // setSecondTextInput('');
+      // setThirdTextInput('');
+      // setFourthTextInput('');
     });
   }, [navigation]);
   return (

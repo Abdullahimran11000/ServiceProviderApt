@@ -23,7 +23,7 @@ const ForgotPassword = ({navigation}) => {
   const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
   const [emailAlert, setEmailAlert] = useState(false);
 
-  const emailRef = useRef(null)
+  const emailRef = useRef()
 
   const submitHandler = () => {
     if (email === '') {
@@ -43,7 +43,7 @@ const ForgotPassword = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('Forgot Password screen is focusing right now!');
-      setEmail('')
+      // setEmail('')
       emailRef.current.focus()
     });
   }, [navigation]);

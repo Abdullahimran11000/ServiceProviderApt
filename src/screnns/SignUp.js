@@ -23,44 +23,56 @@ const SignUp = ({navigation}) => {
   const [eye, setEye] = useState(false);
   const [showConfirmationMessageInModal, setshowConfirmationMessageInModal] =
     useState(false);
-  const [emailText, setEmailText] = useState('f@gmail.com');
-  const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
-  const [emailLabelText, setEmailLabelText] = useState('');
+  const [nameText, setNameText] = useState('');
+  const [nameIsValid, setNameIsValid] = useState(AppColor.blackOpacity3);
+  const [emailText, setEmailText] = useState('');
+  const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
+  const [emailAlert, setEmailAlert] = useState(false);
+  const [passwordText, setPasswordText] = useState('');
   const [passwordLabelText, setPasswordLabelText] = useState('');
-  const [passwordText, setPasswordText] = useState('123');
-  const [passwordValid, setPasswordValid] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(
+    AppColor.blackOpacity3,
+  );
 
   const submitHandler = () => {
+    if (emailText === '' && nameText === '' && passwordText === '') {
+      setNameIsValid(AppColor.red);
+      setEmailIsValid(AppColor.red);
+      setPasswordIsValid(AppColor.red);
+    }
+    if (nameText === '') {
+      setNameIsValid(AppColor.red);
+    }
     if (emailText === '') {
-      setEmailLabelText('Please enter your email.');
-      setCheckEmailTextValid(true);
-    } else if (
-      emailText.includes('@gmail.com') ||
-      emailText.includes('@outlook.com')
-    ) {
-      setCheckEmailTextValid(false);
-      setshowConfirmationMessageInModal(true);
-    } else if (passwordText === '') {
-      setPasswordLabelText('Please enter your password');
-      setPasswordValid(true);
-    } else if (passwordText.length <= 3) {
-      setPasswordValid(false);
-      setPasswordLabelText(false);
-    } else {
-      setEmailText('');
-      setPasswordText('');
-      setEmailLabelText('Your email is not valid.');
-      setPasswordLabelText('password must be maximum upto 8 characters.');
-      setCheckEmailTextValid(true);
-      setPasswordValid(true);
+      setEmailIsValid(AppColor.red);
+    }
+    if (passwordText === '') {
+      setPasswordIsValid(AppColor.red);
+    }
+    if (nameText !== '' && emailText !== '' && passwordText !== '') {
+      if (
+        emailText.includes('@gmail.com') ||
+        emailText.includes('@outlook.com')
+      ) {
+        setNameIsValid(AppColor.blackOpacity3);
+        setEmailIsValid(AppColor.blackOpacity3);
+        setPasswordIsValid(AppColor.blackOpacity3);
+        setNameText('');
+        setEmailText('');
+        setPasswordText('');
+        setEmailAlert(false);
+      } else {
+        setEmailAlert(true);
+        setEmailIsValid(AppColor.red);
+      }
     }
   };
 
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('SignUp screen is focusing right now!');
-      setEmailText('')
-      setPasswordText('')
+      // setEmailText('');
+      // setPasswordText('');
     });
   }, [navigation]);
 
@@ -73,41 +85,53 @@ const SignUp = ({navigation}) => {
             {'Sign Up'}
           </BackButton>
           <View style={SignUpStyle.views}>
-            <Text style={SignUpStyle.text}>Fullname</Text>
+            <Text style={SignUpStyle.text}>Full Name</Text>
             <NeoTextInput
+              value={nameText}
               width={wp('90')}
               keyboardType={'default'}
-              placeholder={'Enter Your Name'}
+              placeholder={'Enter your name'}
+              placeholderTextColor={nameIsValid}
+              onChangeText={text => {
+                setNameText(text);
+              }}
             />
           </View>
           <View style={SignUpStyle.views}>
             <Text style={SignUpStyle.text}>Email</Text>
             <NeoTextInput
+              value={emailText}
               width={wp('90')}
               keyboardType={'email-address'}
-              placeholder={'Enter your Email'}
+              placeholder={'Enter your email'}
+              placeholderTextColor={emailIsValid}
               onChangeText={text => {
                 setEmailText(text);
               }}
             />
-            {checkEmailTextValid ? (
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Light',
-                  fontSize: wp('3'),
-                  color: AppColor.red,
-                }}>
-                {emailLabelText}
-              </Text>
-            ) : null}
           </View>
+          {emailAlert ? (
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3.8'),
+                color: AppColor.red,
+                marginLeft: wp('5'),
+                marginTop: wp('5'),
+                marginBottom: wp('-5'),
+              }}>
+              Please enter valid email!
+            </Text>
+          ) : null}
           <View style={SignUpStyle.views}>
             <Text style={SignUpStyle.text}>Password</Text>
             <NeoTextInput
+              value={passwordText}
               width={wp('90')}
               keyboardType={'default'}
               secureTextEntry={!eye}
-              placeholder={'Enter your Password'}
+              placeholder={'Enter your password'}
+              placeholderTextColor={passwordIsValid}
               onChangeText={text => {
                 setPasswordText(text);
               }}>
@@ -128,7 +152,7 @@ const SignUp = ({navigation}) => {
               </TouchableOpacity>
             </NeoTextInput>
           </View>
-          {passwordValid ? (
+          {/* {passwordValid ? (
             <Text
               style={{
                 fontFamily: 'Poppins-Light',
@@ -137,7 +161,7 @@ const SignUp = ({navigation}) => {
               }}>
               {passwordLabelText}
             </Text>
-          ) : null}
+          ) : null} */}
           <View style={{marginLeft: wp(6), marginTop: hp(3)}}>
             <Checkbox status="checked" color="#c28cde" />
             <Text style={SignUpStyle.termsAndPrivacyStyle1}>I agree with</Text>
