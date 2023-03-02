@@ -29,12 +29,16 @@ const PasswordManagement = ({navigation}) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [currentPasswordValidator, setCurrentPasswordValidator] =
     useState(false);
-  const [currentPasswordLabel, setCurrentPasswordLabel] = useState(AppColor.black);
+  const [currentPasswordLabel, setCurrentPasswordLabel] = useState(
+    AppColor.black,
+  );
   const [newPassword, setNewPassword] = useState('');
   const [passwordLabel, setPasswordLabel] = useState(AppColor.black);
   const [passwordValidator, setPasswordValidator] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
-  const [confirmPasswordLabel, setConfirmPasswordLabel] = useState(AppColor.black);
+  const [confirmPasswordLabel, setConfirmPasswordLabel] = useState(
+    AppColor.black,
+  );
   const [confirmPasswordValidator, setConfirmPasswordValidator] =
     useState(false);
 
@@ -104,14 +108,7 @@ const PasswordManagement = ({navigation}) => {
             </View>
             <View style={PasswordManagementStyle.inputView}>
               <View style={PasswordManagementStyle.labelView}>
-                <Text
-                  style={{
-                    color: AppColor.black,
-                    height: hp(5),
-                    width: wp(80),
-                    alignSelf: 'center',
-                    fontFamily: 'Poppins-SemiBold',
-                  }}>
+                <Text style={PasswordManagementStyle.textViewOne}>
                   Current Password
                 </Text>
               </View>
@@ -142,21 +139,9 @@ const PasswordManagement = ({navigation}) => {
               ) : null}
             </View>
             <View style={PasswordManagementStyle.inputView}>
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  flex: 8,
-                  width: wp(90),
-                  alignSelf: 'center',
-                }}>
+              <View style={PasswordManagementStyle.inputViewInnerView}>
                 <View style={PasswordManagementStyle.labelView}>
-                  <Text
-                    style={{
-                      color: AppColor.black,
-                      height: hp(5),
-                      fontFamily: 'Poppins-SemiBold',
-                    }}>
+                  <Text style={PasswordManagementStyle.labelViewTextTwo}>
                     New Password
                   </Text>
                 </View>
@@ -202,29 +187,23 @@ const PasswordManagement = ({navigation}) => {
                 </NeoTextInput>
               </View>
               {passwordValidator ? (
-                  <Text
-                    style={{
-                      fontFamily: 'Poppins-Light',
-                      fontSize: wp('3.5'),
-                      color: AppColor.red,
-                      marginTop: hp('1'),
-                      width: wp('90'),
-                      alignSelf: 'center',
-                    }}>
-                    Enter your New Password
-                  </Text>
-                ) : null}
+                <Text
+                  style={{
+                    fontFamily: 'Poppins-Light',
+                    fontSize: wp('3.5'),
+                    color: AppColor.red,
+                    marginTop: hp('1'),
+                    width: wp('90'),
+                    alignSelf: 'center',
+                  }}>
+                  Enter your New Password
+                </Text>
+              ) : null}
             </View>
 
             <View style={PasswordManagementStyle.headingView}>
               <View style={PasswordManagementStyle.labelView}>
-                <Text
-                  style={{
-                    color: AppColor.black,
-                    width: wp(80),
-                    alignSelf: 'center',
-                    fontFamily: 'Poppins-SemiBold',
-                  }}>
+                <Text style={PasswordManagementStyle.labelViewTextThree}>
                   Confirm Password
                 </Text>
               </View>
@@ -236,21 +215,22 @@ const PasswordManagement = ({navigation}) => {
                 keyboardType={'ascii-capable'}
                 onChangeText={text => setConfirmPassword(text)}
               />
-              {confirmPasswordValidator ?  <Text
-                style={{
-                  fontFamily: 'Poppins-Light',
-                  fontSize: wp('3.5'),
-                  color: AppColor.red,
-                  marginTop: hp('2'),
-                  width: wp('90'),
-                  alignSelf: 'center',
-                }}>
-                Enter your password
-              </Text> : null}
+              {confirmPasswordValidator ? (
+                <Text
+                  style={{
+                    fontFamily: 'Poppins-Light',
+                    fontSize: wp('3.5'),
+                    color: AppColor.red,
+                    marginTop: hp('2'),
+                    width: wp('90'),
+                    alignSelf: 'center',
+                  }}>
+                  Enter your password
+                </Text>
+              ) : null}
             </View>
             <View style={PasswordManagementStyle.buttonView}>
-              <TouchableOpacity
-                onPress={submitHandler}>
+              <TouchableOpacity onPress={submitHandler}>
                 <NeoButton
                   darkShadowColor={AppColor.black}
                   width={wp('85')}
@@ -271,13 +251,11 @@ const PasswordManagement = ({navigation}) => {
               setShowPasswordMessageInModal(false);
             }}
             modalButtonPress={() => {
-              navigation.navigate('Dashboard')
+              navigation.navigate('Dashboard');
             }}
             buttonBackgroundColor={AppColor.primary}
             source={require('../assets/animations/success.json')}
-            text={
-              'your password has been set'
-            }
+            text={'your password has been set'}
             style={{marginTop: wp(10)}}
             buttonText={'Dashboard'}
           />

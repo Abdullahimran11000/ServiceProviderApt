@@ -38,6 +38,7 @@ const CompletedApp = () => {
       time: '10:30',
       appDestination: 'Video',
     },
+    
   ]);
   const renderItemCompeletedAppointments = ({item}) => (
     <CompleteAppointmentCard

@@ -22,7 +22,7 @@ const AppointmentsCards = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
-        style={{width: wp(100), height: hp(40)}}
+        style={{width: wp(100), height: hp(40) , alignSelf:'center'}}
         source={require('../assets/images/AppointmentsIntroPic.jpg')}>
         <View
           style={{
