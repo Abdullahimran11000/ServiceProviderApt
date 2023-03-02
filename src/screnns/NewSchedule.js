@@ -115,7 +115,7 @@ const NewSchedule = () => {
             {'Schedule'}
           </Header>
           <View style={NewScheduleStyle.viewOne}>
-            <TouchableOpacity>
+            {/* <TouchableOpacity> */}
               <NeoButton
                 width={wp(90)}
                 height={hp(8)}
@@ -125,7 +125,7 @@ const NewSchedule = () => {
                   Add New Schedule
                 </Text>
               </NeoButton>
-            </TouchableOpacity>
+            {/* </TouchableOpacity> */}
           </View>
           <View style={NewScheduleStyle.viewTwo}>
             <View>
