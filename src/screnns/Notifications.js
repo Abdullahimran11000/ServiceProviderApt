@@ -221,7 +221,7 @@ const Notifications = () => {
             <FlatList
               data={TodayData}
               renderItem={renderItem}
-              keyExtractor={item => (item = item.id)}
+              keyExtractor={item => (console.log(item.id))}
             />
           </View>
         </View>

@@ -6,6 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Lottie from 'lottie-react-native';
 import {AppColor} from '../../assets/colors/AppColors';
 import {Neomorph} from 'react-native-neomorph-shadows';
@@ -22,23 +23,35 @@ const UpcomingAppointmentCard = ({
   p_date,
   p_time,
   buttonShow,
+  nextButtonShow,
+  buttonColor,
+  nav,
 }) => {
   const navigation = useNavigation();
+  const cardHandler = () => {
+    if (item.name !== undefined) {
+      navigation.navigate('PatientProfile', {
+        name: item.name,
+        gender: item.gender,
+        age: item.age,
+        date: item.date,
+        time: item.time,
+        appDes: item.appDestination,
+        color: buttonColor
+      });
+    }
+  };
   return (
-    <TouchableOpacity
-      style={[AppointmentStyle.appCardUpcoming, {height: buttonShow ? hp('28'):  hp('20')}]}
-      onPress={() => {
-        navigation.navigate('PatientProfile', {
-          name: item.name,
-          gender: item.gender,
-          age: item.age,
-          date: item.date,
-          time: item.time,
-          appDes: item.appDestination,
-        });
-      }}>
+    <View
+      style={[
+        AppointmentStyle.appCardUpcoming,
+        {height: buttonShow ? hp('28') : hp('20')},
+      ]}>
       <Neomorph
-        style={[AppointmentStyle.neoCard2Upcoming, {height: buttonShow ? hp('28'):  hp('20')}]}
+        style={[
+          AppointmentStyle.neoCard2Upcoming,
+          {height: buttonShow ? hp('28') : hp('20')},
+        ]}
         darkShadowColor={AppColor.black}>
         <View style={AppointmentStyle.patientCard}>
           <View style={AppointmentStyle.patientProfileImageCont}>
@@ -59,13 +72,47 @@ const UpcomingAppointmentCard = ({
               {p_age} years old
             </Text>
           </View>
-          <View style={AppointmentStyle.lottieViewUpcoming}>
-            <Lottie
-              style={AppointmentStyle.lottieStyleUpcoming}
-              source={require('../../assets/animations/upcomingTag.json')}
-              autoPlay
-            />
-          </View>
+          {nextButtonShow ? (
+            <TouchableOpacity
+              style={{
+                width: wp('8'),
+                height: wp('8'),
+                borderRadius: wp('8'),
+                position: 'absolute',
+                top: wp('2'),
+                right: wp('0'),
+              }}
+              onPress={cardHandler}>
+              <Neomorph
+                style={{
+                  width: wp('8'),
+                  height: wp('8'),
+                  borderRadius: wp('8'),
+                  backgroundColor: buttonColor,
+                  shadowRadius: 2,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <AntDesign
+                  name="arrowright"
+                  size={wp('4')}
+                  color={AppColor.blackOpacity7}
+                />
+              </Neomorph>
+            </TouchableOpacity>
+          ) : (
+            <View style={AppointmentStyle.lottieViewUpcoming}>
+              <Lottie
+                style={AppointmentStyle.lottieStyleUpcoming}
+                source={
+                  buttonColor === '#e4bef7'
+                    ? require('../../assets/animations/completedTag.json')
+                    : require('../../assets/animations/upcomingTag.json')
+                }
+                autoPlay
+              />
+            </View>
+          )}
         </View>
 
         <View style={AppointmentStyle.detailView}>
@@ -86,7 +133,7 @@ const UpcomingAppointmentCard = ({
             size={wp('4')}
             name="wechat"
             style={AppointmentStyle.callIconStyle}></Icon>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={nav}>
             <Text style={AppointmentStyle.destinationStyle}>
               {item.appDestination}
               {p_appDest}
@@ -131,7 +178,7 @@ const UpcomingAppointmentCard = ({
           </View>
         ) : null}
       </Neomorph>
-    </TouchableOpacity>
+    </View>
   );
 };
 
