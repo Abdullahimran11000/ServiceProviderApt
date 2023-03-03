@@ -34,7 +34,7 @@ const Certificates = () => {
       if (arr.assets != undefined) {
         setUploadImageList(oldImageList => [
           ...oldImageList,
-          {id: Math.random(), url: arr.assets[0].uri},
+          {id: uploadImageList.length+1, url: arr.assets[0].uri},
         ]);
         setSelectedImageUri(
           setUploadImageListForZoom([{url: arr.assets[0].uri}]),
@@ -162,6 +162,7 @@ const Certificates = () => {
           data={uploadImageList}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
+          keyExtractor={(item)=>{console.log(item.id)}}
         />
 
         <View style={CertificatesStyle.buttonView}>

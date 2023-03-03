@@ -2,14 +2,13 @@ import React, {useState} from 'react';
 import {SafeAreaView, FlatList} from 'react-native';
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {AppColor} from '../assets/colors/AppColors';
-import CompleteAppointmentCard from '../components/Appointments/CompleteAppointmentCard';
+import AppointmentCard from '../components/Appointments/UpcomingAppointment';
 import Header from '../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
 
-const CompletedApp = () => {
+const CompletedApp = ({navigation}) => {
   const [CompeletdAppointmentsInfo, setCompeletdAppointmentsInfo] = useState([
     {
       id: 1,
@@ -22,7 +21,7 @@ const CompletedApp = () => {
     },
     {
       id: 2,
-      name: 'Ellyse Perry',
+      name: 'Bisma Maroof',
       gender: 'Male',
       age: '32',
       date: '24 March 2022',
@@ -40,14 +39,16 @@ const CompletedApp = () => {
     },
   ]);
   const renderItemCompeletedAppointments = ({item}) => (
-    <CompleteAppointmentCard
+    <AppointmentCard
       item={item}
-      onPress={() => {
+      nextButtonShow={true}
+      buttonColor={'#e4bef7'}
+      nav={() => {
         if (item.appDestination === 'Chat') {
           navigation.navigate('Chat');
-        } else if (item.appDestination === 'Video') {
+        }
+        if (item.appDestination === 'Call') {
           navigation.navigate('VideoCalling');
-          storeCallStatus('Video');
         }
       }}
     />
@@ -64,10 +65,9 @@ const CompletedApp = () => {
       </Header>
       <ScrollView>
         <SafeAreaView style={{marginTop: wp('5'), marginBottom: wp('5')}}>
-        <FlatList
+          <FlatList
             data={CompeletdAppointmentsInfo}
             renderItem={renderItemCompeletedAppointments}
-            keyExtractor={item => item.id}
           />
         </SafeAreaView>
       </ScrollView>

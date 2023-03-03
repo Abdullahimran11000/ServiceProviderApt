@@ -22,10 +22,10 @@ const AppointmentStyle = StyleSheet.create({
   patientNameText: {fontFamily: 'Poppins-Bold', fontSize: wp('4.5'), color: AppColor.black},
   patientGenderText: {fontFamily: 'Poppins-Medium', fontSize: wp('3'), color: AppColor.blackOpacity6, marginTop: wp("-1.5")},
 
-  lottieView: {position: 'absolute', right: wp('-15'), top: wp('-15')},
+  lottieView: {position: 'absolute', right: wp('-17'), top: wp('-17')},
   lottieStyle: {width: wp("30"), height: wp("30")},
 
-  lottieViewUpcoming: {position: 'absolute', right: wp('-20'), top: wp('-20')},
+  lottieViewUpcoming: {position: 'absolute', right: wp('-22'), top: wp('-22')},
   lottieStyleUpcoming: {width: wp("40"), height: wp("40")},
 
   detailView: {display: 'flex', flexDirection: 'row', width: wp('80'), alignSelf: 'center', top: hp('11.5')},

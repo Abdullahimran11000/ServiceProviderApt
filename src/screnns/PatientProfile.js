@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -23,14 +23,14 @@ import Header from '../components/ScreenHeader/Header';
 import moment from 'moment-timezone';
 import CustomModal from '../components/Modal/CustomModal';
 import PatientProfileRender from '../components/RenderFunction/PatientProfileRender';
-import UpcomingAppointmentCard from '../components/Appointments/UpcomingAppointment';
+import AppointmentCard from '../components/Appointments/UpcomingAppointment';
 
 const PatientProfile = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTypeOpen, setModalTypeOpen] = useState(false);
-  const {name, age, gender, date, time, appDes} = route.params;
+  const {name, age, gender, date, time, appDes, color} = route.params;
   const [selectedImageUri, setSelectedImageUri] = useState('');
   const [uploadImageList, setUploadImageList] = useState([]);
 
@@ -79,6 +79,12 @@ const PatientProfile = () => {
     );
   };
 
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('Patient Profile screen is focusing right now!');
+    });
+  }, []);
+
   return (
     <SafeAreaView style={PatientProfileStyle.parentView}>
       <CustomModal
@@ -119,7 +125,7 @@ const PatientProfile = () => {
       <ScrollView>
         <SafeAreaView style={PatientProfileStyle.innerView}>
           <View style={PatientProfileStyle.patientParentCard}>
-            <UpcomingAppointmentCard
+            <AppointmentCard
               item={''}
               p_name={name}
               p_age={age}
@@ -128,6 +134,8 @@ const PatientProfile = () => {
               p_time={time}
               p_appDest={appDes}
               buttonShow={false}
+              nextButtonShow={false}
+              buttonColor={color}
             />
           </View>
 
@@ -157,47 +165,51 @@ const PatientProfile = () => {
             </View>
           )}
 
-          <Neomorph style={PatientProfileStyle.uploadParentView}>
-            <Text style={PatientProfileStyle.uploadTextStyle}>
-              Upload Prescription
-            </Text>
-            <TouchableOpacity onPress={imagePickerHandler}>
-              <Neomorph style={PatientProfileStyle.lottieView}>
-                <Lottie
-                  style={PatientProfileStyle.lottieStyle}
-                  source={require('../assets/animations/Upload.json')}
-                  loop
-                  autoPlay
-                />
+          {color === '#e4bef7' ? null : (
+            <View>
+              <Neomorph style={PatientProfileStyle.uploadParentView}>
+                <Text style={PatientProfileStyle.uploadTextStyle}>
+                  Upload Prescription
+                </Text>
+                <TouchableOpacity onPress={imagePickerHandler}>
+                  <Neomorph style={PatientProfileStyle.lottieView}>
+                    <Lottie
+                      style={PatientProfileStyle.lottieStyle}
+                      source={require('../assets/animations/Upload.json')}
+                      loop
+                      autoPlay
+                    />
+                  </Neomorph>
+                </TouchableOpacity>
               </Neomorph>
-            </TouchableOpacity>
-          </Neomorph>
-          <TouchableOpacity
-            style={PatientProfileStyle.submitButtonView}
-            onPress={() => {
-              if (uploadImageList.length > 0) {
-                uploadImageList.map(item => {
-                  if (item.date === moment().toJSON().slice(0, 10)) {
-                    setModalOpen(true);
-                    setModalTypeOpen(true);
+              <TouchableOpacity
+                style={PatientProfileStyle.submitButtonView}
+                onPress={() => {
+                  if (uploadImageList.length > 0) {
+                    uploadImageList.map(item => {
+                      if (item.date === moment().toJSON().slice(0, 10)) {
+                        setModalOpen(true);
+                        setModalTypeOpen(true);
+                      } else {
+                        setModalOpen(true);
+                        setModalTypeOpen(false);
+                      }
+                    });
                   } else {
                     setModalOpen(true);
                     setModalTypeOpen(false);
                   }
-                });
-              } else {
-                setModalOpen(true);
-                setModalTypeOpen(false);
-              }
-            }}>
-            <NeoButton
-              width={wp('85')}
-              height={hp('8')}
-              backgroundColor={AppColor.primary}
-              borderRadius={wp('7')}>
-              <Text style={PatientProfileStyle.buttonText}>Completed</Text>
-            </NeoButton>
-          </TouchableOpacity>
+                }}>
+                <NeoButton
+                  width={wp('85')}
+                  height={hp('8')}
+                  backgroundColor={AppColor.primary}
+                  borderRadius={wp('7')}>
+                  <Text style={PatientProfileStyle.buttonText}>Completed</Text>
+                </NeoButton>
+              </TouchableOpacity>
+            </View>
+          )}
         </SafeAreaView>
       </ScrollView>
     </SafeAreaView>
