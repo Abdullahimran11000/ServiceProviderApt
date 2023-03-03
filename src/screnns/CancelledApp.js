@@ -4,10 +4,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppointmentStyle} from '../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
 import {AppColor} from '../assets/colors/AppColors';
-import CancelledAppointmentCard from '../components/Appointments/Cancelled';
 import Header from '../components/ScreenHeader/Header';
+import AppointmentCard from '../components/Appointments/UpcomingAppointment';
 import {ScrollView} from 'react-native-virtualized-view';
 
 const CancelledApp = () => {
@@ -41,14 +40,15 @@ const CancelledApp = () => {
     },
   ]);
   const renderItemCancelledAppointments = ({item}) => (
-    <CancelledAppointmentCard
+    <AppointmentCard
       item={item}
-      onPress={() => {
+      buttonColor={''}
+      nav={() => {
         if (item.appDestination === 'Chat') {
           navigation.navigate('Chat');
-        } else if (item.appDestination === 'Video') {
+        }
+        if (item.appDestination === 'Call') {
           navigation.navigate('VideoCalling');
-          storeCallStatus('Video');
         }
       }}
     />
