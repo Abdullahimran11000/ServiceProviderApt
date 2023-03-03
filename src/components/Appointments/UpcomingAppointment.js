@@ -37,7 +37,7 @@ const UpcomingAppointmentCard = ({
         date: item.date,
         time: item.time,
         appDes: item.appDestination,
-        color: buttonColor
+        color: buttonColor,
       });
     }
   };
@@ -102,15 +102,23 @@ const UpcomingAppointmentCard = ({
             </TouchableOpacity>
           ) : (
             <View style={AppointmentStyle.lottieViewUpcoming}>
-              <Lottie
-                style={AppointmentStyle.lottieStyleUpcoming}
-                source={
-                  buttonColor === '#e4bef7'
-                    ? require('../../assets/animations/completedTag.json')
-                    : require('../../assets/animations/upcomingTag.json')
-                }
-                autoPlay
-              />
+              {buttonColor !== '' ? (
+                <Lottie
+                  style={AppointmentStyle.lottieStyleUpcoming}
+                  source={
+                    buttonColor === '#e4bef7'
+                      ? require('../../assets/animations/completedTag.json')
+                      : require('../../assets/animations/upcomingTag.json')
+                  }
+                  autoPlay
+                />
+              ) : (
+                <Lottie
+                  style={AppointmentStyle.lottieStyleUpcoming}
+                  source={require('../../assets/animations/cancelledTag.json')}
+                  autoPlay
+                />
+              )}
             </View>
           )}
         </View>
