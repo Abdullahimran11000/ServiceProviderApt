@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   SafeAreaView,
   View,
@@ -30,52 +30,81 @@ const PasswordManagement = ({navigation}) => {
   const [currentPasswordValidator, setCurrentPasswordValidator] =
     useState(false);
   const [currentPasswordLabel, setCurrentPasswordLabel] = useState(
-    AppColor.black,
+    AppColor.blackOpacity3,
   );
   const [newPassword, setNewPassword] = useState('');
-  const [passwordLabel, setPasswordLabel] = useState(AppColor.black);
+  const [passwordLabel, setPasswordLabel] = useState(AppColor.blackOpacity3);
   const [passwordValidator, setPasswordValidator] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmPasswordLabel, setConfirmPasswordLabel] = useState(
-    AppColor.black,
+    AppColor.blackOpacity3,
   );
   const [confirmPasswordValidator, setConfirmPasswordValidator] =
     useState(false);
 
   const submitHandler = () => {
     if (
-      newPassword === '' ||
-      confirmPassword === '' ||
+      newPassword === '' &&
+      confirmPassword === '' &&
       currentPassword === ''
     ) {
-      setPasswordLabel(AppColor.red);
-      setPasswordValidator(true);
-      setConfirmPasswordLabel(AppColor.red);
-      setConfirmPasswordValidator(true);
       setCurrentPasswordLabel(AppColor.red);
-      setCurrentPasswordValidator(true);
-    } else {
-      if (
-        (newPassword.includes('@') ||
-          newPassword.includes('!') ||
-          newPassword.includes('.')) &&
-        (confirmPassword.includes('@') ||
-          confirmPassword.includes('!') ||
-          confirmPassword.includes('.'))
-      ) {
-        setPasswordValidator(false);
-        setConfirmPasswordValidator(false);
-        setShowPasswordMessageInModal(true);
+      setPasswordLabel(AppColor.red);
+      setConfirmPasswordLabel(AppColor.red);
+    }
+    if (currentPassword === '') {
+      setCurrentPasswordLabel(AppColor.red);
+    }
+    if (newPassword === '') {
+      setPasswordLabel(AppColor.red);
+    }
+    if (confirmPassword === '') {
+      setConfirmPassword(AppColor.red);
+    }
+
+    if (
+      newPassword !== '' &&
+      confirmPassword !== '' &&
+      currentPassword !== ''
+    ) {
+      if (newPassword === confirmPassword) {
+        if (
+          newPassword.includes('@') ||
+          newPassword.includes('/') ||
+          newPassword.includes(',') ||
+          newPassword.includes('.')
+        ) {
+          if (newPassword.length >= 8) {
+            setCurrentPassword('');
+            setNewPassword('');
+            setConfirmPassword('');
+            setCurrentPasswordLabel(AppColor.blackOpacity3);
+            setPasswordLabel(AppColor.blackOpacity3);
+            setConfirmPasswordLabel(AppColor.blackOpacity3);
+            setShowPasswordMessageInModal(true);
+            setConfirmPasswordValidator(false);
+            setPasswordValidator(false)
+            setEye(false)
+          } else {
+            setPasswordValidator(true);
+          }
+        } else {
+          setShowInstructionModal(true);
+        }
       } else {
-        setPasswordValidator(true);
         setConfirmPasswordValidator(true);
-        setCurrentPasswordValidator(true);
       }
     }
   };
+
+  const currentPasswordRef = useRef();
+  const newPasswordRef = useRef();
+  const confirmPasswordRef = useRef();
+
   useEffect(() => {
+    currentPasswordRef.current.focus();
     navigation.addListener('focus', () => {
-      console.log('Password Management screen is focusing right now!');
+      console.log('Password Management Screen is focusing right now!');
     });
   }, [navigation]);
   return (
@@ -115,14 +144,21 @@ const PasswordManagement = ({navigation}) => {
               <View style={PasswordManagementStyle.inputStyleView}>
                 <NeoTextInput
                   width={wp('90')}
-                  styles={{width: wp('70'), position: 'absolute', left: 0}}
+                  value={currentPassword}
+                  autoFocus={true}
+                  reference={currentPasswordRef}
                   marginBottom={wp('3')}
                   placeholder={'Enter your password'}
-                  // secureTextEntry={!eye}
+                  placeholderTextColor={currentPasswordLabel}
                   keyboardType={'ascii-capable'}
+                  returnKeyType={'next'}
                   onChangeText={text => {
                     setCurrentPassword(text);
-                  }}></NeoTextInput>
+                  }}
+                  onSubmitEditing={() => {
+                    newPasswordRef.current.focus();
+                  }}
+                />
               </View>
               {currentPasswordValidator ? (
                 <Text
@@ -157,11 +193,17 @@ const PasswordManagement = ({navigation}) => {
               <View style={PasswordManagementStyle.inputStyleView}>
                 <NeoTextInput
                   width={wp('90')}
-                  styles={{width: wp('90')}}
+                  value={newPassword}
+                  reference={newPasswordRef}
                   marginBottom={wp('3')}
                   placeholder={'Enter your password'}
+                  placeholderTextColor={passwordLabel}
                   secureTextEntry={!eye}
                   keyboardType={'ascii-capable'}
+                  returnKeyType={'next'}
+                  onSubmitEditing={() => {
+                    confirmPasswordRef.current.focus();
+                  }}
                   onChangeText={text => {
                     setNewPassword(text);
                   }}>
@@ -196,7 +238,7 @@ const PasswordManagement = ({navigation}) => {
                     width: wp('90'),
                     alignSelf: 'center',
                   }}>
-                  Enter your New Password
+                  Your password is less than 8 character!
                 </Text>
               ) : null}
             </View>
@@ -210,9 +252,14 @@ const PasswordManagement = ({navigation}) => {
 
               <NeoTextInput
                 width={wp('90')}
+                value={confirmPassword}
+                reference={confirmPasswordRef}
                 placeholder={'Confirm your password'}
+                placeholderTextColor={confirmPasswordLabel}
                 secureTextEntry={!eye}
                 keyboardType={'ascii-capable'}
+                returnKeyType={'next'}
+                onSubmitEditing={submitHandler}
                 onChangeText={text => setConfirmPassword(text)}
               />
               {confirmPasswordValidator ? (
@@ -225,7 +272,7 @@ const PasswordManagement = ({navigation}) => {
                     width: wp('90'),
                     alignSelf: 'center',
                   }}>
-                  Enter your password
+                  Your password is not match with new password.
                 </Text>
               ) : null}
             </View>
@@ -251,7 +298,7 @@ const PasswordManagement = ({navigation}) => {
               setShowPasswordMessageInModal(false);
             }}
             modalButtonPress={() => {
-              navigation.navigate('Dashboard');
+              navigation.goBack('Dashboard');
             }}
             buttonBackgroundColor={AppColor.primary}
             source={require('../assets/animations/success.json')}

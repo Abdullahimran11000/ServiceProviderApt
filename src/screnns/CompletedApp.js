@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {AppColor} from '../assets/colors/AppColors';
-import AppointmentCard from '../components/Appointments/UpcomingAppointment';
+import PatientAppCard from '../components/Appointments/PatientAppCard';
 import Header from '../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
 
@@ -40,7 +40,7 @@ const CompletedApp = ({navigation}) => {
     
   ]);
   const renderItemCompeletedAppointments = ({item}) => (
-    <AppointmentCard
+    <PatientAppCard
       item={item}
       nextButtonShow={true}
       buttonColor={'#e4bef7'}
