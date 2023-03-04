@@ -59,7 +59,7 @@ const PatientProfileRender = ({item, touchPress}) => {
                 color: AppColor.white,
                 marginLeft: wp('0.5'),
               }}>
-              {item.date}
+              {item.id}
             </Text>
             <TouchableOpacity onPress={touchPress}>
               <Neomorph

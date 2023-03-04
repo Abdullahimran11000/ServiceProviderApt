@@ -7,9 +7,9 @@ import {
 import {AppColor} from '../assets/colors/AppColors';
 import Header from '../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
-import UpcomingAppointmentCard from '../components/Appointments/UpcomingAppointment';
+import AppointmentCard from '../components/Appointments/UpcomingAppointment';
 
-const UpcomingApp = () => {
+const UpcomingApp = ({navigation}) => {
   const [UpcomingAppointmentsInfo, setUpcomingAppointmentsInfo] = useState([
     {
       id: 1,
@@ -36,19 +36,21 @@ const UpcomingApp = () => {
       age: '21',
       date: '22 March 2022',
       time: '10:30',
-      appDestination: 'Video',
+      appDestination: 'Call',
     },
   ]);
   const renderItemUpcomingAppointments = ({item}) => (
-    <UpcomingAppointmentCard
+    <AppointmentCard
       item={item}
       buttonShow={true}
-      onPress={() => {
+      nextButtonShow={true}
+      buttonColor={'#dafccf'}
+      nav={() => {
         if (item.appDestination === 'Chat') {
           navigation.navigate('Chat');
-        } else if (item.appDestination === 'Video') {
+        }
+        if (item.appDestination === 'Call') {
           navigation.navigate('VideoCalling');
-          storeCallStatus('Video');
         }
       }}
     />

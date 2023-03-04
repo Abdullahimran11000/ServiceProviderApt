@@ -21,8 +21,7 @@ import {Neomorph} from 'react-native-neomorph-shadows';
 import {ScrollView} from 'react-native-virtualized-view';
 import RNFetchBlob from 'rn-fetch-blob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import CompleteAppointmentCard from '../components/Appointments/CompleteAppointmentCard';
-import UpcomingAppointmentCard from '../components/Appointments/UpcomingAppointment';
+import AppointmentCard from '../components/Appointments/UpcomingAppointment';
 
 const Dashboard = ({pressHandler}) => {
   const navigation = useNavigation();
@@ -53,25 +52,39 @@ const Dashboard = ({pressHandler}) => {
       age: '21',
       date: '22 March 2022',
       time: '10:30',
-      appDestination: 'Video',
+      appDestination: 'Call',
     },
   ]);
 
   const renderItemUpcomingAppointments = ({item}) => (
-    <UpcomingAppointmentCard
+    <AppointmentCard
       item={item}
       buttonShow={true}
-      onPress={() => {
-        console.log('Hello');
+      nextButtonShow={true}
+      buttonColor={'#dafccf'}
+      nav={() => {
+        if (item.appDestination === 'Chat') {
+          navigation.navigate('Chat');
+        }
+        if (item.appDestination === 'Call') {
+          navigation.navigate('VideoCalling');
+        }
       }}
     />
   );
 
   const renderItemCompeletedAppointments = ({item}) => (
-    <CompleteAppointmentCard
+    <AppointmentCard
       item={item}
-      onPress={() => {
-        console.log('Hello');
+      nextButtonShow={true}
+      buttonColor={'#e4bef7'}
+      nav={() => {
+        if (item.appDestination === 'Chat') {
+          navigation.navigate('Chat');
+        }
+        if (item.appDestination === 'Call') {
+          navigation.navigate('VideoCalling');
+        }
       }}
     />
   );
