@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Text} from 'react-native';
+import {SafeAreaView, View, FlatList, Text, ScrollViewBase} from 'react-native';
 import {AppColor} from '../assets/colors/AppColors';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../components/ScreenHeader/Header';
@@ -10,10 +10,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {ScrollView} from 'react-native-virtualized-view';
+
+import PatientAppCard from '../components/Appointments/PatientAppCard';
 import moment from 'moment-timezone';
-import TotalAppointmentCards from '../components/Appointments/TotalAppointmentCards';
+import DoctorBar from '../components/Bar/DoctorBar';
+import {ScrollView} from 'react-native-virtualized-view';
+
+
 import { TotalAppointmentSlots } from '../assets/styles/TotalAppointmentSlots';
+
 const TotalAppSlots = ({date}) => {
   const navigation = useNavigation();
   const [selectedDateInCalender, setSelectedDateInCalender] = useState((moment(date).format('DD MMMM YYYY')));
@@ -34,8 +39,48 @@ const TotalAppSlots = ({date}) => {
     item => item.date === selectedDateInCalender,
   );
 
-  const renderItemofTotalAppSlots = ({item}) => (
-    <TotalAppointmentCards item={item} calenderDate={selectedDateInCalender} />
+  const renderUpcomingApp = ({item}) => (
+    <PatientAppCard
+      item={item}
+      buttonShow={true}
+      buttonColor={'#dafccf'}
+      nav={() => {
+        if (item.appDestination === 'Chat') {
+          navigation.navigate('Chat');
+        }
+        if (item.appDestination === 'Call') {
+          navigation.navigate('VideoCalling');
+        }
+      }}
+    />
+  );
+
+  const renderCompleteApp = ({item}) => (
+    <PatientAppCard
+      item={item}
+      buttonColor={'#e4bef7'}
+      nav={() => {
+        if (item.appDestination === 'Chat') {
+          navigation.navigate('Chat');
+        }
+        if (item.appDestination === 'Call') {
+          navigation.navigate('VideoCalling');
+        }
+      }}
+    />
+  );
+  const renderCancelledApp = ({item}) => (
+    <PatientAppCard
+      item={item}
+      nav={() => {
+        if (item.appDestination === 'Chat') {
+          navigation.navigate('Chat');
+        }
+        if (item.appDestination === 'Call') {
+          navigation.navigate('VideoCalling');
+        }
+      }}
+    />
   );
 
   const datesBlacklistFunc = date => {
@@ -44,6 +89,45 @@ const TotalAppSlots = ({date}) => {
 
   }
   return (
+
+    <ScrollView>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          display: 'flex',
+          backgroundColor: AppColor.whiteShade,
+        }}>
+        <Header
+          styles={{color: 'black'}}
+          stylesText={{color: 'black'}}
+          buttonColor={AppColor.whiteShade}>
+          {'Slots'}
+        </Header>
+        <View style={{marginTop: hp(2)}}>
+          <Neomorph
+            style={{
+              shadowRadius: 4,
+              backgroundColor: AppColor.whiteShade,
+              height: hp(20),
+              width: wp(100),
+            }}>
+            <CalendarStrip
+              calendarAnimation={{type: 'sequence', duration: 30}}
+              daySelectionAnimation={{
+                type: 'border',
+                duration: 100,
+                borderWidth: 1,
+                borderHighlightColor: 'black',
+              }}
+              scrollable={true}
+              // scrollerPaging={true}
+              style={{height: hp(20), paddingTop: 20}}
+              calendarHeaderStyle={{
+                color: 'black',
+                width: wp(60),
+                fontSize: wp(4.5),
+              }} //February
+
     <SafeAreaView style={{flex: 1, backgroundColor: AppColor.whiteShade}}>
       <Header
         styles={{color: 'black'}}
@@ -61,6 +145,7 @@ const TotalAppSlots = ({date}) => {
               scrollable={true}
               style={{height: hp(20), paddingTop: 20}}
               calendarHeaderStyle={{color: 'black', width: wp(60), fontSize: wp(4.5),}} //February
+
               dateNumberStyle={{color: AppColor.primary, fontSize: wp(4)}}
               dateNameStyle={{color: AppColor.primary, fontSize: wp(2.8)}}
               highlightDateNumberStyle={{color: AppColor.black}}
@@ -68,6 +153,54 @@ const TotalAppSlots = ({date}) => {
               disabledDateNameStyle={{color: 'grey'}}
               disabledDateNumberStyle={{color: 'grey'}}
               iconContainer={{flex: 0.1}}
+
+              onDateSelected={date => {
+                setSelectedDateInCalender(moment(date).format('DD MMMM YYYY'));
+              }}
+              datesBlacklist={datesBlacklistFunc}
+            />
+          </Neomorph>
+        </View>
+
+        <View style={{marginTop: hp(2), backgroundColor: AppColor.whiteShade}}>
+          {filterArray.length === 0 ? (
+            <View style={{alignSelf: 'center', width: wp(95), height: hp(60)}}>
+              <Neomorph
+                style={{
+                  width: wp(95),
+                  height: hp(60),
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: wp(5),
+                  backgroundColor: AppColor.whiteShade,
+                  shadowRadius: 4,
+                }}>
+                <Lottie
+                  style={{width: wp(70), height: hp(45)}}
+                  source={require('../assets/animations/notFound.json')}
+                  loop
+                  autoPlay
+                />
+                <Neomorph
+                  style={{
+                    width: wp(90),
+                    height: hp(10),
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: wp(5),
+                    backgroundColor: AppColor.whiteShade,
+                    shadowRadius: 4,
+                  }}>
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-SemiBold',
+                      fontSize: wp(5),
+                      color: AppColor.black,
+                    }}>
+                    No Data Found !
+                  </Text>
+                </Neomorph>
+
               onDateSelected={date => {setSelectedDateInCalender(moment(date).format('DD MMMM YYYY'));}}
               datesBlacklist={datesBlacklistFunc}
             />
@@ -84,18 +217,83 @@ const TotalAppSlots = ({date}) => {
                     <Neomorph style={TotalAppointmentSlots.neomorphButtonThree}>
                       <Text style={TotalAppointmentSlots.textView}> No Appointments Found ! </Text>
                     </Neomorph>
+
               </Neomorph>
             </View>
           ) : (
-            <FlatList
-              data={filterArray}
-              renderItem={renderItemofTotalAppSlots}
-              keyExtractor={item => item.id}
-            />
+            <SafeAreaView>
+              <View
+                style={{
+                  marginTop: wp('5'),
+                  height: hp('40'),
+                  overflow: 'hidden',
+                }}>
+                <DoctorBar
+                  One={"Today's Appointment"}
+                  Two={'See all'}
+                  lottieAdd={filterArray.length > 1}
+                  onPress={() => {
+                    navigation.navigate('UpcomingApp');
+                  }}
+                />
+                <FlatList
+                  data={filterArray}
+                  renderItem={renderUpcomingApp}
+                  listKey={moment().valueOf().toString()}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </View>
+
+              <View
+                style={{
+                  height: hp('32'),
+                  overflow: 'hidden',
+                }}>
+                <DoctorBar
+                  One={'Completed Appointment'}
+                  Two={'See all'}
+                  lottieAdd={filterArray.length > 1}
+                  onPress={() => {
+                    navigation.navigate('CompletedApp');
+                  }}
+                />
+                <FlatList
+                  data={filterArray}
+                  renderItem={renderCompleteApp}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  listKey={moment().valueOf().toString()}
+                />
+              </View>
+
+              <View
+                style={{
+                  height: hp('32'),
+                  marginBottom: wp('5'),
+                  overflow: 'hidden',
+                }}>
+                <DoctorBar
+                  One={'Cancelled Appointment'}
+                  Two={'See all'}
+                  lottieAdd={filterArray.length > 1}
+                  onPress={() => {
+                    navigation.navigate('Cancelled');
+                  }}
+                />
+                <FlatList
+                  data={filterArray}
+                  renderItem={renderCancelledApp}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  listKey={moment().valueOf().toString()}
+                />
+              </View>
+            </SafeAreaView>
           )}
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 export default TotalAppSlots;
