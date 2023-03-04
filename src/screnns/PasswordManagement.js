@@ -32,6 +32,7 @@ const PasswordManagement = ({navigation}) => {
   const [currentPasswordLabel, setCurrentPasswordLabel] = useState(
     AppColor.blackOpacity3,
   );
+  
   const [newPassword, setNewPassword] = useState('');
   const [passwordLabel, setPasswordLabel] = useState(AppColor.blackOpacity3);
   const [passwordValidator, setPasswordValidator] = useState(false);
