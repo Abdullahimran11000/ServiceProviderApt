@@ -14,7 +14,7 @@ import NeoButton from '../NeoMorphButton/NeoButton';
 import {AppointmentStyle} from '../../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
 import {useNavigation} from '@react-navigation/native';
 
-const UpcomingAppointmentCard = ({
+const PatientAppCard = ({
   item,
   p_name,
   p_age,
@@ -190,4 +190,4 @@ const UpcomingAppointmentCard = ({
   );
 };
 
-export default UpcomingAppointmentCard;
+export default PatientAppCard;

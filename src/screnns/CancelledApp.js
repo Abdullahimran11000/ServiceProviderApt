@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import {AppColor} from '../assets/colors/AppColors';
 import Header from '../components/ScreenHeader/Header';
-import AppointmentCard from '../components/Appointments/UpcomingAppointment';
+import PatientAppCard from '../components/Appointments/PatientAppCard';
 import {ScrollView} from 'react-native-virtualized-view';
 
 const CancelledApp = () => {
@@ -16,7 +16,7 @@ const CancelledApp = () => {
     { id: 3,name: 'Miranda Jones',  gender: 'Female',age: '21',date: '22 March 2022',time: '10:30',appDestination: 'Video', },
   ]);
   const renderItemCancelledAppointments = ({item}) => (
-    <AppointmentCard
+    <PatientAppCard
       item={item}
       buttonColor={''}
       nav={() => {
