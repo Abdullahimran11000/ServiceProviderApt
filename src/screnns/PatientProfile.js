@@ -23,7 +23,7 @@ import Header from '../components/ScreenHeader/Header';
 import moment from 'moment-timezone';
 import CustomModal from '../components/Modal/CustomModal';
 import PatientProfileRender from '../components/RenderFunction/PatientProfileRender';
-import AppointmentCard from '../components/Appointments/UpcomingAppointment';
+import PatientAppCard from '../components/Appointments/PatientAppCard';
 
 const PatientProfile = () => {
   const route = useRoute();
@@ -125,7 +125,7 @@ const PatientProfile = () => {
       <ScrollView>
         <SafeAreaView style={PatientProfileStyle.innerView}>
           <View style={PatientProfileStyle.patientParentCard}>
-            <AppointmentCard
+            <PatientAppCard
               item={''}
               p_name={name}
               p_age={age}

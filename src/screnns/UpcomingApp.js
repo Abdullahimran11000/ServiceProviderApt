@@ -7,8 +7,7 @@ import {
 import {AppColor} from '../assets/colors/AppColors';
 import Header from '../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
-import AppointmentCard from '../components/Appointments/UpcomingAppointment';
-
+import PatientAppCard from '../components/Appointments/PatientAppCard';
 const UpcomingApp = ({navigation}) => {
   const [UpcomingAppointmentsInfo, setUpcomingAppointmentsInfo] = useState([
     {
@@ -40,7 +39,7 @@ const UpcomingApp = ({navigation}) => {
     },
   ]);
   const renderItemUpcomingAppointments = ({item}) => (
-    <AppointmentCard
+    <PatientAppCard
       item={item}
       buttonShow={true}
       nextButtonShow={true}

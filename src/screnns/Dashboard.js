@@ -21,7 +21,7 @@ import {Neomorph} from 'react-native-neomorph-shadows';
 import {ScrollView} from 'react-native-virtualized-view';
 import RNFetchBlob from 'rn-fetch-blob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import AppointmentCard from '../components/Appointments/UpcomingAppointment';
+import PatientAppCard from '../components/Appointments/PatientAppCard';
 
 const Dashboard = ({pressHandler}) => {
   const navigation = useNavigation();
@@ -57,7 +57,7 @@ const Dashboard = ({pressHandler}) => {
   ]);
 
   const renderItemUpcomingAppointments = ({item}) => (
-    <AppointmentCard
+    <PatientAppCard
       item={item}
       buttonShow={true}
       nextButtonShow={true}
@@ -74,7 +74,7 @@ const Dashboard = ({pressHandler}) => {
   );
 
   const renderItemCompeletedAppointments = ({item}) => (
-    <AppointmentCard
+    <PatientAppCard
       item={item}
       nextButtonShow={true}
       buttonColor={'#e4bef7'}
