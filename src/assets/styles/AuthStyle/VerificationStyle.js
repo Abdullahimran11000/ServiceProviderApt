@@ -22,6 +22,16 @@ const VerificationStyle = StyleSheet.create({
   textView: {flex: 1 , flexDirection: 'row' , justifyContent: 'space-evenly' , padding: wp('3')},
   buttonView:{alignItems:'center' , marginTop: wp('6'), marginBottom: wp('5')},
   newInputs: {width: wp("16") , height: wp('16') , borderRadius: wp('5') , backgroundColor: AppColor.white , fontFamily: "Poppins-Bold" , fontSize: wp('7') , padding: wp('1') , textAlign: 'center', color: AppColor.black},
+  viewOne:{
+    width: wp('100'),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textOne: {
+    fontFamily: 'Poppins-Light',
+    fontSize: wp('3'),
+    color: AppColor.red,
+  },
 });
 
 export {VerificationStyle};

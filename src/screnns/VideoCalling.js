@@ -81,9 +81,6 @@ const VideoCalling = () => {
               )}
             </TouchableOpacity>
           </NeoButton>
-       
-
-        
           <NeoButton
             width={wp('17')}
             height={wp('17')}

@@ -77,19 +77,15 @@ const Verification = ({navigation}) => {
       <ScrollView>
         <View>
           <View style={VerificationStyle.animationView}>
-            <Lottie
-              style={VerificationStyle.animationStyle}
-              source={require('../assets/animations/appIntroVerification.json')}
-              autoPlay
-            />
+            <Lottie style={VerificationStyle.animationStyle}
+                    source={require('../assets/animations/appIntroVerification.json')}
+                    autoPlay/>
           </View>
           <View style={VerificationStyle.tagView}>
             <Text style={VerificationStyle.tagText}>OTP</Text>
           </View>
           <View style={VerificationStyle.paraView}>
-            <Text style={VerificationStyle.paraText}>
-              Please enter the 4 verification code that we have sent
-            </Text>
+            <Text style={VerificationStyle.paraText}>Please enter the 4 verification code that we have sent</Text>
           </View>
           <View style={VerificationStyle.textView}>
             <View>
@@ -167,20 +163,8 @@ const Verification = ({navigation}) => {
             </View>
           </View>
           {firstTextInputValidator ? (
-            <View
-              style={{
-                width: wp('100'),
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Light',
-                  fontSize: wp('3'),
-                  color: AppColor.red,
-                }}>
-                {textInputLabel}
-              </Text>
+            <View style={VerificationStyle.viewOne}>
+              <Text style={VerificationStyle.textOne}>{textInputLabel}</Text>
             </View>
           ) : null}
           <View style={VerificationStyle.touchableView}>

@@ -4,31 +4,43 @@ import { AppColor } from '../colors/AppColors';
 
 const AppointmentStyle = StyleSheet.create({
      mainView:{display: 'flex' , backgroundColor:AppColor.whiteShade },
+
+     imageBackStyle: {width: wp(100), height: hp(40) , alignSelf:'center'},
+     imageBackView: {
+          width: wp(100),
+          height: hp(40),
+          backgroundColor: AppColor.blackOpacity8,
+        },
+
+     
      viewOneContainer: {alignSelf:"center" ,marginTop: hp(5), marginBottom:hp(5)},
      viewOneContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(18) , alignItems:'center' },
      viewOneContainerInnerViewOne:{flex:5},
      viewOneContainerInnerViewFirstText:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
-     viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
+     viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white, fontSize: wp(10), marginTop: hp(3),fontSize: wp(3.3), width: wp(90)},
+     viewOneContainerInnerViewTwo: {flex: 3,width: wp(30), height: hp(20), alignItems: 'center',justifyContent: 'center',},
 
      viewTwoContainer:{alignSelf:"center", marginTop: hp('5')},
      viewTwoContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(18) , alignItems:'center' },
      viewTwoContainerInnerViewOne:{flex:5 },
      viewTwoContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , alignItems:'center' , justifyContent:'center'},
-
      viewTwoContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
      viewTwoContainerInnerViewOneTextTwo:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
+     
      viewThreeContainer:{alignSelf:"center"},
      viewThreeContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(20) , alignItems:'center' },
      viewThreeContainerInnerViewOne:{flex:5},
      viewThreeContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , alignItems:'center'  ,justifyContent:'center'},
      viewThreeContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5.5) , color:AppColor.white},
      viewThreeContainerInnerViewOneTextTwo:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
+
      viewFourContainer:{alignSelf:"center" ,marginTop: hp(5), marginBottom: hp('5')},
      viewFourContainerInnerView:{flexDirection:"row"  , borderRadius:20 , width: wp(90) , height: hp(20) , alignItems:'center' },
      viewFourContainerInnerViewOne:{flex:5 },
      viewFourContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
      viewFourContainerInnerViewOneTextTwo:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
      viewFourContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , justifyContent:'center' , alignItems:'center'},
+
      viewFiveContainer:{alignSelf:"center"},
      viewFiveContainerInnerView:{flexDirection:"row", borderRadius:20},
      viewFiveContainerInnerViewOne:{flex:5 },
