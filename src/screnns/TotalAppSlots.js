@@ -28,7 +28,6 @@ const TotalAppSlots = ({date}) => {
     { id: 9, name: 'Ellyse Perry', gender: 'Male', age: '32', date: '01 March 2023', time: '10:30', appDestination: 'Chat'},
     { id: 10,name: 'Ellyse Perry', gender: 'Male', age: '32', date: '01 March 2023', time: '10:30', appDestination: 'Chat'},
     { id: 11,name: 'Ellyse Perry', gender: 'Male', age: '32', date: '01 March 2023', time: '10:30', appDestination: 'Chat'},
-    { id: 12,name: 'Ellyse Perry', gender: 'Male', age: '32', date: '01 March 2023', time: '10:30', appDestination: 'Chat'}
     ]);
 
   const filterArray = totalAppointmentsInfo.filter(
