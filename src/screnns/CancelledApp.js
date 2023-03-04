@@ -12,33 +12,9 @@ import {ScrollView} from 'react-native-virtualized-view';
 
 const CancelledApp = () => {
   const [CancelledAppointmentsInfo, setCancelledAppointmentsInfo] = useState([
-    {
-      id: 1,
-      name: 'Amanda Johnson',
-      gender: 'Female',
-      age: '23',
-      date: '22 March 2022',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-    {
-      id: 2,
-      name: 'Ellyse Perry',
-      gender: 'Male',
-      age: '32',
-      date: '24 March 2022',
-      time: '10:30',
-      appDestination: 'Chat',
-    },
-    {
-      id: 3,
-      name: 'Miranda Jones',
-      gender: 'Female',
-      age: '21',
-      date: '22 March 2022',
-      time: '10:30',
-      appDestination: 'Video',
-    },
+    { id: 1,name: 'Amanda Johnson', gender: 'Female', age: '23',date: '22 March 2022', time: '10:30', appDestination: 'Hospital',},
+    { id: 2,name: 'Ellyse Perry',   gender: 'Male',age: '32', date: '24 March 2022', time: '10:30', appDestination: 'Chat', },
+    { id: 3,name: 'Miranda Jones',  gender: 'Female',age: '21',date: '22 March 2022',time: '10:30',appDestination: 'Video', },
   ]);
   const renderItemCancelledAppointments = ({item}) => (
     <CancelledAppointmentCard
