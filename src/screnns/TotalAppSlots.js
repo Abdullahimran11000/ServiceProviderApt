@@ -85,51 +85,11 @@ const TotalAppSlots = ({date}) => {
   );
 
   const datesBlacklistFunc = date => {
-    return date.isoWeekday() === 7; // disable Sundays
-  
-
+    return date.isoWeekday() === 7; // disable Sundays  
   }
   return (
-
-    <ScrollView>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          display: 'flex',
-          backgroundColor: AppColor.whiteShade,
-        }}>
-        <Header
-          styles={{color: 'black'}}
-          stylesText={{color: 'black'}}
-          buttonColor={AppColor.whiteShade}>
-          {'Slots'}
-        </Header>
-        <View style={{marginTop: hp(2)}}>
-          <Neomorph
-            style={{
-              shadowRadius: 4,
-              backgroundColor: AppColor.whiteShade,
-              height: hp(20),
-              width: wp(100),
-            }}>
-            <CalendarStrip
-              calendarAnimation={{type: 'sequence', duration: 30}}
-              daySelectionAnimation={{
-                type: 'border',
-                duration: 100,
-                borderWidth: 1,
-                borderHighlightColor: 'black',
-              }}
-              scrollable={true}
-              // scrollerPaging={true}
-              style={{height: hp(20), paddingTop: 20}}
-              calendarHeaderStyle={{
-                color: 'black',
-                width: wp(60),
-                fontSize: wp(4.5),
-              }} //February
-
-    <SafeAreaView style={{flex: 1, backgroundColor: AppColor.whiteShade}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: AppColor.whiteShade, display:'flex'}}>
+      <ScrollView>
       <Header
         styles={{color: 'black'}}
         stylesText={{color: 'black'}}
@@ -141,86 +101,39 @@ const TotalAppSlots = ({date}) => {
         <Neomorph  style={TotalAppointmentSlots.neomorphButtonOne}>
           <Neomorph style={TotalAppointmentSlots.neomorphButtonInner}>
             <CalendarStrip
-              calendarAnimation={{type: 'sequence', duration: 30}}
-              daySelectionAnimation={{type: 'border', duration: 100, borderWidth: 1, borderHighlightColor: 'black',}}
-              scrollable={true}
-              style={{height: hp(20), paddingTop: 20}}
-              calendarHeaderStyle={{color: 'black', width: wp(60), fontSize: wp(4.5),}} //February
+                calendarAnimation={{type: 'sequence', duration: 30}}
+                daySelectionAnimation={{type: 'border', duration: 100, borderWidth: 1, borderHighlightColor: 'black',}}
+                scrollable={true}
+                style={{height: hp(20), paddingTop: 20}}
+                calendarHeaderStyle={{color: 'black', width: wp(60), fontSize: wp(4.5),}} //February
 
-              dateNumberStyle={{color: AppColor.primary, fontSize: wp(4)}}
-              dateNameStyle={{color: AppColor.primary, fontSize: wp(2.8)}}
-              highlightDateNumberStyle={{color: AppColor.black}}
-              highlightDateNameStyle={{color: AppColor.black}}
-              disabledDateNameStyle={{color: 'grey'}}
-              disabledDateNumberStyle={{color: 'grey'}}
-              iconContainer={{flex: 0.1}}
-
-              onDateSelected={date => {
-                setSelectedDateInCalender(moment(date).format('DD MMMM YYYY'));
-              }}
-              datesBlacklist={datesBlacklistFunc}
-            />
+                dateNumberStyle={{color: AppColor.whiteShade, fontSize: wp(4)}}
+                dateNameStyle={{color: AppColor.whiteShade, fontSize: wp(2.8)}}
+                highlightDateNumberStyle={{color: 'red'}}
+                highlightDateNameStyle={{color: 'red'}}
+                disabledDateNameStyle={{color: 'grey'}}
+                disabledDateNumberStyle={{color: 'grey'}}
+                iconContainer={{flex: 0.1}}
+                dayContainerStyle={{backgroundColor:AppColor.black}}
+                onDateSelected={date => {
+                  setSelectedDateInCalender(moment(date).format('DD MMMM YYYY'));
+                }}
+                datesBlacklist={datesBlacklistFunc}
+              />
+            </Neomorph>
           </Neomorph>
         </View>
-
-        <View style={{marginTop: hp(2), backgroundColor: AppColor.whiteShade}}>
-          {filterArray.length === 0 ? (
-            <View style={{alignSelf: 'center', width: wp(95), height: hp(60)}}>
-              <Neomorph
-                style={{
-                  width: wp(95),
-                  height: hp(60),
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: wp(5),
-                  backgroundColor: AppColor.whiteShade,
-                  shadowRadius: 4,
-                }}>
-                <Lottie
-                  style={{width: wp(70), height: hp(45)}}
-                  source={require('../assets/animations/notFound.json')}
-                  loop
-                  autoPlay
-                />
-                <Neomorph
-                  style={{
-                    width: wp(90),
-                    height: hp(10),
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: wp(5),
-                    backgroundColor: AppColor.whiteShade,
-                    shadowRadius: 4,
-                  }}>
-                  <Text
-                    style={{
-                      fontFamily: 'Poppins-SemiBold',
-                      fontSize: wp(5),
-                      color: AppColor.black,
-                    }}>
-                    No Data Found !
-                  </Text>
+         <View style={TotalAppointmentSlots.viewOne}>
+            {filterArray.length === 0 ? (
+              <View style={TotalAppointmentSlots.viewTwo}>
+                <Neomorph style={TotalAppointmentSlots.neomorphButtonTwo}>
+                  <Lottie style={TotalAppointmentSlots.lottyView}
+                    source={require('../assets/animations/notFound.json')} loop autoPlay/>
+                      <Neomorph style={TotalAppointmentSlots.neomorphButtonThree}>
+                        <Text style={TotalAppointmentSlots.textView}> No Appointments Found ! </Text>
+                      </Neomorph>
                 </Neomorph>
-
-              onDateSelected={date => {setSelectedDateInCalender(moment(date).format('DD MMMM YYYY'));}}
-              datesBlacklist={datesBlacklistFunc}
-            />
-          </Neomorph>
-        </Neomorph>
-      </View>
-      <ScrollView>
-        <View style={TotalAppointmentSlots.viewOne}>
-          {filterArray.length === 0 ? (
-            <View style={TotalAppointmentSlots.viewTwo}>
-              <Neomorph style={TotalAppointmentSlots.neomorphButtonTwo}>
-                <Lottie style={TotalAppointmentSlots.lottyView}
-                  source={require('../assets/animations/notFound.json')} loop autoPlay/>
-                    <Neomorph style={TotalAppointmentSlots.neomorphButtonThree}>
-                      <Text style={TotalAppointmentSlots.textView}> No Appointments Found ! </Text>
-                    </Neomorph>
-
-              </Neomorph>
-            </View>
+              </View>
           ) : (
             <SafeAreaView>
               <View
@@ -267,7 +180,6 @@ const TotalAppSlots = ({date}) => {
                   listKey={moment().valueOf().toString()}
                 />
               </View>
-
               <View
                 style={{
                   height: hp('32'),
@@ -293,8 +205,8 @@ const TotalAppSlots = ({date}) => {
             </SafeAreaView>
           )}
         </View>
+      </ScrollView>
       </SafeAreaView>
-    </ScrollView>
   );
 };
 export default TotalAppSlots;
