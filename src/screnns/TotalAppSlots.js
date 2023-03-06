@@ -13,9 +13,10 @@ import TimeSlotsRender from '../components/RenderFunction/TimeSlotsRender';
 import {ScrollView} from 'react-native-virtualized-view';
 
 const TotalAppSlots = ({date}) => {
+
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
     moment(date).format('DD MMMM'),
-  );
+
   const [calendarDate, setCalendarDate] = useState(moment(),);
     
   const [timeSlots, setTimeSlots] = useState([
@@ -104,6 +105,10 @@ const TotalAppSlots = ({date}) => {
         </View>
       </ScrollView>
     </SafeAreaView>
+
+
+
+  
   );
 };
 export default TotalAppSlots;

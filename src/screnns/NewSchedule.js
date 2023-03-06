@@ -44,6 +44,7 @@ const NewSchedule = () => {
   const [showEndSelectedTime, setShowEndSelectedTime] = 
     useState('end-time');
   const isDateStartVisible = () => {
+    console.log("heloooooooo")
     setShowStartDate(true);
   };
   const isDateStartHide = () => {
@@ -152,7 +153,7 @@ const NewSchedule = () => {
               <View>
                 <DateTimePicker
                   mode="date"
-                  isVisible={showStartDate}
+                  isVisible={true}
                   onConfirm={startDateHandler}
                   onCancel={isDateStartHide}
                 />
@@ -180,12 +181,12 @@ const NewSchedule = () => {
                 </NeoButton>
               </TouchableOpacity>
               <View>
-                <DateTimePicker2
+                {/* <DateTimePicker2
                   mode="date"
                   isVisible={showEndDate}
                   onConfirm={endDateHandler}
                   onCancel={isDateEndHide}
-                />
+                /> */}
               </View>
             </View>
           </View>
@@ -208,13 +209,13 @@ const NewSchedule = () => {
                 </NeoButton>
               </TouchableOpacity>
               <View>
-                <DateTimePicker
+                {/* <DateTimePicker
                   mode="time"
                   isVisible={showStartTime}
                   onConfirm={StartTimeHandler}
                   onCancel={isStartTimeHide}
                   is24Hour={false}
-                />
+                /> */}
               </View>
             </View>
             <View>
@@ -235,13 +236,13 @@ const NewSchedule = () => {
                 </NeoButton>
               </TouchableOpacity>
               <View>
-                <DateTimePicker2
+                {/* <DateTimePicker2
                   mode="time"
                   isVisible={showEndTime}
                   onConfirm={EndTimeHandler}
                   onCancel={isEndTimeHide}
                   is24Hour={false}
-                />
+                /> */}
               </View>
             </View>
           </View>
