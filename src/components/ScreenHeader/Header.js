@@ -16,6 +16,7 @@ const Header = ({
   stylesText,
   buttonColor,
   backgroundColor,
+  lightShadowColor
 }) => {
   const navigation = useNavigation();
   return (
@@ -32,6 +33,7 @@ const Header = ({
               height={wp('8')}
               borderRadius={wp('5')}
               backgroundColor={buttonColor}
+              lightShadowColor={lightShadowColor}
               marginTop={wp('-1')}>
               <TouchableOpacity
                 onPress={() => {

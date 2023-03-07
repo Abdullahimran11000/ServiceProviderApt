@@ -71,8 +71,6 @@ const RecoverPassword = () => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('Recover Password screen is focusing right now!');
-      setNewPassword('');
-      setConfirmPassword('');
     });
   }, [navigation]);
   return (
