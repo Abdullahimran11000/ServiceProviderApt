@@ -17,6 +17,7 @@ import BackButton from '../components/ScrennHeader/BackButton';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import {AppColor} from '../assets/colors/AppColors';
 import CustomModal from '../components/Modal/CustomModal';
+import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
 
 const Verification = ({navigation}) => {
   const firstTextInputRef = useRef(null);
@@ -25,10 +26,10 @@ const Verification = ({navigation}) => {
   const fourthTextInputRef = useRef(null);
   const [showVerificationMessage, setShowVerificationMessage] = useState(false);
 
-  const [firstTextInput, setFirstTextInput] = useState('1');
-  const [secondTextInput, setSecondTextInput] = useState('2');
-  const [thirdTextInput, setThirdTextInput] = useState('3');
-  const [fourthTextInput, setFourthTextInput] = useState('4');
+  const [firstTextInput, setFirstTextInput] = useState('');
+  const [secondTextInput, setSecondTextInput] = useState('');
+  const [thirdTextInput, setThirdTextInput] = useState('');
+  const [fourthTextInput, setFourthTextInput] = useState('');
 
   const [firstTextInputValidator, setFirstTextInputValidator] = useState(false);
   const [secondTextInputValidator, setSecondTextInputValidator] =
@@ -63,10 +64,7 @@ const Verification = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('Verification screen is focusing right now!');
-      // setFirstTextInput('');
-      // setSecondTextInput('');
-      // setThirdTextInput('');
-      // setFourthTextInput('');
+      firstTextInputRef.current.focus()
     });
   }, [navigation]);
   return (
@@ -77,25 +75,29 @@ const Verification = ({navigation}) => {
       <ScrollView>
         <View>
           <View style={VerificationStyle.animationView}>
-            <Lottie style={VerificationStyle.animationStyle}
-                    source={require('../assets/animations/appIntroVerification.json')}
-                    autoPlay/>
+            <Lottie
+              style={VerificationStyle.animationStyle}
+              source={require('../assets/animations/appIntroVerification.json')}
+              autoPlay
+            />
           </View>
           <View style={VerificationStyle.tagView}>
             <Text style={VerificationStyle.tagText}>OTP</Text>
           </View>
           <View style={VerificationStyle.paraView}>
-            <Text style={VerificationStyle.paraText}>Please enter the 4 verification code that we have sent</Text>
+            <Text style={VerificationStyle.paraText}>
+              Please enter the 4 verification code that we have sent
+            </Text>
           </View>
           <View style={VerificationStyle.textView}>
             <View>
               <TextInput
                 value={firstTextInput}
+                ref={firstTextInputRef}
                 autoFocus={true}
                 style={VerificationStyle.newInputs}
                 maxLength={1}
                 keyboardType={'numeric'}
-                ref={firstTextInputRef}
                 returnKeyType={'next'}
                 onChangeText={value => {
                   if (value) {
