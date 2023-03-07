@@ -15,16 +15,16 @@ const MapsStyle = StyleSheet.create({
     cardParagraph: {marginTop: hp(6), marginLeft: wp(26)},
     cardcover: {marginTop: hp(0.3),width: wp(28),height: hp(17.3),borderRadius: 15,},
     textFirst: { fontFamily: 'Poppins-SemiBold'},
-    textSecond: {fontSize: 11, fontFamily: 'Poppins-Regular', color: 'rgba(0,0,0,0.3)'},
+    textSecond: {fontSize: 11, fontFamily: 'Poppins-Regular', color: AppColor.blackOpacity3},
     locationArrowIcon: {position: 'absolute',marginLeft: wp(1),marginTop: hp(0.5),},
-    innerLastViewFirstButton: { marginTop: hp(13), position: 'absolute', marginLeft: wp(30), backgroundColor: '#E8E4E4', height: hp(4), borderRadius: 10, width: wp(20), shadowRadius: '2', justifyContent: 'center', alignItems: 'center',},
-    innerLastViewSecondButton:{position: 'absolute', width: wp(8), marginTop: hp(13), marginLeft: wp(54), backgroundColor: '#c28cde', height: hp(4), borderRadius: 10, justifyContent: 'center', alignItems: 'center', shadowRadius: '1.5',},
-    SearchBar: {display: 'flex',flexDirection: 'row',backgroundColor: 'white',width: wp(80),height: hp(7),margin: hp(2.5),alignItems: 'center',borderRadius: 30,},
+    innerLastViewFirstButton: { marginTop: hp(13), position: 'absolute', marginLeft: wp(30), backgroundColor: AppColor.whiteDark, height: hp(4), borderRadius: 10, width: wp(20), shadowRadius: '2', justifyContent: 'center', alignItems: 'center',},
+    innerLastViewSecondButton:{position: 'absolute', width: wp(8), marginTop: hp(13), marginLeft: wp(54), backgroundColor: AppColor.primary, height: hp(4), borderRadius: 10, justifyContent: 'center', alignItems: 'center', shadowRadius: '1.5',},
+    SearchBar: {display: 'flex',flexDirection: 'row',backgroundColor: AppColor.white ,width: wp(80),height: hp(7),margin: hp(2.5),alignItems: 'center',borderRadius: 30,},
     cardMainView: {width: wp(80),height: hp(20),borderRadius: 20,backgroundColor:AppColor.whiteShade},
-    backbutton: { width: wp('10'),height: wp('10'),borderRadius: wp('9'),backgroundColor: 'rgba(0,0,0,0.07)',marginLeft: wp('2'),alignItems: 'center',justifyContent: 'center'},
+    backbutton: { width: wp('10'),height: wp('10'),borderRadius: wp('9'),backgroundColor:AppColor.blackOpacity9, marginLeft: wp('2'),alignItems: 'center',justifyContent: 'center'},
     textinput: {fontFamily: 'Poppins-Regular',width: wp('40'),marginLeft: wp('1'),fontSize: 14},
-    cardInnerButtonStyle: {  marginTop: hp(13),position: 'absolute',marginLeft: wp(30),backgroundColor: '#F6ECF4',padding: 6,borderRadius: 10,width: wp(20),},
-    cardInnerButtonTextStyle : {color: '#EEEEEE ',fontSize: 11,fontFamily: 'Poppins-SemiBold',marginLeft: hp(2.5),},
+    cardInnerButtonStyle: {  marginTop: hp(13),position: 'absolute',marginLeft: wp(30),backgroundColor: AppColor.whiteCream , padding: 6,borderRadius: 10,width: wp(20),},
+    cardInnerButtonTextStyle : {color: AppColor.whiteDark1,fontSize: 11,fontFamily: 'Poppins-SemiBold',marginLeft: hp(2.5),},
     
 })
 

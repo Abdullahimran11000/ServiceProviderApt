@@ -4,8 +4,8 @@ import { AppColor } from '../../colors/AppColors';
 
 const ChatStyle = StyleSheet.create({
     mainView: {width: wp(100), height: hp(100), alignSelf: 'center'},
-    SearchBar: {display: 'flex',flexDirection: 'row',backgroundColor: 'white',width: wp(14),height: hp(7),margin: hp(2.5),alignItems: 'center',borderRadius: 30,left: wp(2),top: hp(2)},
-    backbutton: { width: wp('10'),height: wp('10'),borderRadius: wp('9'),backgroundColor: 'rgba(0,0,0,0.07)',marginLeft: wp('2'),alignItems: 'center',justifyContent: 'center'},
+    SearchBar: {display: 'flex',flexDirection: 'row',backgroundColor: AppColor.white,width: wp(14),height: hp(7), margin: hp(2.5),alignItems: 'center',borderRadius: 30,left: wp(2),top: hp(2)},
+    backbutton: { width: wp('10'),height: wp('10'),borderRadius: wp('9'),backgroundColor: AppColor.blackOpacity9, marginLeft: wp('2'),alignItems: 'center',justifyContent: 'center'},
     headerView: {bottom: hp(8),justifyContent:"center",left: wp(5)},
     nameText: {position:"absolute",fontFamily:'Poppins-SemiBold',fontSize:12,top:hp(1),left:wp(38)},
     status: {position:"absolute",left:wp (36),top: hp(3),fontFamily:'Poppins-Medium',fontSize:10,left:wp(38),top:hp(4)},
