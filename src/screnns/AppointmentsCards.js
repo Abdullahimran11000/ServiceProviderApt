@@ -32,10 +32,10 @@ const AppointmentsCards = () => {
             lightShadowColor={'rgba(0,0,0,0)'}>
             {'Appointment'}
           </Header>
-          <Text style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
+          <Text style={AppointmentStyle.headerTextOne}>
             Appointment
           </Text>
-          <Text style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
+          <Text style={AppointmentStyle.headerTextTwo}>
             Effective appointment management in healthcare is crucial for
             ensuring patient satisfaction and improved outcomes. prioritizing
             timely appointments to build trust and foster strong doctor-patient

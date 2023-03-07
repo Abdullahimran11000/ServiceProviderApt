@@ -12,39 +12,40 @@ const AppointmentStyle = StyleSheet.create({
           backgroundColor: AppColor.blackOpacity8,
         },
 
-     
+     headerTextOne:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white, marginTop: hp(3),fontSize: wp(8),width:wp(88)},
+     headerTextTwo:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white, marginTop: hp(2),fontSize: wp(3.6),width:wp(88)},
      viewOneContainer: {alignSelf:"center" ,marginTop: hp(5), marginBottom:hp(5)},
      viewOneContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(18) , alignItems:'center' },
      viewOneContainerInnerViewOne:{flex:5},
-     viewOneContainerInnerViewFirstText:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
-     viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white, fontSize: wp(10), marginTop: hp(3),fontSize: wp(3.3), width: wp(90)},
+     viewOneContainerInnerViewFirstText:{fontSize:wp(10), width:wp(47),alignSelf:'center' , color:AppColor.white},
+     viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white, marginTop: hp(1),fontSize: wp(4),width:wp(50),left:wp(3)},
      viewOneContainerInnerViewTwo: {flex: 3,width: wp(30), height: hp(20), alignItems: 'center',justifyContent: 'center',},
 
      viewTwoContainer:{alignSelf:"center", marginTop: hp('5')},
      viewTwoContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(18) , alignItems:'center' },
      viewTwoContainerInnerViewOne:{flex:5 },
      viewTwoContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , alignItems:'center' , justifyContent:'center'},
-     viewTwoContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
+     viewTwoContainerInnerViewOneTextOne:{fontSize:wp(10), width:wp(48),alignSelf:'center' , color:AppColor.white},
      viewTwoContainerInnerViewOneTextTwo:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
      
      viewThreeContainer:{alignSelf:"center"},
      viewThreeContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(20) , alignItems:'center' },
      viewThreeContainerInnerViewOne:{flex:5},
      viewThreeContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , alignItems:'center'  ,justifyContent:'center'},
-     viewThreeContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5.5) , color:AppColor.white},
+     viewThreeContainerInnerViewOneTextOne:{fontSize:wp(10), width:wp(45),alignSelf:'center', color:AppColor.white},
      viewThreeContainerInnerViewOneTextTwo:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
 
      viewFourContainer:{alignSelf:"center" ,marginTop: hp(5), marginBottom: hp('5')},
      viewFourContainerInnerView:{flexDirection:"row"  , borderRadius:20 , width: wp(90) , height: hp(20) , alignItems:'center' },
      viewFourContainerInnerViewOne:{flex:5 },
-     viewFourContainerInnerViewOneTextOne:{fontSize:wp(10), left:wp(5) , color:AppColor.white},
+     viewFourContainerInnerViewOneTextOne:{fontSize:wp(10), width:wp(48),alignSelf:'center', color:AppColor.white},
      viewFourContainerInnerViewOneTextTwo:{fontFamily:'Poppins-SemiBold', left:wp(6), color:AppColor.white},
      viewFourContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , justifyContent:'center' , alignItems:'center'},
 
      viewFiveContainer:{alignSelf:"center"},
      viewFiveContainerInnerView:{flexDirection:"row", borderRadius:20},
      viewFiveContainerInnerViewOne:{flex:5 },
-     viewFiveContainerInnerViewOneTextOne:{fontSize:wp(5), fontFamily:'Poppins-SemiBold', left:wp(6), top: hp(5),color:AppColor.white},
+     viewFiveContainerInnerViewOneTextOne:{fontSize:wp(5), fontFamily:'Poppins-SemiBold', width:wp(45),alignSelf:'center', top: hp(5),color:AppColor.white},
      viewFiveContainerInnerViewTwo:{flex:3 , width:wp(30), height:hp(20) , alignItems:'center' , justifyContent:'center'}, 
 
 })
