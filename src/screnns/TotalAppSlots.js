@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, View, FlatList} from 'react-native';
 import {AppColor} from '../assets/colors/AppColors';
 import Header from '../components/ScreenHeader/Header';
@@ -8,23 +8,24 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Lottie from 'lottie-react-native';
 import moment from 'moment-timezone';
 import TimeSlotsRender from '../components/RenderFunction/TimeSlotsRender';
 import {ScrollView} from 'react-native-virtualized-view';
 
 const TotalAppSlots = ({date}) => {
-
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
     moment(date).format('DD MMMM'),
+  );
 
-  const [calendarDate, setCalendarDate] = useState(moment(),);
-    
+  const [calendarDate, setCalendarDate] = useState(moment());
+
   const [timeSlots, setTimeSlots] = useState([
-    {id: 1, day: '24', month: 'July', startTime: '8:00', endTime: '8:25'},
-    {id: 2, day: '06', month: 'August', startTime: '8:00', endTime: '8:25'},
-    {id: 3, day: '05', month: 'June', startTime: '8:00', endTime: '8:25'},
-    {id: 4, day: '06', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 5, day: '15', month: 'April', startTime: '8:00', endTime: '8:25'},
+    {id: 1, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
+    {id: 2, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
+    {id: 3, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
+    {id: 4, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
+    {id: 5, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 6, day: '10', month: 'March', startTime: '8:25', endTime: '8:50'},
   ]);
 
@@ -74,9 +75,8 @@ const TotalAppSlots = ({date}) => {
               height: wp('40'),
               width: wp('90'),
               borderRadius: wp('4'),
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
-            
             <CalendarStrip
               datesBlacklist={date => {
                 return date.isoWeekday() === 6;
@@ -86,29 +86,73 @@ const TotalAppSlots = ({date}) => {
               startingDate={calendarDate}
               scrollable={true}
               style={{height: wp('35'), width: wp('95'), marginTop: wp('2.5')}}
-              calendarHeaderContainerStyle={{height: wp('15'), justifyContent: 'center', alignItems: 'center', marginBottom: wp('-2'), marginTop: wp('-3')}}
-              calendarHeaderStyle={{fontFamily: "Poppins-Bold", fontSize: wp('5'), color: AppColor.blackOpacity5}}
+              calendarHeaderContainerStyle={{
+                height: wp('15'),
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: wp('-2'),
+                marginTop: wp('-3'),
+              }}
+              calendarHeaderStyle={{
+                fontFamily: 'Poppins-Bold',
+                fontSize: wp('5'),
+                color: AppColor.blackOpacity5,
+              }}
               dayComponentHeight={wp('20')}
               responsiveSizingOffset={wp('2')}
-              dayContainerStyle={{backgroundColor: AppColor.railBorderColor, width: wp('12'), height: wp('18')}}
-              dateNameStyle={{fontFamily: 'Poppins-Light', color: AppColor.white, fontSize: wp('3.5')}}
-              dateNumberStyle={{fontFamily: 'Poppins-Medium', fontSize: wp('4'), color: AppColor.white}}
-              daySelectionAnimation={{type: 'border', duration: 0, borderWidth: 1.5, borderHighlightColor: AppColor.white}}
-              iconLeft={{}} iconRight={{}} onDateSelected={(date)=>{setSelectedDateInCalender(moment(date).format('DD MMMM')); setCalendarDate(moment(date))}}
+              dayContainerStyle={{
+                backgroundColor: AppColor.railBorderColor,
+                width: wp('12'),
+                height: wp('18'),
+              }}
+              dateNameStyle={{
+                fontFamily: 'Poppins-Light',
+                color: AppColor.white,
+                fontSize: wp('3.5'),
+              }}
+              dateNumberStyle={{
+                fontFamily: 'Poppins-Medium',
+                fontSize: wp('4'),
+                color: AppColor.white,
+              }}
+              daySelectionAnimation={{
+                type: 'border',
+                duration: 0,
+                borderWidth: 1.5,
+                borderHighlightColor: AppColor.white,
+              }}
+              iconLeft={{}}
+              iconRight={{}}
+              onDateSelected={date => {
+                setSelectedDateInCalender(moment(date).format('DD MMMM'));
+                setCalendarDate(moment(date));
+              }}
             />
           </Neomorph>
         </View>
-        <View style={{marginTop: wp('5')}}>
-          <FlatList
-            data={filteredArray}
-            renderItem={renderTimeSlots}></FlatList>
-        </View>
+        {filteredArray.length === 0 ? (
+          <View
+            style={{
+              marginTop: wp('10'),
+              width: wp('90'),
+              height: wp('90'),
+              alignSelf: 'center',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+            <Lottie
+              source={require('../assets/animations/noDataFound.json')}
+              style={{width: wp('60'), height: wp('55')}}
+              loop
+              autoPlay/>
+          </View>
+        ) : (
+          <View style={{marginTop: wp('5')}}>
+            <FlatList data={filteredArray} renderItem={renderTimeSlots} />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
-
-
-
-  
   );
 };
 export default TotalAppSlots;
