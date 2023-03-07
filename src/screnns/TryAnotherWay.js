@@ -26,15 +26,21 @@ const TryAnotherWay = () => {
   const [phoneNumberLabel, setPhoneNumberLabel] = useState();
 
   const submitHandler = () => {
-    if (phoneNumber === '') {
-      setPhoneNumberLabel('Enter your number');
-      setPhoneNumberValidator(true);
-    } else {
+      if (phoneNumber === '') 
+      {
+        setPhoneNumberLabel('Enter your number');
+        setPhoneNumberValidator(true);
+      } 
+      else if(phoneNumber.length < 11 || phoneNumber.length > 11)
+      {
+          setPhoneNumberLabel('please enter 11 digit phone-number');
+          setPhoneNumberValidator(true)
+      }
+      else
       {
         setPhoneNumberValidator(false);
         setShowMessage(true);
       }
-    }
   };
   return (
     <SafeAreaView style={{backgroundColor: AppColor.whiteShade, flex: 1}}>
@@ -59,21 +65,11 @@ const TryAnotherWay = () => {
           <PhoneInput
             defaultCode="PK"
             autoFocus
-            textInputStyle={{
-              fontFamily: 'Poppins-SemiBold',
-              fontSize: wp(4),
-              top: hp(0.8),
-            }}
-            textContainerStyle={{
-              borderRadius: 20,
-              backgroundColor: AppColor.white,
-            }}
-            containerStyle={{
-              backgroundColor: AppColor.whiteShade,
-              width: wp(80),
-              height: hp(10),
-            }}
-            codeTextStyle={{fontSize: wp(4)}}
+
+            textInputStyle={TryAnotherWayStyle.textInputStyle}
+            textContainerStyle={TryAnotherWayStyle.textContainerStyle}
+            containerStyle={TryAnotherWayStyle.containerStyle}
+            codeTextStyle={TryAnotherWayStyle.codeTextStyle}
             value={phoneNumber}
             onChangeText={text => {
               setPhoneNumber(text);
@@ -86,23 +82,15 @@ const TryAnotherWay = () => {
       ) : null}
       <View style={TryAnotherWayStyle.viewFour}>
         <TouchableOpacity onPress={submitHandler}>
-          <NeoButton
-            width={wp(90)}
-            height={hp(8)}
-            backgroundColor={AppColor.primary}
-            borderRadius={30}>
+          <NeoButton width={wp(90)} height={hp(8)} backgroundColor={AppColor.primary} borderRadius={30}>
             <Text style={TryAnotherWayStyle.textTwo}> Send </Text>
           </NeoButton>
         </TouchableOpacity>
       </View>
       <CustomModal
         isVisible={showMessage}
-        onBackdropPress={() => {
-          setShowMessage(false);
-        }}
-        modalButtonPress={() => {
-          navigation.navigate('Verification');
-        }}
+        onBackdropPress={() => {setShowMessage(false)}}
+        modalButtonPress={() => {navigation.navigate('Verification');}}
         buttonBackgroundColor={AppColor.primary}
         source={require('../assets/animations/success.json')}
         lottieStyle={{width: wp('35'), height: wp('35')}}
