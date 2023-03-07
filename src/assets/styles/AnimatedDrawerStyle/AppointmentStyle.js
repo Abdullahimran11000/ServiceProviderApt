@@ -8,9 +8,9 @@ import { AppColor } from '../../colors/AppColors';
 const AppointmentStyle = StyleSheet.create({
 
   opcaityView: {flexDirection: 'row',justifyContent: 'space-between',marginHorizontal: 10,marginVertical: wp('10')},
-  opacityButton: {borderRadius: 20,width: wp(28),height: hp(5),backgroundColor:"white",shadowRadius: 4},
+  opacityButton: {borderRadius: 20,width: wp(28),height: hp(5),backgroundColor:AppColor.white,shadowRadius: 4},
   opacityTouchableButton: {borderRadius: 20,width: wp(28),height: hp(5),alignItems: 'center',justifyContent: 'center'},
-  buttonText: {fontSize: wp('3.5'),fontFamily: 'Poppins-Medium',color: 'black'},
+  buttonText: {fontSize: wp('3.5'),fontFamily: 'Poppins-Medium',color: AppColor.black},
 
   appCard : {width: wp('90'), height: hp('18'), alignSelf: 'center', marginTop: wp('3'),  marginLeft: wp('5'), marginBottom: wp('5'), marginRight: wp('5')},
   neoCard2: {width: wp('90'), height: hp('18'), borderRadius: wp('8'), shadowRadius: 4, backgroundColor: AppColor.whiteShade, alignSelf: 'center', overflow: 'hidden'},

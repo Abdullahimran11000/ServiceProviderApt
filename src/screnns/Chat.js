@@ -64,12 +64,12 @@ const Chat = () => {
             <Text style={ChatStyle.nameText}>Dr.Adam Jordan</Text>
             <Text style={ChatStyle.status}>Online</Text>
             <View style={ChatStyle.headerInnerViewIcons}>
-              <Neomorph lightShadowColor="rgba(255,255,255,0.2)" style={ChatStyle.videoCamButtonStyle}>
+              <Neomorph lightShadowColor={AppColor.whiteOpacity2} style={ChatStyle.videoCamButtonStyle}>
                 <TouchableOpacity onPress={() => { navigation.navigate('VideoCalling'); storeOpenCam(true); storeCallStatus('Video') }}>
                   <Ionicons size={wp('5.5')} name="videocam" color={AppColor.primary} />
                 </TouchableOpacity>
               </Neomorph>
-              <Neomorph lightShadowColor="rgba(255,255,255,0.1)" style={ChatStyle.callButtonStyle}>
+              <Neomorph lightShadowColor={AppColor.whiteOpacity1} style={ChatStyle.callButtonStyle}>
                 <TouchableOpacity onPress={() => { navigation.navigate('VideoCalling'); storeOpenCam(false); storeCallStatus('Audio') }}>
                   <Ionicons size={wp('5.5')} name="call" color={AppColor.primary} />
                 </TouchableOpacity>

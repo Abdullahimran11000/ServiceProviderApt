@@ -107,10 +107,10 @@ const LogIn = ({navigation}) => {
                     <Entypo
                       name="eye-with-line"
                       size={wp('4.5')}
-                      color="black"
+                      color={AppColor.black}
                     />
                   ) : (
-                    <Entypo name="eye" size={wp('4.5')} color="black" />
+                    <Entypo name="eye" size={wp('4.5')} color={AppColor.black} />
                   )}
                 </TouchableOpacity>
               </NeoTextInput>

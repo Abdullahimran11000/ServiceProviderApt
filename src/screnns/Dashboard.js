@@ -152,7 +152,7 @@ const Dashboard = ({pressHandler}) => {
                     style={DashboardStyle.notificationButton}>
                     <Ionicons
                       name="notifications-outline"
-                      color="black"
+                      color={AppColor.black}
                       size={wp('6')}
                     />
                   </Neomorph>

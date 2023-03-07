@@ -85,6 +85,7 @@ const AppointmentsCards = () => {
             </TouchableOpacity>
           </View>
           <View style={AppointmentStyle.viewFiveContainer}>
+
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('NewSchedule');
@@ -96,6 +97,10 @@ const AppointmentsCards = () => {
                 backgroundColor={'#b0704d'}
                 darkShadowColor={AppColor.black}
                 marginBottom={hp(5)}>
+
+            <TouchableOpacity onPress={() => {navigation.navigate('NewSchedule'); }}>
+              <NeoButton height={hp(19)} width={wp(90)} borderRadius={20} backgroundColor={AppColor.darkBrown} darkShadowColor={AppColor.black} marginBottom={hp(5)}>
+
                 <View style={AppointmentStyle.viewFiveContainerInnerView}>
                   <View style={AppointmentStyle.viewFiveContainerInnerViewOne}>
                     <Text
@@ -125,6 +130,7 @@ const AppointmentsCards = () => {
             </TouchableOpacity>
           </View>
           <View style={AppointmentStyle.viewThreeContainer}>
+
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('CompletedApp');
@@ -134,6 +140,10 @@ const AppointmentsCards = () => {
                 width={wp(90)}
                 borderRadius={20}
                 backgroundColor={'#708eb3'}>
+
+            <TouchableOpacity onPress={() => {navigation.navigate('CompletedApp'); }}>
+              <NeoButton height={hp(19)} width={wp(90)} borderRadius={20} backgroundColor={AppColor.darkBlue}>
+
                 <View style={AppointmentStyle.viewThreeContainerInnerView}>
                   <View style={AppointmentStyle.viewThreeContainerInnerViewOne}>
                     <Text
@@ -164,6 +174,7 @@ const AppointmentsCards = () => {
             </TouchableOpacity>
           </View>
           <View style={AppointmentStyle.viewTwoContainer}>
+
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('UpcomingApp');
@@ -173,6 +184,10 @@ const AppointmentsCards = () => {
                 width={wp(90)}
                 borderRadius={20}
                 backgroundColor={'#a18eab'}>
+
+            <TouchableOpacity onPress={() => {navigation.navigate('UpcomingApp'); }}>
+              <NeoButton height={hp(19)} width={wp(90)} borderRadius={20} backgroundColor={AppColor.lightPurple}>
+
                 <View style={AppointmentStyle.viewTwoContainerInnerView}>
                   <View style={AppointmentStyle.viewTwoContainerInnerViewOne}>
                     <Text
@@ -202,6 +217,7 @@ const AppointmentsCards = () => {
           </View>
 
           <View style={AppointmentStyle.viewFourContainer}>
+
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('CancelledApp');
@@ -211,6 +227,10 @@ const AppointmentsCards = () => {
                 width={wp(90)}
                 borderRadius={20}
                 backgroundColor={'#fa998e'}>
+
+            <TouchableOpacity onPress={() => {navigation.navigate('CancelledApp');}}>
+              <NeoButton height={hp(19)} width={wp(90)} borderRadius={20} backgroundColor={AppColor.redOpacity1}>
+
                 <View style={AppointmentStyle.viewFourContainerInnerView}>
                   <View style={AppointmentStyle.viewFourContainerInnerViewOne}>
                     <Text
