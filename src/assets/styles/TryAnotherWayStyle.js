@@ -1,3 +1,4 @@
+
 import { StyleSheet } from "react-native";
 import { widthPercentageToDP as wp , heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { AppColor } from "../colors/AppColors";
@@ -13,7 +14,11 @@ const TryAnotherWayStyle = StyleSheet.create({
     textOne: {fontFamily: 'Poppins-Light',fontSize: wp('3.7'),width: wp(90),alignSelf: 'center',marginTop: hp(2),color: AppColor.red},
     viewFour: {alignItems: 'center', marginTop: hp(5)},
     textTwo:{fontFamily: 'Poppins-SemiBold',color: AppColor.white, fontSize: wp(5)},
-    
+    textInputStyle:{fontFamily: 'Poppins-SemiBold',fontSize: wp(4),top: hp(0.5),height:hp(7)},
+    textContainerStyle:{borderRadius: 20,backgroundColor: AppColor.white},
+    containerStyle:{backgroundColor: AppColor.whiteShade,width: wp(80),height: hp(10)},
+    codeTextStyle:{fontSize: wp(4)},
+
 })
 
 export {TryAnotherWayStyle}

@@ -1,4 +1,3 @@
-import {progressiveRenderingEnabled} from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 const AppColor = {
   primary: '#c28cde',
