@@ -3,6 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {AppColor} from '../colors/AppColors';
 
 const VideoCallingStyle = StyleSheet.create({
   nameTimeView: {
@@ -14,14 +15,14 @@ const VideoCallingStyle = StyleSheet.create({
     marginTop: wp('3'),
   },
   text: {
-    color: 'black',
+    color: AppColor.black,
     textAlign: 'center',
     fontFamily: 'Poppins-Bold',
   },
   firstCircleView: {
     width: wp('85'),
     height: hp('46'),
-    backgroundColor: 'rgba(0,0,0,0.1)',
+    backgroundColor: AppColor.blackOpacity1,
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: wp('7'),
@@ -31,7 +32,7 @@ const VideoCallingStyle = StyleSheet.create({
   secondCircleView: {
     width: wp('68'),
     height: hp('37'),
-    backgroundColor: 'rgba(235, 82, 174,0.1)',
+    backgroundColor: AppColor.primaryOpacity2,
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: wp('5'),
@@ -42,7 +43,7 @@ const VideoCallingStyle = StyleSheet.create({
   thirdCircleView: {
     width: wp('50'),
     height: hp('28'),
-    backgroundColor: 'rgba(235, 82, 174,0.1)',
+    backgroundColor: AppColor.primaryOpacity2,
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: wp('5'),
@@ -53,11 +54,14 @@ const VideoCallingStyle = StyleSheet.create({
   imageView: {
     width: wp('33'),
     height: hp('19'),
-    backgroundColor: 'rgba(235, 82, 174,0.1)',
-
+    backgroundColor: AppColor.primaryOpacity2,
     borderRadius: wp('25'),
   },
-  LottieView:{alignItems: 'center', justifyContent: 'center'},
+  LottieView: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
   imageStyle: {
     width: wp('30'),
     height: hp('20'),

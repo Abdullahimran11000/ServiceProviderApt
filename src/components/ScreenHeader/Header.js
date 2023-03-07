@@ -40,7 +40,7 @@ const Header = ({
                 <Ionicons
                   name="chevron-back-sharp"
                   size={wp('6')}
-                  color="black"
+                  color={AppColor.black}
                 />
               </TouchableOpacity>
             </NeoButton>

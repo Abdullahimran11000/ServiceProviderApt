@@ -8,6 +8,6 @@ import {
 const BackButtonStyle = StyleSheet.create({
     headerView: {display: 'flex',flex: 1, flexDirection: 'row',marginTop: wp('4.5'), justifyContent: 'center', height:hp('5.9'), backgroundColor: AppColor.whiteShade},
     iconView: {position: 'absolute', left: 0, paddingLeft: wp('3.5')},
-    headingText: {fontFamily: 'Poppins-Bold', fontSize: wp('4.9'), color: "black"},
+    headingText: {fontFamily: 'Poppins-Bold', fontSize: wp('4.9'), color: AppColor.black},
 })
 export {BackButtonStyle}

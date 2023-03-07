@@ -32,7 +32,7 @@ const LoginStyle = StyleSheet.create({
     alignSelf: 'flex-end',
     marginRight: wp(5),
     fontFamily: 'Poppins-Medium',
-    color: 'black',
+    color: AppColor.black,
   },
 
   icon: {
@@ -48,7 +48,7 @@ const LoginStyle = StyleSheet.create({
   TouchableLogin: {
     borderRadius: wp('5'),
     width: wp('84'),
-    backgroundColor: '#c38cde',
+    backgroundColor: AppColor.primaryOpacity,
   },
 
   LogInButtonView: {
@@ -84,7 +84,7 @@ const LoginStyle = StyleSheet.create({
   },
 
   GoogleText: {
-    color: 'black',
+    color: AppColor.black,
     textAlign: 'center',
     fontFamily: 'Poppins-Light',
     marginLeft: wp('3'),
@@ -96,7 +96,7 @@ const LoginStyle = StyleSheet.create({
     alignItems: 'center',
     marginTop: wp('5'),
   },
-  SignUpText: {fontFamily: 'Poppins-SemiBold', color: 'black'},
+  SignUpText: {fontFamily: 'Poppins-SemiBold', color: AppColor.black},
 });
 
 export {LoginStyle};

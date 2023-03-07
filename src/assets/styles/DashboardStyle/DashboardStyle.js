@@ -21,10 +21,10 @@ const DashboardStyle = StyleSheet.create({
     doctorNameTextStyle: {fontFamily: 'Poppins-Bold', fontSize:wp('4.5'), color: AppColor.black},
 
     doctorCertificatesView: {marginTop:wp('-1')},
-    doctorCertificatesTextStyle: {fontFamily: 'Poppins-Medium', fontSize:wp('3.3'), color: 'rgba(0, 0, 0, 0.4)'},
+    doctorCertificatesTextStyle: {fontFamily: 'Poppins-Medium', fontSize:wp('3.3'), color: AppColor.blackOpacity4},
 
     doctorSpecialistView: {marginTop:wp('-0.6'), flex: 1, flexDirection: 'row', width: wp('43.5')},
-    doctorSpecialistTextStyle: {fontFamily: 'Poppins-Medium', fontSize:wp('3.3'), color: 'rgba(0, 0, 0, 0.4)', position: 'absolute', left: 0},
+    doctorSpecialistTextStyle: {fontFamily: 'Poppins-Medium', fontSize:wp('3.3'), color: AppColor.blackOpacity4, position: 'absolute', left: 0},
     ratingView: {position: 'absolute', right:0},
     doctorLowerFlexViewInnerView: {display: 'flex' , flex: 1, flexDirection: "row"},
     doctorLowerFlexTextOne: {fontFamily: 'Poppins-Bold', fontSize: wp('3'), color: AppColor.black, marginLeft: wp('1')},
@@ -41,7 +41,7 @@ const DashboardStyle = StyleSheet.create({
     warningParaText : {fontFamily: "Poppins-Medium", fontSize: wp('3.5'), color: AppColor.white, textAlign: 'left'},
 
     certificatesButtonView : {display: 'flex', flex: 1, flexDirection: 'row', width: wp('85'), top: wp('3')},
-    neoCertificatesButton : {width: wp('35'), height: wp('8'), borderRadius: wp('5'), shadowRadius: 2, backgroundColor: '#de8c8c', justifyContent: 'center', alignItems: 'center', position: 'absolute', right: 0},
+    neoCertificatesButton : {width: wp('35'), height: wp('8'), borderRadius: wp('5'), shadowRadius: 2, backgroundColor: AppColor.primaryOpacity1, justifyContent: 'center', alignItems: 'center', position: 'absolute', right: 0},
     certificatesButtonText : {fontFamily: "Poppins-Bold", fontSize: wp('3'), color: AppColor.white},
 
     appCard : {width: wp('90'), height: hp('18'), alignSelf: 'center', marginTop: wp('3'),  marginLeft: wp('5'), marginBottom: wp('5'), marginRight: wp('5')},
