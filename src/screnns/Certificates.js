@@ -162,7 +162,7 @@ const Certificates = () => {
           data={uploadImageList}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(item)=>{console.log(item.id)}}
+          keyExtractor={(item)=>{item.id}}
         />
 
         <View style={CertificatesStyle.buttonView}>
