@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView, View, FlatList} from 'react-native';
-import {AppColor} from '../assets/colors/AppColors';
+
 import Header from '../components/ScreenHeader/Header';
 import CalendarStrip from 'react-native-calendar-strip';
 import {Neomorph} from 'react-native-neomorph-shadows';
@@ -12,6 +12,7 @@ import Lottie from 'lottie-react-native';
 import moment from 'moment-timezone';
 import TimeSlotsRender from '../components/RenderFunction/TimeSlotsRender';
 import {ScrollView} from 'react-native-virtualized-view';
+import { AppColor } from '../assets/colors/AppColors';
 
 const TotalAppSlots = ({date}) => {
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
@@ -52,12 +53,14 @@ const TotalAppSlots = ({date}) => {
   };
   return (
     <SafeAreaView
-      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}>
+      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}
+    >
       <ScrollView>
         <Header
           styles={{color: 'black'}}
           stylesText={{color: 'black'}}
-          buttonColor={AppColor.whiteShade}>
+          buttonColor={AppColor.whiteShade}
+        >
           {'Slots'}
         </Header>
         <View
@@ -67,7 +70,8 @@ const TotalAppSlots = ({date}) => {
             alignSelf: 'center',
             marginBottom: wp('2'),
             marginTop: hp('2'),
-          }}>
+          }}
+        >
           <Neomorph
             style={{
               shadowRadius: 4,
@@ -76,14 +80,46 @@ const TotalAppSlots = ({date}) => {
               width: wp('90'),
               borderRadius: wp('4'),
               alignItems: 'center',
-            }}>
-            <CalendarStrip
-              datesBlacklist={date => {
-                return date.isoWeekday() === 6;
+            }}
+          >
+            {/* <CalendarStrip
+              calendarAnimation={{type: 'sequence', duration: 30}}
+              daySelectionAnimation={{
+                type: 'border',
+                duration: 200,
+                borderWidth: 1,
+                borderHighlightColor: AppColor.primary,
               }}
-              calendarAnimation={{type: 'sequence', duration: 2}}
-              selectedDate={calendarDate}
-              startingDate={calendarDate}
+              style={{
+                width:wp('95'),
+                height: 100,
+                paddingTop: 20,
+                paddingBottom: 10,
+                borderRadius: 20,
+              }}
+              calendarHeaderStyle={{color: AppColor.primary}}
+              dateNumberStyle={{color: AppColor.primary}}
+              dateNameStyle={{color: AppColor.primary}}
+              iconContainer={{flex: 0.1}}
+              onDateSelected={selectedDate => {
+                console.log(moment(selectedDate).format('YYYY-MM-DD'));
+                setSelectedDateInCalender(moment(selectedDate).format('DD MMMM'));
+                // setSelectedDateForAssignments(
+                //   moment(selectedDate).format('YYYY-MM-DD'),
+                // );
+                // studentSubmittedAssignments();
+              }}
+              selectedDate={moment()}
+              // markedDates={assingmentDatesForDots}
+              scrollable={true}
+            /> */}
+            <CalendarStrip
+              // datesBlacklist={date => {
+              //   return date.isoWeekday() === 6;
+              // }}
+              calendarAnimation={{type: 'sequence', duration: 30}}
+              selectedDate={moment()}
+              startingDate={moment()}
               scrollable={true}
               style={{height: wp('35'), width: wp('95'), marginTop: wp('2.5')}}
               calendarHeaderContainerStyle={{
@@ -121,11 +157,10 @@ const TotalAppSlots = ({date}) => {
                 borderWidth: 1.5,
                 borderHighlightColor: AppColor.white,
               }}
-              iconLeft={{}}
-              iconRight={{}}
+              
               onDateSelected={date => {
                 setSelectedDateInCalender(moment(date).format('DD MMMM'));
-                setCalendarDate(moment(date));
+                
               }}
             />
           </Neomorph>
@@ -138,13 +173,15 @@ const TotalAppSlots = ({date}) => {
               height: wp('90'),
               alignSelf: 'center',
               alignItems: 'center',
-              justifyContent: 'center'
-            }}>
+              justifyContent: 'center',
+            }}
+          >
             <Lottie
               source={require('../assets/animations/noDataFound.json')}
               style={{width: wp('60'), height: wp('55')}}
               loop
-              autoPlay/>
+              autoPlay
+            />
           </View>
         ) : (
           <View style={{marginTop: wp('5')}}>

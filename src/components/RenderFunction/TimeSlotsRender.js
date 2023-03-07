@@ -18,15 +18,18 @@ const TimeSlotsRender = ({item, onPress}) => {
           marginBottom: wp('5'),
           alignItems: 'center',
           justifyContent: 'center',
+          flexDirection: 'row',
+          paddingHorizontal:wp("2.5")
+          // alignItems: 'center',
         }}>
-        <View
+        {/* <View
           style={{
             display: 'flex',
-            width: wp('85'),
-            flex: 10,
+            // width: wp('85'),
+            flex: 1,
             flexDirection: 'row',
             alignItems: 'center',
-          }}>
+          }}> */}
           <Neomorph
             style={{
               width: wp('19'),
@@ -36,8 +39,9 @@ const TimeSlotsRender = ({item, onPress}) => {
               backgroundColor: AppColor.railFillColor,
               flex: 3,
               alignItems: 'center',
+              justifyContent: 'center',
             }}>
-            <View style={{marginBottom: wp('-3')}}>
+            {/* <View style={{marginBottom: wp('-3')}}> */}
               <Text
                 style={{
                   fontFamily: 'Poppins-Bold',
@@ -46,7 +50,7 @@ const TimeSlotsRender = ({item, onPress}) => {
                 }}>
                 {item.day}
               </Text>
-            </View>
+            {/* </View> */}
             <Text
               style={{
                 fontFamily: 'Poppins-Light',
@@ -105,7 +109,7 @@ const TimeSlotsRender = ({item, onPress}) => {
                 color={AppColor.white}></FontAwesome>
             </Neomorph>
           </TouchableOpacity>
-        </View>
+        {/* </View> */}
       </Neomorph>
     </View>
   );
