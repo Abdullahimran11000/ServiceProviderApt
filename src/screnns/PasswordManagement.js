@@ -60,7 +60,7 @@ const PasswordManagement = ({navigation}) => {
       setPasswordLabel(AppColor.red);
     }
     if (confirmPassword === '') {
-      setConfirmPassword(AppColor.red);
+      setConfirmPasswordLabel(AppColor.red);
     }
 
     if (
