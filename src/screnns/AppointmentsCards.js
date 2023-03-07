@@ -26,9 +26,9 @@ const AppointmentsCards = () => {
         source={require('../assets/images/AppointmentsIntroPic.jpg')}>
         <View style={AppointmentStyle.imageBackView}>
           <Header
-            styles={{color: '#f7c6d9'}}
-            stylesText={{color: '#f7c6d9'}}
-            buttonColor={'#f7c6d9'}
+            styles={{color: AppColor.lightPink}}
+            stylesText={{color: AppColor.lightPink}}
+            buttonColor={AppColor.lightPink}
             lightShadowColor={'rgba(0,0,0,0)'}>
             {'Appointment'}
           </Header>
@@ -51,9 +51,9 @@ const AppointmentsCards = () => {
                 navigation.navigate('TotalAppSlots');
               }}>
               <NeoButton
-                height={hp(19)}
-                width={wp(90)}
-                borderRadius={20}
+                height={hp('20')}
+                width={wp('90')}
+                borderRadius={wp('6')}
                 backgroundColor={AppColor.blackOpacity4}>
                 <View style={AppointmentStyle.viewOneContainerInnerView}>
                   <View style={AppointmentStyle.viewOneContainerInnerViewOne}>
@@ -61,20 +61,18 @@ const AppointmentsCards = () => {
                       style={
                         AppointmentStyle.viewOneContainerInnerViewFirstText
                       }>
-                      {' '}
-                      105{' '}
+                      105
                     </Text>
                     <Text
                       style={
                         AppointmentStyle.viewOneContainerInnerViewSecondText
                       }>
-                      {' '}
-                      Total Appointment Slots{' '}
+                      Total Appointment Slots
                     </Text>
                   </View>
                   <View style={AppointmentStyle.viewOneContainerInnerViewTwo}>
                     <Lottie
-                      style={{height: hp(17)}}
+                      style={{height: hp('17')}}
                       source={require('../assets/animations/slots.json')}
                       loop
                       autoPlay
@@ -90,31 +88,30 @@ const AppointmentsCards = () => {
                 navigation.navigate('NewSchedule');
               }}>
               <NeoButton
-                height={hp(19)}
-                width={wp(90)}
-                borderRadius={20}
+                height={hp('20')}
+                width={wp('90')}
+                borderRadius={wp('6')}
                 backgroundColor={AppColor.darkBrown}
                 darkShadowColor={AppColor.black}
-                marginBottom={hp(5)}>
+                marginBottom={hp('5')}>
                 <View style={AppointmentStyle.viewFiveContainerInnerView}>
                   <View style={AppointmentStyle.viewFiveContainerInnerViewOne}>
                     <Text
                       style={
                         AppointmentStyle.viewFiveContainerInnerViewOneTextOne
                       }>
-                      Add New{' '}
+                      Add New
                     </Text>
                     <Text
                       style={
                         AppointmentStyle.viewFiveContainerInnerViewOneTextOne
                       }>
-                      {' '}
-                      Schedule{' '}
+                      Schedule
                     </Text>
                   </View>
                   <View style={AppointmentStyle.viewFiveContainerInnerViewTwo}>
                     <Lottie
-                      style={{height: hp(30)}}
+                      style={{height: hp('30')}}
                       source={require('../assets/animations/addNewSchedule.json')}
                       loop
                       autoPlay
@@ -130,9 +127,9 @@ const AppointmentsCards = () => {
                 navigation.navigate('CompletedApp');
               }}>
               <NeoButton
-                height={hp(19)}
-                width={wp(90)}
-                borderRadius={20}
+                height={hp('20')}
+                width={wp('90')}
+                borderRadius={wp('6')}
                 backgroundColor={AppColor.darkBlue}>
                 <View style={AppointmentStyle.viewThreeContainerInnerView}>
                   <View style={AppointmentStyle.viewThreeContainerInnerViewOne}>
@@ -140,20 +137,18 @@ const AppointmentsCards = () => {
                       style={
                         AppointmentStyle.viewThreeContainerInnerViewOneTextOne
                       }>
-                      {' '}
-                      20{' '}
+                      20
                     </Text>
                     <Text
                       style={
                         AppointmentStyle.viewThreeContainerInnerViewOneTextTwo
                       }>
-                      {' '}
-                      Completed Appointments{' '}
+                      Completed Appointments
                     </Text>
                   </View>
                   <View style={AppointmentStyle.viewThreeContainerInnerViewTwo}>
                     <Lottie
-                      style={{height: hp(11)}}
+                      style={{height: hp('11')}}
                       source={require('../assets/animations/completedAppointments.json')}
                       loop
                       autoPlay
@@ -169,9 +164,9 @@ const AppointmentsCards = () => {
                 navigation.navigate('UpcomingApp');
               }}>
               <NeoButton
-                height={hp(19)}
-                width={wp(90)}
-                borderRadius={20}
+                height={hp('20')}
+                width={wp('90')}
+                borderRadius={wp('6')}
                 backgroundColor={AppColor.lightPurple}>
                 <View style={AppointmentStyle.viewTwoContainerInnerView}>
                   <View style={AppointmentStyle.viewTwoContainerInnerViewOne}>
@@ -179,7 +174,7 @@ const AppointmentsCards = () => {
                       style={
                         AppointmentStyle.viewTwoContainerInnerViewOneTextOne
                       }>
-                      10{' '}
+                      10
                     </Text>
                     <Text
                       style={
@@ -190,7 +185,7 @@ const AppointmentsCards = () => {
                   </View>
                   <View style={AppointmentStyle.viewTwoContainerInnerViewTwo}>
                     <Lottie
-                      style={{height: hp(17)}}
+                      style={{height: hp('17')}}
                       source={require('../assets/animations/UpcomingAppointments.json')}
                       loop
                       autoPlay
@@ -207,9 +202,9 @@ const AppointmentsCards = () => {
                 navigation.navigate('CancelledApp');
               }}>
               <NeoButton
-                height={hp(19)}
-                width={wp(90)}
-                borderRadius={20}
+                height={hp('20')}
+                width={wp('90')}
+                borderRadius={wp('6')}
                 backgroundColor={AppColor.redOpacity1}>
                 <View style={AppointmentStyle.viewFourContainerInnerView}>
                   <View style={AppointmentStyle.viewFourContainerInnerViewOne}>
@@ -228,7 +223,7 @@ const AppointmentsCards = () => {
                   </View>
                   <View style={AppointmentStyle.viewFourContainerInnerViewTwo}>
                     <Lottie
-                      style={{height: hp(30)}}
+                      style={{height: hp('30')}}
                       source={require('../assets/animations/cancelledAppointments.json')}
                       loop
                       autoPlay
