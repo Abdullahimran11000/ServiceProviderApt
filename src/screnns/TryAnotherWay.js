@@ -17,7 +17,7 @@ import Lottie from 'lottie-react-native';
 import NeoButton from '../components/NeoMorphButton/NeoButton';
 import CustomModal from '../components/Modal/CustomModal';
 import {useNavigation} from '@react-navigation/native';
-import { TryAnotherWayStyle } from '../assets/styles/TryAnotherWayStyle';
+import {TryAnotherWayStyle} from '../assets/styles/TryAnotherWayStyle';
 const TryAnotherWay = () => {
   const navigation = useNavigation();
   const [showMessage, setShowMessage] = useState(false);
@@ -45,21 +45,27 @@ const TryAnotherWay = () => {
   return (
     <SafeAreaView style={{backgroundColor: AppColor.whiteShade, flex: 1}}>
       <View style={TryAnotherWayStyle.viewOne}>
-        <Neomorph style={TryAnotherWayStyle.neomorphOne}>
-          <Lottie style={TryAnotherWayStyle.lottyStyle}
-                  source={require('../assets/animations/phone_number.json')}
-                  autoPlay/>
+        <Neomorph inner style={TryAnotherWayStyle.neomorphOne}>
+          <Neomorph style={TryAnotherWayStyle.neomorphThree}>
+            <Neomorph inner style={TryAnotherWayStyle.neomorphFour}>
+              <Lottie
+                style={TryAnotherWayStyle.lottyStyle}
+                source={require('../assets/animations/phone_number.json')}
+                autoPlay
+              />
+            </Neomorph>
+          </Neomorph>
         </Neomorph>
       </View>
       <View style={TryAnotherWayStyle.viewTwo}>
         <Text style={TryAnotherWayStyle.text}> Enter Your Phone Number </Text>
       </View>
       <View style={TryAnotherWayStyle.viewThree}>
-        <Neomorph
-          style={TryAnotherWayStyle.neomorphTwo}>
+        <Neomorph style={TryAnotherWayStyle.neomorphTwo}>
           <PhoneInput
             defaultCode="PK"
             autoFocus
+
             textInputStyle={TryAnotherWayStyle.textInputStyle}
             textContainerStyle={TryAnotherWayStyle.textContainerStyle}
             containerStyle={TryAnotherWayStyle.containerStyle}

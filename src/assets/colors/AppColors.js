@@ -35,6 +35,7 @@ const AppColor = {
   blackOpacity2: 'rgba(0, 0, 0, 0.2)',
   blackOpacity1: 'rgba(0, 0, 0, 0.1)',
   grey:'#808080',
-  purpleOpacity:'rgba(195, 140, 222, 0.4)'
+  purpleOpacity:'rgba(195, 140, 222, 0.4)',
+  lightPink: '#f7c6d9'
 };
 export {AppColor};
