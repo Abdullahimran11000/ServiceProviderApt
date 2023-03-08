@@ -110,7 +110,7 @@ const Dashboard = ({pressHandler}) => {
               <TouchableOpacity style={DashboardStyle.doctorProfileImageCont}>
                 <Image
                   style={DashboardStyle.doctorProfileImage}
-                  source={require('../assets/images/selfieOne.jpg')}
+                  source={require('../../assets/images/selfieOne.jpg')}
                   resizeMode="cover"
                 />
               </TouchableOpacity>

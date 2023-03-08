@@ -60,7 +60,7 @@ const Chat = () => {
             </TouchableOpacity>
           </View>
           <View style={ChatStyle.headerView}>
-            <Image style={ChatStyle.image} source={require('../assets/images/profile.jpg')} />
+            <Image style={ChatStyle.image} source={require('../../../../assets/images/profile.jpg')} />
             <Text style={ChatStyle.nameText}>Dr.Adam Jordan</Text>
             <Text style={ChatStyle.status}>Online</Text>
             <View style={ChatStyle.headerInnerViewIcons}>

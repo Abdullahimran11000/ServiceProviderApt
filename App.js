@@ -11,7 +11,6 @@ import Congratulation from './src/screnns/ForgotPassword/Congratulation';
 import Drawer from './src/screnns/Drawer/Drawer';
 import Dashboard from './src/screnns/Drawer/Dashboard';
 import MyProfile from './src/screnns/Drawer/MyProfile';
-import Message from './src/screnns/Message';
 import VideoCalling from './src/screnns/Drawer/AppointmetCard/PatientAppointment/VideoCalling';
 import Chat from './src/screnns/Drawer/AppointmetCard/PatientAppointment/Chat';
 import NewSchedule from './src/screnns/Drawer/AppointmetCard/NewSchedule';
@@ -49,7 +48,6 @@ const App = () => {
           <Stack.Screen name="Certificates" component={Certificates}/>
           <Stack.Screen name="Wallet" component={Wallet}/>
           <Stack.Screen name="MyProfile" component={MyProfile} />
-          <Stack.Screen name="Message" component={Message} />
           <Stack.Screen name="Chat" component={Chat} />
           <Stack.Screen name="VideoCalling" component={VideoCalling} />
           <Stack.Screen name="AppointmentsCards" component={AppointmentsCards}/>
