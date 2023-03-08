@@ -29,7 +29,7 @@ const NeoTextInput = ({
     <View
       style={{
         width: wp('90'),
-        height: hp('8.5'),
+        height: hp('7.5'),
         alignSelf: 'center',
         borderRadius: wp('3'),
         marginBottom: marginBottom,
@@ -37,7 +37,7 @@ const NeoTextInput = ({
       <Neomorph
         style={{
           width: width,
-          height: hp('8.5'),
+          height: hp('7.5'),
           borderRadius: wp('3'),
           marginTop: wp('2'),
           shadowRadius: 4,

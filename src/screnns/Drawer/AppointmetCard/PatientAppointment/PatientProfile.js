@@ -11,19 +11,19 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Feather from 'react-native-vector-icons/Feather';
-import {AppColor} from '../assets/colors/AppColors';
+import {AppColor} from '../../../../assets/colors/AppColors';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import Lottie from 'lottie-react-native';
 import {ScrollView} from 'react-native-virtualized-view';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
+import NeoButton from '../../../../components/NeoMorphButton/NeoButton';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {PatientProfileStyle} from '../assets/styles/PatientProfileStyle';
-import Header from '../components/ScreenHeader/Header';
+import {PatientProfileStyle} from '../../../../assets/styles/PatientProfileStyle';
+import Header from '../../../../components/ScreenHeader/Header';
 import moment from 'moment-timezone';
-import CustomModal from '../components/Modal/CustomModal';
-import PatientProfileRender from '../components/RenderFunction/PatientProfileRender';
-import PatientAppCard from '../components/Appointments/PatientAppCard';
+import CustomModal from '../../../../components/Modal/CustomModal';
+import PatientProfileRender from '../../../../components/RenderFunction/PatientProfileRender';
+import PatientAppCard from '../../../../components/Appointments/PatientAppCard';
 
 const PatientProfile = () => {
   const route = useRoute();
@@ -94,8 +94,8 @@ const PatientProfile = () => {
         }}
         source={
           modalTypeOpen
-            ? require('../assets/animations/success.json')
-            : require('../assets/animations/failed.json')
+            ? require('../../../../assets/animations/success.json')
+            : require('../../../../assets/animations/failed.json')
         }
         lottieStyle={{width: wp('35'), height: wp('35')}}
         text={
@@ -175,7 +175,7 @@ const PatientProfile = () => {
                   <Neomorph style={PatientProfileStyle.lottieView}>
                     <Lottie
                       style={PatientProfileStyle.lottieStyle}
-                      source={require('../assets/animations/Upload.json')}
+                      source={require('../../../../assets/animations/Upload.json')}
                       loop
                       autoPlay
                     />
@@ -201,10 +201,10 @@ const PatientProfile = () => {
                   }
                 }}>
                 <NeoButton
-                  width={wp('85')}
-                  height={hp('8')}
+                  width={wp('55')}
+                  height={hp('6')}
                   backgroundColor={AppColor.primary}
-                  borderRadius={wp('7')}>
+                  borderRadius={wp('10')}>
                   <Text style={PatientProfileStyle.buttonText}>Completed</Text>
                 </NeoButton>
               </TouchableOpacity>

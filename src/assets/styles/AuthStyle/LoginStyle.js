@@ -22,9 +22,9 @@ const LoginStyle = StyleSheet.create({
   },
 
   TextStyle: {
-    marginLeft: wp('0'),
     color: AppColor.black,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: wp('4.5')
   },
 
   ForgotText: {
@@ -46,9 +46,9 @@ const LoginStyle = StyleSheet.create({
     alignItems: 'center',
   },
   TouchableLogin: {
-    borderRadius: wp('5'),
-    width: wp('84'),
-    backgroundColor: AppColor.primaryOpacity,
+    borderRadius: wp('10'),
+    width: wp('70'),
+    backgroundColor: AppColor.primary,
   },
 
   LogInButtonView: {

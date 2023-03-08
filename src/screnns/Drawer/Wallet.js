@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import {WalletStyle} from '../assets/styles/WalletStyle';
-import {AppColor} from '../assets/colors/AppColors';
+import {WalletStyle} from '../../assets/styles/WalletStyle';
+import {AppColor} from '../../assets/colors/AppColors';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
 import Modal from 'react-native-modal';
@@ -17,10 +17,10 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
+import NeoButton from '../../components/NeoMorphButton/NeoButton';
 import {Neomorph} from 'react-native-neomorph-shadows';
-import Header from '../components/ScreenHeader/Header';
-import CustomModal from '../components/Modal/CustomModal';
+import Header from '../../components/ScreenHeader/Header';
+import CustomModal from '../../components/Modal/CustomModal';
 import {useNavigation} from '@react-navigation/native';
 
 const Wallet = () => {
@@ -59,8 +59,8 @@ const Wallet = () => {
           }}
           source={
             modalTypeOpen
-              ? require('../assets/animations/paymentDone.json')
-              : require('../assets/animations/paymentError.json')
+              ? require('../../assets/animations/paymentDone.json')
+              : require('../../assets/animations/paymentError.json')
           }
           lottieStyle={{width: wp('35'), height: wp('35')}}
           text={

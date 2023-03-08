@@ -4,9 +4,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../assets/colors/AppColors';
-import Header from '../components/ScreenHeader/Header';
-import PatientAppCard from '../components/Appointments/PatientAppCard';
+import {AppColor} from '../../../../assets/colors/AppColors';
+import Header from '../../../../components/ScreenHeader/Header';
+import PatientAppCard from '../../../../components/Appointments/PatientAppCard';
 import {ScrollView} from 'react-native-virtualized-view';
 
 const CancelledApp = () => {

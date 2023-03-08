@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import {SafeAreaView, FlatList} from 'react-native';
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../assets/colors/AppColors';
-import Header from '../components/ScreenHeader/Header';
+import {AppColor} from '../../../../assets/colors/AppColors';
+import PatientAppCard from '../../../../components/Appointments/PatientAppCard';
+import Header from '../../../../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
-import PatientAppCard from '../components/Appointments/PatientAppCard';
-const UpcomingApp = ({navigation}) => {
-  const [UpcomingAppointmentsInfo, setUpcomingAppointmentsInfo] = useState([
+
+const CompletedApp = ({navigation}) => {
+  const [CompeletdAppointmentsInfo, setCompeletdAppointmentsInfo] = useState([
     {
       id: 1,
       name: 'Amanda Johnson',
@@ -21,7 +21,7 @@ const UpcomingApp = ({navigation}) => {
     },
     {
       id: 2,
-      name: 'Ellyse Perry',
+      name: 'Bisma Maroof',
       gender: 'Male',
       age: '32',
       date: '24 March 2022',
@@ -35,15 +35,15 @@ const UpcomingApp = ({navigation}) => {
       age: '21',
       date: '22 March 2022',
       time: '10:30',
-      appDestination: 'Call',
+      appDestination: 'Video',
     },
+    
   ]);
-  const renderItemUpcomingAppointments = ({item}) => (
+  const renderItemCompeletedAppointments = ({item}) => (
     <PatientAppCard
       item={item}
-      buttonShow={true}
       nextButtonShow={true}
-      buttonColor={'#dafccf'}
+      buttonColor={'#e4bef7'}
       nav={() => {
         if (item.appDestination === 'Chat') {
           navigation.navigate('Chat');
@@ -62,14 +62,13 @@ const UpcomingApp = ({navigation}) => {
         styles={{color: AppColor.black}}
         stylesText={{color: AppColor.black}}
         backgroundColor={AppColor.whiteShade}>
-        {'Upcoming'}
+        {'Completed'}
       </Header>
       <ScrollView>
         <SafeAreaView style={{marginTop: wp('5'), marginBottom: wp('5')}}>
           <FlatList
-            data={UpcomingAppointmentsInfo}
-            renderItem={renderItemUpcomingAppointments}
-            keyExtractor={item => item.id}
+            data={CompeletdAppointmentsInfo}
+            renderItem={renderItemCompeletedAppointments}
           />
         </SafeAreaView>
       </ScrollView>
@@ -77,4 +76,4 @@ const UpcomingApp = ({navigation}) => {
   );
 };
 
-export default UpcomingApp;
+export default CompletedApp;

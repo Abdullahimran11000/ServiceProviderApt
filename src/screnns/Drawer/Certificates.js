@@ -12,16 +12,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../assets/colors/AppColors';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
+import {AppColor} from '../../assets/colors/AppColors';
+import NeoButton from '../../components/NeoMorphButton/NeoButton';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {useNavigation} from '@react-navigation/core';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import {CertificatesStyle} from '../assets/styles/CertificatesStyle';
-import Header from '../components/ScreenHeader/Header';
+import {CertificatesStyle} from '../../assets/styles/CertificatesStyle';
+import Header from '../../components/ScreenHeader/Header';
 
 const Certificates = () => {
   const navigation = useNavigation();
@@ -34,7 +34,7 @@ const Certificates = () => {
       if (arr.assets != undefined) {
         setUploadImageList(oldImageList => [
           ...oldImageList,
-          {id: uploadImageList.length+1, url: arr.assets[0].uri},
+          {id: uploadImageList.length + 1, url: arr.assets[0].uri},
         ]);
         setSelectedImageUri(
           setUploadImageListForZoom([{url: arr.assets[0].uri}]),
@@ -120,40 +120,6 @@ const Certificates = () => {
                 />
               </View>
             )}
-            {/* <View
-              style={{
-                display: 'flex',
-                flex: 1.5,
-                flexDirection: 'row',
-                width: wp('70'),
-                alignSelf: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <TouchableOpacity
-                onPress={() => {
-                  console.log(uploadImageList);
-                }}>
-                <NeoButton
-                  width={wp('25')}
-                  height={hp('6')}
-                  borderRadius={wp('6')}
-                  backgroundColor={AppColor.whiteShade}>
-                  <Text
-                    style={{fontFamily: 'Poppins-Bold', fontSize: wp('3.5')}}>
-                    Remove
-                  </Text>
-                </NeoButton>
-              </TouchableOpacity>
-              <NeoButton
-                width={wp('25')}
-                height={hp('6')}
-                borderRadius={wp('6')}
-                backgroundColor={AppColor.whiteShade}>
-                <Text style={{fontFamily: 'Poppins-Bold', fontSize: wp('3.5')}}>
-                  Approved
-                </Text>
-              </NeoButton>
-            </View> */}
           </Neomorph>
         </View>
 
@@ -162,16 +128,15 @@ const Certificates = () => {
           data={uploadImageList}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(item)=>{item.id}}
         />
 
         <View style={CertificatesStyle.buttonView}>
           <TouchableOpacity onPress={imagePickerHandler}>
             <NeoButton
-              width={wp('85')}
-              height={hp('8')}
+              width={wp('55')}
+              height={hp('6')}
               backgroundColor={AppColor.primary}
-              borderRadius={wp('7')}>
+              borderRadius={wp('10')}>
               <Text style={CertificatesStyle.buttonText}>UPLOAD</Text>
             </NeoButton>
           </TouchableOpacity>

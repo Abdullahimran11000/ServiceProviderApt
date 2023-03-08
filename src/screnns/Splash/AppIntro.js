@@ -1,20 +1,20 @@
 import React from 'react';
 import {SafeAreaView, View, Text, ScrollView} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {AppIntroStyle} from '../assets/styles/AuthStyle/AppIntroStyle';
+import {AppIntroStyle} from '../../assets/styles/AuthStyle/AppIntroStyle';
 import Lottie from 'lottie-react-native';
-import SwipeButton from '../components/Swiper/SwipeButton';
+import SwipeButton from '../../components/Swiper/SwipeButton';
 
-const AppIntro = (props) => {
+const AppIntro = () => {
   const slides = [
     {
       key: 1,
-      image: require('../assets/animations/appIntroSearch.json'),
+      image: require('../../assets/animations/appIntroSearch.json'),
       heading: 'Find a doctor near you',
     },
     {
       key: 2,
-      image: require('../assets/animations/appIntroLogin.json'),
+      image: require('../../assets/animations/appIntroLogin.json'),
       heading: 'Get yourself register',
     },
   ];
@@ -44,22 +44,18 @@ const AppIntro = (props) => {
   };
 
   return (
-    <ScrollView>
-      <SafeAreaView>
-        <View style={AppIntroStyle.mainView}>
-          <View style={AppIntroStyle.sliderView}>
-            <AppIntroSlider
-              renderItem={renderSlide}
-              data={slides}
-              onDone={true}
-              nextLabel=""
-              doneLabel=""
-            />
-          </View>
-          <SwipeButton navigation={props.navigation}/>
-        </View>
-      </SafeAreaView>
-    </ScrollView>
+    <SafeAreaView style={AppIntroStyle.mainView}>
+      <View style={AppIntroStyle.sliderView}>
+        <AppIntroSlider
+          renderItem={renderSlide}
+          data={slides}
+          onDone={true}
+          nextLabel=""
+          doneLabel=""
+        />
+      </View>
+      <SwipeButton/>
+    </SafeAreaView>
   );
 };
 

@@ -13,7 +13,8 @@ const NewScheduleStyle = StyleSheet.create({
     viewThreeTextTwo:{fontFamily:'Poppins-SemiBold', fontSize:wp(3)},
     viewFour:{marginTop:hp(5), width: wp('90'), alignSelf: 'center' },
     viewFourTextInput:{ width:wp(82), fontFamily:'Poppins-SemiBold'},
-    viewFive:{marginTop:hp(5) , marginBottom: wp('5'), width: wp('90'), alignSelf: 'center' },
+    viewFive:{marginTop:hp(5), width: wp('100'), alignItems: 'center', height: hp('8') },
     viewFiveText:{fontFamily:'Poppins-SemiBold', color: AppColor.white},
+    icon: {position: 'absolute',right: wp('5'),},
 })
 export {NewScheduleStyle}

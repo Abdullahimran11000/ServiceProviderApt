@@ -8,20 +8,20 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {DashboardStyle} from '../assets/styles/DashboardStyle/DashboardStyle';
+import {DashboardStyle} from '../../assets/styles/DashboardStyle/DashboardStyle';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import DoctorBar from '../components/Bar/DoctorBar';
-import {AppColor} from '../assets/colors/AppColors';
+import DoctorBar from '../../components/Bar/DoctorBar';
+import {AppColor} from '../../assets/colors/AppColors';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {ScrollView} from 'react-native-virtualized-view';
 import RNFetchBlob from 'rn-fetch-blob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import PatientAppCard from '../components/Appointments/PatientAppCard';
+import PatientAppCard from '../../components/Appointments/PatientAppCard';
 
 const Dashboard = ({pressHandler}) => {
   const navigation = useNavigation();
@@ -90,7 +90,7 @@ const Dashboard = ({pressHandler}) => {
   );
 
   return (
-    <SafeAreaView style={{display: 'flex', flex: 1, overflow: 'hidden'}}>
+    <SafeAreaView style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
       <View style={DashboardStyle.headCont}>
         <View style={DashboardStyle.headContInnerCont}>
           <TouchableOpacity

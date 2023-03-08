@@ -55,8 +55,9 @@ const MyProfileStyle = StyleSheet.create({
   },
 
   TextStyle: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-SemiBold',
     color: AppColor.black,
+    fontSize: wp('4.2')
   },
   GenderView: {marginLeft: wp('6')},
   selectListBox: {

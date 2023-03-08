@@ -12,12 +12,12 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Lottie from 'lottie-react-native';
-import {VerificationStyle} from '../assets/styles/AuthStyle/VerificationStyle';
-import BackButton from '../components/ScrennHeader/BackButton';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
-import {AppColor} from '../assets/colors/AppColors';
-import CustomModal from '../components/Modal/CustomModal';
-import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
+import {VerificationStyle} from '../../assets/styles/AuthStyle/VerificationStyle';
+import BackButton from '../../components/ScrennHeader/BackButton';
+import NeoButton from '../../components/NeoMorphButton/NeoButton';
+import {AppColor} from '../../assets/colors/AppColors';
+import CustomModal from '../../components/Modal/CustomModal';
+import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
 
 const Verification = ({navigation}) => {
   const firstTextInputRef = useRef(null);
@@ -62,9 +62,9 @@ const Verification = ({navigation}) => {
   };
 
   useEffect(() => {
+    firstTextInputRef.current.focus()
     navigation.addListener('focus', () => {
       console.log('Verification screen is focusing right now!');
-      firstTextInputRef.current.focus()
     });
   }, [navigation]);
   return (
@@ -77,7 +77,7 @@ const Verification = ({navigation}) => {
           <View style={VerificationStyle.animationView}>
             <Lottie
               style={VerificationStyle.animationStyle}
-              source={require('../assets/animations/appIntroVerification.json')}
+              source={require('../../assets/animations/appIntroVerification.json')}
               autoPlay
             />
           </View>
@@ -94,7 +94,6 @@ const Verification = ({navigation}) => {
               <TextInput
                 value={firstTextInput}
                 ref={firstTextInputRef}
-                autoFocus={true}
                 style={VerificationStyle.newInputs}
                 maxLength={1}
                 keyboardType={'numeric'}
@@ -178,9 +177,9 @@ const Verification = ({navigation}) => {
           <View style={VerificationStyle.buttonView}>
             <TouchableOpacity onPress={submitHandler}>
               <NeoButton
-                width={wp('85')}
+                width={wp('55')}
                 backgroundColor={AppColor.primary}
-                height={hp('8')}
+                height={hp('6')}
                 borderRadius={wp('10')}
                 marginBottom={wp('5')}>
                 <Text style={VerificationStyle.touchableText}>Verify</Text>
@@ -198,7 +197,7 @@ const Verification = ({navigation}) => {
             navigation.navigate('RecoverPassword');
           }}
           buttonBackgroundColor={AppColor.primary}
-          source={require('../assets/animations/email.json')}
+          source={require('../../assets/animations/email.json')}
           text={'OTP has been verified successfully!'}
           style={{marginTop: wp('12')}}
           buttonText={'Next'}

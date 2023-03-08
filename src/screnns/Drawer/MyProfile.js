@@ -12,15 +12,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../assets/colors/AppColors';
+import {AppColor} from '../../assets/colors/AppColors';
 import {launchImageLibrary} from 'react-native-image-picker';
-import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
-import {MyProfileStyle} from '../assets/styles/DashboardStyle/MyProfileStyle';
+import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
+import {MyProfileStyle} from '../../assets/styles/DashboardStyle/MyProfileStyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
-import Header from '../components/ScreenHeader/Header';
+import NeoButton from '../../components/NeoMorphButton/NeoButton';
+import Header from '../../components/ScreenHeader/Header';
 import {Neomorph} from 'react-native-neomorph-shadows';
-import CustomModal from '../components/Modal/CustomModal';
+import CustomModal from '../../components/Modal/CustomModal';
 import ImageZoom from 'react-native-image-pan-zoom';
 import {
   MenuOption,
@@ -59,7 +59,7 @@ const MyProfile = ({navigation}) => {
 
   const submitHandler = () => {
     if (
-      (name === '' && date === '' && email === '' && mobileNo === '',
+      (name === '' && date === '' && email === '' && mobileNo === ''&&
       optionShow === 'Gender')
     ) {
       setNameIsValid(AppColor.red);
@@ -69,9 +69,10 @@ const MyProfile = ({navigation}) => {
       setGenderIsValid(AppColor.red);
     }
     if (
-      (name !== '' && date !== '' && email !== '' && mobileNo !== '',
+      (name !== '' && date !== '' && email !== '' && mobileNo !== ''&&
       optionShow !== 'Gender')
     ) {
+      console.log(name)
       if (email.includes('@gmail.com') || email.includes('@outlook.com')) {
         setNameIsValid(AppColor.blackOpacity3);
         setDateIsValid(AppColor.blackOpacity3);
@@ -84,6 +85,7 @@ const MyProfile = ({navigation}) => {
         setMobileNo('');
         setOptionShow('Gender');
         setModalOpen(true);
+        setEmailAlert(false)
       } else {
         setEmailAlert(true);
         setEmailIsValid(AppColor.red);
@@ -121,7 +123,7 @@ const MyProfile = ({navigation}) => {
           onBackdropPress={() => {
             setModalOpen(false);
           }}
-          source={require('../assets/animations/profile.json')}
+          source={require('../../assets/animations/profile.json')}
           lottieStyle={{width: wp('35'), height: wp('35')}}
           text={'Your profile is updated successfully.'}
           style={{marginTop: wp('10')}}
@@ -336,10 +338,10 @@ const MyProfile = ({navigation}) => {
           <View style={MyProfileStyle.buttonView}>
             <TouchableOpacity onPress={submitHandler}>
               <NeoButton
-                width={wp('85')}
-                height={hp('8')}
+                width={wp('55')}
+                height={hp('6')}
                 backgroundColor={AppColor.primary}
-                borderRadius={wp('7')}>
+                borderRadius={wp('10')}>
                 <Text style={MyProfileStyle.buttonText}>Save</Text>
               </NeoButton>
             </TouchableOpacity>

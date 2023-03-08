@@ -26,7 +26,7 @@ const NeoButton = ({
         width: width,
         height: height,
         borderRadius: borderRadius,
-        shadowRadius: 4,
+        shadowRadius: 3,
         backgroundColor: backgroundColor,
         justifyContent: 'center',
         alignItems: 'center',
