@@ -69,7 +69,7 @@ const Drawer = () => {
                 lightShadowColor={AppColor.primary}>
                 <Image
                   style={DrawerStyle.imageStyle}
-                  source={require('../assets/images/profile.jpg')}></Image>
+                  source={require('../../assets/images/profile.jpg')}></Image>
               </NeoButton>
             </TouchableOpacity>
             <Text style={DrawerStyle.nameText}>Dara Amanda</Text>

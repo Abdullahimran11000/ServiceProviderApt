@@ -51,7 +51,7 @@ const VideoCalling = () => {
 
         <Image
           style={VideoCallingStyle.imageStyle}
-          source={require('../assets/images/profile.jpg')}
+          source={require('../../../../assets/images/profile.jpg')}
         />
       </View>
 

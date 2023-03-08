@@ -23,7 +23,7 @@ const AppointmentsCards = () => {
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
         style={AppointmentStyle.imageBackStyle}
-        source={require('../assets/images/AppointmentsIntroPic.jpg')}>
+        source={require('../../../assets/images/AppointmentsIntroPic.jpg')}>
         <View style={AppointmentStyle.imageBackView}>
           <Header
             styles={{color: AppColor.lightPink}}
