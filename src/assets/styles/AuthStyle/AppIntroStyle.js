@@ -4,7 +4,7 @@ import App from '../../../../App';
 import { AppColor } from '../../colors/AppColors';
 
 const AppIntroStyle = StyleSheet.create({
-  mainView: {backgroundColor: AppColor.primary , height: hp('100')},
+  mainView: {backgroundColor: AppColor.primary , display: 'flex', flex: 1},
   sliderView: {height: hp('80')},
   animationView: {alignItems: 'center'},
   animationStyle: {width: wp('90'), height: hp('48')},

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView, View, FlatList} from 'react-native';
 
-import Header from '../components/ScreenHeader/Header';
+import Header from '../../../components/ScreenHeader/Header';
 import CalendarStrip from 'react-native-calendar-strip';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {
@@ -10,9 +10,9 @@ import {
 } from 'react-native-responsive-screen';
 import Lottie from 'lottie-react-native';
 import moment from 'moment-timezone';
-import TimeSlotsRender from '../components/RenderFunction/TimeSlotsRender';
+import TimeSlotsRender from '../../../components/RenderFunction/TimeSlotsRender';
 import {ScrollView} from 'react-native-virtualized-view';
-import { AppColor } from '../assets/colors/AppColors';
+import { AppColor } from '../../../assets/colors/AppColors';
 
 const TotalAppSlots = ({date}) => {
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
@@ -177,7 +177,7 @@ const TotalAppSlots = ({date}) => {
             }}
           >
             <Lottie
-              source={require('../assets/animations/noDataFound.json')}
+              source={require('../../../assets/animations/noDataFound.json')}
               style={{width: wp('60'), height: wp('55')}}
               loop
               autoPlay

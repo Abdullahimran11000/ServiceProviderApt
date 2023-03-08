@@ -11,9 +11,9 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Lottie from 'lottie-react-native';
-import {CongratulationStyle} from '../assets/styles/AuthStyle/CongratulationStyle';
-import { AppColor } from '../assets/colors/AppColors';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
+import {CongratulationStyle} from '../../assets/styles/AuthStyle/CongratulationStyle';
+import { AppColor } from '../../assets/colors/AppColors';
+import NeoButton from '../../components/NeoMorphButton/NeoButton';
 import {useNavigation} from '@react-navigation/native';
 
 const Congratulation = () => {
@@ -30,7 +30,7 @@ const Congratulation = () => {
           <View style={CongratulationStyle.animationView}>
             <Lottie
               style={CongratulationStyle.animationStyle}
-              source={require('../assets/animations/appIntroCongrats.json')}
+              source={require('../../assets/animations/appIntroCongrats.json')}
               autoPlay
             />
           </View>
@@ -47,9 +47,9 @@ const Congratulation = () => {
             <TouchableOpacity onPress={() => {navigation.navigate('LogIn')}}>
               <NeoButton
                 darkShadowColor={AppColor.black}
-                width={wp('90')}
+                width={wp('55')}
                 backgroundColor={AppColor.primary}
-                height={hp('7')}
+                height={hp('6')}
                 borderRadius={wp('10')}
                 marginBottom={wp('3')}>
                 <Text style={CongratulationStyle.touchableText}>Start Now</Text>

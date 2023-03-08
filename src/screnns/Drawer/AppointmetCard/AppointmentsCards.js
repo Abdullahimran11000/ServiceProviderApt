@@ -11,12 +11,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../assets/colors/AppColors';
-import {AppointmentStyle} from '../assets/styles/AppointmentStyle';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
+import {AppColor} from '../../../assets/colors/AppColors';
+import {AppointmentStyle} from '../../../assets/styles/AppointmentStyle';
+import NeoButton from '../../../components/NeoMorphButton/NeoButton';
 import Lottie from 'lottie-react-native';
 import {useNavigation} from '@react-navigation/native';
-import Header from '../components/ScreenHeader/Header';
+import Header from '../../../components/ScreenHeader/Header';
 const AppointmentsCards = () => {
   const navigation = useNavigation();
   return (
@@ -73,7 +73,7 @@ const AppointmentsCards = () => {
                   <View style={AppointmentStyle.viewOneContainerInnerViewTwo}>
                     <Lottie
                       style={{height: hp('17')}}
-                      source={require('../assets/animations/slots.json')}
+                      source={require('../../../assets/animations/slots.json')}
                       loop
                       autoPlay
                     />
@@ -112,7 +112,7 @@ const AppointmentsCards = () => {
                   <View style={AppointmentStyle.viewFiveContainerInnerViewTwo}>
                     <Lottie
                       style={{height: hp('30')}}
-                      source={require('../assets/animations/addNewSchedule.json')}
+                      source={require('../../../assets/animations/addNewSchedule.json')}
                       loop
                       autoPlay
                     />
@@ -149,7 +149,7 @@ const AppointmentsCards = () => {
                   <View style={AppointmentStyle.viewThreeContainerInnerViewTwo}>
                     <Lottie
                       style={{height: hp('11')}}
-                      source={require('../assets/animations/completedAppointments.json')}
+                      source={require('../../../assets/animations/completedAppointments.json')}
                       loop
                       autoPlay
                     />
@@ -186,7 +186,7 @@ const AppointmentsCards = () => {
                   <View style={AppointmentStyle.viewTwoContainerInnerViewTwo}>
                     <Lottie
                       style={{height: hp('17')}}
-                      source={require('../assets/animations/UpcomingAppointments.json')}
+                      source={require('../../../assets/animations/UpcomingAppointments.json')}
                       loop
                       autoPlay
                     />
@@ -224,7 +224,7 @@ const AppointmentsCards = () => {
                   <View style={AppointmentStyle.viewFourContainerInnerViewTwo}>
                     <Lottie
                       style={{height: hp('30')}}
-                      source={require('../assets/animations/cancelledAppointments.json')}
+                      source={require('../../../assets/animations/cancelledAppointments.json')}
                       loop
                       autoPlay
                     />

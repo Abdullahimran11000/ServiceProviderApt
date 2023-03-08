@@ -17,7 +17,7 @@ const CertificatesStyle = StyleSheet.create({
     noImageView: {display: 'flex',flex: 8.5,width: wp('75'),height: hp('50'),alignItems: 'center',justifyContent: 'center'},
     imageView: {width: wp('90'),height: hp('60')},
 
-    neumorphListView: {width: wp('28'),height: hp('15'),borderRadius: wp('5'),backgroundColor: AppColor.black,shadowRadius: 4, overflow: 'hidden', marginLeft: wp('5'), marginRight: wp('2'), margin: wp('5')},
+    neumorphListView: {width: wp('28'),height: hp('15'),borderRadius: wp('5'),backgroundColor: AppColor.whiteShade,shadowRadius: 2, overflow: 'hidden', marginLeft: wp('5'), marginRight: wp('2'), margin: wp('5')},
     listImageView: {width: wp('28'), height: hp('15'), borderRadius: wp('5'), overflow: 'hidden'},
 
     buttonView: {width: wp('90'),alignSelf: 'center',marginTop: wp('5'),marginBottom: wp('8'),alignItems: 'center'},

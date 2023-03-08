@@ -11,13 +11,13 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {VideoCallingStyle} from '../assets/styles/VideoCallingStyle';
+import {VideoCallingStyle} from '../../../../assets/styles/VideoCallingStyle';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
-import { AppColor } from '../assets/colors/AppColors';
-import BackButton from '../components/ScrennHeader/BackButton';
+import NeoButton from '../../../../components/NeoMorphButton/NeoButton';
+import { AppColor } from '../../../../assets/colors/AppColors';
+import BackButton from '../../../../components/ScrennHeader/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import AppContext from '../assets/context/AppContext';
+import AppContext from '../../../../assets/context/AppContext';
 import Lottie from 'lottie-react-native';
 
 const VideoCalling = () => {
@@ -47,7 +47,7 @@ const VideoCalling = () => {
         <Lottie
           style={{width: wp('50'), height: hp('50'), alignSelf: 'center'}}
           autoPlay
-          source={require('../assets/animations/pulse.json')}></Lottie>
+          source={require('../../../../assets/animations/pulse.json')}></Lottie>
 
         <Image
           style={VideoCallingStyle.imageStyle}

@@ -11,13 +11,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
-import {AppColor} from '../assets/colors/AppColors';
+import {AppColor} from '../../assets/colors/AppColors';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import Lottie from 'lottie-react-native';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
-import CustomModal from '../components/Modal/CustomModal';
+import NeoButton from '../../components/NeoMorphButton/NeoButton';
+import CustomModal from '../../components/Modal/CustomModal';
 import {useNavigation} from '@react-navigation/native';
-import {TryAnotherWayStyle} from '../assets/styles/TryAnotherWayStyle';
+import {TryAnotherWayStyle} from '../../assets/styles/TryAnotherWayStyle';
 const TryAnotherWay = () => {
   const navigation = useNavigation();
   const [showMessage, setShowMessage] = useState(false);
@@ -50,7 +50,7 @@ const TryAnotherWay = () => {
             <Neomorph inner style={TryAnotherWayStyle.neomorphFour}>
               <Lottie
                 style={TryAnotherWayStyle.lottyStyle}
-                source={require('../assets/animations/phone_number.json')}
+                source={require('../../assets/animations/phone_number.json')}
                 autoPlay
               />
             </Neomorph>
@@ -92,7 +92,7 @@ const TryAnotherWay = () => {
         onBackdropPress={() => {setShowMessage(false)}}
         modalButtonPress={() => {navigation.navigate('Verification');}}
         buttonBackgroundColor={AppColor.primary}
-        source={require('../assets/animations/success.json')}
+        source={require('../../assets/animations/success.json')}
         lottieStyle={{width: wp('35'), height: wp('35')}}
         text={'We have sent a verification code to your Mobile Number'}
         style={{marginTop: wp(10)}}

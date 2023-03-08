@@ -7,17 +7,17 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import BackButton from '../components/ScrennHeader/BackButton';
+import BackButton from '../../components/ScrennHeader/BackButton';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import NeoButton from '../components/NeoMorphButton/NeoButton';
+import NeoButton from '../../components/NeoMorphButton/NeoButton';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {AppColor} from '../assets/colors/AppColors';
-import NeoTextInput from '../components/NeoMorphTextInput/NeoTextInput';
-import {SignUpStyle} from '../assets/styles/AuthStyle/SignUpStyle';
-import CustomModal from '../components/Modal/CustomModal';
+import {AppColor} from '../../assets/colors/AppColors';
+import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
+import {SignUpStyle} from '../../assets/styles/AuthStyle/SignUpStyle';
+import CustomModal from '../../components/Modal/CustomModal';
 
 const SignUp = ({navigation}) => {
   const [eye, setEye] = useState(false);
@@ -71,8 +71,6 @@ const SignUp = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('SignUp screen is focusing right now!');
-      // setEmailText('');
-      // setPasswordText('');
     });
   }, [navigation]);
 
@@ -152,16 +150,7 @@ const SignUp = ({navigation}) => {
               </TouchableOpacity>
             </NeoTextInput>
           </View>
-          {/* {passwordValid ? (
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: wp('3'),
-                color: AppColor.red,
-              }}>
-              {passwordLabelText}
-            </Text>
-          ) : null} */}
+          
           <View style={{marginLeft: wp(6), marginTop: hp(3)}}>
             <Checkbox status="checked" color="#c28cde" />
             <Text style={SignUpStyle.termsAndPrivacyStyle1}>I agree with</Text>
@@ -173,9 +162,9 @@ const SignUp = ({navigation}) => {
             <TouchableOpacity onPress={submitHandler}>
               <NeoButton
                 lightShadowColor={AppColor.white}
-                width={wp('85')}
-                height={hp('8')}
-                borderRadius={wp('15')}
+                width={wp('55')}
+                height={hp('6')}
+                borderRadius={wp('10')}
                 backgroundColor={AppColor.primary}>
                 <Text style={SignUpStyle.SignUpText}>Sign Up</Text>
               </NeoButton>
@@ -191,7 +180,7 @@ const SignUp = ({navigation}) => {
             navigation.navigate('LogIn');
           }}
           buttonBackgroundColor={AppColor.primary}
-          source={require('../assets/animations/success.json')}
+          source={require('../../assets/animations/success.json')}
           lottieStyle={{width: wp('35'), height: wp('35')}}
           text={'Account Created Successfully'}
           style={{marginTop: wp(10)}}
