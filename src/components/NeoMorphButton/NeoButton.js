@@ -13,6 +13,8 @@ const NeoButton = ({
   darkShadowColor,
   inner,
   children,
+  left,
+  marginVertical
 }) => {
   return (
     <Neomorph
@@ -24,12 +26,14 @@ const NeoButton = ({
         marginBottom: marginBottom,
         marginLeft:marginLeft,
         width: width,
+        marginVertical: marginVertical,
         height: height,
         borderRadius: borderRadius,
         shadowRadius: 3,
         backgroundColor: backgroundColor,
         justifyContent: 'center',
         alignItems: 'center',
+        left: left,
       }}>
       {children}
     </Neomorph>

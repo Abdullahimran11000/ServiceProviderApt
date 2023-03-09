@@ -18,23 +18,22 @@ import NeoButton from '../../components/NeoMorphButton/NeoButton';
 import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
 import CustomModal from '../../components/Modal/CustomModal';
 const ForgotPassword = ({navigation}) => {
-  const [showEmailNotificationInModal, setshowEmailNotificationInModal] = useState(false);
-  const [email, setEmail] = useState('hamad@gmail.com');
+  const [showEmailNotificationInModal, setshowEmailNotificationInModal] =
+    useState(false);
+  const [emailInputText, setEmailInputText] = useState('hamad@gmail.com');
   const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
   const [emailAlert, setEmailAlert] = useState(false);
 
-  const emailRef = useRef()
+  const emailRef = useRef();
 
-  const submitHandler = () => {
-    if (email === '') {
+  const sendHandler = () => {
+    if (emailInputText === '') {
       setEmailIsValid(AppColor.red);
-    } 
-    else { 
-      if (email.includes('@gmail.com') || email.includes('@outlook.com')) {
+    } else {
+      if (emailInputText.includes('@gmail.com') || emailInputText.includes('@outlook.com')) {
         setEmailAlert(false);
-        setshowEmailNotificationInModal(true)
-      }
-      else {
+        setshowEmailNotificationInModal(true);
+      } else {
         setEmailAlert(true);
       }
     }
@@ -43,7 +42,6 @@ const ForgotPassword = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       console.log('Forgot Password screen is focusing right now!');
-      emailRef.current.focus()
     });
   }, [navigation]);
 
@@ -52,93 +50,70 @@ const ForgotPassword = ({navigation}) => {
       <BackButton onPress={() => navigation.goBack()}>
         {'Forgot Password'}
       </BackButton>
-      <ScrollView>
-        <View>
-          <View style={ForgotPasswordStyle.animationView}>
-            <Lottie
-              style={ForgotPasswordStyle.animationStyle}
-              source={require('../../assets/animations/appIntroForgot.json')}
-              autoPlay
-            />
-          </View>
-          <View style={ForgotPasswordStyle.headingView}>
-            <Text style={ForgotPasswordStyle.tagText}>Find your account</Text>
-          </View>
-          <View style={ForgotPasswordStyle.paraView}>
-            <Text style={ForgotPasswordStyle.paraText}>
-              Please enter your email address to recover your forgotton password
-            </Text>
-          </View>
-          <View style={ForgotPasswordStyle.inputView}>
-            <View style={ForgotPasswordStyle.labelView}>
-              <Text style={ForgotPasswordStyle.labelText}>Email</Text>
-            </View>
-            <NeoTextInput
-              value={email}
-              reference={emailRef}
-              width={wp('90')}
-              autoFocus={true}
-              keyboardType={'email-address'}
-              placeholder={'Example@gmail.com'}
-              placeholderTextColor={emailIsValid}
-              onChangeText={text => {
-                setEmail(text);
-              }}
-              returnKeyType={'next'}
-              onSubmitEditing={submitHandler}
-            />
-            {emailAlert ? (
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Light',
-                  fontSize: wp('3.5'),
-                  width: wp(90),
-                  marginTop: hp(2),
-                  color: AppColor.red,
-                }}>
-                Please enter valid email!
-              </Text>
-            ) : null}
-          </View>
-          <View style={ForgotPasswordStyle.touchableView}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('TryAnotherWay')}>
-              <Text style={ForgotPasswordStyle.touchableText1}>
-                Try another way
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={ForgotPasswordStyle.headingView}>
-            <TouchableOpacity onPress={submitHandler}>
-              <NeoButton
-                darkShadowColor={AppColor.black}
-                marginTop={wp('5')}
-                width={wp('55')}
-                backgroundColor={AppColor.primary}
-                height={hp('6')}
-                borderRadius={wp('10')}
-                marginBottom={wp('10')}>
-                <Text style={ForgotPasswordStyle.touchableText}>Send</Text>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <CustomModal
-          isVisible={showEmailNotificationInModal}
-          onBackdropPress={() => {
-            setshowEmailNotificationInModal(false);
-          }}
-          lottieStyle={{width: wp('50'), height: wp('50')}}
-          modalButtonPress={() => {
-            navigation.navigate('Verification');
-          }}
-          buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/email.json')}
-          text={'We have sent a Automated Password on your Email'}
-          style={{marginTop: wp('12')}}
-          buttonText={'Verify'}
-        />
-      </ScrollView>
+      <Lottie
+        style={ForgotPasswordStyle.animationStyle}
+        source={require('../../assets/animations/appIntroForgot.json')}
+        autoPlay
+      />
+      <Text style={ForgotPasswordStyle.tagText}>Find your account</Text>
+      <Text style={ForgotPasswordStyle.paraText}>
+        Please enter your email address to recover your forgotton password
+      </Text>
+      <Text style={ForgotPasswordStyle.labelText}>Email</Text>
+      <NeoTextInput
+        value={emailInputText}
+        reference={emailRef}
+        autoFocus={true}
+        keyboardType={'email-address'}
+        placeholder={'Example@gmail.com'}
+        placeholderTextColor={emailIsValid}
+        onChangeText={text => {
+          setEmailInputText(text);
+        }}
+        returnKeyType={'next'}
+        onSubmitEditing={sendHandler}
+      />
+      {emailAlert ? (
+        <Text
+          style={{
+            fontFamily: 'Poppins-Light',
+            fontSize: wp('3.5'),
+            width: wp('90'),
+            color: AppColor.red,
+          }}>
+          Please enter valid email!
+        </Text>
+      ) : null}
+      <TouchableOpacity onPress={() => navigation.navigate('TryAnotherWay')}>
+        <Text style={ForgotPasswordStyle.touchableText1}>Try another way</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={sendHandler}>
+        <NeoButton
+          darkShadowColor={AppColor.black}
+          marginTop={wp('5')}
+          width={wp('55')}
+          backgroundColor={AppColor.primary}
+          height={hp('6')}
+          borderRadius={wp('10')}
+          marginBottom={wp('5')}>
+          <Text style={ForgotPasswordStyle.touchableText}>Send</Text>
+        </NeoButton>
+      </TouchableOpacity>
+      <CustomModal
+        isVisible={showEmailNotificationInModal}
+        onBackdropPress={() => {
+          setshowEmailNotificationInModal(false);
+        }}
+        lottieStyle={{width: wp('50'), height: wp('50')}}
+        modalButtonPress={() => {
+          navigation.navigate('Verification');
+        }}
+        buttonBackgroundColor={AppColor.primary}
+        source={require('../../assets/animations/email.json')}
+        text={'We have sent a Automated Password on your Email'}
+        style={{marginTop: wp('12')}}
+        buttonText={'Verify'}
+      />
     </SafeAreaView>
   );
 };

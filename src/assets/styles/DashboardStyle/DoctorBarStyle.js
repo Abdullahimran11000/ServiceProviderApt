@@ -4,7 +4,7 @@ import { AppColor } from '../../colors/AppColors';
 
 const DoctorBarStyle = StyleSheet.create({
 
-    mainView: {width: wp('90'), height:wp('15'), display: 'flex', flexDirection: 'row', alignSelf: 'center', top: wp('5'), backgroundColor: AppColor.whiteShade},
+    mainView: {width: wp('90'), flexDirection: 'row', alignSelf: 'center', backgroundColor: AppColor.whiteShade, justifyContent: 'space-between'},
     textView: {position: 'absolute', left: 0},
     textStyle: {fontFamily: 'Poppins-Bold', color: AppColor.blackOpacity8, fontSize: wp('4')},
     touchableView: {position: 'absolute', right: 0},

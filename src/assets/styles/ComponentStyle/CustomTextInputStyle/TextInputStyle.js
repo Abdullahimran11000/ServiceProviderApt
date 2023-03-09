@@ -8,7 +8,7 @@ const TextInputStyle = StyleSheet.create({
     height: hp('7'),
     borderRadius: wp('3'),
     backgroundColor: AppColor.whiteShade,
-    padding: wp('3'),
+    paddingHorizontal: wp('3'),
     fontFamily: 'Poppins-Light',
     fontSize: wp('4'),
     color: AppColor.blackOpacity8,

@@ -20,7 +20,7 @@ import Header from '../../../components/ScreenHeader/Header';
 const AppointmentsCards = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: AppColor.whiteShade}}>
       <ImageBackground
         style={AppointmentStyle.imageBackStyle}
         source={require('../../../assets/images/AppointmentsIntroPic.jpg')}>
@@ -30,11 +30,10 @@ const AppointmentsCards = () => {
             stylesText={{color: AppColor.lightPink}}
             buttonColor={AppColor.lightPink}
             lightShadowColor={'rgba(0,0,0,0)'}>
+            {' '}
             {'Appointment'}
           </Header>
-          <Text style={AppointmentStyle.headerTextOne}>
-            Appointment
-          </Text>
+          <Text style={AppointmentStyle.headerTextOne}>Appointment</Text>
           <Text style={AppointmentStyle.headerTextTwo}>
             Effective appointment management in healthcare is crucial for
             ensuring patient satisfaction and improved outcomes. prioritizing
@@ -43,197 +42,176 @@ const AppointmentsCards = () => {
           </Text>
         </View>
       </ImageBackground>
-      <ScrollView>
-        <View style={AppointmentStyle.mainView}>
-          <View style={AppointmentStyle.viewOneContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('TotalAppSlots');
-              }}>
-              <NeoButton
-                height={hp('20')}
-                width={wp('90')}
-                borderRadius={wp('6')}
-                backgroundColor={AppColor.blackOpacity4}>
-                <View style={AppointmentStyle.viewOneContainerInnerView}>
-                  <View style={AppointmentStyle.viewOneContainerInnerViewOne}>
-                    <Text
-                      style={
-                        AppointmentStyle.viewOneContainerInnerViewFirstText
-                      }>
-                      105
-                    </Text>
-                    <Text
-                      style={
-                        AppointmentStyle.viewOneContainerInnerViewSecondText
-                      }>
-                      Total Appointment Slots
-                    </Text>
-                  </View>
-                  <View style={AppointmentStyle.viewOneContainerInnerViewTwo}>
-                    <Lottie
-                      style={{height: hp('17')}}
-                      source={require('../../../assets/animations/slots.json')}
-                      loop
-                      autoPlay
-                    />
-                  </View>
-                </View>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-          <View style={AppointmentStyle.viewFiveContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('NewSchedule');
-              }}>
-              <NeoButton
-                height={hp('20')}
-                width={wp('90')}
-                borderRadius={wp('6')}
-                backgroundColor={AppColor.darkBrown}
-                darkShadowColor={AppColor.black}
-                marginBottom={hp('5')}>
-                <View style={AppointmentStyle.viewFiveContainerInnerView}>
-                  <View style={AppointmentStyle.viewFiveContainerInnerViewOne}>
-                    <Text
-                      style={
-                        AppointmentStyle.viewFiveContainerInnerViewOneTextOne
-                      }>
-                      Add New
-                    </Text>
-                    <Text
-                      style={
-                        AppointmentStyle.viewFiveContainerInnerViewOneTextOne
-                      }>
-                      Schedule
-                    </Text>
-                  </View>
-                  <View style={AppointmentStyle.viewFiveContainerInnerViewTwo}>
-                    <Lottie
-                      style={{height: hp('30')}}
-                      source={require('../../../assets/animations/addNewSchedule.json')}
-                      loop
-                      autoPlay
-                    />
-                  </View>
-                </View>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-          <View style={AppointmentStyle.viewThreeContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('CompletedApp');
-              }}>
-              <NeoButton
-                height={hp('20')}
-                width={wp('90')}
-                borderRadius={wp('6')}
-                backgroundColor={AppColor.darkBlue}>
-                <View style={AppointmentStyle.viewThreeContainerInnerView}>
-                  <View style={AppointmentStyle.viewThreeContainerInnerViewOne}>
-                    <Text
-                      style={
-                        AppointmentStyle.viewThreeContainerInnerViewOneTextOne
-                      }>
-                      20
-                    </Text>
-                    <Text
-                      style={
-                        AppointmentStyle.viewThreeContainerInnerViewOneTextTwo
-                      }>
-                      Completed Appointments
-                    </Text>
-                  </View>
-                  <View style={AppointmentStyle.viewThreeContainerInnerViewTwo}>
-                    <Lottie
-                      style={{height: hp('11')}}
-                      source={require('../../../assets/animations/completedAppointments.json')}
-                      loop
-                      autoPlay
-                    />
-                  </View>
-                </View>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-          <View style={AppointmentStyle.viewTwoContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('UpcomingApp');
-              }}>
-              <NeoButton
-                height={hp('20')}
-                width={wp('90')}
-                borderRadius={wp('6')}
-                backgroundColor={AppColor.lightPurple}>
-                <View style={AppointmentStyle.viewTwoContainerInnerView}>
-                  <View style={AppointmentStyle.viewTwoContainerInnerViewOne}>
-                    <Text
-                      style={
-                        AppointmentStyle.viewTwoContainerInnerViewOneTextOne
-                      }>
-                      10
-                    </Text>
-                    <Text
-                      style={
-                        AppointmentStyle.viewTwoContainerInnerViewOneTextTwo
-                      }>
-                      Upcoming Appointments
-                    </Text>
-                  </View>
-                  <View style={AppointmentStyle.viewTwoContainerInnerViewTwo}>
-                    <Lottie
-                      style={{height: hp('17')}}
-                      source={require('../../../assets/animations/UpcomingAppointments.json')}
-                      loop
-                      autoPlay
-                    />
-                  </View>
-                </View>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
+      <ScrollView style={{marginHorizontal: wp('5'), width: wp('100')}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('TotalAppSlots');
+          }}>
+          <NeoButton
+            height={hp('20')}
+            width={wp('90')}
+            borderRadius={wp('6')}
+            marginVertical={wp('5')}
+            backgroundColor={AppColor.blackOpacity4}>
+            <View style={AppointmentStyle.viewOneContainerInnerView}>
+              <View>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
+                  105
+                </Text>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
+                  Total Appointment Slot
+                </Text>
+              </View>
+              <Lottie
+                style={{width: wp('30'), height: wp('30')}}
+                source={require('../../../assets/animations/slots.json')}
+                loop
+                autoPlay
+              />
+            </View>
+          </NeoButton>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('NewSchedule');
+          }}>
+          <NeoButton
+            height={hp('20')}
+            width={wp('90')}
+            borderRadius={wp('6')}
+            marginVertical={wp('5')}
+            backgroundColor={AppColor.darkBrown}
+            darkShadowColor={AppColor.black}>
+            <View style={AppointmentStyle.viewOneContainerInnerView}>
+              <View>
+                <Text
+                  style={{fontSize: wp('5'), fontFamily: 'Poppins-Bold', color: AppColor.white}}>
+                  Add New
+                </Text>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
+                  Schedule
+                </Text>
+              </View>
+              <Lottie
+                style={{
+                  
+                  height: wp('30'),
+                  // backgroundColor: 'white'
+                }}
+                source={require('../../../assets/animations/addNewSchedule.json')}
+                loop
+                autoPlay
+              />
+            </View>
+          </NeoButton>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('CompletedApp');
+          }}>
+          <NeoButton
+            height={hp('20')}
+            width={wp('90')}
+            borderRadius={wp('6')}
+            marginVertical={wp('5')}
+            backgroundColor={AppColor.darkBlue}>
+            <View style={AppointmentStyle.viewOneContainerInnerView}>
+              <View>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
+                  105
+                </Text>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
+                  Completed Appointment
+                </Text>
+              </View>
+              <Lottie
+                style={{
+                  width: wp('20'),
+                  height: wp('20'),
+                  backgroundColor: AppColor.white,
+                }}
+                source={require('../../../assets/animations/completedAppointments.json')}
+                loop
+                autoPlay
+              />
+            </View>
+          </NeoButton>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('UpcomingApp');
+          }}>
+          <NeoButton
+            height={hp('20')}
+            width={wp('90')}
+            borderRadius={wp('6')}
+            marginVertical={wp('5')}
+            backgroundColor={AppColor.lightPurple}>
+            <View style={AppointmentStyle.viewOneContainerInnerView}>
+              <View>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
+                  105
+                </Text>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
+                  Upcoming Appointment
+                </Text>
+              </View>
+              <Lottie
+                style={{
+                  width: wp('35'),
+                  height: wp('35'),
+                  alignSelf: 'center',
+                  backgroundColor: AppColor.white,
+                }}
+                source={require('../../../assets/animations/UpcomingAppointments.json')}
+                loop
+                autoPlay
+              />
+            </View>
+          </NeoButton>
+        </TouchableOpacity>
 
-          <View style={AppointmentStyle.viewFourContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('CancelledApp');
-              }}>
-              <NeoButton
-                height={hp('20')}
-                width={wp('90')}
-                borderRadius={wp('6')}
-                backgroundColor={AppColor.redOpacity1}>
-                <View style={AppointmentStyle.viewFourContainerInnerView}>
-                  <View style={AppointmentStyle.viewFourContainerInnerViewOne}>
-                    <Text
-                      style={
-                        AppointmentStyle.viewFourContainerInnerViewOneTextOne
-                      }>
-                      105
-                    </Text>
-                    <Text
-                      style={
-                        AppointmentStyle.viewFourContainerInnerViewOneTextTwo
-                      }>
-                      Cancelled Appointments
-                    </Text>
-                  </View>
-                  <View style={AppointmentStyle.viewFourContainerInnerViewTwo}>
-                    <Lottie
-                      style={{height: hp('30')}}
-                      source={require('../../../assets/animations/cancelledAppointments.json')}
-                      loop
-                      autoPlay
-                    />
-                  </View>
-                </View>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('CancelledApp');
+          }}>
+          <NeoButton
+            height={hp('20')}
+            width={wp('90')}
+            borderRadius={wp('6')}
+            marginVertical={wp('5')}
+            backgroundColor={AppColor.redOpacity1}>
+            <View style={AppointmentStyle.viewOneContainerInnerView}>
+              <View>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
+                  105
+                </Text>
+                <Text
+                  style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
+                  Cancelled Appointment
+                </Text>
+              </View>
+              <Lottie
+                style={{
+                  width: wp('30'),
+                  height: wp('30'),
+                  backgroundColor: AppColor.white,
+                }}
+                source={require('../../../assets/animations/cancelledAppointments.json')}
+                loop
+                autoPlay
+              />
+            </View>
+          </NeoButton>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );

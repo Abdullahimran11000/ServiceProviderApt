@@ -95,6 +95,7 @@ const Verification = ({navigation}) => {
                 value={firstTextInput}
                 ref={firstTextInputRef}
                 style={VerificationStyle.newInputs}
+                autoFocus={true}
                 maxLength={1}
                 keyboardType={'numeric'}
                 returnKeyType={'next'}

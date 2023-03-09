@@ -3,8 +3,9 @@ import {
   SafeAreaView,
   View,
   Text,
-  ScrollView,
   TouchableOpacity,
+  TextInput,
+  ScrollView,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -21,6 +22,7 @@ import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
 import {useNavigation} from '@react-navigation/native';
 import CustomModal from '../../components/Modal/CustomModal';
 import CustomModal1 from '../../components/Modal/CustomModal';
+import {Neomorph} from 'react-native-neomorph-shadows';
 
 const RecoverPassword = () => {
   const [eye, setEye] = useState(false);
@@ -28,10 +30,10 @@ const RecoverPassword = () => {
   const [showInstructionModal, setShowInstructionModal] = useState(false);
   const [showPasswordMessageInModal, setShowPasswordMessageInModal] =
     useState(false);
-  const [newPassword, setNewPassword] = useState('');
+  const [newPasswordInputText, setNewPasswordInputText] = useState('');
   const [passwordLabel, setPasswordLabel] = useState('');
   const [passwordValidator, setPasswordValidator] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [confirmPasswordInputText, setConfirmPasswordInputText] = useState();
   const [confirmPasswordLabel, setConfirmPasswordLabel] = useState('');
   const [confirmPasswordValidator, setConfirmPasswordValidator] =
     useState(false);
@@ -39,27 +41,27 @@ const RecoverPassword = () => {
   const passwordRef = useRef(null);
   const confirmRef = useRef(null);
 
-  const submitHandler = () => {
-    if (newPassword === '' || confirmPassword === '') {
+  const saveHandler = () => {
+    if (newPasswordInputText === '' || confirmPasswordInputText === '') {
       setPasswordLabel('Please enter your password.');
       setPasswordValidator(true);
       setConfirmPasswordLabel('Please confirm your password.');
       setConfirmPasswordValidator(true);
     } else {
       if (
-        (newPassword.includes('@') ||
-          newPassword.includes('!') ||
-          newPassword.includes('.')) &&
-        (confirmPassword.includes('@') ||
-          confirmPassword.includes('!') ||
-          confirmPassword.includes('.'))
+        (newPasswordInputText.includes('@') ||
+          newPasswordInputText.includes('!') ||
+          newPasswordInputText.includes('.')) &&
+        (confirmPasswordInputText.includes('@') ||
+          confirmPasswordInputText.includes('!') ||
+          confirmPasswordInputText.includes('.'))
       ) {
         setPasswordValidator(false);
         setConfirmPasswordValidator(false);
         setShowPasswordMessageInModal(true);
       } else {
-        setNewPassword('');
-        setConfirmPassword('');
+        setNewPasswordInputText('');
+        setConfirmPasswordInputText('');
         setPasswordLabel('Enter Valid Password');
         setConfirmPasswordLabel('Enter your password again');
         setPasswordValidator(true);
@@ -72,7 +74,7 @@ const RecoverPassword = () => {
     navigation.addListener('focus', () => {
       console.log('Recover Password screen is focusing right now!');
     });
-  }, [navigation]);
+  }, []);
   return (
     <SafeAreaView style={RecoverPasswordStyle.mainView}>
       <BackButton
@@ -81,133 +83,102 @@ const RecoverPassword = () => {
         }}>
         {'Recovery Password'}
       </BackButton>
-      <ScrollView>
-        <View>
-          <View style={RecoverPasswordStyle.animationView}>
-            <Lottie
-              style={RecoverPasswordStyle.animationStyle}
-              source={require('../../assets/animations/appIntroRecover.json')}
-              autoPlay
-            />
-          </View>
-          <View>
-            <Text style={RecoverPasswordStyle.tagText}>
-              Create new password
-            </Text>
-          </View>
-          <View style={RecoverPasswordStyle.paraView}>
-            <Text style={RecoverPasswordStyle.paraText}>
-              Please enter your email address to recover your forgoton password
-            </Text>
-          </View>
-          <View style={RecoverPasswordStyle.inputView}>
-            <View style={RecoverPasswordStyle.labelView}>
-              <Text style={RecoverPasswordStyle.labelText1}>New Password</Text>
-              {/* <View style={{width: wp(40), bottom: hp(3.4), marginLeft: wp(40)}}>
-              <TouchableOpacity
-                onPress={() => {
-                  setShowInstructionModal(true);
-                }}>
-                <Icon name="alert-circle" size={wp('5')} color="black" />
-              </TouchableOpacity>
-            </View> */}
-            </View>
 
-            <NeoTextInput
-              value={newPassword}
-              reference={passwordRef}
-              autoFocus={true}
-              width={wp('90')}
-              marginBottom={passwordValidator? wp('0'):wp('4')}
-              placeholder={'Enter your password'}
-              secureTextEntry={!eye}
-              keyboardType={'ascii-capable'}
-              onChangeText={text => setNewPassword(text)}
-              returnKeyType={'next'}
-              onSubmitEditing={() => {
-                confirmRef.current.focus();
-              }}>
-              <TouchableOpacity
-                style={RecoverPasswordStyle.iconTouchableStyle}
-                onPress={() => {
-                  if (eye === true) {
-                    setEye(false);
-                  } else {
-                    setEye(true);
-                  }
-                }}>
-                {!eye ? (
-                  <Entypo name="eye-with-line" size={wp('4.5')} color="black" />
-                ) : (
-                  <Entypo name="eye" size={wp('4.5')} color="black" />
-                )}
-              </TouchableOpacity>
-            </NeoTextInput>
-          </View>
-          {passwordValidator ? (
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: wp('3.5'),
-                marginTop: hp('1'),
-                marginBottom: wp('2'),
-                width: wp('90'),
-                alignSelf: 'center',
-                color: AppColor.red,
-              }}>
-              {passwordLabel}
-            </Text>
-          ) : null}
+      <ScrollView
+        style={{width: wp('100')}}
+        contentContainerStyle={{alignItems: 'center'}}>
+        <Lottie
+          style={RecoverPasswordStyle.animationStyle}
+          source={require('../../assets/animations/appIntroRecover.json')}
+          autoPlay
+        />
+        <Text style={RecoverPasswordStyle.tagText}>Create new password</Text>
+        <Text style={RecoverPasswordStyle.paraText}>
+          Please enter your email address to recover your forgoton password
+        </Text>
+        <Text style={RecoverPasswordStyle.labelText1}>New Password</Text>
 
-          <View>
-            <View style={RecoverPasswordStyle.labelView}>
-              <Text style={RecoverPasswordStyle.labelText1}>
-                Confirm Password
-              </Text>
-            </View>
+        <NeoTextInput
+          value={newPasswordInputText}
+          reference={passwordRef}
+          autoFocus={true}
+          placeholder={'Enter your password'}
+          secureTextEntry={!eye}
+          keyboardType={'ascii-capable'}
+          onChangeText={text => setNewPasswordInputText(text)}
+          returnKeyType={'next'}
+          onSubmitEditing={() => {
+            confirmRef.current.focus();
+          }}>
+          <TouchableOpacity
+            style={RecoverPasswordStyle.iconTouchableStyle}
+            onPress={() => {
+              if (eye === true) {
+                setEye(false);
+              } else {
+                setEye(true);
+              }
+            }}>
+            {!eye ? (
+              <Entypo name="eye-with-line" size={wp('4.5')} color="black" />
+            ) : (
+              <Entypo name="eye" size={wp('4.5')} color="black" />
+            )}
+          </TouchableOpacity>
+        </NeoTextInput>
 
-            <NeoTextInput
-              value={confirmPassword}
-              reference={confirmRef}
-              width={wp('90')}
-              placeholder={'Confirm your password'}
-              secureTextEntry={!eye}
-              keyboardType={'ascii-capable'}
-              onChangeText={text => {
-                setConfirmPassword(text);
-              }}
-              returnKeyType={'next'}
-              onSubmitEditing={submitHandler}
-            />
-            {confirmPasswordValidator ? (
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Light',
-                  fontSize: wp('3.5'),
-                  color: AppColor.red,
-                  marginTop: hp('2'),
-                  width: wp('90'),
-                  alignSelf: 'center',
-                }}>
-                {confirmPasswordLabel}
-              </Text>
-            ) : null}
-          </View>
+        {passwordValidator ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3.5'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            {passwordLabel}
+          </Text>
+        ) : null}
 
-          <View style={RecoverPasswordStyle.buttonView}>
-            <TouchableOpacity onPress={submitHandler}>
-              <NeoButton
-                darkShadowColor={AppColor.black}
-                width={wp('55')}
-                backgroundColor={AppColor.primary}
-                height={hp('6')}
-                borderRadius={wp('10')}
-                marginBottom={wp('10')}>
-                <Text style={RecoverPasswordStyle.touchableText}>Save</Text>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <Text style={RecoverPasswordStyle.labelText1}>Confirm Password</Text>
+
+        <NeoTextInput
+          value={confirmPasswordInputText}
+          reference={confirmRef}
+          placeholder={'Confirm your password'}
+          secureTextEntry={!eye}
+          keyboardType={'ascii-capable'}
+          onChangeText={text => {
+            setConfirmPasswordInputText(text);
+          }}
+          returnKeyType={'next'}
+          onSubmitEditing={saveHandler}
+        />
+        {confirmPasswordValidator ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3.5'),
+              color: AppColor.red,
+              marginBottom: wp('2'),
+              width: wp('90'),
+            }}>
+            {confirmPasswordLabel}
+          </Text>
+        ) : null}
+
+        <TouchableOpacity
+          style={{alignSelf: 'center', marginVertical: wp('5')}}
+          onPress={saveHandler}>
+          <NeoButton
+            darkShadowColor={AppColor.black}
+            width={wp('55')}
+            backgroundColor={AppColor.primary}
+            height={hp('6')}
+            borderRadius={wp('10')}
+            marginBottom={wp('10')}>
+            <Text style={RecoverPasswordStyle.touchableText}>Save</Text>
+          </NeoButton>
+        </TouchableOpacity>
 
         <CustomModal
           isVisible={showPasswordMessageInModal}

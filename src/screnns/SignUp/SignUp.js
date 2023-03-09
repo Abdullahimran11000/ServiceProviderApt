@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Checkbox} from 'react-native-paper';
 import {
   SafeAreaView,
@@ -29,12 +29,15 @@ const SignUp = ({navigation}) => {
   const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
   const [emailAlert, setEmailAlert] = useState(false);
   const [passwordText, setPasswordText] = useState('');
-  const [passwordLabelText, setPasswordLabelText] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState(
     AppColor.blackOpacity3,
   );
 
-  const submitHandler = () => {
+  const nameInputRef = useRef(null);
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+
+  const signUpHandler = () => {
     if (emailText === '' && nameText === '' && passwordText === '') {
       setNameIsValid(AppColor.red);
       setEmailIsValid(AppColor.red);
@@ -61,6 +64,7 @@ const SignUp = ({navigation}) => {
         setEmailText('');
         setPasswordText('');
         setEmailAlert(false);
+        setshowConfirmationMessageInModal(true)
       } else {
         setEmailAlert(true);
         setEmailIsValid(AppColor.red);
@@ -75,119 +79,127 @@ const SignUp = ({navigation}) => {
   }, [navigation]);
 
   return (
-    <ScrollView>
-      <SafeAreaView
-        style={{backgroundColor: AppColor.whiteShade, height: hp('100')}}>
-        <View style={SignUpStyle.mainView}>
-          <BackButton onPress={() => navigation.goBack()}>
-            {'Sign Up'}
-          </BackButton>
-          <View style={SignUpStyle.views}>
-            <Text style={SignUpStyle.text}>Full Name</Text>
-            <NeoTextInput
-              value={nameText}
-              width={wp('90')}
-              keyboardType={'default'}
-              placeholder={'Enter your name'}
-              placeholderTextColor={nameIsValid}
-              onChangeText={text => {
-                setNameText(text);
-              }}
-            />
-          </View>
-          <View style={SignUpStyle.views}>
-            <Text style={SignUpStyle.text}>Email</Text>
-            <NeoTextInput
-              value={emailText}
-              width={wp('90')}
-              keyboardType={'email-address'}
-              placeholder={'Enter your email'}
-              placeholderTextColor={emailIsValid}
-              onChangeText={text => {
-                setEmailText(text);
-              }}
-            />
-          </View>
-          {emailAlert ? (
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: wp('3.8'),
-                color: AppColor.red,
-                marginLeft: wp('5'),
-                marginTop: wp('5'),
-                marginBottom: wp('-5'),
-              }}>
-              Please enter valid email!
-            </Text>
-          ) : null}
-          <View style={SignUpStyle.views}>
-            <Text style={SignUpStyle.text}>Password</Text>
-            <NeoTextInput
-              value={passwordText}
-              width={wp('90')}
-              keyboardType={'default'}
-              secureTextEntry={!eye}
-              placeholder={'Enter your password'}
-              placeholderTextColor={passwordIsValid}
-              onChangeText={text => {
-                setPasswordText(text);
-              }}>
-              <TouchableOpacity
-                style={SignUpStyle.icon}
-                onPress={() => {
-                  if (eye === true) {
-                    setEye(false);
-                  } else {
-                    setEye(true);
-                  }
-                }}>
-                {!eye ? (
-                  <Entypo name="eye-with-line" size={wp('4.5')} color="black" />
-                ) : (
-                  <Entypo name="eye" size={wp('4.5')} color="black" />
-                )}
-              </TouchableOpacity>
-            </NeoTextInput>
-          </View>
-          
-          <View style={{marginLeft: wp(6), marginTop: hp(3)}}>
-            <Checkbox status="checked" color="#c28cde" />
-            <Text style={SignUpStyle.termsAndPrivacyStyle1}>I agree with</Text>
-            <Text style={SignUpStyle.termsAndPrivacyStyle2}>terms</Text>
-            <Text style={SignUpStyle.termsAndPrivacyStyle3}>and</Text>
-            <Text style={SignUpStyle.termsAndPrivacyStyle4}>privacy</Text>
-          </View>
-          <View style={SignUpStyle.viewSignUpbutton}>
-            <TouchableOpacity onPress={submitHandler}>
-              <NeoButton
-                lightShadowColor={AppColor.white}
-                width={wp('55')}
-                height={hp('6')}
-                borderRadius={wp('10')}
-                backgroundColor={AppColor.primary}>
-                <Text style={SignUpStyle.SignUpText}>Sign Up</Text>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <CustomModal
-          isVisible={showConfirmationMessageInModal}
-          onBackdropPress={() => {
-            setshowConfirmationMessageInModal(false);
+    <SafeAreaView
+      style={{
+        backgroundColor: AppColor.whiteShade,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <BackButton onPress={() => navigation.goBack()}>{'Sign Up'}</BackButton>
+      <View style={{marginTop: wp('10')}}>
+        <Text style={SignUpStyle.text}>Full Name</Text>
+        <NeoTextInput
+          value={nameText}
+          autoFocus={true}
+          reference={nameInputRef}
+          keyboardType={'default'}
+          returnKeyType={'next'}
+          placeholder={'Enter your name'}
+          placeholderTextColor={nameIsValid}
+          onChangeText={text => {
+            setNameText(text);
           }}
-          modalButtonPress={() => {
-            navigation.navigate('LogIn');
+          onSubmitEditing={() => {
+            emailInputRef.current.focus();
           }}
-          buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/success.json')}
-          lottieStyle={{width: wp('35'), height: wp('35')}}
-          text={'Account Created Successfully'}
-          style={{marginTop: wp(10)}}
-          buttonText={'Start Now'}
         />
-      </SafeAreaView>
-    </ScrollView>
+        <Text style={SignUpStyle.text}>Email</Text>
+        <NeoTextInput
+          value={emailText}
+          reference={emailInputRef}
+          keyboardType={'email-address'}
+          returnKeyType={'next'}
+          placeholder={'Enter your email'}
+          placeholderTextColor={emailIsValid}
+          onChangeText={text => {
+            setEmailText(text);
+          }}
+          onSubmitEditing={() => {
+            passwordInputRef.current.focus();
+          }}
+        />
+        {emailAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3.8'),
+              color: AppColor.red,
+            }}>
+            Please enter valid email!
+          </Text>
+        ) : null}
+        <Text style={SignUpStyle.text}>Password</Text>
+        <NeoTextInput
+          value={passwordText}
+          width={wp('90')}
+          reference={passwordInputRef}
+          keyboardType={'default'}
+          secureTextEntry={!eye}
+          placeholder={'Enter your password'}
+          placeholderTextColor={passwordIsValid}
+          onChangeText={text => {
+            setPasswordText(text);
+          }}
+          onSubmitEditing={signUpHandler}>
+          <TouchableOpacity
+            style={SignUpStyle.icon}
+            onPress={() => {
+              if (eye === true) {
+                setEye(false);
+              } else {
+                setEye(true);
+              }
+            }}>
+            {!eye ? (
+              <Entypo name="eye-with-line" size={wp('4.5')} color="black" />
+            ) : (
+              <Entypo name="eye" size={wp('4.5')} color="black" />
+            )}
+          </TouchableOpacity>
+        </NeoTextInput>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Checkbox status="checked" color={AppColor.primary} />
+          <Text
+            style={{
+              fontSize: wp('4'),
+              fontFamily: 'Poppins-Light',
+              color: AppColor.black,
+            }}>
+            I agree with <Text style={{fontFamily: 'Poppins-Bold'}}>terms</Text>{' '}
+            & <Text style={{fontFamily: 'Poppins-Bold'}}>conditions</Text>
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={{alignItems: 'center', marginVertical: wp('5')}}
+          onPress={signUpHandler}>
+          <NeoButton
+            lightShadowColor={AppColor.white}
+            width={wp('55')}
+            height={hp('6')}
+            borderRadius={wp('10')}
+            backgroundColor={AppColor.primary}>
+            <Text style={SignUpStyle.SignUpText}>Sign Up</Text>
+          </NeoButton>
+        </TouchableOpacity>
+      </View>
+
+      <CustomModal
+        isVisible={showConfirmationMessageInModal}
+        onBackdropPress={() => {
+          setshowConfirmationMessageInModal(false);
+        }}
+        modalButtonPress={() => {
+          navigation.navigate('LogIn');
+        }}
+        buttonBackgroundColor={AppColor.primary}
+        source={require('../../assets/animations/success.json')}
+        lottieStyle={{width: wp('35'), height: wp('35')}}
+        text={'Account Created Successfully'}
+        style={{marginTop: wp(10)}}
+        buttonText={'Start Now'}
+      />
+    </SafeAreaView>
   );
 };
 

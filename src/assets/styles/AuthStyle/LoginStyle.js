@@ -11,7 +11,7 @@ const LoginStyle = StyleSheet.create({
     alignSelf: 'center',
     color: AppColor.black,
     fontFamily: 'Poppins-Bold',
-    marginTop: hp(3),
+    paddingTop: wp('5'),
     fontSize: wp('5'),
   },
 
@@ -24,13 +24,13 @@ const LoginStyle = StyleSheet.create({
   TextStyle: {
     color: AppColor.black,
     fontFamily: 'Poppins-SemiBold',
-    fontSize: wp('4.5')
+    fontSize: wp('4.5'),
+    width: wp('90'),
   },
 
   ForgotText: {
     textAlign: 'right',
-    alignSelf: 'flex-end',
-    marginRight: wp(5),
+    paddingRight: wp('5'),
     fontFamily: 'Poppins-Medium',
     color: AppColor.black,
   },
@@ -57,7 +57,11 @@ const LoginStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  LoginText: {color: AppColor.white, fontFamily: 'Poppins-Bold', fontSize: wp('4')},
+  LoginText: {
+    color: AppColor.white,
+    fontFamily: 'Poppins-Bold',
+    fontSize: wp('4'),
+  },
 
   orText: {
     color: AppColor.black,
