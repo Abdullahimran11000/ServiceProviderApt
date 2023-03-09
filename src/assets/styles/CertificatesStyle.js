@@ -1,16 +1,17 @@
 import { StyleSheet } from "react-native";
 import { widthPercentageToDP as wp  , heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import App from "../../../App";
 import { AppColor } from "../colors/AppColors";
 
 const CertificatesStyle = StyleSheet.create({
     mainView: {display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade},
 
-    headCont: {width: wp('90'), height: hp('6'), marginTop: wp('4.5'), marginLeft:  wp('4.5'), marginRight:  wp('4.5'), alignSelf: 'center'},
+    headCont: {width: wp('90'), marginTop: wp('4.5'), alignSelf: 'center', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
     headContInnerCont: {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
     headContMenuCont: {width: wp('11.5'), height: wp('11.5'), borderRadius: wp('14'), position: 'absolute', left:wp('0'), justifyContent: 'center'},
     textCont : {position: 'absolute', right: 0},
-    textStyle: {fontFamily: "Poppins-Bold", fontSize: wp('4.5'), color: AppColor.blackOpacity6, position: 'absolute', right: 0},
-    textStyle1: {fontFamily: "Poppins-Bold", fontSize: wp('4.5'), color: AppColor.blackOpacity6, width: wp('50'), position: 'absolute', left: wp('11')},
+    textStyle: {fontFamily: "Poppins-Bold", fontSize: wp('4.5'), color: AppColor.blackOpacity6, width: wp('52'), textAlign: "right"},
+    textStyle1: {fontFamily: "Poppins-Bold", fontSize: wp('4.5'), color: AppColor.blackOpacity6, width: wp('30'), textAlign: 'center'},
 
     imageViewCard: {alignSelf: 'center', marginBottom: wp('6')},
     imageNeumorphCard: {width: wp("90"),height: hp('60'),backgroundColor: AppColor.whiteShade,marginTop: wp('4'),shadowRadius: 4,borderRadius: wp('5'),display: 'flex',flex: 10,alignItems: 'center',justifyContent: 'center',},

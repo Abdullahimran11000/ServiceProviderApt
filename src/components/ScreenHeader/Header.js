@@ -16,45 +16,32 @@ const Header = ({
   stylesText,
   buttonColor,
   backgroundColor,
-  lightShadowColor
+  lightShadowColor,
 }) => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={{backgroundColor: backgroundColor}}>
-      <View
-        style={[
-          CertificatesStyle.headCont,
-          {backgroundColor: backgroundColor},
-        ]}>
-        <View style={CertificatesStyle.headContInnerCont}>
-          <View style={CertificatesStyle.headContMenuCont}>
-            <NeoButton
-              width={wp('8')}
-              height={wp('8')}
-              borderRadius={wp('5')}
-              backgroundColor={buttonColor}
-              lightShadowColor={lightShadowColor}
-              marginTop={wp('-1')}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Ionicons
-                  name="chevron-back-sharp"
-                  size={wp('6')}
-                  color={AppColor.black}
-                />
-              </TouchableOpacity>
-            </NeoButton>
-            <Text style={[CertificatesStyle.textStyle1, styles]}>
-              Dashboard
-            </Text>
-          </View>
-          <Text style={[CertificatesStyle.textStyle, stylesText]}>
-            {children}
-          </Text>
-        </View>
-      </View>
+    <SafeAreaView
+      style={[CertificatesStyle.headCont, {backgroundColor: backgroundColor}]}>
+      <NeoButton
+        width={wp('8')}
+        height={wp('8')}
+        borderRadius={wp('5')}
+        backgroundColor={buttonColor}
+        lightShadowColor={lightShadowColor}
+        marginTop={wp('-1')}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Ionicons
+            name="chevron-back-sharp"
+            size={wp('6')}
+            color={AppColor.black}
+          />
+        </TouchableOpacity>
+      </NeoButton>
+      <Text style={[CertificatesStyle.textStyle1, styles]}>Dashboard</Text>
+      <Text style={[CertificatesStyle.textStyle, stylesText]}>{children}</Text>
     </SafeAreaView>
   );
 };

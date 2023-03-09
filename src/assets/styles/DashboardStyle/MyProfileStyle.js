@@ -8,7 +8,9 @@ import {AppColor} from '../../colors/AppColors';
 const MyProfileStyle = StyleSheet.create({
   mainView: {
     backgroundColor: AppColor.whiteShade,
-    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ProfileView: {
     width: wp('90'),
@@ -18,15 +20,16 @@ const MyProfileStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: wp('5'),
-    
   },
   innerProfileView: {
     width: wp('25'),
     height: wp('25'),
-    borderRadius: wp('15'),
+    borderRadius: wp('25'),
     backgroundColor: AppColor.white,
+    alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: wp('5'),
   },
 
   IconButtonStyle: {
@@ -57,7 +60,8 @@ const MyProfileStyle = StyleSheet.create({
   TextStyle: {
     fontFamily: 'Poppins-SemiBold',
     color: AppColor.black,
-    fontSize: wp('4.2')
+    fontSize: wp('4'),
+    width: wp('90'),
   },
   GenderView: {marginLeft: wp('6')},
   selectListBox: {

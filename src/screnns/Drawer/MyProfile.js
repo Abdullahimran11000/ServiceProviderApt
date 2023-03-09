@@ -4,8 +4,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   ImageBackground,
+  ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
@@ -59,8 +59,11 @@ const MyProfile = ({navigation}) => {
 
   const submitHandler = () => {
     if (
-      (name === '' && date === '' && email === '' && mobileNo === ''&&
-      optionShow === 'Gender')
+      name === '' &&
+      date === '' &&
+      email === '' &&
+      mobileNo === '' &&
+      optionShow === 'Gender'
     ) {
       setNameIsValid(AppColor.red);
       setDateIsValid(AppColor.red);
@@ -69,10 +72,12 @@ const MyProfile = ({navigation}) => {
       setGenderIsValid(AppColor.red);
     }
     if (
-      (name !== '' && date !== '' && email !== '' && mobileNo !== ''&&
-      optionShow !== 'Gender')
+      name !== '' &&
+      date !== '' &&
+      email !== '' &&
+      mobileNo !== '' &&
+      optionShow !== 'Gender'
     ) {
-      console.log(name)
       if (email.includes('@gmail.com') || email.includes('@outlook.com')) {
         setNameIsValid(AppColor.blackOpacity3);
         setDateIsValid(AppColor.blackOpacity3);
@@ -85,7 +90,7 @@ const MyProfile = ({navigation}) => {
         setMobileNo('');
         setOptionShow('Gender');
         setModalOpen(true);
-        setEmailAlert(false)
+        setEmailAlert(false);
       } else {
         setEmailAlert(true);
         setEmailIsValid(AppColor.red);
@@ -101,6 +106,7 @@ const MyProfile = ({navigation}) => {
     }
     if (email === '') {
       setEmailIsValid(AppColor.red);
+      setEmailAlert(false)
     }
     if (mobileNo === '') {
       setMobileNoIsValid(AppColor.red);
@@ -116,239 +122,225 @@ const MyProfile = ({navigation}) => {
   };
 
   return (
-    <ScrollView>
-      <SafeAreaView style={MyProfileStyle.mainView}>
-        <CustomModal
-          isVisible={modalOpen}
-          onBackdropPress={() => {
-            setModalOpen(false);
-          }}
-          source={require('../../assets/animations/profile.json')}
-          lottieStyle={{width: wp('35'), height: wp('35')}}
-          text={'Your profile is updated successfully.'}
-          style={{marginTop: wp('10')}}
-          modalButtonPress={() => {
-            setModalOpen(false);
-            navigation.goBack();
-          }}
-          buttonBackgroundColor={'#00B46E'}
-          buttonText={'Close'}
-        />
-        <View>
-          <Header
-            buttonColor={AppColor.whiteShade}
-            styles={{color: AppColor.black}}
-            stylesText={{color: AppColor.black}}
-            backgroundColor={AppColor.whiteShade}>
-            {'My Profile'}
-          </Header>
-          <View style={MyProfileStyle.ProfileView}>
-            <View style={MyProfileStyle.innerProfileView}>
-              {selectedImageUrl === '' ? (
-                <FontAwesome
-                  name={'user-o'}
-                  size={wp('10')}
-                  color={AppColor.black}
-                />
-              ) : (
-                <ImageZoom
-                  cropWidth={wp('26')}
-                  cropHeight={wp('26')}
-                  imageHeight={wp('25')}
-                  imageWidth={wp('25')}
-                  style={{
-                    borderRadius: wp('15'),
-                    height: wp('25'),
-                    width: wp('25'),
-                    backgroundColor: AppColor.whiteShade,
-                    overflow: 'hidden',
-                  }}>
-                  <ImageBackground
-                    imageStyle={{borderRadius: wp('15')}}
-                    style={MyProfileStyle.imageStyle}
-                    source={{uri: uploadImageList[0].url}}
-                    resizeMode={'contain'}></ImageBackground>
-                </ImageZoom>
-              )}
+    <SafeAreaView style={MyProfileStyle.mainView}>
+      <Header
+        buttonColor={AppColor.whiteShade}
+        styles={{color: AppColor.black}}
+        stylesText={{color: AppColor.black}}
+        backgroundColor={AppColor.whiteShade}>
+        {'My Profile'}
+      </Header>
 
-              <TouchableOpacity
-                onPress={imagePickerHandler}
-                style={MyProfileStyle.iconTouchableStyle}>
-                <Icon size={wp('4')} name="camera"></Icon>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={MyProfileStyle.inputFeildsView}>
-            <Text style={MyProfileStyle.TextStyle}>Full Name</Text>
-
-            <NeoTextInput
-              autoFocus={true}
-              value={name}
-              reference={nameRef}
-              width={wp('90')}
-              marginBottom={wp('5')}
-              placeholder={'Enter your name'}
-              placeholderTextColor={nameIsValid}
-              keyboardType={'default'}
-              returnKeyType={'next'}
-              onChangeText={text => {
-                setName(text);
-              }}
-              onSubmitEditing={() => {
-                dateRef.current.focus();
-              }}
-            />
-          </View>
-          <View style={MyProfileStyle.inputFeildsView}>
-            <Text style={MyProfileStyle.TextStyle}>Date of Birth</Text>
-
-            <NeoTextInput
-              value={date}
-              reference={dateRef}
-              width={wp('90')}
-              marginBottom={wp('5')}
-              placeholder={'Enter your birth'}
-              placeholderTextColor={dateIsValid}
-              keyboardType={'numeric'}
-              returnKeyType={'next'}
-              onChangeText={text => {
-                setDate(text);
-              }}
-              onSubmitEditing={() => {
-                emailRef.current.focus();
-              }}
-            />
-          </View>
-          <View style={MyProfileStyle.inputFeildsView}>
-            <Text style={MyProfileStyle.TextStyle}>Gender</Text>
-          </View>
-          <MenuProvider>
-            <Menu
-              onSelect={value => {
-                setNeumorphHeight(true);
-                setOptionShow(value);
-              }}>
-              <MenuTrigger
-                onPress={() => {
-                  setNeumorphHeight(false);
-                }}>
-                <Neomorph
-                  style={{
-                    width: wp('90'),
-                    height: hp('8.5'),
-                    backgroundColor: AppColor.whiteShade,
-                    shadowRadius: 4,
-                    marginLeft: wp('5'),
-                    borderRadius: wp('3'),
-                    marginTop: wp('2'),
-                    marginBottom: neumorphHeight ? wp('5') : hp('14'),
-                    justifyContent: 'center',
-                  }}>
-                  <Text
-                    ref={genderRef}
-                    style={{
-                      fontFamily: 'Poppins-Light',
-                      marginLeft: wp('3'),
-                      color: genderIsValid,
-                      fontSize: wp('4'),
-                    }}>
-                    {optionShow}
-                  </Text>
-                </Neomorph>
-              </MenuTrigger>
-              <MenuOptions
-                optionsContainerStyle={{
+      <ScrollView
+        style={{width: wp('100')}}
+        contentContainerStyle={{alignItems: 'center'}}>
+        <View style={{alignItems: 'center'}}>
+          <View style={MyProfileStyle.innerProfileView}>
+            {selectedImageUrl === '' ? (
+              <FontAwesome
+                name={'user-o'}
+                size={wp('10')}
+                color={AppColor.black}
+              />
+            ) : (
+              <ImageZoom
+                cropWidth={wp('26')}
+                cropHeight={wp('26')}
+                imageHeight={wp('25')}
+                imageWidth={wp('25')}
+                style={{
+                  borderRadius: wp('15'),
+                  height: wp('25'),
+                  width: wp('25'),
                   backgroundColor: AppColor.whiteShade,
-                  borderRadius: wp('4'),
-                  marginLeft: wp('40'),
-                  marginTop: hp('12'),
+                  overflow: 'hidden',
                 }}>
-                <MenuOption value={'Male'}>
-                  <Text
-                    style={{
-                      fontFamily: 'Poppins-Light',
-                      marginLeft: wp('3'),
-                      color: AppColor.black,
-                    }}>
-                    Male
-                  </Text>
-                </MenuOption>
-                <MenuOption value={'Female'}>
-                  <Text
-                    style={{
-                      fontFamily: 'Poppins-Light',
-                      marginLeft: wp('3'),
-                      color: AppColor.black,
-                    }}>
-                    Female
-                  </Text>
-                </MenuOption>
-              </MenuOptions>
-            </Menu>
-          </MenuProvider>
-          <View style={MyProfileStyle.inputFeildsView}>
-            <Text style={MyProfileStyle.TextStyle}>Email</Text>
-            <NeoTextInput
-              value={email}
-              reference={emailRef}
-              marginBottom={wp('5')}
-              width={wp('90')}
-              keyboardType={'email-address'}
-              placeholder={'Enter your email'}
-              placeholderTextColor={emailIsValid}
-              returnKeyType={'next'}
-              onChangeText={text => {
-                setEmail(text);
-              }}
-              onSubmitEditing={() => {
-                mobileRef.current.focus();
-              }}
-            />
-          </View>
-          {emailAlert ? (
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: wp('3.8'),
-                color: AppColor.red,
-                marginLeft: wp('5'),
-                marginTop: wp('1.5'),
-                marginBottom: wp('2'),
-              }}>
-              Please enter valid email!
-            </Text>
-          ) : null}
-          <View style={[MyProfileStyle.inputFeildsView]}>
-            <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
-            <NeoTextInput
-              value={mobileNo}
-              reference={mobileRef}
-              width={wp('90')}
-              marginBottom={wp('8')}
-              keyboardType={'number-pad'}
-              returnKeyType={'go'}
-              placeholder={'Enter your number'}
-              placeholderTextColor={mobileNoIsValid}
-              onChangeText={text => {
-                setMobileNo(text);
-              }}
-              onEndEditing={submitHandler}
-            />
-          </View>
-          <View style={MyProfileStyle.buttonView}>
-            <TouchableOpacity onPress={submitHandler}>
-              <NeoButton
-                width={wp('55')}
-                height={hp('6')}
-                backgroundColor={AppColor.primary}
-                borderRadius={wp('10')}>
-                <Text style={MyProfileStyle.buttonText}>Save</Text>
-              </NeoButton>
+                <ImageBackground
+                  imageStyle={{borderRadius: wp('15')}}
+                  style={MyProfileStyle.imageStyle}
+                  source={{uri: uploadImageList[0].url}}
+                  resizeMode={'contain'}></ImageBackground>
+              </ImageZoom>
+            )}
+
+            <TouchableOpacity
+              onPress={imagePickerHandler}
+              style={MyProfileStyle.iconTouchableStyle}>
+              <Icon size={wp('4')} name="camera"></Icon>
             </TouchableOpacity>
           </View>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+
+        <Text style={MyProfileStyle.TextStyle}>Full Name</Text>
+
+        <NeoTextInput
+          autoFocus={true}
+          value={name}
+          reference={nameRef}
+          placeholder={'Enter your name'}
+          placeholderTextColor={nameIsValid}
+          keyboardType={'default'}
+          returnKeyType={'next'}
+          onChangeText={text => {
+            setName(text);
+          }}
+          onSubmitEditing={() => {
+            dateRef.current.focus();
+          }}
+        />
+
+        <Text style={MyProfileStyle.TextStyle}>Date of Birth</Text>
+
+        <NeoTextInput
+          value={date}
+          reference={dateRef}
+          placeholder={'Enter your birth'}
+          placeholderTextColor={dateIsValid}
+          keyboardType={'numeric'}
+          returnKeyType={'next'}
+          onChangeText={text => {
+            setDate(text);
+          }}
+          onSubmitEditing={() => {
+            emailRef.current.focus();
+          }}
+        />
+        <Text style={MyProfileStyle.TextStyle}>Gender</Text>
+
+        <MenuProvider>
+          <Menu
+            onSelect={value => {
+              setNeumorphHeight(true);
+              setOptionShow(value);
+            }}>
+            <MenuTrigger
+              onPress={() => {
+                setNeumorphHeight(false);
+              }}>
+              <Neomorph
+                style={{
+                  width: wp('90'),
+                  height: hp('7.5'),
+                  backgroundColor: AppColor.whiteShade,
+                  shadowRadius: 4,
+                  borderRadius: wp('3'),
+                  marginTop: wp('2'),
+                  marginBottom: neumorphHeight ? wp('5') : wp('10'),
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  ref={genderRef}
+                  style={{
+                    fontFamily: 'Poppins-Light',
+                    paddingLeft: wp('3'),
+                    color: genderIsValid,
+                    fontSize: wp('4'),
+                  }}>
+                  {optionShow}
+                </Text>
+              </Neomorph>
+            </MenuTrigger>
+            <MenuOptions
+              optionsContainerStyle={{
+                backgroundColor: AppColor.whiteShade,
+                borderRadius: wp('4'),
+                width: wp('40'),
+              }}>
+              <MenuOption value={'Male'}>
+                <Text
+                  style={{
+                    fontFamily: 'Poppins-Light',
+                    color: AppColor.black,
+                    paddingLeft: wp('2'),
+                  }}>
+                  Male
+                </Text>
+              </MenuOption>
+              <MenuOption value={'Female'}>
+                <Text
+                  style={{
+                    fontFamily: 'Poppins-Light',
+                    color: AppColor.black,
+                    paddingLeft: wp('2'),
+                  }}>
+                  Female
+                </Text>
+              </MenuOption>
+            </MenuOptions>
+          </Menu>
+        </MenuProvider>
+        <Text style={MyProfileStyle.TextStyle}>Email</Text>
+        <NeoTextInput
+          value={email}
+          reference={emailRef}
+          keyboardType={'email-address'}
+          placeholder={'Enter your email'}
+          placeholderTextColor={emailIsValid}
+          returnKeyType={'next'}
+          onChangeText={text => {
+            setEmail(text);
+          }}
+          onSubmitEditing={() => {
+            mobileRef.current.focus();
+          }}
+        />
+        {emailAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3.8'),
+              color: AppColor.red,
+              width: wp('90'),
+              marginBottom: wp('2'),
+            }}>
+            Please enter valid email!
+          </Text>
+        ) : null}
+        <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
+        <NeoTextInput
+          value={mobileNo}
+          reference={mobileRef}
+          keyboardType={'number-pad'}
+          returnKeyType={'go'}
+          placeholder={'Enter your number'}
+          placeholderTextColor={mobileNoIsValid}
+          onChangeText={text => {
+            setMobileNo(text);
+          }}
+          onSubmitEditing={submitHandler}
+        />
+        <TouchableOpacity
+          style={{
+            marginVertical: wp('5'),
+            alignItems: 'center',
+          }}
+          onPress={submitHandler}>
+          <NeoButton
+            width={wp('55')}
+            height={hp('6')}
+            backgroundColor={AppColor.primary}
+            borderRadius={wp('10')}>
+            <Text style={MyProfileStyle.buttonText}>Save</Text>
+          </NeoButton>
+        </TouchableOpacity>
+      </ScrollView>
+      <CustomModal
+        isVisible={modalOpen}
+        onBackdropPress={() => {
+          setModalOpen(false);
+        }}
+        source={require('../../assets/animations/profile.json')}
+        lottieStyle={{width: wp('35'), height: wp('35')}}
+        text={'Your profile is updated successfully.'}
+        style={{marginTop: wp('10')}}
+        modalButtonPress={() => {
+          setModalOpen(false);
+          navigation.goBack();
+        }}
+        buttonBackgroundColor={'#00B46E'}
+        buttonText={'Close'}
+      />
+    </SafeAreaView>
   );
 };
 export default MyProfile;

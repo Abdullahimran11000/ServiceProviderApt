@@ -52,104 +52,93 @@ const LogIn = ({navigation}) => {
 
   return (
     <SafeAreaView
-      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}>
-      <ScrollView>
-        <View styles={LoginStyle.MainView}>
-          <Text style={LoginStyle.headerView}> Log in </Text>
-          <View style={LoginStyle.inputFieldsView}>
-            <View>
-              <Text style={LoginStyle.TextStyle}>Email</Text>
-              <NeoTextInput
-                value={emailText}
-                width={wp('90')}
-                marginBottom={wp('5')}
-                placeholder={'Enter your email'}
-                keyboardType={'email-address'}
-                onChangeText={text => {
-                  setEmailText(text);
-                }}
-                returnKeyType={'next'}
-              />
-              {checkEmailTextValid ? (
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    fontSize: wp('3'),
-                    color: AppColor.red,
-                  }}>
-                  {emailLabelText}
-                </Text>
-              ) : null}
-            </View>
-            <View>
-              <Text style={LoginStyle.TextStyle}>Password</Text>
-              <NeoTextInput
-                value={passwordText}
-                width={wp('90')}
-                marginBottom={wp('5')}
-                placeholder={'Enter your password'}
-                secureTextEntry={!eye}
-                returnKeyType={'go'}
-                onSubmitEditing={submitHandler}
-                onChangeText={text => {
-                  setPasswordText(text);
-                }}>
-                <TouchableOpacity
-                  style={LoginStyle.icon}
-                  onPress={() => {
-                    if (eye === true) {
-                      setEye(false);
-                    } else {
-                      setEye(true);
-                    }
-                  }}>
-                  {!eye ? (
-                    <Entypo
-                      name="eye-with-line"
-                      size={wp('4.5')}
-                      color={AppColor.black}
-                    />
-                  ) : (
-                    <Entypo
-                      name="eye"
-                      size={wp('4.5')}
-                      color={AppColor.black}
-                    />
-                  )}
-                </TouchableOpacity>
-              </NeoTextInput>
-            </View>
-          </View>
+      style={{ backgroundColor: AppColor.whiteShade, flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={LoginStyle.headerView}> Log in </Text>
+      <View style={{marginTop: wp('10')}}>
+        <Text style={LoginStyle.TextStyle}>Email</Text>
+        <NeoTextInput
+          value={emailText}
+          placeholder={'Enter your email'}
+          keyboardType={'email-address'}
+          onChangeText={text => {
+            setEmailText(text);
+          }}
+          returnKeyType={'next'}
+        />
+        {checkEmailTextValid ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+              alignSelf: 'center',
+            }}>
+            {emailLabelText}
+          </Text>
+        ) : null}
+        <Text style={LoginStyle.TextStyle}>Password</Text>
+        <NeoTextInput
+          value={passwordText} 
+          placeholder={'Enter your password'}
+          secureTextEntry={!eye}
+          returnKeyType={'go'}
+          onSubmitEditing={submitHandler}
+          onChangeText={text => {
+            setPasswordText(text);
+          }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('ForgotPassword')}>
-            <Text style={LoginStyle.ForgotText}>Forgot Password?</Text>
+            style={LoginStyle.icon}
+            onPress={() => {
+              if (eye === true) {
+                setEye(false);
+              } else {
+                setEye(true);
+              }
+            }}>
+            {!eye ? (
+              <Entypo
+                name="eye-with-line"
+                size={wp('4.5')}
+                color={AppColor.black}
+              />
+            ) : (
+              <Entypo name="eye" size={wp('4.5')} color={AppColor.black} />
+            )}
           </TouchableOpacity>
-          <View style={LoginStyle.MainLoginButtonView}>
-            <TouchableOpacity onPress={submitHandler}>
-              <NeoButton
-                width={wp('55')}
-                height={hp('6')}
-                backgroundColor={AppColor.primary}
-                borderRadius={wp('10')}>
-                
-                <Text style={LoginStyle.LoginText}>Log In</Text>
-              </NeoButton>
-            </TouchableOpacity>
-          </View>
-          <View style={LoginStyle.LastView}>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                color: AppColor.blackOpacity8,
-              }}>
-              Don't have an account?
-            </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-              <Text style={LoginStyle.SignUpText}>Sign Up</Text>
-            </TouchableOpacity>
-          </View>
+        </NeoTextInput>
+
+        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+          <Text style={LoginStyle.ForgotText}>Forgot Password?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{alignItems: 'center'}}
+          onPress={submitHandler}>
+          <NeoButton
+            width={wp('55')}
+            height={hp('6')}
+            backgroundColor={AppColor.primary}
+            borderRadius={wp('10')}
+            marginBottom={wp('5')}
+            marginTop={wp('5')}>
+            <Text style={LoginStyle.LoginText}>Log In</Text>
+          </NeoButton>
+        </TouchableOpacity>
+
+        <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              color: AppColor.blackOpacity8,
+            }}>
+            Don't have an account?
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <Text style={LoginStyle.SignUpText}> Sign Up</Text>
+          </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

@@ -5,21 +5,20 @@ import { AppColor } from '../colors/AppColors';
 const AppointmentStyle = StyleSheet.create({
      mainView:{display: 'flex' , backgroundColor:AppColor.whiteShade },
 
-     imageBackStyle: {width: wp(100), height: hp(40) , alignSelf:'center'},
+     imageBackStyle: {width: wp(100), height: hp(40)},
      imageBackView: {
           width: wp(100),
           height: hp(40),
           backgroundColor: AppColor.blackOpacity8,
         },
 
-     headerTextOne:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white, marginTop: hp(3),fontSize: wp(8),width:wp(88)},
-     headerTextTwo:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white, marginTop: hp(2),fontSize: wp(3.6),width:wp(88)},
+     headerTextOne:{fontFamily:'Poppins-SemiBold', color:AppColor.white,fontSize: wp(8), paddingHorizontal: wp('5')},
+     headerTextTwo:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white,fontSize: wp(3.6), paddingHorizontal: wp('5')},
      viewOneContainer: {alignSelf:"center" ,marginTop: hp(5), marginBottom:hp(5)},
-     viewOneContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(18) , alignItems:'center' },
-     viewOneContainerInnerViewOne:{flex:5},
-     viewOneContainerInnerViewFirstText:{fontSize:wp(10), width:wp(47),alignSelf:'center' , color:AppColor.white},
-     viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white, marginTop: hp(1),fontSize: wp(4),width:wp(50),left:wp(3)},
-     viewOneContainerInnerViewTwo: {flex: 3,width: wp(30), height: hp(20), alignItems: 'center',justifyContent: 'center',},
+     viewOneContainerInnerView:{flexDirection:"row", alignItems: 'center', justifyContent: 'space-between', width: wp('80') },
+     viewOneContainerInnerViewFirstText:{fontSize:wp(10), color:AppColor.white},
+     viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold',color:AppColor.white},
+     viewOneContainerInnerViewTwo: {width: wp(30), height: hp(20)},
 
      viewTwoContainer:{alignSelf:"center", marginTop: hp('5')},
      viewTwoContainerInnerView:{flexDirection:"row" , borderRadius:20, width: wp(90) , height: hp(18) , alignItems:'center' },

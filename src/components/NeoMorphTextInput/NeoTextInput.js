@@ -9,16 +9,13 @@ import {
 } from 'react-native-responsive-screen';
 
 const NeoTextInput = ({
-  width,
   placeholder,
   keyboardType,
   secureTextEntry,
   styles,
-  marginBottom,
   value,
   onChangeText,
   children,
-  onEndEditing,
   returnKeyType,
   onSubmitEditing,
   reference,
@@ -26,21 +23,14 @@ const NeoTextInput = ({
   placeholderTextColor
 }) => {
   return (
-    <View
-      style={{
-        width: wp('90'),
-        height: hp('7.5'),
-        alignSelf: 'center',
-        borderRadius: wp('3'),
-        marginBottom: marginBottom,
-      }}>
+    
       <Neomorph
         style={{
-          width: width,
+          width: wp('90'),
           height: hp('7.5'),
           borderRadius: wp('3'),
-          marginTop: wp('2'),
-          shadowRadius: 4,
+          marginVertical: wp('3'),
+          shadowRadius: 3,
           backgroundColor: AppColor.whiteShade,
           alignItems: 'center',
           justifyContent: 'center',
@@ -54,14 +44,12 @@ const NeoTextInput = ({
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}
           onChangeText={onChangeText}
-          onEndEditing={onEndEditing}
           returnKeyType={returnKeyType}
           onSubmitEditing={onSubmitEditing}
           placeholderTextColor={placeholderTextColor}
         />
         {children}
       </Neomorph>
-    </View>
   );
 };
 
