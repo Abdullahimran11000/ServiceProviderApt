@@ -173,55 +173,53 @@ const Dashboard = ({pressHandler, navigation}) => {
                   Please upload and verify your documents!
                 </Text>
               </View>
-
-              <Neomorph
-                lightShadowColor={AppColor.whiteShade}
-                darkShadowColor={AppColor.blackOpacity4}
-                style={DashboardStyle.neoCertificatesButton}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('Certificates');
-                  }}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Certificates');
+                }}
+                style={{alignItems: 'flex-end', paddingVertical: wp('1')}}>
+                <Neomorph
+                  lightShadowColor={AppColor.whiteShade}
+                  darkShadowColor={AppColor.blackOpacity4}
+                  style={DashboardStyle.neoCertificatesButton}>
                   <Text style={DashboardStyle.certificatesButtonText}>
                     Go To Certificates
                   </Text>
-                </TouchableOpacity>
-              </Neomorph>
+                </Neomorph>
+              </TouchableOpacity>
             </LinearGradient>
           </Neomorph>
         ) : null}
 
         <DoctorBar
-            One={"Today's Appointment"}
-            Two={'See all'}
-            onPress={() => {
-              navigation.navigate('UpcomingApp');
-            }}
-          />
+          One={"Today's Appointment"}
+          Two={'See all'}
+          onPress={() => {
+            navigation.navigate('UpcomingApp');
+          }}
+        />
 
         <FlatList
-            data={todayAppointmentInfo}
-            renderItem={renderItemUpcomingAppointments}
-            keyExtractor={item => item.id}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
+          data={todayAppointmentInfo}
+          renderItem={renderItemUpcomingAppointments}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
 
-        <DoctorBar
-            One={'Completed Appointment'}
-            Two={'See all'}
-            onPress={() => {
-              navigation.navigate('CompletedApp');
-            }}
-          />
+        {/* <DoctorBar
+          One={'Completed Appointment'}
+          Two={'See all'}
+          onPress={() => {
+            navigation.navigate('CompletedApp');
+          }}
+        />
 
         <FlatList
-            data={todayAppointmentInfo}
-            renderItem={renderItemCompeletedAppointments}
-            keyExtractor={item => item.id}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
+          data={todayAppointmentInfo}
+          renderItem={renderItemCompeletedAppointments}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        /> */}
       </ScrollView>
     </SafeAreaView>
   );

@@ -4,11 +4,10 @@ import { AppColor } from '../../../colors/AppColors';
 
 const TextInputStyle = StyleSheet.create({
   inputStyle: {
-    width: wp('90'),
+    width: wp('70'),
     height: hp('7'),
     borderRadius: wp('3'),
     backgroundColor: AppColor.whiteShade,
-    paddingHorizontal: wp('3'),
     fontFamily: 'Poppins-Light',
     fontSize: wp('4'),
     color: AppColor.blackOpacity8,

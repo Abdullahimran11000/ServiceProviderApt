@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const WalletStyle = StyleSheet.create({
-  mainView: {display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade},
+  mainView: { flex: 1, backgroundColor: AppColor.whiteShade, alignItems: 'center', justifyContent: 'center'},
 
   headCont: {
     width: wp('90'),
@@ -35,14 +35,9 @@ const WalletStyle = StyleSheet.create({
     color: AppColor.blackOpacity5,
   },
   CardView: {
-    marginTop: wp(5.5),
-    width: wp("90"),
-    height: hp("13"),
-    display: 'flex',
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignSelf: 'center'
+    width: wp('90'), margin: wp('5')
   },
   OpacityStyle: {
     width: wp(42),
@@ -74,30 +69,27 @@ const WalletStyle = StyleSheet.create({
 
   TextInputNeo: {
     flexDirection: 'row',
-    flex: 1,
+    paddingHorizontal: wp('5'),
     width: wp("90"),
     height: hp('11'),
     backgroundColor: AppColor.whiteShade,
     shadowRadius: 4,
     borderRadius: wp('5'),
-    marginLeft: wp('5'),
-    marginTop: wp('10'),
+    margin: wp('5'),
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
   TextinputStyle: {
     fontFamily: 'Poppins-Bold',
-    color: AppColor.blackOpacity5,
+    color: AppColor.black,
     width: wp("50"),
     borderRadius: wp("5"),
     height: hp("9"),
     backgroundColor: AppColor.whiteShade,
-    position: 'absolute',
-    marginLeft: wp('20'),
-    top: wp("2.5")
+    
   },
   dollarIconStyle: {
-    position: 'absolute',
-    marginLeft: wp('10')
+    
   },
   sendOpacity: {
     width: wp("12"),
@@ -109,19 +101,15 @@ const WalletStyle = StyleSheet.create({
     justifyContent: 'center'
   },
   withdrawlMainNeo: {
-    display: 'flex',
     flexDirection: 'row',
-    flex: 1,
     width: wp("90"),
     height: hp("20"),
     backgroundColor: AppColor.whiteShade,
     shadowRadius: 4,
     borderRadius: wp(5),
-    marginTop: wp('5'),
-    marginLeft: wp('5'),
-    marginBottom: wp('10'),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: wp('5')
   },
   amountNeo: {
     width: wp('25'),

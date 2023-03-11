@@ -31,9 +31,11 @@ const NeoTextInput = ({
           borderRadius: wp('3'),
           marginVertical: wp('3'),
           shadowRadius: 3,
+          flexDirection: 'row',
           backgroundColor: AppColor.whiteShade,
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
+          paddingHorizontal: wp('3'),
         }}>
         <TextInput
           value={value}
