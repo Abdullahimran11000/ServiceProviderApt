@@ -31,22 +31,21 @@ const RecoverPassword = () => {
   const [showPasswordMessageInModal, setShowPasswordMessageInModal] =
     useState(false);
   const [newPasswordInputText, setNewPasswordInputText] = useState('');
-  const [passwordLabel, setPasswordLabel] = useState('');
-  const [passwordValidator, setPasswordValidator] = useState(false);
-  const [confirmPasswordInputText, setConfirmPasswordInputText] = useState();
-  const [confirmPasswordLabel, setConfirmPasswordLabel] = useState('');
-  const [confirmPasswordValidator, setConfirmPasswordValidator] =
-    useState(false);
+  const [passwordLabel, setPasswordLabel] = useState(AppColor.blackOpacity3);
+  const [passwordLength, setPasswordLength] = useState(false);
+  const [confirmPasswordInputText, setConfirmPasswordInputText] = useState('');
+  const [confirmPasswordLabel, setConfirmPasswordLabel] = useState(
+    AppColor.blackOpacity3,
+  );
+  const [passwordMatching, setPasswordMatching] = useState(false);
 
   const passwordRef = useRef(null);
   const confirmRef = useRef(null);
 
   const saveHandler = () => {
     if (newPasswordInputText === '' || confirmPasswordInputText === '') {
-      setPasswordLabel('Please enter your password.');
-      setPasswordValidator(true);
-      setConfirmPasswordLabel('Please confirm your password.');
-      setConfirmPasswordValidator(true);
+      setPasswordLabel(AppColor.red);
+      setConfirmPasswordLabel(AppColor.red);
     } else {
       if (
         (newPasswordInputText.includes('@') ||
@@ -56,16 +55,24 @@ const RecoverPassword = () => {
           confirmPasswordInputText.includes('!') ||
           confirmPasswordInputText.includes('.'))
       ) {
-        setPasswordValidator(false);
-        setConfirmPasswordValidator(false);
-        setShowPasswordMessageInModal(true);
+        if (newPasswordInputText.length >= 8) {
+          if (newPasswordInputText === confirmPasswordInputText) {
+            setPasswordLength(false);
+            setShowPasswordMessageInModal(true);
+            setPasswordLabel(AppColor.blackOpacity3);
+            setConfirmPasswordLabel(AppColor.blackOpacity3);
+            setNewPasswordInputText('');
+            setConfirmPasswordInputText('');
+          } else {
+            setPasswordMatching(true);
+            setShowInstructionModal(true);
+          }
+        } else {
+          setPasswordLength(true);
+          setShowPasswordMessageInModal(true);
+        }
       } else {
-        setNewPasswordInputText('');
-        setConfirmPasswordInputText('');
-        setPasswordLabel('Enter Valid Password');
-        setConfirmPasswordLabel('Enter your password again');
-        setPasswordValidator(true);
-        setConfirmPasswordValidator(true);
+        setShowInstructionModal(true);
       }
     }
   };
@@ -103,6 +110,7 @@ const RecoverPassword = () => {
           reference={passwordRef}
           autoFocus={true}
           placeholder={'Enter your password'}
+          placeholderTextColor={passwordLabel}
           secureTextEntry={!eye}
           keyboardType={'ascii-capable'}
           onChangeText={text => setNewPasswordInputText(text)}
@@ -127,24 +135,13 @@ const RecoverPassword = () => {
           </TouchableOpacity>
         </NeoTextInput>
 
-        {passwordValidator ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3.5'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            {passwordLabel}
-          </Text>
-        ) : null}
-
         <Text style={RecoverPasswordStyle.labelText1}>Confirm Password</Text>
 
         <NeoTextInput
           value={confirmPasswordInputText}
           reference={confirmRef}
           placeholder={'Confirm your password'}
+          placeholderTextColor={confirmPasswordLabel}
           secureTextEntry={!eye}
           keyboardType={'ascii-capable'}
           onChangeText={text => {
@@ -153,18 +150,6 @@ const RecoverPassword = () => {
           returnKeyType={'next'}
           onSubmitEditing={saveHandler}
         />
-        {confirmPasswordValidator ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3.5'),
-              color: AppColor.red,
-              marginBottom: wp('2'),
-              width: wp('90'),
-            }}>
-            {confirmPasswordLabel}
-          </Text>
-        ) : null}
 
         <TouchableOpacity
           style={{alignSelf: 'center', marginVertical: wp('5')}}
@@ -186,13 +171,24 @@ const RecoverPassword = () => {
             setShowPasswordMessageInModal(false);
           }}
           modalButtonPress={() => {
-            navigation.replace('LogIn');
+            if (passwordLabel) {
+              setShowPasswordMessageInModal(false);
+            } else {
+              navigation.replace('LogIn');
+            }
           }}
-          buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/success.json')}
-          text={'Your New Password has been set'}
-          style={{marginTop: wp('10')}}
-          buttonText={'Go to Login'}
+          buttonBackgroundColor={passwordLength ? '#E36A6A' : AppColor.primary}
+          source={
+            passwordLength
+              ? require('../../assets/animations/Alert.json')
+              : require('../../assets/animations/passwordLength.json')
+          }
+          text={
+            passwordLength
+              ? 'Your new password must be 8 character long.'
+              : 'Your New Password has been set.'
+          }
+          buttonText={passwordLength ? 'Close' : 'Login'}
         />
         <CustomModal1
           isVisible={showInstructionModal}
@@ -201,14 +197,16 @@ const RecoverPassword = () => {
           }}
           modalButtonPress={() => {
             setShowInstructionModal(false);
+            passwordRef.current.focus();
           }}
-          buttonBackgroundColor={AppColor.primary}
+          buttonBackgroundColor={'#E36A6A'}
           source={require('../../assets/animations/Alert.json')}
           text={
-            'Your password must have one of the following special character (@ , / , .)'
+            passwordMatching
+              ? 'Your confirm password is not match with your new password.'
+              : 'Your password must have one of the following special character (@ , / , .)'
           }
-          style={{marginTop: wp(10)}}
-          buttonText={'close'}
+          buttonText={'Close'}
         />
       </ScrollView>
     </SafeAreaView>

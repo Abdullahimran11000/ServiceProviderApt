@@ -16,7 +16,6 @@ const CustomModal = ({
   source,
   text,
   buttonText,
-  style,
   modalButtonPress,
   buttonBackgroundColor,
   lottieStyle,
@@ -26,11 +25,13 @@ const CustomModal = ({
       <View
         style={{
           width: wp('80'),
-          height: hp('60'),
+          height: hp('65'),
           borderRadius: wp('15'),
           backgroundColor: AppColor.whiteShade,
-          alignSelf: 'center',
           alignItems: 'center',
+          alignSelf: 'center',
+          padding: wp('5'),
+          justifyContent: 'space-between'
         }}>
         <Neomorph
           style={{
@@ -41,7 +42,6 @@ const CustomModal = ({
             shadowRadius: 5,
             alignItems: 'center',
             justifyContent: 'center',
-            marginTop: wp('8'),
           }}>
           <Neomorph
             inner
@@ -57,25 +57,22 @@ const CustomModal = ({
             <Lottie source={source} style={lottieStyle} loop autoPlay />
           </Neomorph>
         </Neomorph>
-
         <Text
           style={{
             fontFamily: 'Poppins-Light',
             fontSize: wp('4'),
-            textAlign: 'center',
             color: AppColor.black,
             width: wp('65'),
-            marginTop: wp('5'),
+            textAlign: 'center'
           }}>
           {text}
         </Text>
-
-        <TouchableOpacity style={style} onPress={modalButtonPress}>
+        <TouchableOpacity onPress={modalButtonPress}>
           <NeoButton
             width={wp('35')}
             height={hp('7')}
             backgroundColor={buttonBackgroundColor}
-            borderRadius={wp('7')}>
+            borderRadius={wp('7')} marginVertical= {wp('5')}>
             <Text
               style={{
                 fontFamily: 'Poppins-Bold',

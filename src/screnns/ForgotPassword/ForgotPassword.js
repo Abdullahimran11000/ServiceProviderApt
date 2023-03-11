@@ -111,7 +111,6 @@ const ForgotPassword = ({navigation}) => {
         buttonBackgroundColor={AppColor.primary}
         source={require('../../assets/animations/email.json')}
         text={'We have sent a Automated Password on your Email'}
-        style={{marginTop: wp('12')}}
         buttonText={'Verify'}
       />
     </SafeAreaView>
