@@ -97,9 +97,7 @@ const AppointmentsCards = () => {
               </View>
               <Lottie
                 style={{
-                  
                   height: wp('30'),
-                  // backgroundColor: 'white'
                 }}
                 source={require('../../../assets/animations/addNewSchedule.json')}
                 loop
@@ -131,9 +129,7 @@ const AppointmentsCards = () => {
               </View>
               <Lottie
                 style={{
-                  width: wp('20'),
-                  height: wp('20'),
-                  backgroundColor: AppColor.white,
+                  height: wp('35'),
                 }}
                 source={require('../../../assets/animations/completedAppointments.json')}
                 loop
@@ -165,10 +161,7 @@ const AppointmentsCards = () => {
               </View>
               <Lottie
                 style={{
-                  width: wp('35'),
-                  height: wp('35'),
-                  alignSelf: 'center',
-                  backgroundColor: AppColor.white,
+                  height: wp('40'),
                 }}
                 source={require('../../../assets/animations/UpcomingAppointments.json')}
                 loop
@@ -201,9 +194,7 @@ const AppointmentsCards = () => {
               </View>
               <Lottie
                 style={{
-                  width: wp('30'),
-                  height: wp('30'),
-                  backgroundColor: AppColor.white,
+                  height: wp('30'),                  
                 }}
                 source={require('../../../assets/animations/cancelledAppointments.json')}
                 loop

@@ -160,35 +160,33 @@ const Notifications = () => {
         <Neomorph style={NotificationStyle.innerItems}>
           <View style={NotificationStyle.headContImageCont}>
             <item.iconprovider
-              style={NotificationStyle.iconstyle}
               name={item.iconname}
-              size={wp('6')}
+              size={wp('5')}
               color={item.iconColor}
             />
           </View>
-          <View style={NotificationStyle.headContMiddleCont}>
-            <View style={NotificationStyle.middleInnerFirstCont}>
-              <Text
-                style={NotificationStyle.middleInnerContFirstHeading}
-                ellipsizeMode={'tail'}
-                numberOfLines={2}>
-                {item.title}
-              </Text>
-            </View>
-            <View style={NotificationStyle.middleInnerSecondCont}>
-              <Text style={NotificationStyle.middleInnerContSecondHeading}>
-                {item.time}
-              </Text>
-            </View>
+          <View>
+            <Text
+              style={NotificationStyle.middleInnerContFirstHeading}
+              ellipsizeMode={'tail'}
+              numberOfLines={2}>
+              {item.title}
+            </Text>
+            <Text style={NotificationStyle.middleInnerContSecondHeading}>
+              {item.time}
+            </Text>
           </View>
-          {item.open ? null : (
-            <View style={NotificationStyle.iconstyle2}>
-              <Icon
-                name="checkmark-done-circle-outline"
-                size={wp('5')}
-                color={'blue'}
-              />
-            </View>
+
+          {item.open ? <Icon
+              name="checkmark-done-circle-outline"
+              size={wp('0')}
+              color={'blue'}
+            /> : (
+            <Icon
+              name="checkmark-done-circle-outline"
+              size={wp('5')}
+              color={'blue'}
+            />
           )}
         </Neomorph>
       </TouchableOpacity>
@@ -205,25 +203,27 @@ const Notifications = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: AppColor.whiteShade}}>
-      <Header buttonColor={AppColor.whiteShade} styles={{color: AppColor.black}} stylesText={{color: AppColor.black}}>{'Notification'}</Header>
-      <ScrollView>
-        {/* 1st render  */}
-        <View style={NotificationStyle.firstContainerOfMainView}>
-          <View style={NotificationStyle.innerViewOfFirstContainer}>
-            <TouchableOpacity onPress={submitHandlerTwo}>
-              <Text style={NotificationStyle.renderItemHeaderFontFirst}>
-                Mark All As Read
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{marginBottom: wp('10')}}>
-            <FlatList
-              data={TodayData}
-              renderItem={renderItem}
-            />
-          </View>
-        </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: AppColor.whiteShade,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <Header
+        buttonColor={AppColor.whiteShade}
+        styles={{color: AppColor.black}}
+        stylesText={{color: AppColor.black}}>
+        {'Notification'}
+      </Header>
+      <ScrollView style={{width: wp('100')}}>
+        <TouchableOpacity onPress={submitHandlerTwo}>
+          <Text style={NotificationStyle.renderItemHeaderFontFirst}>
+            Mark All As Read
+          </Text>
+        </TouchableOpacity>
+        <FlatList data={TodayData} renderItem={renderItem} />
+
         <CustomModal
           isVisible={showModal}
           onBackdropPress={() => {

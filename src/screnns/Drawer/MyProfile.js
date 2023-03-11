@@ -244,7 +244,9 @@ const MyProfile = ({navigation}) => {
               optionsContainerStyle={{
                 backgroundColor: AppColor.whiteShade,
                 borderRadius: wp('4'),
-                width: wp('40'),
+                width: wp('30'),
+                alignSelf: 'center',
+                marginHorizontal: wp('10')
               }}>
               <MenuOption value={'Male'}>
                 <Text
