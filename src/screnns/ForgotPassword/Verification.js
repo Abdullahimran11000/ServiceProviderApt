@@ -200,7 +200,6 @@ const Verification = ({navigation}) => {
           buttonBackgroundColor={AppColor.primary}
           source={require('../../assets/animations/email.json')}
           text={'OTP has been verified successfully!'}
-          style={{marginTop: wp('12')}}
           buttonText={'Next'}
         />
       </ScrollView>
