@@ -21,8 +21,10 @@ import {Neomorph} from 'react-native-neomorph-shadows';
 import RNFetchBlob from 'rn-fetch-blob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import PatientAppCard from '../../components/Appointments/PatientAppCard';
+import { useNavigation } from '@react-navigation/native';
 
-const Dashboard = ({pressHandler, navigation}) => {
+const Dashboard = ({pressHandler}) => {
+  const navigation = useNavigation()
   const [warningCardShow, setWarningCardShow] = useState(true);
   const [todayAppointmentInfo, setTodayAppointmentInfo] = useState([
     {

@@ -43,7 +43,7 @@ const MyProfile = ({navigation}) => {
     AppColor.blackOpacity3,
   );
   const [optionShow, setOptionShow] = useState('Gender');
-  const [genderIsValid, setGenderIsValid] = useState(AppColor.black);
+  const [genderIsValid, setGenderIsValid] = useState(AppColor.blackOpacity3);
 
   const nameRef = useRef(null);
   const dateRef = useRef(null);
@@ -58,19 +58,7 @@ const MyProfile = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const submitHandler = () => {
-    if (
-      name === '' &&
-      date === '' &&
-      email === '' &&
-      mobileNo === '' &&
-      optionShow === 'Gender'
-    ) {
-      setNameIsValid(AppColor.red);
-      setDateIsValid(AppColor.red);
-      setEmailIsValid(AppColor.red);
-      setMobileNoIsValid(AppColor.red);
-      setGenderIsValid(AppColor.red);
-    }
+    
     if (
       name !== '' &&
       date !== '' &&
@@ -94,22 +82,28 @@ const MyProfile = ({navigation}) => {
       } else {
         setEmailAlert(true);
         setEmailIsValid(AppColor.red);
-        setEmail('');
+        emailRef.current.focus()
       }
     }
 
     if (name === '') {
       setNameIsValid(AppColor.red);
+      nameRef.current.focus()
     }
-    if (date === '') {
+    else if (date === '') {
       setDateIsValid(AppColor.red);
+      dateRef.current.focus()
     }
-    if (email === '') {
+    else if (optionShow === 'Gender'){
+      setGenderIsValid(AppColor.red)
+    }
+    else if (email === '') {
       setEmailIsValid(AppColor.red);
-      setEmailAlert(false)
+      emailRef.current.focus()
     }
-    if (mobileNo === '') {
+    else if (mobileNo === '') {
       setMobileNoIsValid(AppColor.red);
+      mobileRef.current.focus()
     }
   };
 
@@ -212,6 +206,7 @@ const MyProfile = ({navigation}) => {
             onSelect={value => {
               setNeumorphHeight(true);
               setOptionShow(value);
+              setGenderIsValid(AppColor.black)
             }}>
             <MenuTrigger
               onPress={() => {
@@ -225,7 +220,7 @@ const MyProfile = ({navigation}) => {
                   shadowRadius: 4,
                   borderRadius: wp('3'),
                   marginTop: wp('2'),
-                  marginBottom: neumorphHeight ? wp('5') : wp('10'),
+                  marginBottom: neumorphHeight ? wp('5') : wp('25'),
                   justifyContent: 'center',
                 }}>
                 <Text
@@ -242,12 +237,19 @@ const MyProfile = ({navigation}) => {
             </MenuTrigger>
             <MenuOptions
               optionsContainerStyle={{
-                backgroundColor: AppColor.whiteShade,
                 borderRadius: wp('4'),
-                width: wp('30'),
-                alignSelf: 'center',
-                marginHorizontal: wp('10')
-              }}>
+                width: wp('100'),
+              }}
+              
+              style={{
+                borderRadius: wp('4'),
+                width: wp('40'),
+                backgroundColor: AppColor.whiteShade,
+                elevation: 2,
+                position: 'absolute',
+                right: wp('11'), top: wp('2')
+              }}
+            >
               <MenuOption value={'Male'}>
                 <Text
                   style={{
