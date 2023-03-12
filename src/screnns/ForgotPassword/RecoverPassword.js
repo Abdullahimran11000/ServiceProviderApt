@@ -24,9 +24,8 @@ import CustomModal from '../../components/Modal/CustomModal';
 import CustomModal1 from '../../components/Modal/CustomModal';
 import {Neomorph} from 'react-native-neomorph-shadows';
 
-const RecoverPassword = () => {
+const RecoverPassword = ({navigation}) => {
   const [eye, setEye] = useState(false);
-  const navigation = useNavigation();
   const [showInstructionModal, setShowInstructionModal] = useState(false);
   const [showPasswordMessageInModal, setShowPasswordMessageInModal] =
     useState(false);
@@ -43,17 +42,17 @@ const RecoverPassword = () => {
   const confirmRef = useRef(null);
 
   const saveHandler = () => {
-    if (newPasswordInputText === '' || confirmPasswordInputText === '') {
+    if (newPasswordInputText === '') {
       setPasswordLabel(AppColor.red);
+      passwordRef.current.focus();
+    } else if (confirmPasswordInputText === '') {
       setConfirmPasswordLabel(AppColor.red);
+      confirmRef.current.focus();
     } else {
       if (
-        (newPasswordInputText.includes('@') ||
-          newPasswordInputText.includes('!') ||
-          newPasswordInputText.includes('.')) &&
-        (confirmPasswordInputText.includes('@') ||
-          confirmPasswordInputText.includes('!') ||
-          confirmPasswordInputText.includes('.'))
+        newPasswordInputText.includes('@') ||
+        newPasswordInputText.includes('!') ||
+        newPasswordInputText.includes('.')
       ) {
         if (newPasswordInputText.length >= 8) {
           if (newPasswordInputText === confirmPasswordInputText) {
@@ -66,13 +65,16 @@ const RecoverPassword = () => {
           } else {
             setPasswordMatching(true);
             setShowInstructionModal(true);
+            confirmRef.current.focus();
           }
         } else {
           setPasswordLength(true);
           setShowPasswordMessageInModal(true);
+          passwordRef.current.focus();
         }
       } else {
         setShowInstructionModal(true);
+        passwordRef.current.focus();
       }
     }
   };
@@ -168,11 +170,17 @@ const RecoverPassword = () => {
         <CustomModal
           isVisible={showPasswordMessageInModal}
           onBackdropPress={() => {
-            setShowPasswordMessageInModal(false);
+            if (passwordLength) {
+              setShowPasswordMessageInModal(false);
+              passwordRef.current.focus();
+            } else {
+              navigation.replace('LogIn');
+            }
           }}
           modalButtonPress={() => {
-            if (passwordLabel) {
+            if (passwordLength) {
               setShowPasswordMessageInModal(false);
+              passwordRef.current.focus();
             } else {
               navigation.replace('LogIn');
             }
@@ -193,11 +201,20 @@ const RecoverPassword = () => {
         <CustomModal1
           isVisible={showInstructionModal}
           onBackdropPress={() => {
-            setShowInstructionModal(false);
+            if (passwordMatching) {
+              confirmRef.current.focus();
+              setShowInstructionModal(false);
+            } else {
+              setShowInstructionModal(false);
+            }
           }}
           modalButtonPress={() => {
-            setShowInstructionModal(false);
-            passwordRef.current.focus();
+            if (passwordMatching) {
+              confirmRef.current.focus();
+              setShowInstructionModal(false);
+            } else {
+              setShowInstructionModal(false);
+            }
           }}
           buttonBackgroundColor={'#E36A6A'}
           source={require('../../assets/animations/Alert.json')}

@@ -29,12 +29,14 @@ const ForgotPassword = ({navigation}) => {
   const sendHandler = () => {
     if (emailInputText === '') {
       setEmailIsValid(AppColor.red);
+      emailRef.current.focus()
     } else {
       if (emailInputText.includes('@gmail.com') || emailInputText.includes('@outlook.com')) {
         setEmailAlert(false);
         setshowEmailNotificationInModal(true);
       } else {
         setEmailAlert(true);
+        emailRef.current.focus()
       }
     }
   };
@@ -43,7 +45,7 @@ const ForgotPassword = ({navigation}) => {
     navigation.addListener('focus', () => {
       console.log('Forgot Password screen is focusing right now!');
     });
-  }, [navigation]);
+  }, []);
 
   return (
     <SafeAreaView style={ForgotPasswordStyle.safeView}>
@@ -77,7 +79,7 @@ const ForgotPassword = ({navigation}) => {
         <Text
           style={{
             fontFamily: 'Poppins-Light',
-            fontSize: wp('3.5'),
+            fontSize: wp('3'),
             width: wp('90'),
             color: AppColor.red,
           }}>

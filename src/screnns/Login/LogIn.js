@@ -18,10 +18,13 @@ import {LoginStyle} from '../../assets/styles/AuthStyle/LoginStyle';
 
 const LogIn = ({navigation}) => {
   const [eye, setEye] = useState(false);
-  const [emailText, setEmailText] = useState('hamadrana@gmail.com');
+  const [emailText, setEmailText] = useState('hamad@gmail.com');
   const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
-  const [emailLabelText, setEmailLabelText] = useState('');
-  const [passwordText, setPasswordText] = useState('123');
+  const [emailLabelText, setEmailLabelText] = useState(AppColor.blackOpacity3);
+  const [passwordText, setPasswordText] = useState('1234');
+  const [passwordLabelText, setPasswordLabelText] = useState(
+    AppColor.blackOpacity3,
+  );
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -34,36 +37,67 @@ const LogIn = ({navigation}) => {
 
   const submitHandler = () => {
     if (emailText === '') {
-      setEmailLabelText('Please enter your email.');
-      setCheckEmailTextValid(true);
-    } else if (
-      emailText.includes('@gmail.com') ||
-      emailText.includes('@outlook.com')
-    ) {
-      setCheckEmailTextValid(false);
-      navigation.replace('Drawer');
+      setEmailLabelText(AppColor.red);
+      emailRef.current.focus();
+    } else if (passwordText === '') {
+      setPasswordLabelText(AppColor.red);
+      passwordRef.current.focus();
     } else {
-      setEmailText('');
-      setPasswordText('');
-      setEmailLabelText('Your email is not valid.');
-      setCheckEmailTextValid(true);
+      if (emailText != '') {
+        if (
+          emailText.includes('@gmail.com') ||
+          emailText.includes('@outlook.com')
+        ) {
+          setPasswordLabelText(AppColor.blackOpacity3);
+          setEmailLabelText(AppColor.blackOpacity3);
+          navigation.navigate('Drawer');
+          setEmailText('');
+          setPasswordText('');
+        } else {
+          setCheckEmailTextValid(true);
+          emailRef.current.focus();
+        }
+      }
     }
+
+    //else if (
+    //   emailText.includes('@gmail.com') ||
+    //   emailText.includes('@outlook.com')
+    // ) {
+    //   setCheckEmailTextValid(false);
+    //   navigation.replace('Drawer');
+    // } else {
+    //   setEmailText('');
+    //   setPasswordText('');
+    //   setEmailLabelText('Your email is not valid.');
+    //   setCheckEmailTextValid(true);
   };
 
   return (
     <SafeAreaView
-      style={{ backgroundColor: AppColor.whiteShade, flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      style={{
+        backgroundColor: AppColor.whiteShade,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
       <Text style={LoginStyle.headerView}> Log in </Text>
       <View style={{marginTop: wp('10')}}>
         <Text style={LoginStyle.TextStyle}>Email</Text>
         <NeoTextInput
           value={emailText}
+          reference={emailRef}
+          autoFocus={true}
           placeholder={'Enter your email'}
+          placeholderTextColor={emailLabelText}
           keyboardType={'email-address'}
           onChangeText={text => {
             setEmailText(text);
           }}
           returnKeyType={'next'}
+          onSubmitEditing={() => {
+            passwordRef.current.focus();
+          }}
         />
         {checkEmailTextValid ? (
           <Text
@@ -74,13 +108,16 @@ const LogIn = ({navigation}) => {
               width: wp('90'),
               alignSelf: 'center',
             }}>
-            {emailLabelText}
+            Please enter valid email.
           </Text>
         ) : null}
+
         <Text style={LoginStyle.TextStyle}>Password</Text>
         <NeoTextInput
-          value={passwordText} 
+          value={passwordText}
+          reference={passwordRef}
           placeholder={'Enter your password'}
+          placeholderTextColor={passwordLabelText}
           secureTextEntry={!eye}
           returnKeyType={'go'}
           onSubmitEditing={submitHandler}
