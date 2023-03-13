@@ -12,7 +12,7 @@ import Lottie from 'lottie-react-native';
 import moment from 'moment-timezone';
 import TimeSlotsRender from '../../../components/RenderFunction/TimeSlotsRender';
 import {ScrollView} from 'react-native-virtualized-view';
-import { AppColor } from '../../../assets/colors/AppColors';
+import {AppColor} from '../../../assets/colors/AppColors';
 
 const TotalAppSlots = ({date}) => {
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
@@ -27,7 +27,7 @@ const TotalAppSlots = ({date}) => {
     {id: 3, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 4, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 5, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 6, day: '10', month: 'March', startTime: '8:25', endTime: '8:50'},
+    {id: 6, day: '13', month: 'March', startTime: '8:25', endTime: '8:50'},
   ]);
 
   const submitHandler = id => {
@@ -53,14 +53,12 @@ const TotalAppSlots = ({date}) => {
   };
   return (
     <SafeAreaView
-      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}
-    >
+      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}>
       <ScrollView>
         <Header
           styles={{color: 'black'}}
           stylesText={{color: 'black'}}
-          buttonColor={AppColor.whiteShade}
-        >
+          buttonColor={AppColor.whiteShade}>
           {'Slots'}
         </Header>
         <View
@@ -70,8 +68,7 @@ const TotalAppSlots = ({date}) => {
             alignSelf: 'center',
             marginBottom: wp('2'),
             marginTop: hp('2'),
-          }}
-        >
+          }}>
           <Neomorph
             style={{
               shadowRadius: 4,
@@ -80,43 +77,11 @@ const TotalAppSlots = ({date}) => {
               width: wp('90'),
               borderRadius: wp('4'),
               alignItems: 'center',
-            }}
-          >
-            {/* <CalendarStrip
-              calendarAnimation={{type: 'sequence', duration: 30}}
-              daySelectionAnimation={{
-                type: 'border',
-                duration: 200,
-                borderWidth: 1,
-                borderHighlightColor: AppColor.primary,
-              }}
-              style={{
-                width:wp('95'),
-                height: 100,
-                paddingTop: 20,
-                paddingBottom: 10,
-                borderRadius: 20,
-              }}
-              calendarHeaderStyle={{color: AppColor.primary}}
-              dateNumberStyle={{color: AppColor.primary}}
-              dateNameStyle={{color: AppColor.primary}}
-              iconContainer={{flex: 0.1}}
-              onDateSelected={selectedDate => {
-                console.log(moment(selectedDate).format('YYYY-MM-DD'));
-                setSelectedDateInCalender(moment(selectedDate).format('DD MMMM'));
-                // setSelectedDateForAssignments(
-                //   moment(selectedDate).format('YYYY-MM-DD'),
-                // );
-                // studentSubmittedAssignments();
-              }}
-              selectedDate={moment()}
-              // markedDates={assingmentDatesForDots}
-              scrollable={true}
-            /> */}
+            }}>
             <CalendarStrip
-              // datesBlacklist={date => {
-              //   return date.isoWeekday() === 6;
-              // }}
+              datesBlacklist={date => {
+                return date.isoWeekday() === 6;
+              }}
               calendarAnimation={{type: 'sequence', duration: 30}}
               selectedDate={moment()}
               startingDate={moment()}
@@ -157,11 +122,11 @@ const TotalAppSlots = ({date}) => {
                 borderWidth: 1.5,
                 borderHighlightColor: AppColor.white,
               }}
-              
               onDateSelected={date => {
                 setSelectedDateInCalender(moment(date).format('DD MMMM'));
-                
               }}
+              iconLeft=""
+              iconRight=""
             />
           </Neomorph>
         </View>
@@ -174,8 +139,7 @@ const TotalAppSlots = ({date}) => {
               alignSelf: 'center',
               alignItems: 'center',
               justifyContent: 'center',
-            }}
-          >
+            }}>
             <Lottie
               source={require('../../../assets/animations/noDataFound.json')}
               style={{width: wp('60'), height: wp('55')}}
