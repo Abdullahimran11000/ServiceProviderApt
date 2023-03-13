@@ -26,10 +26,10 @@ const Verification = ({navigation}) => {
   const fourthTextInputRef = useRef(null);
   const [showVerificationMessage, setShowVerificationMessage] = useState(false);
 
-  const [firstTextInput, setFirstTextInput] = useState('');
-  const [secondTextInput, setSecondTextInput] = useState('');
-  const [thirdTextInput, setThirdTextInput] = useState('');
-  const [fourthTextInput, setFourthTextInput] = useState('');
+  const [firstTextInput, setFirstTextInput] = useState('1');
+  const [secondTextInput, setSecondTextInput] = useState('2');
+  const [thirdTextInput, setThirdTextInput] = useState('3');
+  const [fourthTextInput, setFourthTextInput] = useState('4');
 
   const [firstTextInputValidator, setFirstTextInputValidator] = useState(false);
   const [secondTextInputValidator, setSecondTextInputValidator] =

@@ -27,77 +27,79 @@ const PasswordManagement = ({navigation}) => {
   const [showPasswordMessageInModal, setShowPasswordMessageInModal] =
     useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
+  const [currentPasswordLabelAlert, setCurrentPasswordLabelAlert] =
+    useState(false);
 
-  const [currentPasswordLabel, setCurrentPasswordLabel] = useState(
-    AppColor.blackOpacity3,
-  );
-
-  const [newPassword, setNewPassword] = useState('');
-  const [passwordLabel, setPasswordLabel] = useState(AppColor.blackOpacity3);
-  const [passwordLength, setPasswordLength] = useState(false);
-
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [confirmPasswordLabel, setConfirmPasswordLabel] = useState(
-    AppColor.blackOpacity3,
-  );
-  const [passwordMatching, setPasswordMatching] = useState(false);
+  const [passwordText, setPasswordText] = useState('');
+  const [passwordLabelText, setPasswordLabelText] = useState('');
+  const [passwordLabelAlert, setPasswordLabelAlert] = useState(false);
+  const [confirmPasswordText, setConfirmPasswordText] = useState('');
+  const [confirmPasswordLabelText, setconfirmPasswordLabelText] = useState('');
+  const [confirmPasswordLabelAlert, setConfirmPasswordLabelAlert] =
+    useState(false);
 
   const submitHandler = () => {
     if (currentPassword === '') {
-      setCurrentPasswordLabel(AppColor.red);
+      setPasswordLabelAlert(false);
+      setConfirmPasswordLabelAlert(false);
+      setCurrentPasswordLabelAlert(true);
       currentPasswordRef.current.focus();
-    } else if (newPassword === '') {
-      setPasswordLabel(AppColor.red);
+    } else if (passwordText === '') {
+      setPasswordLabelAlert(true);
+      setConfirmPasswordLabelAlert(false);
+      setCurrentPasswordLabelAlert(false);
+      setPasswordLabelText('Please enter your password');
       newPasswordRef.current.focus();
-    } else if (confirmPassword === '') {
-      setConfirmPasswordLabel(AppColor.red);
+    } else if (confirmPasswordText === '') {
+      setconfirmPasswordLabelText('Please enter your password');
+      setPasswordLabelAlert(false);
+      setConfirmPasswordLabelAlert(true);
+      setCurrentPasswordLabelAlert(false);
       confirmPasswordRef.current.focus();
     } else {
+      setPasswordLabelAlert(false);
+      setConfirmPasswordLabelAlert(false);
       if (
-        newPassword.includes('@') ||
-        newPassword.includes('!') ||
-        newPassword.includes('.')
+        passwordText.includes('@') ||
+        passwordText.includes('!') ||
+        passwordText.includes('.')
       ) {
-        if (newPassword.length >= 8) {
-          if (newPassword === confirmPassword) {
-            setPasswordLength(false);
-            setShowPasswordMessageInModal(true)
-            setPasswordLabel(AppColor.blackOpacity3);
-            setConfirmPasswordLabel(AppColor.blackOpacity3);
-            setNewPassword('');
-            setConfirmPassword('');
+        if (passwordText.length >= 8) {
+          if (passwordText === confirmPasswordText) {
+            setShowPasswordMessageInModal(true);
+            setPasswordLabelAlert(false);
+            setConfirmPasswordLabelAlert(false);
+            setConfirmPasswordLabelAlert(false)
+            setPasswordText('');
+            setConfirmPasswordText('');
+            setCurrentPassword('')
           } else {
-            setPasswordMatching(true);
-            setShowInstructionModal(true);
+            setConfirmPasswordLabelAlert(true);
+            setPasswordLabelAlert(false);
+            setconfirmPasswordLabelText(
+              'Your confirm password is not match with new password.',
+            );
+            confirmPasswordRef.current.focus();
           }
         } else {
-          setPasswordLength(true);
-          setShowPasswordMessageInModal(true);
+          setConfirmPasswordLabelAlert(false);
+          setPasswordLabelAlert(true);
+          setPasswordLabelText('Your new password must be 8 character long..');
+          newPasswordRef.current.focus();
         }
       } else {
-        setShowInstructionModal(true);
-        setPasswordMatching(false);
+        setConfirmPasswordLabelAlert(false);
+        setPasswordLabelAlert(true);
+        setPasswordLabelText(
+          'Please enter any special character in your password.',
+        );
+        newPasswordRef.current.focus();
       }
     }
   };
 
   const modalHandlerOne = () => {
-    if (passwordLength) {
-      setShowPasswordMessageInModal(false);
-      newPasswordRef.current.focus();
-    } else {
-      navigation.goBack();
-    }
-  };
-
-  const modalHandlerTwo = () => {
-    if (passwordMatching) {
-      confirmPasswordRef.current.focus();
-      setShowInstructionModal(false);
-    } else {
-      newPasswordRef.current.focus();
-      setShowInstructionModal(false);
-    }
+    navigation.goBack();
   };
 
   const currentPasswordRef = useRef();
@@ -142,7 +144,6 @@ const PasswordManagement = ({navigation}) => {
           autoFocus={true}
           reference={currentPasswordRef}
           placeholder={'Enter your password'}
-          placeholderTextColor={currentPasswordLabel}
           keyboardType={'ascii-capable'}
           returnKeyType={'next'}
           onChangeText={text => {
@@ -152,13 +153,23 @@ const PasswordManagement = ({navigation}) => {
             newPasswordRef.current.focus();
           }}
         />
+        {currentPasswordLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            Please enter your current password.
+          </Text>
+        ) : null}
         <Text style={[PasswordManagementStyle.textViewOne]}>New Password</Text>
 
         <NeoTextInput
-          value={newPassword}
+          value={passwordText}
           reference={newPasswordRef}
           placeholder={'Enter your password'}
-          placeholderTextColor={passwordLabel}
           secureTextEntry={!eye}
           keyboardType={'ascii-capable'}
           returnKeyType={'next'}
@@ -166,7 +177,7 @@ const PasswordManagement = ({navigation}) => {
             confirmPasswordRef.current.focus();
           }}
           onChangeText={text => {
-            setNewPassword(text);
+            setPasswordText(text);
           }}>
           <TouchableOpacity
             style={PasswordManagementStyle.iconTouchableStyle}
@@ -184,22 +195,43 @@ const PasswordManagement = ({navigation}) => {
             )}
           </TouchableOpacity>
         </NeoTextInput>
+        {passwordLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            {passwordLabelText}
+          </Text>
+        ) : null}
 
         <Text style={PasswordManagementStyle.textViewOne}>
           Confirm Password
         </Text>
 
         <NeoTextInput
-          value={confirmPassword}
+          value={confirmPasswordText}
           reference={confirmPasswordRef}
           placeholder={'Confirm your password'}
-          placeholderTextColor={confirmPasswordLabel}
           secureTextEntry={!eye}
           keyboardType={'ascii-capable'}
           returnKeyType={'next'}
           onSubmitEditing={submitHandler}
-          onChangeText={text => setConfirmPassword(text)}
+          onChangeText={text => setConfirmPasswordText(text)}
         />
+        {confirmPasswordLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            {confirmPasswordLabelText}
+          </Text>
+        ) : null}
 
         <TouchableOpacity onPress={submitHandler}>
           <NeoButton
@@ -217,31 +249,10 @@ const PasswordManagement = ({navigation}) => {
           isVisible={showPasswordMessageInModal}
           onBackdropPress={modalHandlerOne}
           modalButtonPress={modalHandlerOne}
-          buttonBackgroundColor={passwordLength ? '#E36A6A' : AppColor.primary}
-          source={
-            passwordLength
-              ? require('../../assets/animations/Alert.json')
-              : require('../../assets/animations/passwordLength.json')
-          }
-          text={
-            passwordLength
-              ? 'Your new password must be 8 character long.'
-              : 'Your New Password has been set.'
-          }
-          buttonText={passwordLength ? 'Close' : 'Back'}
-        />
-        <CustomModal1
-          isVisible={showInstructionModal}
-          onBackdropPress={modalHandlerTwo}
-          modalButtonPress={modalHandlerTwo}
-          buttonBackgroundColor={'#E36A6A'}
-          source={require('../../assets/animations/Alert.json')}
-          text={
-            passwordMatching
-              ? 'Your confirm password is not match with your new password.'
-              : 'Your password must have one of the following special character (@ , / , .)'
-          }
-          buttonText={'Close'}
+          buttonBackgroundColor={AppColor.primary}
+          source={require('../../assets/animations/passwordLength.json')}
+          text={'Your New Password has been set.'}
+          buttonText={'Back'}
         />
       </ScrollView>
     </SafeAreaView>

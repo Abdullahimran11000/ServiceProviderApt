@@ -21,21 +21,23 @@ const ForgotPassword = ({navigation}) => {
   const [showEmailNotificationInModal, setshowEmailNotificationInModal] =
     useState(false);
   const [emailInputText, setEmailInputText] = useState('hamad@gmail.com');
-  const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
-  const [emailAlert, setEmailAlert] = useState(false);
+  const [emailLabelText, setEmailLabelText] = useState('');
+  const [emailLabelAlert, setEmailLabelAlert] = useState(false);
 
   const emailRef = useRef();
 
   const sendHandler = () => {
     if (emailInputText === '') {
-      setEmailIsValid(AppColor.red);
+      setEmailLabelText('Please enter your email.');
+      setEmailLabelAlert(true)
       emailRef.current.focus()
     } else {
       if (emailInputText.includes('@gmail.com') || emailInputText.includes('@outlook.com')) {
-        setEmailAlert(false);
+        setEmailLabelAlert(false);
         setshowEmailNotificationInModal(true);
       } else {
-        setEmailAlert(true);
+        setEmailLabelAlert(true);
+        setEmailLabelText("Please enter valid email.")
         emailRef.current.focus()
       }
     }
@@ -68,24 +70,23 @@ const ForgotPassword = ({navigation}) => {
         autoFocus={true}
         keyboardType={'email-address'}
         placeholder={'Example@gmail.com'}
-        placeholderTextColor={emailIsValid}
         onChangeText={text => {
           setEmailInputText(text);
         }}
         returnKeyType={'next'}
         onSubmitEditing={sendHandler}
       />
-      {emailAlert ? (
-        <Text
-          style={{
-            fontFamily: 'Poppins-Light',
-            fontSize: wp('3'),
-            width: wp('90'),
-            color: AppColor.red,
-          }}>
-          Please enter valid email!
-        </Text>
-      ) : null}
+       {emailLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3.2'),
+              color: AppColor.red,
+              width: wp('90')
+            }}>
+            {emailLabelText}
+          </Text>
+        ) : null}
       <TouchableOpacity onPress={() => navigation.navigate('TryAnotherWay')}>
         <Text style={ForgotPasswordStyle.touchableText1}>Try another way</Text>
       </TouchableOpacity>

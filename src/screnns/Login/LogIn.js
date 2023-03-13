@@ -19,12 +19,11 @@ import {LoginStyle} from '../../assets/styles/AuthStyle/LoginStyle';
 const LogIn = ({navigation}) => {
   const [eye, setEye] = useState(false);
   const [emailText, setEmailText] = useState('hamad@gmail.com');
-  const [checkEmailTextValid, setCheckEmailTextValid] = useState(false);
-  const [emailLabelText, setEmailLabelText] = useState(AppColor.blackOpacity3);
+  const [emailLabelText, setEmailLabelText] = useState('');
+  const [emailLabelAlert, setEmailLabelAlert] = useState(false);
   const [passwordText, setPasswordText] = useState('1234');
-  const [passwordLabelText, setPasswordLabelText] = useState(
-    AppColor.blackOpacity3,
-  );
+  const [passwordLabelText, setPasswordLabelText] = useState('');
+  const [passwordLabelAlert, setPasswordLabelAlert] = useState(false)
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -37,40 +36,35 @@ const LogIn = ({navigation}) => {
 
   const submitHandler = () => {
     if (emailText === '') {
-      setEmailLabelText(AppColor.red);
+      setEmailLabelAlert(true)
+      setPasswordLabelAlert(false)
+      setEmailLabelText('Please enter your email.');
       emailRef.current.focus();
     } else if (passwordText === '') {
-      setPasswordLabelText(AppColor.red);
+      setPasswordLabelText('Please enter your password.');
+      setPasswordLabelAlert(true)
+      setEmailLabelAlert(false)
       passwordRef.current.focus();
     } else {
-      if (emailText != '') {
+      if (emailText != '' && passwordText != '') {
+        setEmailLabelAlert(false)
+        setPasswordLabelAlert(false)
         if (
           emailText.includes('@gmail.com') ||
           emailText.includes('@outlook.com')
         ) {
-          setPasswordLabelText(AppColor.blackOpacity3);
-          setEmailLabelText(AppColor.blackOpacity3);
+          setEmailLabelAlert(false)
+          setPasswordLabelAlert(false)
           navigation.navigate('Drawer');
           setEmailText('');
           setPasswordText('');
         } else {
-          setCheckEmailTextValid(true);
+          setEmailLabelAlert(true);
+          setEmailLabelText("Please enter valid email.")
           emailRef.current.focus();
         }
       }
     }
-
-    //else if (
-    //   emailText.includes('@gmail.com') ||
-    //   emailText.includes('@outlook.com')
-    // ) {
-    //   setCheckEmailTextValid(false);
-    //   navigation.replace('Drawer');
-    // } else {
-    //   setEmailText('');
-    //   setPasswordText('');
-    //   setEmailLabelText('Your email is not valid.');
-    //   setCheckEmailTextValid(true);
   };
 
   return (
@@ -99,7 +93,7 @@ const LogIn = ({navigation}) => {
             passwordRef.current.focus();
           }}
         />
-        {checkEmailTextValid ? (
+        {emailLabelAlert ? (
           <Text
             style={{
               fontFamily: 'Poppins-Light',
@@ -108,7 +102,7 @@ const LogIn = ({navigation}) => {
               width: wp('90'),
               alignSelf: 'center',
             }}>
-            Please enter valid email.
+            {emailLabelText}
           </Text>
         ) : null}
 
@@ -117,7 +111,6 @@ const LogIn = ({navigation}) => {
           value={passwordText}
           reference={passwordRef}
           placeholder={'Enter your password'}
-          placeholderTextColor={passwordLabelText}
           secureTextEntry={!eye}
           returnKeyType={'go'}
           onSubmitEditing={submitHandler}
@@ -144,6 +137,18 @@ const LogIn = ({navigation}) => {
             )}
           </TouchableOpacity>
         </NeoTextInput>
+        {passwordLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+              alignSelf: 'center',
+            }}>
+            {passwordLabelText}
+          </Text>
+        ) : null}
 
         <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={LoginStyle.ForgotText}>Forgot Password?</Text>

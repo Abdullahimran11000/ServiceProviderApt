@@ -22,16 +22,17 @@ const CustomModal = ({
 }) => {
   return (
     <Modal isVisible={isVisible} onBackdropPress={onBackdropPress}>
-      <View
+      <View style={{ flex: 10}}>
+        <View style={{flex: 1.5}}></View>
+        <View
         style={{
-          width: wp('80'),
-          height: hp('65'),
+          flex: 6,
           borderRadius: wp('15'),
           backgroundColor: AppColor.whiteShade,
           alignItems: 'center',
           alignSelf: 'center',
           padding: wp('5'),
-          justifyContent: 'space-between'
+          justifyContent: 'space-around'
         }}>
         <Neomorph
           style={{
@@ -84,6 +85,9 @@ const CustomModal = ({
           </NeoButton>
         </TouchableOpacity>
       </View>
+        <View style={{ flex: 1.5}}></View>
+      </View>
+      
     </Modal>
   );
 };
