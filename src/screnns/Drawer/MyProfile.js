@@ -31,19 +31,20 @@ import {
 } from 'react-native-popup-menu';
 
 const MyProfile = ({navigation}) => {
-  const [name, setName] = useState('');
-  const [nameIsValid, setNameIsValid] = useState(AppColor.blackOpacity3);
-  const [date, setDate] = useState('');
-  const [dateIsValid, setDateIsValid] = useState(AppColor.blackOpacity3);
-  const [email, setEmail] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
-  const [emailAlert, setEmailAlert] = useState(false);
-  const [mobileNo, setMobileNo] = useState('');
-  const [mobileNoIsValid, setMobileNoIsValid] = useState(
+  const [nameText, setNameText] = useState('');
+  const [nameLabelAlert, setNameLabelAlert] = useState(false);
+  const [dateText, setDateText] = useState('');
+  const [dateLabelAlert, setDateLabelAlert] = useState(false);
+  const [emailText, setEmailText] = useState('');
+  const [emailLabelText, setEmailLabelText] = useState('');
+  const [emailLabelAlert, setEmailLabelAlert] = useState(false);
+  const [mobileNoText, setMobileNoText] = useState('');
+  const [mobileLabelAlert, setMobileLabelAlert] = useState(false);
+  const [optionShow, setOptionShow] = useState('Gender');
+  const [genderLabelAlert, setGenderLabelAlert] = useState(false);
+  const [genderTextColor, setGenderTextColor] = useState(
     AppColor.blackOpacity3,
   );
-  const [optionShow, setOptionShow] = useState('Gender');
-  const [genderIsValid, setGenderIsValid] = useState(AppColor.blackOpacity3);
 
   const nameRef = useRef(null);
   const dateRef = useRef(null);
@@ -58,52 +59,68 @@ const MyProfile = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const submitHandler = () => {
-    
-    if (
-      name !== '' &&
-      date !== '' &&
-      email !== '' &&
-      mobileNo !== '' &&
-      optionShow !== 'Gender'
-    ) {
-      if (email.includes('@gmail.com') || email.includes('@outlook.com')) {
-        setNameIsValid(AppColor.blackOpacity3);
-        setDateIsValid(AppColor.blackOpacity3);
-        setEmailIsValid(AppColor.blackOpacity3);
-        setMobileNoIsValid(AppColor.blackOpacity3);
-        setGenderIsValid(AppColor.blackOpacity3);
-        setName('');
-        setDate('');
-        setEmail('');
-        setMobileNo('');
-        setOptionShow('Gender');
-        setModalOpen(true);
-        setEmailAlert(false);
-      } else {
-        setEmailAlert(true);
-        setEmailIsValid(AppColor.red);
-        emailRef.current.focus()
+    if (nameText === '') {
+      setNameLabelAlert(true);
+      setDateLabelAlert(false);
+      setGenderLabelAlert(false);
+      setMobileLabelAlert(false);
+      setEmailLabelAlert(false);
+      nameRef.current.focus();
+    } else if (dateText === '') {
+      setDateLabelAlert(true);
+      setNameLabelAlert(false);
+      setGenderLabelAlert(false);
+      setMobileLabelAlert(false);
+      setEmailLabelAlert(false);
+      dateRef.current.focus();
+    } else if (optionShow === 'Gender') {
+      setGenderLabelAlert(true);
+      setDateLabelAlert(false);
+      setNameLabelAlert(false);
+      setMobileLabelAlert(false);
+      setEmailLabelAlert(false);
+    } else if (emailText === '') {
+      setEmailLabelAlert(true);
+      setGenderLabelAlert(false);
+      setDateLabelAlert(false);
+      setNameLabelAlert(false);
+      setMobileLabelAlert(false);
+      setEmailLabelText('Please enter your email.');
+      emailRef.current.focus();
+    } else if (mobileNoText === '') {
+      setMobileLabelAlert(true);
+      setGenderLabelAlert(false);
+      setDateLabelAlert(false);
+      setNameLabelAlert(false);
+      setEmailLabelAlert(false);
+      mobileRef.current.focus();
+    } else {
+      if (
+        nameText !== '' &&
+        dateText !== '' &&
+        emailText !== '' &&
+        mobileNoText !== '' &&
+        optionShow !== 'Gender'
+      ) {
+        if (emailText.includes('@gmail.com') || emailText.includes('@outlook.com')) {
+          setMobileLabelAlert(false);
+          setGenderLabelAlert(false);
+          setDateLabelAlert(false);
+          setNameLabelAlert(false);
+          setEmailLabelAlert(false);
+          setNameText('');
+          setDateText('');
+          setEmailText('');
+          setMobileNoText('');
+          setOptionShow('Gender');
+          setModalOpen(true);
+          setEmailLabelAlert(false);
+        } else {
+          setEmailLabelAlert(true);
+          setEmailLabelText("Please enter valid email.")
+          emailRef.current.focus();
+        }
       }
-    }
-
-    if (name === '') {
-      setNameIsValid(AppColor.red);
-      nameRef.current.focus()
-    }
-    else if (date === '') {
-      setDateIsValid(AppColor.red);
-      dateRef.current.focus()
-    }
-    else if (optionShow === 'Gender'){
-      setGenderIsValid(AppColor.red)
-    }
-    else if (email === '') {
-      setEmailIsValid(AppColor.red);
-      emailRef.current.focus()
-    }
-    else if (mobileNo === '') {
-      setMobileNoIsValid(AppColor.red);
-      mobileRef.current.focus()
     }
   };
 
@@ -169,36 +186,58 @@ const MyProfile = ({navigation}) => {
 
         <NeoTextInput
           autoFocus={true}
-          value={name}
+          value={nameText}
           reference={nameRef}
           placeholder={'Enter your name'}
-          placeholderTextColor={nameIsValid}
           keyboardType={'default'}
           returnKeyType={'next'}
           onChangeText={text => {
-            setName(text);
+            setNameText(text);
           }}
           onSubmitEditing={() => {
             dateRef.current.focus();
           }}
         />
 
+        {nameLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            Please enter your name.
+          </Text>
+        ) : null}
+
         <Text style={MyProfileStyle.TextStyle}>Date of Birth</Text>
 
         <NeoTextInput
-          value={date}
+          value={dateText}
           reference={dateRef}
           placeholder={'Enter your birth'}
-          placeholderTextColor={dateIsValid}
           keyboardType={'numeric'}
           returnKeyType={'next'}
           onChangeText={text => {
-            setDate(text);
+            setDateText(text);
           }}
           onSubmitEditing={() => {
             emailRef.current.focus();
           }}
         />
+
+        {dateLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            Please enter your birth.
+          </Text>
+        ) : null}
         <Text style={MyProfileStyle.TextStyle}>Gender</Text>
 
         <MenuProvider>
@@ -206,7 +245,7 @@ const MyProfile = ({navigation}) => {
             onSelect={value => {
               setNeumorphHeight(true);
               setOptionShow(value);
-              setGenderIsValid(AppColor.black)
+              setGenderTextColor(AppColor.black);
             }}>
             <MenuTrigger
               onPress={() => {
@@ -228,7 +267,7 @@ const MyProfile = ({navigation}) => {
                   style={{
                     fontFamily: 'Poppins-Light',
                     paddingLeft: wp('3'),
-                    color: genderIsValid,
+                    color: genderTextColor,
                     fontSize: wp('4'),
                   }}>
                   {optionShow}
@@ -240,16 +279,15 @@ const MyProfile = ({navigation}) => {
                 borderRadius: wp('4'),
                 width: wp('100'),
               }}
-              
               style={{
                 borderRadius: wp('4'),
                 width: wp('40'),
                 backgroundColor: AppColor.whiteShade,
                 elevation: 2,
                 position: 'absolute',
-                right: wp('11'), top: wp('2')
-              }}
-            >
+                right: wp('11'),
+                top: wp('2'),
+              }}>
               <MenuOption value={'Male'}>
                 <Text
                   style={{
@@ -273,46 +311,65 @@ const MyProfile = ({navigation}) => {
             </MenuOptions>
           </Menu>
         </MenuProvider>
+        {genderLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            Please enter your gender.
+          </Text>
+        ) : null}
         <Text style={MyProfileStyle.TextStyle}>Email</Text>
         <NeoTextInput
-          value={email}
+          value={emailText}
           reference={emailRef}
           keyboardType={'email-address'}
           placeholder={'Enter your email'}
-          placeholderTextColor={emailIsValid}
           returnKeyType={'next'}
           onChangeText={text => {
-            setEmail(text);
+            setEmailText(text);
           }}
           onSubmitEditing={() => {
             mobileRef.current.focus();
           }}
         />
-        {emailAlert ? (
+        {emailLabelAlert ? (
           <Text
             style={{
               fontFamily: 'Poppins-Light',
-              fontSize: wp('3.8'),
+              fontSize: wp('3'),
               color: AppColor.red,
               width: wp('90'),
-              marginBottom: wp('2'),
             }}>
-            Please enter valid email!
+            {emailLabelText}
           </Text>
         ) : null}
         <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
         <NeoTextInput
-          value={mobileNo}
+          value={mobileNoText}
           reference={mobileRef}
           keyboardType={'number-pad'}
           returnKeyType={'go'}
           placeholder={'Enter your number'}
-          placeholderTextColor={mobileNoIsValid}
           onChangeText={text => {
-            setMobileNo(text);
+            setMobileNoText(text);
           }}
           onSubmitEditing={submitHandler}
         />
+        {mobileLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+              width: wp('90'),
+            }}>
+            Please enter your mobile number.
+          </Text>
+        ) : null}
         <TouchableOpacity
           style={{
             marginVertical: wp('5'),

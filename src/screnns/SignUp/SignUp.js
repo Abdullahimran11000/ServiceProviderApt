@@ -24,50 +24,53 @@ const SignUp = ({navigation}) => {
   const [showConfirmationMessageInModal, setshowConfirmationMessageInModal] =
     useState(false);
   const [nameText, setNameText] = useState('');
-  const [nameIsValid, setNameIsValid] = useState(AppColor.blackOpacity3);
+  const [nameLabelAlert, setNameLabelAlert] = useState('');
   const [emailText, setEmailText] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState(AppColor.blackOpacity3);
-  const [emailAlert, setEmailAlert] = useState(false);
+  const [emailLabelText, setEmailLabelText] = useState('');
+  const [emailLabelAlert, setEmailLabelAlert] = useState(false);
   const [passwordText, setPasswordText] = useState('');
-  const [passwordIsValid, setPasswordIsValid] = useState(
-    AppColor.blackOpacity3,
-  );
+  const [passwordLabelAlert, setPasswordLabelAlert] = useState('');
 
   const nameInputRef = useRef(null);
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
   const signUpHandler = () => {
-    if (emailText === '' && nameText === '' && passwordText === '') {
-      setNameIsValid(AppColor.red);
-      setEmailIsValid(AppColor.red);
-      setPasswordIsValid(AppColor.red);
-    }
     if (nameText === '') {
-      setNameIsValid(AppColor.red);
-    }
-    if (emailText === '') {
-      setEmailIsValid(AppColor.red);
-    }
-    if (passwordText === '') {
-      setPasswordIsValid(AppColor.red);
-    }
-    if (nameText !== '' && emailText !== '' && passwordText !== '') {
-      if (
-        emailText.includes('@gmail.com') ||
-        emailText.includes('@outlook.com')
-      ) {
-        setNameIsValid(AppColor.blackOpacity3);
-        setEmailIsValid(AppColor.blackOpacity3);
-        setPasswordIsValid(AppColor.blackOpacity3);
-        setNameText('');
-        setEmailText('');
-        setPasswordText('');
-        setEmailAlert(false);
-        setshowConfirmationMessageInModal(true)
-      } else {
-        setEmailAlert(true);
-        setEmailIsValid(AppColor.red);
+      setNameLabelAlert(true);
+      setEmailLabelAlert(false);
+      setPasswordLabelAlert(false);
+      nameInputRef.current.focus();
+    } else if (emailText === '') {
+      setEmailLabelText('Please enter your email.');
+      emailInputRef.current.focus();
+      setEmailLabelAlert(true);
+      setNameLabelAlert(false);
+      setPasswordLabelAlert(false);
+    } else if (passwordText === '') {
+      setPasswordLabelAlert(true);
+      setEmailLabelAlert(false);
+      setNameLabelAlert(false);
+      passwordInputRef.current.focus();
+    } else {
+      if (nameText !== '' && emailText !== '' && passwordText !== '') {
+        if (
+          emailText.includes('@gmail.com') ||
+          emailText.includes('@outlook.com')
+        ) {
+          setNameLabelAlert(false);
+          setEmailLabelAlert(false);
+          setPasswordLabelAlert(false);
+          setNameText('');
+          setEmailText('');
+          setPasswordText('');
+          setshowConfirmationMessageInModal(true);
+          nameInputRef.current.focus()
+        } else {
+          setEmailLabelAlert(true);
+          setEmailLabelText('Please enter valid email.')
+          emailInputRef.current.focus()
+        }
       }
     }
   };
@@ -76,7 +79,7 @@ const SignUp = ({navigation}) => {
     navigation.addListener('focus', () => {
       console.log('SignUp screen is focusing right now!');
     });
-  }, [navigation]);
+  }, []);
 
   return (
     <SafeAreaView
@@ -96,7 +99,6 @@ const SignUp = ({navigation}) => {
           keyboardType={'default'}
           returnKeyType={'next'}
           placeholder={'Enter your name'}
-          placeholderTextColor={nameIsValid}
           onChangeText={text => {
             setNameText(text);
           }}
@@ -104,6 +106,16 @@ const SignUp = ({navigation}) => {
             emailInputRef.current.focus();
           }}
         />
+        {nameLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+            }}>
+            Please enter your name.
+          </Text>
+        ) : null}
         <Text style={SignUpStyle.text}>Email</Text>
         <NeoTextInput
           value={emailText}
@@ -111,7 +123,6 @@ const SignUp = ({navigation}) => {
           keyboardType={'email-address'}
           returnKeyType={'next'}
           placeholder={'Enter your email'}
-          placeholderTextColor={emailIsValid}
           onChangeText={text => {
             setEmailText(text);
           }}
@@ -119,14 +130,14 @@ const SignUp = ({navigation}) => {
             passwordInputRef.current.focus();
           }}
         />
-        {emailAlert ? (
+        {emailLabelAlert ? (
           <Text
             style={{
               fontFamily: 'Poppins-Light',
-              fontSize: wp('3.8'),
+              fontSize: wp('3'),
               color: AppColor.red,
             }}>
-            Please enter valid email!
+            {emailLabelText}
           </Text>
         ) : null}
         <Text style={SignUpStyle.text}>Password</Text>
@@ -137,7 +148,6 @@ const SignUp = ({navigation}) => {
           keyboardType={'default'}
           secureTextEntry={!eye}
           placeholder={'Enter your password'}
-          placeholderTextColor={passwordIsValid}
           onChangeText={text => {
             setPasswordText(text);
           }}
@@ -158,6 +168,16 @@ const SignUp = ({navigation}) => {
             )}
           </TouchableOpacity>
         </NeoTextInput>
+        {passwordLabelAlert ? (
+          <Text
+            style={{
+              fontFamily: 'Poppins-Light',
+              fontSize: wp('3'),
+              color: AppColor.red,
+            }}>
+            Please enter your password.
+          </Text>
+        ) : null}
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Checkbox status="checked" color={AppColor.primary} />
           <Text
