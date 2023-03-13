@@ -27,74 +27,76 @@ const PasswordManagement = ({navigation}) => {
   const [showPasswordMessageInModal, setShowPasswordMessageInModal] =
     useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
-  const [currentPasswordValidator, setCurrentPasswordValidator] =
-    useState(false);
+
   const [currentPasswordLabel, setCurrentPasswordLabel] = useState(
     AppColor.blackOpacity3,
   );
 
   const [newPassword, setNewPassword] = useState('');
   const [passwordLabel, setPasswordLabel] = useState(AppColor.blackOpacity3);
-  const [passwordValidator, setPasswordValidator] = useState(false);
+  const [passwordLength, setPasswordLength] = useState(false);
+
   const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmPasswordLabel, setConfirmPasswordLabel] = useState(
     AppColor.blackOpacity3,
   );
-  const [confirmPasswordValidator, setConfirmPasswordValidator] =
-    useState(false);
+  const [passwordMatching, setPasswordMatching] = useState(false);
 
   const submitHandler = () => {
-    if (
-      newPassword === '' &&
-      confirmPassword === '' &&
-      currentPassword === ''
-    ) {
-      setCurrentPasswordLabel(AppColor.red);
-      setPasswordLabel(AppColor.red);
-      setConfirmPasswordLabel(AppColor.red);
-    }
     if (currentPassword === '') {
       setCurrentPasswordLabel(AppColor.red);
-    }
-    if (newPassword === '') {
+      currentPasswordRef.current.focus();
+    } else if (newPassword === '') {
       setPasswordLabel(AppColor.red);
-    }
-    if (confirmPassword === '') {
+      newPasswordRef.current.focus();
+    } else if (confirmPassword === '') {
       setConfirmPasswordLabel(AppColor.red);
-    }
-
-    if (
-      newPassword !== '' &&
-      confirmPassword !== '' &&
-      currentPassword !== ''
-    ) {
-      if (newPassword === confirmPassword) {
-        if (
-          newPassword.includes('@') ||
-          newPassword.includes('/') ||
-          newPassword.includes(',') ||
-          newPassword.includes('.')
-        ) {
-          if (newPassword.length >= 8) {
-            setCurrentPassword('');
-            setNewPassword('');
-            setConfirmPassword('');
-            setCurrentPasswordLabel(AppColor.blackOpacity3);
+      confirmPasswordRef.current.focus();
+    } else {
+      if (
+        newPassword.includes('@') ||
+        newPassword.includes('!') ||
+        newPassword.includes('.')
+      ) {
+        if (newPassword.length >= 8) {
+          if (newPassword === confirmPassword) {
+            setPasswordLength(false);
+            setShowPasswordMessageInModal(true)
             setPasswordLabel(AppColor.blackOpacity3);
             setConfirmPasswordLabel(AppColor.blackOpacity3);
-            setShowPasswordMessageInModal(true);
-            setConfirmPasswordValidator(false);
-            setPasswordValidator(false);
-            setEye(false);
+            setNewPassword('');
+            setConfirmPassword('');
           } else {
-            setPasswordValidator(true);
+            setPasswordMatching(true);
+            setShowInstructionModal(true);
           }
         } else {
-          setShowInstructionModal(true);
+          setPasswordLength(true);
+          setShowPasswordMessageInModal(true);
         }
       } else {
-        setConfirmPasswordValidator(true);
+        setShowInstructionModal(true);
+        setPasswordMatching(false);
       }
+    }
+  };
+
+  const modalHandlerOne = () => {
+    if (passwordLength) {
+      setShowPasswordMessageInModal(false);
+      newPasswordRef.current.focus();
+    } else {
+      navigation.goBack();
+    }
+  };
+
+  const modalHandlerTwo = () => {
+    if (passwordMatching) {
+      confirmPasswordRef.current.focus();
+      setShowInstructionModal(false);
+    } else {
+      newPasswordRef.current.focus();
+      setShowInstructionModal(false);
     }
   };
 
@@ -113,7 +115,7 @@ const PasswordManagement = ({navigation}) => {
         onPress={() => {
           navigation.goBack();
         }}>
-        {'Recovery Password'}
+        {'Password Management'}
       </BackButton>
       <ScrollView
         style={{width: wp('100')}}
@@ -182,17 +184,6 @@ const PasswordManagement = ({navigation}) => {
             )}
           </TouchableOpacity>
         </NeoTextInput>
-        {passwordValidator ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3.5'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            Your password is less than 8 character!
-          </Text>
-        ) : null}
 
         <Text style={PasswordManagementStyle.textViewOne}>
           Confirm Password
@@ -209,17 +200,7 @@ const PasswordManagement = ({navigation}) => {
           onSubmitEditing={submitHandler}
           onChangeText={text => setConfirmPassword(text)}
         />
-        {confirmPasswordValidator ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3.5'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            Your password is not match with new password.
-          </Text>
-        ) : null}
+
         <TouchableOpacity onPress={submitHandler}>
           <NeoButton
             darkShadowColor={AppColor.black}
@@ -234,33 +215,33 @@ const PasswordManagement = ({navigation}) => {
 
         <CustomModal
           isVisible={showPasswordMessageInModal}
-          onBackdropPress={() => {
-            setShowPasswordMessageInModal(false);
-          }}
-          modalButtonPress={() => {
-            navigation.goBack('Dashboard');
-          }}
-          buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/success.json')}
-          text={'your password has been set'}
-          style={{marginTop: wp(10)}}
-          buttonText={'Dashboard'}
+          onBackdropPress={modalHandlerOne}
+          modalButtonPress={modalHandlerOne}
+          buttonBackgroundColor={passwordLength ? '#E36A6A' : AppColor.primary}
+          source={
+            passwordLength
+              ? require('../../assets/animations/Alert.json')
+              : require('../../assets/animations/passwordLength.json')
+          }
+          text={
+            passwordLength
+              ? 'Your new password must be 8 character long.'
+              : 'Your New Password has been set.'
+          }
+          buttonText={passwordLength ? 'Close' : 'Back'}
         />
         <CustomModal1
           isVisible={showInstructionModal}
-          onBackdropPress={() => {
-            setShowInstructionModal(false);
-          }}
-          modalButtonPress={() => {
-            setShowInstructionModal(false);
-          }}
-          buttonBackgroundColor={AppColor.primary}
+          onBackdropPress={modalHandlerTwo}
+          modalButtonPress={modalHandlerTwo}
+          buttonBackgroundColor={'#E36A6A'}
           source={require('../../assets/animations/Alert.json')}
           text={
-            'Your password must have one of the following special character (@ , / , .)'
+            passwordMatching
+              ? 'Your confirm password is not match with your new password.'
+              : 'Your password must have one of the following special character (@ , / , .)'
           }
-          style={{marginTop: wp(10)}}
-          buttonText={'close'}
+          buttonText={'Close'}
         />
       </ScrollView>
     </SafeAreaView>

@@ -65,17 +65,34 @@ const RecoverPassword = ({navigation}) => {
           } else {
             setPasswordMatching(true);
             setShowInstructionModal(true);
-            confirmRef.current.focus();
           }
         } else {
           setPasswordLength(true);
           setShowPasswordMessageInModal(true);
-          passwordRef.current.focus();
         }
       } else {
         setShowInstructionModal(true);
-        passwordRef.current.focus();
+        setPasswordMatching(false);
       }
+    }
+  };
+
+  const modalHandlerOne = () => {
+    if (passwordLength) {
+      setShowPasswordMessageInModal(false);
+      passwordRef.current.focus();
+    } else {
+      navigation.replace('LogIn');
+    }
+  };
+
+  const modalHandlerTwo = () => {
+    if (passwordMatching) {
+      confirmRef.current.focus();
+      setShowInstructionModal(false);
+    } else {
+      passwordRef.current.focus();
+      setShowInstructionModal(false);
     }
   };
 
@@ -169,22 +186,8 @@ const RecoverPassword = ({navigation}) => {
 
         <CustomModal
           isVisible={showPasswordMessageInModal}
-          onBackdropPress={() => {
-            if (passwordLength) {
-              setShowPasswordMessageInModal(false);
-              passwordRef.current.focus();
-            } else {
-              navigation.replace('LogIn');
-            }
-          }}
-          modalButtonPress={() => {
-            if (passwordLength) {
-              setShowPasswordMessageInModal(false);
-              passwordRef.current.focus();
-            } else {
-              navigation.replace('LogIn');
-            }
-          }}
+          onBackdropPress={modalHandlerOne}
+          modalButtonPress={modalHandlerOne}
           buttonBackgroundColor={passwordLength ? '#E36A6A' : AppColor.primary}
           source={
             passwordLength
@@ -200,22 +203,8 @@ const RecoverPassword = ({navigation}) => {
         />
         <CustomModal1
           isVisible={showInstructionModal}
-          onBackdropPress={() => {
-            if (passwordMatching) {
-              confirmRef.current.focus();
-              setShowInstructionModal(false);
-            } else {
-              setShowInstructionModal(false);
-            }
-          }}
-          modalButtonPress={() => {
-            if (passwordMatching) {
-              confirmRef.current.focus();
-              setShowInstructionModal(false);
-            } else {
-              setShowInstructionModal(false);
-            }
-          }}
+          onBackdropPress={modalHandlerTwo}
+          modalButtonPress={modalHandlerTwo}
           buttonBackgroundColor={'#E36A6A'}
           source={require('../../assets/animations/Alert.json')}
           text={
