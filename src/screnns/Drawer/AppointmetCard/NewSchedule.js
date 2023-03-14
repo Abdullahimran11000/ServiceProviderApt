@@ -25,8 +25,9 @@ import NeoTextInput from '../../../components/NeoMorphTextInput/NeoTextInput';
 const NewSchedule = () => {
   const navigation = useNavigation();
   const [amountInput, setAmountInput] = useState('');
+  const [amountLabelText, setAmountLabelText] = useState('');
+  const [amountLabelAlert, setAmountLabelAlert] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [labelShow, setLabelShow] = useState(AppColor.blackOpacity3);
 
   const [showStartDate, setShowStartDate] = useState(false);
   const [startDateValid, setStartDateValid] = useState(false);
@@ -88,7 +89,10 @@ const NewSchedule = () => {
   };
   const submitHandler = () => {
     if (amountInput === '') {
-      setLabelShow(AppColor.red);
+      setAmountLabelText('Please enter consultation fee.');
+      setAmountLabelAlert(true);
+    } else {
+      setAmountLabelAlert(false);
     }
     if (showStartSelectedDate === 'Start-date') {
       setStartDateValid(true);
@@ -115,21 +119,21 @@ const NewSchedule = () => {
       setShowStartSelectedTime('start-time');
       setShowEndSelectedTime('end-time');
       setAmountInput('');
-      setLabelShow(AppColor.blackOpacity3)
+      setAmountLabelAlert(false);
     }
   };
   return (
     <SafeAreaView
       style={{
-        flex: 1,
+        flex: 10,
         backgroundColor: AppColor.whiteShade,
         alignItems: 'center',
-        justifyContent: 'center',
       }}>
       <CustomModal
         isVisible={modalOpen}
         onBackdropPress={() => {
           setModalOpen(false);
+          navigation.navigate('Drawer');
         }}
         source={require('../../../assets/animations/success.json')}
         lottieStyle={{width: wp('35'), height: wp('35')}}
@@ -137,147 +141,181 @@ const NewSchedule = () => {
         style={{marginTop: wp('12')}}
         modalButtonPress={() => {
           setModalOpen(false);
+          navigation.navigate('Drawer');
         }}
         buttonBackgroundColor={AppColor.primary}
         buttonText={'Close'}
       />
-      <Header
-        buttonColor={AppColor.whiteShade}
-        styles={{color: AppColor.black}}
-        stylesText={{color: AppColor.black}}
-        backgroundColor={AppColor.whiteShade}>
-        {'Schedule'}
-      </Header>
-      <NeoButton
-        width={wp(90)}
-        height={hp(8)}
-        backgroundColor={AppColor.primary}
-        borderRadius={wp(20)}>
-        <Text style={NewScheduleStyle.viewOneText}>Add New Schedule</Text>
-      </NeoButton>
-      <View style={NewScheduleStyle.viewTwo}>
-        <TouchableOpacity onPress={isDateStartVisible}>
-          <NeoButton
-            height={hp('15')}
-            width={wp('35')}
-            backgroundColor={AppColor.whiteShade}
-            borderRadius={15}>
-            <Icon name="calendar" size={wp(15)} color={AppColor.primary} />
-            <Text
-              style={[
-                NewScheduleStyle.viewTwoTextOne,
-                {color: startDateValid ? AppColor.red : AppColor.black},
-              ]}>
-              {showStartSelectedDate}
-            </Text>
-          </NeoButton>
-          <DateTimePicker
-            mode="date"
-            isVisible={showStartDate}
-            onConfirm={startDateHandler}
-            onCancel={isDateStartHide}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={isDateEndVisible}>
-          <NeoButton
-            height={hp('15')}
-            width={wp('35')}
-            backgroundColor={AppColor.whiteShade}
-            borderRadius={15}>
-            <Icon name="calendar" size={wp(15)} color={AppColor.primary} />
-            <Text
-              style={[
-                NewScheduleStyle.viewTwoTextOne,
-                {color: endDateValid ? AppColor.red : AppColor.black},
-              ]}>
-              {showEndSelectedDate}
-            </Text>
-          </NeoButton>
-          <DateTimePicker2
-            mode="date"
-            isVisible={showEndDate}
-            onConfirm={endDateHandler}
-            onCancel={isDateEndHide}
-          />
-        </TouchableOpacity>
+      <View style={{flex: 1}}>
+        <Header
+          buttonColor={AppColor.whiteShade}
+          styles={{color: AppColor.black}}
+          stylesText={{color: AppColor.black}}
+          backgroundColor={AppColor.whiteShade}>
+          {'Schedule'}
+        </Header>
       </View>
-      <View style={NewScheduleStyle.viewTwo}>
-        <TouchableOpacity onPress={isStartTimeShow}>
-          <NeoButton
-            height={hp('15')}
-            width={wp('35')}
-            backgroundColor={AppColor.whiteShade}
-            borderRadius={15}>
-            <Icon name="time" size={wp(15)} />
-            <Text
-              style={[
-                NewScheduleStyle.viewTwoTextOne,
-                {color: startTimeValid ? AppColor.red : AppColor.black},
-              ]}>
-              {showStartSelectedTime}
-            </Text>
-          </NeoButton>
-          <DateTimePicker
-            mode="time"
-            isVisible={showStartTime}
-            onConfirm={StartTimeHandler}
-            onCancel={isStartTimeHide}
-            is24Hour={false}
-          />
-        </TouchableOpacity>
-
-        <View>
-          <TouchableOpacity onPress={isEndTimeShow}>
+      <View style={{flex: 9}}>
+        <ScrollView
+          contentContainerStyle={{flexGrow: 9, alignItems: 'center'}}
+          style={{width: wp('100')}}>
+          <View style={{flex: 2, justifyContent: 'center'}}>
             <NeoButton
-              height={hp('15')}
-              width={wp('35')}
-              backgroundColor={AppColor.whiteShade}
-              borderRadius={15}>
-              <Icon name="time" size={wp(15)} />
-              <Text
-                style={[
-                  NewScheduleStyle.viewTwoTextOne,
-                  {color: endTimeValid ? AppColor.red : AppColor.black},
-                ]}>
-                {showEndSelectedTime}
-              </Text>
+              width={wp(90)}
+              height={hp(8)}
+              backgroundColor={AppColor.primary}
+              borderRadius={wp(20)}>
+              <Text style={NewScheduleStyle.viewOneText}>Add New Schedule</Text>
             </NeoButton>
-            <DateTimePicker2
-              mode="time"
-              isVisible={showEndTime}
-              onConfirm={EndTimeHandler}
-              onCancel={isEndTimeHide}
-              is24Hour={false}
-            />
-          </TouchableOpacity>
-        </View>
+          </View>
+          <View style={{flex: 1}}>
+            <View style={NewScheduleStyle.viewTwo}>
+              <TouchableOpacity onPress={isDateStartVisible}>
+                <NeoButton
+                  height={hp('15')}
+                  width={wp('35')}
+                  backgroundColor={AppColor.whiteShade}
+                  borderRadius={15}>
+                  <Icon
+                    name="calendar"
+                    size={wp(15)}
+                    color={AppColor.primary}
+                  />
+                  <Text
+                    style={[
+                      NewScheduleStyle.viewTwoTextOne,
+                      {color: startDateValid ? AppColor.red : AppColor.black},
+                    ]}>
+                    {showStartSelectedDate}
+                  </Text>
+                </NeoButton>
+                <DateTimePicker
+                  mode="date"
+                  isVisible={showStartDate}
+                  onConfirm={startDateHandler}
+                  onCancel={isDateStartHide}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={isDateEndVisible}>
+                <NeoButton
+                  height={hp('15')}
+                  width={wp('35')}
+                  backgroundColor={AppColor.whiteShade}
+                  borderRadius={15}>
+                  <Icon
+                    name="calendar"
+                    size={wp(15)}
+                    color={AppColor.primary}
+                  />
+                  <Text
+                    style={[
+                      NewScheduleStyle.viewTwoTextOne,
+                      {color: endDateValid ? AppColor.red : AppColor.black},
+                    ]}>
+                    {showEndSelectedDate}
+                  </Text>
+                </NeoButton>
+                <DateTimePicker2
+                  mode="date"
+                  isVisible={showEndDate}
+                  onConfirm={endDateHandler}
+                  onCancel={isDateEndHide}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={NewScheduleStyle.viewTwo}>
+              <TouchableOpacity onPress={isStartTimeShow}>
+                <NeoButton
+                  height={hp('15')}
+                  width={wp('35')}
+                  backgroundColor={AppColor.whiteShade}
+                  borderRadius={15}>
+                  <Icon name="time" size={wp(15)} />
+                  <Text
+                    style={[
+                      NewScheduleStyle.viewTwoTextOne,
+                      {color: startTimeValid ? AppColor.red : AppColor.black},
+                    ]}>
+                    {showStartSelectedTime}
+                  </Text>
+                </NeoButton>
+                <DateTimePicker
+                  mode="time"
+                  isVisible={showStartTime}
+                  onConfirm={StartTimeHandler}
+                  onCancel={isStartTimeHide}
+                  is24Hour={false}
+                />
+              </TouchableOpacity>
+
+              <View>
+                <TouchableOpacity onPress={isEndTimeShow}>
+                  <NeoButton
+                    height={hp('15')}
+                    width={wp('35')}
+                    backgroundColor={AppColor.whiteShade}
+                    borderRadius={15}>
+                    <Icon name="time" size={wp(15)} />
+                    <Text
+                      style={[
+                        NewScheduleStyle.viewTwoTextOne,
+                        {color: endTimeValid ? AppColor.red : AppColor.black},
+                      ]}>
+                      {showEndSelectedTime}
+                    </Text>
+                  </NeoButton>
+                  <DateTimePicker2
+                    mode="time"
+                    isVisible={showEndTime}
+                    onConfirm={EndTimeHandler}
+                    onCancel={isEndTimeHide}
+                    is24Hour={false}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          <View style={{flex: 2}}>
+            <NeoTextInput
+              value={amountInput}
+              placeholder="Enter Your Consultation fee"
+              keyboardType="decimal-pad"
+              returnKeyType="go"
+              onSubmitEditing={submitHandler}
+              onChangeText={text => {
+                setAmountInput(text);
+              }}>
+              <View style={NewScheduleStyle.icon}>
+                <Icon name="cash" size={wp(6)} color={'#567a49'} />
+              </View>
+            </NeoTextInput>
+            {amountLabelAlert ? (
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Light',
+                  fontSize: wp('3'),
+                  color: AppColor.red,
+                }}>
+                {amountLabelText}
+              </Text>
+            ) : null}
+          </View>
+          <View style={{flex: 4}}>
+            <TouchableOpacity onPress={submitHandler}>
+              <NeoButton
+                height={hp('6')}
+                width={wp('55')}
+                borderRadius={wp('6')}
+                backgroundColor={AppColor.primary}>
+                <Text style={NewScheduleStyle.viewFiveText}>
+                  Create Appointment
+                </Text>
+              </NeoButton>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
-      <NeoTextInput
-        value={amountInput}
-        placeholder="Enter Your Consultation fee"
-        placeholderTextColor={labelShow}
-        keyboardType="decimal-pad"
-        returnKeyType="go"
-        onSubmitEditing={submitHandler}
-        onChangeText={text => {
-          setAmountInput(text);
-        }}>
-        <View style={NewScheduleStyle.icon}>
-          <Icon name="cash" size={wp(6)} color={'#567a49'} />
-        </View>
-      </NeoTextInput>
-      
-      <TouchableOpacity onPress={submitHandler}>
-        <NeoButton
-          height={hp('6')}
-          width={wp('55')}
-          borderRadius={wp('6')}
-          marginVertical={wp('5')}
-          backgroundColor={AppColor.primary}>
-          <Text style={NewScheduleStyle.viewFiveText}>Create Appointment</Text>
-        </NeoButton>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };

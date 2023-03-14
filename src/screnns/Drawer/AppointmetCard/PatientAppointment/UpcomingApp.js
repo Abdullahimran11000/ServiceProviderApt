@@ -52,6 +52,9 @@ const UpcomingApp = ({navigation}) => {
           navigation.navigate('VideoCalling');
         }
       }}
+      rescheduleBtn={() => {
+        navigation.navigate('TotalAppSlots', {check: false});
+      }}
     />
   );
   return (

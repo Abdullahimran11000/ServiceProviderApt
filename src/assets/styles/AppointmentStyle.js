@@ -6,11 +6,7 @@ const AppointmentStyle = StyleSheet.create({
      mainView:{display: 'flex' , backgroundColor:AppColor.whiteShade },
 
      imageBackStyle: {width: wp(100), height: hp(40)},
-     imageBackView: {
-          width: wp(100),
-          height: hp(40),
-          backgroundColor: AppColor.blackOpacity8,
-        },
+     imageBackView: {backgroundColor: AppColor.blackOpacity8, flex: 5},
 
      headerTextOne:{fontFamily:'Poppins-SemiBold', color:AppColor.white,fontSize: wp(8), paddingHorizontal: wp('5')},
      headerTextTwo:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white,fontSize: wp(3.6), paddingHorizontal: wp('5')},

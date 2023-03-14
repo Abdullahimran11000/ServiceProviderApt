@@ -177,11 +177,13 @@ const Notifications = () => {
             </Text>
           </View>
 
-          {item.open ? <Icon
+          {item.open ? (
+            <Icon
               name="checkmark-done-circle-outline"
               size={wp('0')}
               color={'blue'}
-            /> : (
+            />
+          ) : (
             <Icon
               name="checkmark-done-circle-outline"
               size={wp('5')}
@@ -207,39 +209,44 @@ const Notifications = () => {
       style={{
         flex: 1,
         backgroundColor: AppColor.whiteShade,
-        alignItems: 'center',
-        justifyContent: 'center',
+        
       }}>
-      <Header
-        buttonColor={AppColor.whiteShade}
-        styles={{color: AppColor.black}}
-        stylesText={{color: AppColor.black}}>
-        {'Notification'}
-      </Header>
-      <ScrollView style={{width: wp('100')}}>
+      <View style={{flex: 1}}>
+        <Header
+          buttonColor={AppColor.whiteShade}
+          styles={{color: AppColor.black}}
+          stylesText={{color: AppColor.black}}>
+          {'Notification'}
+        </Header>
+      </View>
+      <View style={{flex: 0.5, paddingHorizontal: wp('5')}}>
         <TouchableOpacity onPress={submitHandlerTwo}>
           <Text style={NotificationStyle.renderItemHeaderFontFirst}>
             Mark All As Read
           </Text>
         </TouchableOpacity>
-        <FlatList data={TodayData} renderItem={renderItem} />
+      </View>
+      <View style={{flex: 8.5}}>
+        <ScrollView style={{width: wp('100')}}>
+          <FlatList data={TodayData} renderItem={renderItem} />
 
-        <CustomModal
-          isVisible={showModal}
-          onBackdropPress={() => {
-            setShowModal(false);
-          }}
-          modalButtonPress={() => {
-            setShowModal(false);
-          }}
-          buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/sms.json')}
-          lottieStyle={{width: wp('35'), height: wp('35')}}
-          text={readNotificationInModal}
-          style={{marginTop: wp(10)}}
-          buttonText={'Close'}
-        />
-      </ScrollView>
+          <CustomModal
+            isVisible={showModal}
+            onBackdropPress={() => {
+              setShowModal(false);
+            }}
+            modalButtonPress={() => {
+              setShowModal(false);
+            }}
+            buttonBackgroundColor={AppColor.primary}
+            source={require('../../assets/animations/sms.json')}
+            lottieStyle={{width: wp('35'), height: wp('35')}}
+            text={readNotificationInModal}
+            style={{marginTop: wp(10)}}
+            buttonText={'Close'}
+          />
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

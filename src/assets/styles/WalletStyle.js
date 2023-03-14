@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const WalletStyle = StyleSheet.create({
-  mainView: { flex: 1, backgroundColor: AppColor.whiteShade, alignItems: 'center', justifyContent: 'center'},
+  mainView: { flex: 10, backgroundColor: AppColor.whiteShade, alignItems: 'center', justifyContent: 'center'},
 
   headCont: {
     width: wp('90'),
@@ -75,7 +75,8 @@ const WalletStyle = StyleSheet.create({
     backgroundColor: AppColor.whiteShade,
     shadowRadius: 4,
     borderRadius: wp('5'),
-    margin: wp('5'),
+    marginHorizontal: wp('5'),
+    marginVertical: wp('3'),
     alignItems: 'center',
     justifyContent: 'space-between'
   },

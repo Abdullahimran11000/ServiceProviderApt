@@ -1,6 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View, Image, SafeAreaView} from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  SafeAreaView,
+  Linking,
+} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {AppColor} from '../../assets/colors/AppColors';
 import Dashboard from './Dashboard';
@@ -57,147 +64,189 @@ const Drawer = () => {
 
   return (
     <Animated.View style={DrawerStyle.mainView}>
-      <Animated.View>
-        <View style={DrawerStyle.topView}>
-          <SafeAreaView>
-            <TouchableOpacity onPress={pressHandler}>
-              <NeoButton
-                width={wp('16')}
-                height={wp('16')}
-                borderRadius={wp('8')}
-                backgroundColor={AppColor.whiteShade}
-                lightShadowColor={AppColor.primary}>
-                <Image
-                  style={DrawerStyle.imageStyle}
-                  source={require('../../assets/images/profile.jpg')}></Image>
-              </NeoButton>
-            </TouchableOpacity>
-            <Text style={DrawerStyle.nameText}>Dara Amanda</Text>
-            <Text style={DrawerStyle.designationText}>CEO BTS</Text>
-
-            <View style={DrawerStyle.middleView}>
-              <View style={DrawerStyle.menuItemView}>
-                <MaterialIcons
-                  name={'dashboard'}
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={pressHandler}>
-                  <Text style={DrawerStyle.menuItemText}>Dashboard</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={DrawerStyle.menuItemView}>
-                <FontAwesome
-                  name={'user-o'}
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={() => navigation.navigate('MyProfile')}>
-                  <Text style={DrawerStyle.menuItemText}>My Profile</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={DrawerStyle.menuItemView}>
-                <Ionicons
-                  name={'notifications-outline'}
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={() => navigation.navigate('Notifications')}>
-                  <Text style={DrawerStyle.menuItemText}>Notification</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={DrawerStyle.menuItemView}>
-                <MaterialCommunityIcons
-                  name={'calendar'}
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={() => navigation.navigate('AppointmentsCards')}>
-                  <Text style={DrawerStyle.menuItemText}>Appointment</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={DrawerStyle.menuItemView}>
-                <MaterialCommunityIcons
-                  name={'clock-time-eleven-outline'}
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={() => navigation.navigate('NewSchedule')}>
-                  <Text style={DrawerStyle.menuItemText}>Scheduling</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={DrawerStyle.menuItemView}>
-                <AntDesign
-                  name={'wallet'}
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={() => navigation.navigate('Wallet')}>
-                  <Text style={DrawerStyle.menuItemText}>Wallet</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={DrawerStyle.menuItemView}>
-                <MaterialCommunityIcons
-                  name={'card-account-details-star-outline'}
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={() => navigation.navigate('Certificates')}>
-                  <Text style={DrawerStyle.menuItemText}>Certificates</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={DrawerStyle.menuItemView}>
-                <Octicons name={'key'} size={wp('5')} color={AppColor.white} />
-                <TouchableOpacity
-                  style={DrawerStyle.touchableView}
-                  onPress={() => navigation.navigate('PasswordManagement')}>
-                  <Text style={DrawerStyle.menuItemText}>Password</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{marginTop: wp('18')}}>
-              <View style={DrawerStyle.logOutView}>
-                <MaterialIcons
-                  name="logout"
-                  size={wp('5')}
-                  color={AppColor.white}
-                />
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.replace('LogIn');
-                  }}>
-                  <Text style={DrawerStyle.menuItemText}>Log out</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </SafeAreaView>
+      <Animated.View style={DrawerStyle.topView}>
+        <View style={{flex: 2.5, justifyContent: 'center'}}>
+          <TouchableOpacity onPress={pressHandler}>
+            <NeoButton
+              width={wp('16')}
+              height={wp('16')}
+              borderRadius={wp('8')}
+              backgroundColor={AppColor.whiteShade}
+              lightShadowColor={AppColor.primary}>
+              <Image
+                style={DrawerStyle.imageStyle}
+                source={require('../../assets/images/selfie.jpg')}></Image>
+            </NeoButton>
+          </TouchableOpacity>
+          <Text style={DrawerStyle.nameText}>Dara Amanda</Text>
+          <Text style={DrawerStyle.designationText}>CEO BTS</Text>
         </View>
 
-        {/*
+        <View style={{flex: 6}}>
+          <View style={DrawerStyle.menuItemView}>
+            <MaterialIcons
+              name={'dashboard'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={pressHandler}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Dashboard</Text>
+            </TouchableOpacity>
+          </View>
 
-         */}
+          <View style={DrawerStyle.menuItemView}>
+            <FontAwesome
+              name={'user-o'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('MyProfile')}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}My Profile</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={DrawerStyle.menuItemView}>
+            <Ionicons
+              name={'notifications-outline'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('Notifications')}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Notification</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={DrawerStyle.menuItemView}>
+            <MaterialCommunityIcons
+              name={'calendar'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('AppointmentsCards')}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Appointment</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={DrawerStyle.menuItemView}>
+            <MaterialCommunityIcons
+              name={'clock-time-eleven-outline'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('NewSchedule')}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Scheduling</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={DrawerStyle.menuItemView}>
+            <AntDesign name={'wallet'} size={wp('5')} color={AppColor.white} />
+
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('Wallet')}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Wallet</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={DrawerStyle.menuItemView}>
+            <MaterialCommunityIcons
+              name={'card-account-details-star-outline'}
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('Certificates')}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Certificates</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={DrawerStyle.menuItemView}>
+            <Octicons name={'key'} size={wp('5')} color={AppColor.white} />
+            <TouchableOpacity
+              style={DrawerStyle.touchableView}
+              onPress={() => navigation.navigate('PasswordManagement')}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Password</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={{flex: 1.5, justifyContent: 'space-around'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              width: wp('32'),
+              justifyContent: 'space-between',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://www.facebook.com/');
+              }}>
+              <FontAwesome
+                name="facebook-official"
+                size={wp('7')}
+                color={AppColor.white}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://www.instagram.com/');
+              }}>
+              <FontAwesome
+                name="instagram"
+                size={wp('7')}
+                color={AppColor.white}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://github.com/hamad-najaf');
+              }}>
+              <FontAwesome
+                name="github"
+                size={wp('7')}
+                color={AppColor.white}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://pk.linkedin.com/');
+              }}>
+              <FontAwesome
+                name="linkedin-square"
+                size={wp('7')}
+                color={AppColor.white}
+              />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <View style={{flexDirection: 'row'}}>
+              <MaterialIcons
+                name="logout"
+                size={wp('5')}
+                color={AppColor.white}
+              />
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.replace('LogIn');
+                }}>
+                <Text style={DrawerStyle.menuItemText}>{'  '}Log out</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={DrawerStyle.designationText}>
+              Designed by Behind the Software LLC
+            </Text>
+          </View>
+        </View>
       </Animated.View>
 
       <Animated.View

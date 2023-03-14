@@ -13,21 +13,22 @@ import moment from 'moment-timezone';
 import TimeSlotsRender from '../../../components/RenderFunction/TimeSlotsRender';
 import {ScrollView} from 'react-native-virtualized-view';
 import {AppColor} from '../../../assets/colors/AppColors';
+import { useRoute } from '@react-navigation/native';
 
 const TotalAppSlots = ({date}) => {
+  const route = useRoute()
+  const {check} = route.params
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
     moment(date).format('DD MMMM'),
   );
-
   const [calendarDate, setCalendarDate] = useState(moment());
-
   const [timeSlots, setTimeSlots] = useState([
     {id: 1, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 2, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 3, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 4, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 5, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 6, day: '13', month: 'March', startTime: '8:25', endTime: '8:50'},
+    {id: 6, day: '14', month: 'March', startTime: '8:25', endTime: '8:50'},
   ]);
 
   const submitHandler = id => {
@@ -48,12 +49,13 @@ const TotalAppSlots = ({date}) => {
         onPress={() => {
           submitHandler(item.id);
         }}
+        check={check}
       />
     );
   };
   return (
     <SafeAreaView
-      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}>
+      style={{backgroundColor: AppColor.whiteShade, flex: 1}}>
       <ScrollView>
         <Header
           styles={{color: 'black'}}

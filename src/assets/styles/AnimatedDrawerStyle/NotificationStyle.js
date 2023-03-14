@@ -9,7 +9,7 @@ const NotificationStyle = StyleSheet.create({
     headContInnerCont: {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
     headContImageCont: {width: wp('13'), height: wp('13'), borderRadius: wp('13'), backgroundColor: AppColor.blackOpacity1, alignItems: 'center', justifyContent: 'center'},
     headContMiddleCont: {width: wp('60'), position: 'absolute', left: wp('20')},
-    renderItemHeaderFontFirst: {fontFamily:'Poppins-SemiBold',color:'black', textAlign: 'right', padding: wp('5')},
+    renderItemHeaderFontFirst: {fontFamily:'Poppins-SemiBold',color:'black', textAlign: 'right'},
     renderItemHeaderFontSecond: {position: 'absolute', right: 0},
     renderItemHeaderFontSecondTextStyle: {fontFamily:'Poppins-Regular',color:AppColor.blackOpacity4,top:7,},
     iconstyle:{alignSelf:'center', width: wp('15'), height: wp('15'), borderRadius: wp('15'), backgroundColor: AppColor.white, alignItems: 'center', justifyContent: 'center'},

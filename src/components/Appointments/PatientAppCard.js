@@ -26,6 +26,7 @@ const PatientAppCard = ({
   nextButtonShow,
   buttonColor,
   nav,
+  rescheduleBtn
 }) => {
   const navigation = useNavigation();
   const cardHandler = () => {
@@ -166,7 +167,7 @@ const PatientAppCard = ({
               </LinearGradient>
             </NeoButton>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={rescheduleBtn}>
             <NeoButton
               inner={false}
               width={wp('30')}

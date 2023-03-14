@@ -65,11 +65,11 @@ const SignUp = ({navigation}) => {
           setEmailText('');
           setPasswordText('');
           setshowConfirmationMessageInModal(true);
-          nameInputRef.current.focus()
+          nameInputRef.current.focus();
         } else {
           setEmailLabelAlert(true);
-          setEmailLabelText('Please enter valid email.')
-          emailInputRef.current.focus()
+          setEmailLabelText('Please enter valid email.');
+          emailInputRef.current.focus();
         }
       }
     }
@@ -85,12 +85,15 @@ const SignUp = ({navigation}) => {
     <SafeAreaView
       style={{
         backgroundColor: AppColor.whiteShade,
-        flex: 1,
+        flex: 10,
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <BackButton onPress={() => navigation.goBack()}>{'Sign Up'}</BackButton>
-      <View style={{marginTop: wp('10')}}>
+      <View style={{flex: 1}}>
+        <BackButton onPress={() => navigation.goBack()}>{'Sign Up'}</BackButton>
+      </View>
+      <View style={{flex: 0.5}}></View>
+      <View style={{flex:8.5}}>
         <Text style={SignUpStyle.text}>Full Name</Text>
         <NeoTextInput
           value={nameText}

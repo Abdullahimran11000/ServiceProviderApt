@@ -21,10 +21,10 @@ import {Neomorph} from 'react-native-neomorph-shadows';
 import RNFetchBlob from 'rn-fetch-blob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import PatientAppCard from '../../components/Appointments/PatientAppCard';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const Dashboard = ({pressHandler}) => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const [warningCardShow, setWarningCardShow] = useState(true);
   const [todayAppointmentInfo, setTodayAppointmentInfo] = useState([
     {
@@ -69,6 +69,9 @@ const Dashboard = ({pressHandler}) => {
         if (item.appDestination === 'Call') {
           navigation.navigate('VideoCalling');
         }
+      }}
+      rescheduleBtn={() => {
+        navigation.navigate('TotalAppSlots', {check: true});
       }}
     />
   );
