@@ -29,7 +29,7 @@ const VerificationStyle = StyleSheet.create({
   },
   textOne: {
     fontFamily: 'Poppins-Light',
-    fontSize: wp('3'),
+    fontSize: wp('3.5'),
     color: AppColor.red,
   },
 });

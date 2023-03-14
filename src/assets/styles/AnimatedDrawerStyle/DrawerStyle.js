@@ -3,14 +3,14 @@ import { widthPercentageToDP as wp  , heightPercentageToDP as hp} from 'react-na
 import { AppColor } from '../../colors/AppColors';
 
 const DrawerStyle = StyleSheet.create({
-    mainView: {flex: 1, display: 'flex', backgroundColor: AppColor.primary},
-    topView: {width: wp('90'), alignSelf: 'center', paddingTop: wp('10')},
+    mainView: {flex: 1, backgroundColor: AppColor.primary},
+    topView: {flex: 1, width: wp('90'), alignSelf: 'center'},
     middleView: {marginTop: wp('8')},
     imageStyle: {width: wp('16'), height: wp('16'), borderRadius: wp('8')},
     nameText: {marginTop: wp('2'), fontFamily: 'Poppins-Bold', fontSize: wp('5'), color: AppColor.white},
     designationText: {fontFamily: 'Poppins-Light', fontSize: wp('3.5'), color: AppColor.white},
-    menuItemView: {width: wp('90'), flexDirection: 'row', paddingTop: wp('5')},
-    menuItemText: {marginLeft: wp('3'), fontFamily: 'Poppins-Medium', fontSize: wp('3.7'), color: AppColor.white},
+    menuItemView: { flexDirection: 'row', paddingTop: wp('5')},
+    menuItemText: {fontFamily: 'Poppins-Medium', fontSize: wp('3.7'), color: AppColor.white},
     touchableView: {width: wp('50')},
     logOutView: {flexDirection: 'row'},
 

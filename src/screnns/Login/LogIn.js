@@ -23,7 +23,7 @@ const LogIn = ({navigation}) => {
   const [emailLabelAlert, setEmailLabelAlert] = useState(false);
   const [passwordText, setPasswordText] = useState('1234');
   const [passwordLabelText, setPasswordLabelText] = useState('');
-  const [passwordLabelAlert, setPasswordLabelAlert] = useState(false)
+  const [passwordLabelAlert, setPasswordLabelAlert] = useState(false);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -36,31 +36,31 @@ const LogIn = ({navigation}) => {
 
   const submitHandler = () => {
     if (emailText === '') {
-      setEmailLabelAlert(true)
-      setPasswordLabelAlert(false)
+      setEmailLabelAlert(true);
+      setPasswordLabelAlert(false);
       setEmailLabelText('Please enter your email.');
       emailRef.current.focus();
     } else if (passwordText === '') {
       setPasswordLabelText('Please enter your password.');
-      setPasswordLabelAlert(true)
-      setEmailLabelAlert(false)
+      setPasswordLabelAlert(true);
+      setEmailLabelAlert(false);
       passwordRef.current.focus();
     } else {
       if (emailText != '' && passwordText != '') {
-        setEmailLabelAlert(false)
-        setPasswordLabelAlert(false)
+        setEmailLabelAlert(false);
+        setPasswordLabelAlert(false);
         if (
           emailText.includes('@gmail.com') ||
           emailText.includes('@outlook.com')
         ) {
-          setEmailLabelAlert(false)
-          setPasswordLabelAlert(false)
+          setEmailLabelAlert(false);
+          setPasswordLabelAlert(false);
           navigation.navigate('Drawer');
           setEmailText('');
           setPasswordText('');
         } else {
           setEmailLabelAlert(true);
-          setEmailLabelText("Please enter valid email.")
+          setEmailLabelText('Please enter valid email.');
           emailRef.current.focus();
         }
       }
@@ -71,12 +71,16 @@ const LogIn = ({navigation}) => {
     <SafeAreaView
       style={{
         backgroundColor: AppColor.whiteShade,
-        flex: 1,
+        flex: 10,
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text style={LoginStyle.headerView}> Log in </Text>
-      <View style={{marginTop: wp('10')}}>
+      <View style={{flex: 0.2}}></View>
+      <View style={{flex: 1}}>
+        <Text style={LoginStyle.headerView}> Log in </Text>
+      </View>
+      <View style={{flex: 0.5}}></View>
+      <View style={{flex: 8.3}}>
         <Text style={LoginStyle.TextStyle}>Email</Text>
         <NeoTextInput
           value={emailText}

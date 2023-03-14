@@ -102,7 +102,10 @@ const MyProfile = ({navigation}) => {
         mobileNoText !== '' &&
         optionShow !== 'Gender'
       ) {
-        if (emailText.includes('@gmail.com') || emailText.includes('@outlook.com')) {
+        if (
+          emailText.includes('@gmail.com') ||
+          emailText.includes('@outlook.com')
+        ) {
           setMobileLabelAlert(false);
           setGenderLabelAlert(false);
           setDateLabelAlert(false);
@@ -117,7 +120,7 @@ const MyProfile = ({navigation}) => {
           setEmailLabelAlert(false);
         } else {
           setEmailLabelAlert(true);
-          setEmailLabelText("Please enter valid email.")
+          setEmailLabelText('Please enter valid email.');
           emailRef.current.focus();
         }
       }
@@ -134,257 +137,261 @@ const MyProfile = ({navigation}) => {
 
   return (
     <SafeAreaView style={MyProfileStyle.mainView}>
-      <Header
-        buttonColor={AppColor.whiteShade}
-        styles={{color: AppColor.black}}
-        stylesText={{color: AppColor.black}}
-        backgroundColor={AppColor.whiteShade}>
-        {'My Profile'}
-      </Header>
+      <View style={{flex: 1}}>
+        <Header
+          buttonColor={AppColor.whiteShade}
+          styles={{color: AppColor.black}}
+          stylesText={{color: AppColor.black}}
+          backgroundColor={AppColor.whiteShade}>
+          {'My Profile'}
+        </Header>
+        
+      </View>
+      <View style={{flex: 9}}>
+        <ScrollView
+          contentContainerStyle={{alignItems: 'center', flexGrow: 9}}>
+          <View style={{alignItems: 'center'}}>
+            <View style={MyProfileStyle.innerProfileView}>
+              {selectedImageUrl === '' ? (
+                <FontAwesome
+                  name={'user-o'}
+                  size={wp('10')}
+                  color={AppColor.black}
+                />
+              ) : (
+                <ImageZoom
+                  cropWidth={wp('26')}
+                  cropHeight={wp('26')}
+                  imageHeight={wp('25')}
+                  imageWidth={wp('25')}
+                  style={{
+                    borderRadius: wp('15'),
+                    height: wp('25'),
+                    width: wp('25'),
+                    backgroundColor: AppColor.whiteShade,
+                    overflow: 'hidden',
+                  }}>
+                  <ImageBackground
+                    imageStyle={{borderRadius: wp('15')}}
+                    style={MyProfileStyle.imageStyle}
+                    source={{uri: uploadImageList[0].url}}
+                    resizeMode={'contain'}></ImageBackground>
+                </ImageZoom>
+              )}
 
-      <ScrollView
-        style={{width: wp('100')}}
-        contentContainerStyle={{alignItems: 'center'}}>
-        <View style={{alignItems: 'center'}}>
-          <View style={MyProfileStyle.innerProfileView}>
-            {selectedImageUrl === '' ? (
-              <FontAwesome
-                name={'user-o'}
-                size={wp('10')}
-                color={AppColor.black}
-              />
-            ) : (
-              <ImageZoom
-                cropWidth={wp('26')}
-                cropHeight={wp('26')}
-                imageHeight={wp('25')}
-                imageWidth={wp('25')}
-                style={{
-                  borderRadius: wp('15'),
-                  height: wp('25'),
-                  width: wp('25'),
-                  backgroundColor: AppColor.whiteShade,
-                  overflow: 'hidden',
-                }}>
-                <ImageBackground
-                  imageStyle={{borderRadius: wp('15')}}
-                  style={MyProfileStyle.imageStyle}
-                  source={{uri: uploadImageList[0].url}}
-                  resizeMode={'contain'}></ImageBackground>
-              </ImageZoom>
-            )}
-
-            <TouchableOpacity
-              onPress={imagePickerHandler}
-              style={MyProfileStyle.iconTouchableStyle}>
-              <Icon size={wp('4')} name="camera"></Icon>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={imagePickerHandler}
+                style={MyProfileStyle.iconTouchableStyle}>
+                <Icon size={wp('4')} name="camera"></Icon>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
 
-        <Text style={MyProfileStyle.TextStyle}>Full Name</Text>
+          <Text style={MyProfileStyle.TextStyle}>Full Name</Text>
 
-        <NeoTextInput
-          autoFocus={true}
-          value={nameText}
-          reference={nameRef}
-          placeholder={'Enter your name'}
-          keyboardType={'default'}
-          returnKeyType={'next'}
-          onChangeText={text => {
-            setNameText(text);
-          }}
-          onSubmitEditing={() => {
-            dateRef.current.focus();
-          }}
-        />
+          <NeoTextInput
+            autoFocus={true}
+            value={nameText}
+            reference={nameRef}
+            placeholder={'Enter your name'}
+            keyboardType={'default'}
+            returnKeyType={'next'}
+            onChangeText={text => {
+              setNameText(text);
+            }}
+            onSubmitEditing={() => {
+              dateRef.current.focus();
+            }}
+          />
 
-        {nameLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            Please enter your name.
-          </Text>
-        ) : null}
-
-        <Text style={MyProfileStyle.TextStyle}>Date of Birth</Text>
-
-        <NeoTextInput
-          value={dateText}
-          reference={dateRef}
-          placeholder={'Enter your birth'}
-          keyboardType={'numeric'}
-          returnKeyType={'next'}
-          onChangeText={text => {
-            setDateText(text);
-          }}
-          onSubmitEditing={() => {
-            emailRef.current.focus();
-          }}
-        />
-
-        {dateLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            Please enter your birth.
-          </Text>
-        ) : null}
-        <Text style={MyProfileStyle.TextStyle}>Gender</Text>
-
-        <MenuProvider>
-          <Menu
-            onSelect={value => {
-              setNeumorphHeight(true);
-              setOptionShow(value);
-              setGenderTextColor(AppColor.black);
-            }}>
-            <MenuTrigger
-              onPress={() => {
-                setNeumorphHeight(false);
-              }}>
-              <Neomorph
-                style={{
-                  width: wp('90'),
-                  height: hp('7.5'),
-                  backgroundColor: AppColor.whiteShade,
-                  shadowRadius: 4,
-                  borderRadius: wp('3'),
-                  marginTop: wp('2'),
-                  marginBottom: neumorphHeight ? wp('5') : wp('25'),
-                  justifyContent: 'center',
-                }}>
-                <Text
-                  ref={genderRef}
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    paddingLeft: wp('3'),
-                    color: genderTextColor,
-                    fontSize: wp('4'),
-                  }}>
-                  {optionShow}
-                </Text>
-              </Neomorph>
-            </MenuTrigger>
-            <MenuOptions
-              optionsContainerStyle={{
-                borderRadius: wp('4'),
-                width: wp('100'),
-              }}
+          {nameLabelAlert ? (
+            <Text
               style={{
-                borderRadius: wp('4'),
-                width: wp('40'),
-                backgroundColor: AppColor.whiteShade,
-                elevation: 2,
-                position: 'absolute',
-                right: wp('11'),
-                top: wp('2'),
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3'),
+                color: AppColor.red,
+                width: wp('90'),
               }}>
-              <MenuOption value={'Male'}>
-                <Text
+              Please enter your name.
+            </Text>
+          ) : null}
+
+          <Text style={MyProfileStyle.TextStyle}>Date of Birth</Text>
+
+          <NeoTextInput
+            value={dateText}
+            reference={dateRef}
+            placeholder={'Enter your birth'}
+            keyboardType={'numeric'}
+            returnKeyType={'next'}
+            onChangeText={text => {
+              setDateText(text);
+            }}
+            onSubmitEditing={() => {
+              emailRef.current.focus();
+            }}
+          />
+
+          {dateLabelAlert ? (
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3'),
+                color: AppColor.red,
+                width: wp('90'),
+              }}>
+              Please enter your birth.
+            </Text>
+          ) : null}
+          <Text style={MyProfileStyle.TextStyle}>Gender</Text>
+
+          <MenuProvider>
+            <Menu
+              onSelect={value => {
+                setNeumorphHeight(true);
+                setOptionShow(value);
+                setGenderTextColor(AppColor.black);
+              }}>
+              <MenuTrigger
+                onPress={() => {
+                  setNeumorphHeight(false);
+                }}>
+                <Neomorph
                   style={{
-                    fontFamily: 'Poppins-Light',
-                    color: AppColor.black,
-                    paddingLeft: wp('2'),
+                    width: wp('90'),
+                    height: hp('7.5'),
+                    backgroundColor: AppColor.whiteShade,
+                    shadowRadius: 4,
+                    borderRadius: wp('3'),
+                    marginTop: wp('2'),
+                    marginBottom: neumorphHeight ? wp('5') : wp('25'),
+                    justifyContent: 'center',
                   }}>
-                  Male
-                </Text>
-              </MenuOption>
-              <MenuOption value={'Female'}>
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Light',
-                    color: AppColor.black,
-                    paddingLeft: wp('2'),
-                  }}>
-                  Female
-                </Text>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
-        </MenuProvider>
-        {genderLabelAlert ? (
-          <Text
+                  <Text
+                    ref={genderRef}
+                    style={{
+                      fontFamily: 'Poppins-Light',
+                      paddingLeft: wp('3'),
+                      color: genderTextColor,
+                      fontSize: wp('4'),
+                    }}>
+                    {optionShow}
+                  </Text>
+                </Neomorph>
+              </MenuTrigger>
+              <MenuOptions
+                optionsContainerStyle={{
+                  borderRadius: wp('4'),
+                  width: wp('100'),
+                }}
+                style={{
+                  borderRadius: wp('4'),
+                  width: wp('40'),
+                  backgroundColor: AppColor.whiteShade,
+                  elevation: 2,
+                  position: 'absolute',
+                  right: wp('11'),
+                  top: wp('2'),
+                }}>
+                <MenuOption value={'Male'}>
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Light',
+                      color: AppColor.black,
+                      paddingLeft: wp('2'),
+                    }}>
+                    Male
+                  </Text>
+                </MenuOption>
+                <MenuOption value={'Female'}>
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Light',
+                      color: AppColor.black,
+                      paddingLeft: wp('2'),
+                    }}>
+                    Female
+                  </Text>
+                </MenuOption>
+              </MenuOptions>
+            </Menu>
+          </MenuProvider>
+          {genderLabelAlert ? (
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3'),
+                color: AppColor.red,
+                width: wp('90'),
+              }}>
+              Please enter your gender.
+            </Text>
+          ) : null}
+          <Text style={MyProfileStyle.TextStyle}>Email</Text>
+          <NeoTextInput
+            value={emailText}
+            reference={emailRef}
+            keyboardType={'email-address'}
+            placeholder={'Enter your email'}
+            returnKeyType={'next'}
+            onChangeText={text => {
+              setEmailText(text);
+            }}
+            onSubmitEditing={() => {
+              mobileRef.current.focus();
+            }}
+          />
+          {emailLabelAlert ? (
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3'),
+                color: AppColor.red,
+                width: wp('90'),
+              }}>
+              {emailLabelText}
+            </Text>
+          ) : null}
+          <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
+          <NeoTextInput
+            value={mobileNoText}
+            reference={mobileRef}
+            keyboardType={'number-pad'}
+            returnKeyType={'go'}
+            placeholder={'Enter your number'}
+            onChangeText={text => {
+              setMobileNoText(text);
+            }}
+            onSubmitEditing={submitHandler}
+          />
+          {mobileLabelAlert ? (
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3'),
+                color: AppColor.red,
+                width: wp('90'),
+              }}>
+              Please enter your mobile number.
+            </Text>
+          ) : null}
+          <TouchableOpacity
             style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            Please enter your gender.
-          </Text>
-        ) : null}
-        <Text style={MyProfileStyle.TextStyle}>Email</Text>
-        <NeoTextInput
-          value={emailText}
-          reference={emailRef}
-          keyboardType={'email-address'}
-          placeholder={'Enter your email'}
-          returnKeyType={'next'}
-          onChangeText={text => {
-            setEmailText(text);
-          }}
-          onSubmitEditing={() => {
-            mobileRef.current.focus();
-          }}
-        />
-        {emailLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            {emailLabelText}
-          </Text>
-        ) : null}
-        <Text style={MyProfileStyle.TextStyle}>Mobile Number</Text>
-        <NeoTextInput
-          value={mobileNoText}
-          reference={mobileRef}
-          keyboardType={'number-pad'}
-          returnKeyType={'go'}
-          placeholder={'Enter your number'}
-          onChangeText={text => {
-            setMobileNoText(text);
-          }}
-          onSubmitEditing={submitHandler}
-        />
-        {mobileLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
-            Please enter your mobile number.
-          </Text>
-        ) : null}
-        <TouchableOpacity
-          style={{
-            marginVertical: wp('5'),
-            alignItems: 'center',
-          }}
-          onPress={submitHandler}>
-          <NeoButton
-            width={wp('55')}
-            height={hp('6')}
-            backgroundColor={AppColor.primary}
-            borderRadius={wp('10')}>
-            <Text style={MyProfileStyle.buttonText}>Save</Text>
-          </NeoButton>
-        </TouchableOpacity>
-      </ScrollView>
+              marginVertical: wp('5'),
+              alignItems: 'center',
+            }}
+            onPress={submitHandler}>
+            <NeoButton
+              width={wp('55')}
+              height={hp('6')}
+              backgroundColor={AppColor.primary}
+              borderRadius={wp('10')}>
+              <Text style={MyProfileStyle.buttonText}>Save</Text>
+            </NeoButton>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
+
       <CustomModal
         isVisible={modalOpen}
         onBackdropPress={() => {

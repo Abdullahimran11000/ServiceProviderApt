@@ -8,10 +8,8 @@ const LoginStyle = StyleSheet.create({
   MainView: {flex: 1},
 
   headerView: {
-    alignSelf: 'center',
     color: AppColor.black,
     fontFamily: 'Poppins-Bold',
-    paddingTop: wp('5'),
     fontSize: wp('5'),
   },
 

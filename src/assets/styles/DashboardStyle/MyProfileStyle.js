@@ -8,7 +8,7 @@ import {AppColor} from '../../colors/AppColors';
 const MyProfileStyle = StyleSheet.create({
   mainView: {
     backgroundColor: AppColor.whiteShade,
-    flex: 1,
+    flex: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },

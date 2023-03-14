@@ -29,16 +29,19 @@ const ForgotPassword = ({navigation}) => {
   const sendHandler = () => {
     if (emailInputText === '') {
       setEmailLabelText('Please enter your email.');
-      setEmailLabelAlert(true)
-      emailRef.current.focus()
+      setEmailLabelAlert(true);
+      emailRef.current.focus();
     } else {
-      if (emailInputText.includes('@gmail.com') || emailInputText.includes('@outlook.com')) {
+      if (
+        emailInputText.includes('@gmail.com') ||
+        emailInputText.includes('@outlook.com')
+      ) {
         setEmailLabelAlert(false);
         setshowEmailNotificationInModal(true);
       } else {
         setEmailLabelAlert(true);
-        setEmailLabelText("Please enter valid email.")
-        emailRef.current.focus()
+        setEmailLabelText('Please enter valid email.');
+        emailRef.current.focus();
       }
     }
   };
@@ -51,57 +54,74 @@ const ForgotPassword = ({navigation}) => {
 
   return (
     <SafeAreaView style={ForgotPasswordStyle.safeView}>
-      <BackButton onPress={() => navigation.goBack()}>
-        {'Forgot Password'}
-      </BackButton>
-      <Lottie
-        style={ForgotPasswordStyle.animationStyle}
-        source={require('../../assets/animations/appIntroForgot.json')}
-        autoPlay
-      />
-      <Text style={ForgotPasswordStyle.tagText}>Find your account</Text>
-      <Text style={ForgotPasswordStyle.paraText}>
-        Please enter your email address to recover your forgotton password
-      </Text>
-      <Text style={ForgotPasswordStyle.labelText}>Email</Text>
-      <NeoTextInput
-        value={emailInputText}
-        reference={emailRef}
-        autoFocus={true}
-        keyboardType={'email-address'}
-        placeholder={'Example@gmail.com'}
-        onChangeText={text => {
-          setEmailInputText(text);
-        }}
-        returnKeyType={'next'}
-        onSubmitEditing={sendHandler}
-      />
-       {emailLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3.2'),
-              color: AppColor.red,
-              width: wp('90')
-            }}>
-            {emailLabelText}
+      <View style={{flex: 1}}>
+        <BackButton onPress={() => navigation.goBack()}>
+          {'Forgot Password'}
+        </BackButton>
+      </View>
+      <View style={{flex: 9}}>
+        <ScrollView
+          contentContainerStyle={{
+            alignItems: 'center',
+            flexGrow: 9,
+            justifyContent: 'space-around',
+          }}>
+          <Lottie
+            style={ForgotPasswordStyle.animationStyle}
+            source={require('../../assets/animations/appIntroForgot.json')}
+            autoPlay
+          />
+          <Text style={ForgotPasswordStyle.tagText}>Find your account</Text>
+          <Text style={ForgotPasswordStyle.paraText}>
+            Please enter your email address to recover your forgotton password
           </Text>
-        ) : null}
-      <TouchableOpacity onPress={() => navigation.navigate('TryAnotherWay')}>
-        <Text style={ForgotPasswordStyle.touchableText1}>Try another way</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={sendHandler}>
-        <NeoButton
-          darkShadowColor={AppColor.black}
-          marginTop={wp('5')}
-          width={wp('55')}
-          backgroundColor={AppColor.primary}
-          height={hp('6')}
-          borderRadius={wp('10')}
-          marginBottom={wp('5')}>
-          <Text style={ForgotPasswordStyle.touchableText}>Send</Text>
-        </NeoButton>
-      </TouchableOpacity>
+
+          <Text style={ForgotPasswordStyle.labelText}>Email</Text>
+          <NeoTextInput
+            value={emailInputText}
+            reference={emailRef}
+            autoFocus={true}
+            keyboardType={'email-address'}
+            placeholder={'Example@gmail.com'}
+            onChangeText={text => {
+              setEmailInputText(text);
+            }}
+            returnKeyType={'next'}
+            onSubmitEditing={sendHandler}
+          />
+          {emailLabelAlert ? (
+            <Text
+              style={{
+                fontFamily: 'Poppins-Light',
+                fontSize: wp('3.2'),
+                color: AppColor.red,
+                width: wp('90'),
+              }}>
+              {emailLabelText}
+            </Text>
+          ) : null}
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate('TryAnotherWay')}>
+            <Text style={ForgotPasswordStyle.touchableText1}>
+              Try another way
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={sendHandler} style={{alignSelf: 'center'}}>
+            <NeoButton
+              darkShadowColor={AppColor.black}
+              marginTop={wp('5')}
+              width={wp('55')}
+              backgroundColor={AppColor.primary}
+              height={hp('6')}
+              borderRadius={wp('10')}
+              marginBottom={wp('5')}>
+              <Text style={ForgotPasswordStyle.touchableText}>Send</Text>
+            </NeoButton>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
+
       <CustomModal
         isVisible={showEmailNotificationInModal}
         onBackdropPress={() => {
