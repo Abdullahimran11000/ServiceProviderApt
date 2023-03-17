@@ -109,6 +109,7 @@ const ForgotPassword = ({navigation}) => {
         }}
         lottieStyle={{width: wp('50'), height: wp('50')}}
         modalButtonPress={() => {
+          setshowEmailNotificationInModal(false);
           navigation.navigate('Verification');
         }}
         buttonBackgroundColor={AppColor.primary}

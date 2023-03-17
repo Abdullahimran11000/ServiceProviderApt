@@ -65,7 +65,6 @@ const TryAnotherWay = () => {
           <PhoneInput
             defaultCode="PK"
             autoFocus
-
             textInputStyle={TryAnotherWayStyle.textInputStyle}
             textContainerStyle={TryAnotherWayStyle.textContainerStyle}
             containerStyle={TryAnotherWayStyle.containerStyle}
