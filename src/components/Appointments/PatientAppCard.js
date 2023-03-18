@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -13,6 +13,7 @@ import {Neomorph} from 'react-native-neomorph-shadows';
 import NeoButton from '../NeoMorphButton/NeoButton';
 import {AppointmentStyle} from '../../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
 import {useNavigation} from '@react-navigation/native';
+import PatientAppCancelModal from '../Modal/PatientAppCancelModal';
 
 const PatientAppCard = ({
   item,
@@ -26,8 +27,10 @@ const PatientAppCard = ({
   nextButtonShow,
   buttonColor,
   rescheduleBtn,
+  onPressYes
 }) => {
   const navigation = useNavigation();
+  const [cancelModal, setCancelModal] = useState(false);
   const cardHandler = () => {
     if (item.name !== undefined) {
       navigation.navigate('PatientProfile', {
@@ -148,7 +151,10 @@ const PatientAppCard = ({
       </View>
       {buttonShow ? (
         <View style={AppointmentStyle.buttonView}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setCancelModal(true);
+            }}>
             <NeoButton
               width={wp('30')}
               height={hp('5')}
@@ -182,6 +188,12 @@ const PatientAppCard = ({
           </TouchableOpacity>
         </View>
       ) : null}
+      <PatientAppCancelModal
+        isVisible={cancelModal}
+        onBackdropPress={()=>{setCancelModal(false)}}
+        onPressNo={()=>{setCancelModal(false)}}
+        onPressYes={onPressYes}
+      />
     </Neomorph>
   );
 };

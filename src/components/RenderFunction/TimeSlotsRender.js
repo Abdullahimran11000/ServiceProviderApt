@@ -76,7 +76,20 @@ const TimeSlotsRender = ({item, onPress, check}) => {
         </Text>
       </View>
       {check ? (
-        <MaterialIcons name="done-all" size={wp('8')} color={"#4db86d"} />
+        <TouchableOpacity>
+          <Neomorph
+            style={{
+              width: wp('15'),
+              height: wp('15'),
+              borderRadius: wp('3'),
+              shadowRadius: 2,
+              backgroundColor: AppColor.whiteShade,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <MaterialIcons name="done-all" size={wp('8')} color={'#4db86d'} />
+          </Neomorph>
+        </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={onPress}>
           <Neomorph
