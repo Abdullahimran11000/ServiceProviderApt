@@ -32,7 +32,7 @@ const Dashboard = ({pressHandler}) => {
       name: 'Dr. Amanda Johnson Healy',
       gender: 'Female',
       age: '23',
-      date: '22 March 2022',
+      date: '22 March 2023',
       time: '10:30',
       appDestination: 'Hospital',
     },
@@ -41,20 +41,25 @@ const Dashboard = ({pressHandler}) => {
       name: 'Ellyse Perry',
       gender: 'Male',
       age: '32',
-      date: '24 March 2022',
+      date: '24 March 2023',
       time: '10:30',
-      appDestination: 'Chat',
+      appDestination: 'Hospital',
     },
     {
       id: 3,
       name: 'Miranda Jones',
       gender: 'Female',
       age: '21',
-      date: '22 March 2022',
+      date: '22 March 2023',
       time: '10:30',
-      appDestination: 'Call',
+      appDestination: 'Hospital',
     },
   ]);
+
+  const updateArray = (id) =>{
+    const filteredArray = todayAppointmentInfo.filter(item=> item.id !== id)
+    setTodayAppointmentInfo(filteredArray)
+  }
 
   const renderItemUpcomingAppointments = ({item}) => (
     <PatientAppCard
@@ -63,8 +68,9 @@ const Dashboard = ({pressHandler}) => {
       nextButtonShow={true}
       buttonColor={'#dafccf'}
       rescheduleBtn={() => {
-        navigation.navigate('TotalAppSlots', {check: true});
+        navigation.navigate('TotalAppSlots', {check: true, date: item.date, time: item.time});
       }}
+      onPressYes={()=>{updateArray(item.id)}}
     />
   );
 

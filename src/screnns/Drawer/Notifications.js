@@ -13,7 +13,7 @@ import fi from 'react-native-vector-icons/Feather';
 import {NotificationStyle} from '../../assets/styles/AnimatedDrawerStyle/NotificationStyle';
 import {CertificatesStyle} from '../../assets/styles/CertificatesStyle';
 import {AppColor} from '../../assets/colors/AppColors';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {
   widthPercentageToDP as wp,
@@ -178,10 +178,10 @@ const Notifications = () => {
           </View>
 
           {item.open ? (
-            <Icon
-              name="checkmark-done-circle-outline"
-              size={wp('0')}
-              color={'blue'}
+            <Entypo
+              name="dot-single"
+              size={wp('5')}
+              color={AppColor.whiteShade}
             />
           ) : (
             <Icon

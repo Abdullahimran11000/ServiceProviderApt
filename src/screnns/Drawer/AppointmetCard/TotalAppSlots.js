@@ -17,7 +17,7 @@ import { useRoute } from '@react-navigation/native';
 
 const TotalAppSlots = ({date}) => {
   const route = useRoute()
-  const {check} = route.params
+  const check = route.params === '' || route.params === undefined ? false : route.params.check
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
     moment(date).format('DD MMMM'),
   );
@@ -28,7 +28,7 @@ const TotalAppSlots = ({date}) => {
     {id: 3, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 4, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 5, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 6, day: '14', month: 'March', startTime: '8:25', endTime: '8:50'},
+    {id: 6, day: '18', month: 'March', startTime: '8:25', endTime: '8:50'},
   ]);
 
   const submitHandler = id => {
@@ -49,7 +49,7 @@ const TotalAppSlots = ({date}) => {
         onPress={() => {
           submitHandler(item.id);
         }}
-        check={check}
+        check={check} 
       />
     );
   };
@@ -82,7 +82,7 @@ const TotalAppSlots = ({date}) => {
             }}>
             <CalendarStrip
               datesBlacklist={date => {
-                return date.isoWeekday() === 6;
+                return date.isoWeekday() === 7;
               }}
               calendarAnimation={{type: 'sequence', duration: 30}}
               selectedDate={moment()}

@@ -26,7 +26,7 @@ const UpcomingApp = ({navigation}) => {
       age: '32',
       date: '24 March 2022',
       time: '10:30',
-      appDestination: 'Chat',
+      appDestination: 'Hospital',
     },
     {
       id: 3,
@@ -35,16 +35,20 @@ const UpcomingApp = ({navigation}) => {
       age: '21',
       date: '22 March 2022',
       time: '10:30',
-      appDestination: 'Call',
+      appDestination: 'Hospital',
     },
   ]);
+  const updateArray = (id) =>{
+    const filteredArray = UpcomingAppointmentsInfo.filter(item=> item.id !== id)
+    setUpcomingAppointmentsInfo(filteredArray)
+  }
   const renderItemUpcomingAppointments = ({item}) => (
     <PatientAppCard
       item={item}
       buttonShow={true}
       nextButtonShow={true}
       buttonColor={'#dafccf'}
-     
+      onPressYes={()=>{updateArray(item.id)}}
       rescheduleBtn={() => {
         navigation.navigate('TotalAppSlots', {check: false});
       }}
