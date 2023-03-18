@@ -44,14 +44,7 @@ const UpcomingApp = ({navigation}) => {
       buttonShow={true}
       nextButtonShow={true}
       buttonColor={'#dafccf'}
-      nav={() => {
-        if (item.appDestination === 'Chat') {
-          navigation.navigate('Chat');
-        }
-        if (item.appDestination === 'Call') {
-          navigation.navigate('VideoCalling');
-        }
-      }}
+     
       rescheduleBtn={() => {
         navigation.navigate('TotalAppSlots', {check: false});
       }}

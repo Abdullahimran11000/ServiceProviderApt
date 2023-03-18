@@ -18,6 +18,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -84,8 +85,8 @@ const Drawer = () => {
 
         <View style={{flex: 6}}>
           <View style={DrawerStyle.menuItemView}>
-            <MaterialIcons
-              name={'dashboard'}
+            <MaterialCommunityIcons
+              name={'view-dashboard-outline'}
               size={wp('5')}
               color={AppColor.white}
             />
@@ -179,8 +180,21 @@ const Drawer = () => {
               <Text style={DrawerStyle.menuItemText}>{'  '}Password</Text>
             </TouchableOpacity>
           </View>
+          <View style={DrawerStyle.menuItemView}>
+            <MaterialIcons
+              name="logout"
+              size={wp('5')}
+              color={AppColor.white}
+            />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.replace('LogIn');
+              }}>
+              <Text style={DrawerStyle.menuItemText}>{'  '}Log out</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{flex: 1.5, justifyContent: 'space-around'}}>
+        <View style={{flex: 1.5, justifyContent: 'center'}}>
           <View
             style={{
               flexDirection: 'row',
@@ -201,8 +215,8 @@ const Drawer = () => {
               onPress={() => {
                 Linking.openURL('https://www.instagram.com/');
               }}>
-              <FontAwesome
-                name="instagram"
+              <Entypo
+                name="instagram-with-circle"
                 size={wp('7')}
                 color={AppColor.white}
               />
@@ -228,24 +242,9 @@ const Drawer = () => {
               />
             </TouchableOpacity>
           </View>
-          <View>
-            <View style={{flexDirection: 'row'}}>
-              <MaterialIcons
-                name="logout"
-                size={wp('5')}
-                color={AppColor.white}
-              />
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.replace('LogIn');
-                }}>
-                <Text style={DrawerStyle.menuItemText}>{'  '}Log out</Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={DrawerStyle.designationText}>
-              Designed by Behind the Software LLC
-            </Text>
-          </View>
+          <Text style={DrawerStyle.tagLine}>
+            Designed by BehindTheSoftware LLC
+          </Text>
         </View>
       </Animated.View>
 
