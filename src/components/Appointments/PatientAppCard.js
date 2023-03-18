@@ -25,8 +25,7 @@ const PatientAppCard = ({
   buttonShow,
   nextButtonShow,
   buttonColor,
-  nav,
-  rescheduleBtn
+  rescheduleBtn,
 }) => {
   const navigation = useNavigation();
   const cardHandler = () => {
@@ -55,8 +54,11 @@ const PatientAppCard = ({
           source={require('../../assets/images/selfieOne.jpg')}
           resizeMode="cover"
         />
-        <View>
-          <Text style={AppointmentStyle.patientNameText}>
+        <View style={{width: wp('50')}}>
+          <Text
+            style={AppointmentStyle.patientNameText}
+            ellipsizeMode={'tail'}
+            numberOfLines={1}>
             {item.name}
             {p_name}
           </Text>
@@ -111,7 +113,7 @@ const PatientAppCard = ({
 
       <View style={AppointmentStyle.detailView}>
         <View style={{flexDirection: 'row'}}>
-          <Icon size={wp('4')} name="calendar" color={AppColor.black}></Icon>
+          <Icon size={wp('4')} name="calendar" color={AppColor.black} />
           <Text style={AppointmentStyle.dateStyle}>
             {' '}
             {item.date}
@@ -123,7 +125,8 @@ const PatientAppCard = ({
           <Icon
             size={wp('4')}
             name="clock-o"
-            style={AppointmentStyle.timeIconStyle}></Icon>
+            style={AppointmentStyle.timeIconStyle}
+          />
           <Text style={AppointmentStyle.timeStyle}>
             {' '}
             {item.time}
@@ -133,15 +136,14 @@ const PatientAppCard = ({
         <View style={{flexDirection: 'row'}}>
           <Icon
             size={wp('4')}
-            name="wechat"
-            style={AppointmentStyle.callIconStyle}></Icon>
-          <TouchableOpacity onPress={nav}>
-            <Text style={AppointmentStyle.destinationStyle}>
-              {' '}
-              {item.appDestination}
-              {p_appDest}
-            </Text>
-          </TouchableOpacity>
+            name="hospital-o"
+            style={AppointmentStyle.callIconStyle}
+          />
+          <Text style={AppointmentStyle.destinationStyle}>
+            {' '}
+            {item.appDestination}
+            {p_appDest}
+          </Text>
         </View>
       </View>
       {buttonShow ? (

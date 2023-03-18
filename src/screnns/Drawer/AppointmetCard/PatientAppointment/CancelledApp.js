@@ -19,14 +19,7 @@ const CancelledApp = () => {
     <PatientAppCard
       item={item}
       buttonColor={''}
-      nav={() => {
-        if (item.appDestination === 'Chat') {
-          navigation.navigate('Chat');
-        }
-        if (item.appDestination === 'Call') {
-          navigation.navigate('VideoCalling');
-        }
-      }}
+     
     />
   );
   return (

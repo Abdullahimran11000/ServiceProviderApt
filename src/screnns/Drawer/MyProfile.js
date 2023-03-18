@@ -149,7 +149,7 @@ const MyProfile = ({navigation}) => {
       </View>
       <View style={{flex: 9}}>
         <ScrollView
-          contentContainerStyle={{alignItems: 'center', flexGrow: 9}}>
+          contentContainerStyle={{alignItems: 'center', flexGrow: 9}} style={{width: wp('100')}}>
           <View style={{alignItems: 'center'}}>
             <View style={MyProfileStyle.innerProfileView}>
               {selectedImageUrl === '' ? (

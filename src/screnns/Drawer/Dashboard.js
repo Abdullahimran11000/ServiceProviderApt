@@ -29,7 +29,7 @@ const Dashboard = ({pressHandler}) => {
   const [todayAppointmentInfo, setTodayAppointmentInfo] = useState([
     {
       id: 1,
-      name: 'Amanda Johnson',
+      name: 'Dr. Amanda Johnson Healy',
       gender: 'Female',
       age: '23',
       date: '22 March 2022',
@@ -62,14 +62,6 @@ const Dashboard = ({pressHandler}) => {
       buttonShow={true}
       nextButtonShow={true}
       buttonColor={'#dafccf'}
-      nav={() => {
-        if (item.appDestination === 'Chat') {
-          navigation.navigate('Chat');
-        }
-        if (item.appDestination === 'Call') {
-          navigation.navigate('VideoCalling');
-        }
-      }}
       rescheduleBtn={() => {
         navigation.navigate('TotalAppSlots', {check: true});
       }}
@@ -77,19 +69,7 @@ const Dashboard = ({pressHandler}) => {
   );
 
   const renderItemCompeletedAppointments = ({item}) => (
-    <PatientAppCard
-      item={item}
-      nextButtonShow={true}
-      buttonColor={'#e4bef7'}
-      nav={() => {
-        if (item.appDestination === 'Chat') {
-          navigation.navigate('Chat');
-        }
-        if (item.appDestination === 'Call') {
-          navigation.navigate('VideoCalling');
-        }
-      }}
-    />
+    <PatientAppCard item={item} nextButtonShow={true} buttonColor={'#e4bef7'} />
   );
 
   return (
@@ -114,15 +94,22 @@ const Dashboard = ({pressHandler}) => {
             source={require('../../assets/images/selfieOne.jpg')}
             resizeMode="cover"
           />
-          <View>
-            <Text style={DashboardStyle.doctorNameTextStyle}>
+          <View style={{width: wp('60')}}>
+            <Text
+              style={DashboardStyle.doctorNameTextStyle}
+              ellipsizeMode={'tail'}
+              numberOfLines={1}>
               Muhammad Imran
             </Text>
             <Text style={DashboardStyle.doctorCertificatesTextStyle}>
               M.B.B.S, R.D.B.S
             </Text>
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: wp('45'),
+              }}>
               <Text style={DashboardStyle.doctorSpecialistTextStyle}>
                 Dentist
               </Text>

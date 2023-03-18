@@ -44,14 +44,7 @@ const CompletedApp = ({navigation}) => {
       item={item}
       nextButtonShow={true}
       buttonColor={'#e4bef7'}
-      nav={() => {
-        if (item.appDestination === 'Chat') {
-          navigation.navigate('Chat');
-        }
-        if (item.appDestination === 'Call') {
-          navigation.navigate('VideoCalling');
-        }
-      }}
+      
     />
   );
   return (
