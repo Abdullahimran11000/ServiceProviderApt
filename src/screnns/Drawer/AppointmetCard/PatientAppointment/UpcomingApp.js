@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {SafeAreaView, FlatList} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -8,39 +8,14 @@ import {AppColor} from '../../../../assets/colors/AppColors';
 import Header from '../../../../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
 import PatientAppCard from '../../../../components/Appointments/PatientAppCard';
+import AppContext from '../../../../assets/context/AppContext';
+
 const UpcomingApp = ({navigation}) => {
-  const [UpcomingAppointmentsInfo, setUpcomingAppointmentsInfo] = useState([
-    {
-      id: 1,
-      name: 'Amanda Johnson',
-      gender: 'Female',
-      age: '23',
-      date: '22 March 2022',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-    {
-      id: 2,
-      name: 'Ellyse Perry',
-      gender: 'Male',
-      age: '32',
-      date: '24 March 2022',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-    {
-      id: 3,
-      name: 'Miranda Jones',
-      gender: 'Female',
-      age: '21',
-      date: '22 March 2022',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-  ]);
+  const {upcomingAppointmentsInfo, storeUpcomingAppointmentsInfo} = useContext(AppContext)
+
   const updateArray = (id) =>{
-    const filteredArray = UpcomingAppointmentsInfo.filter(item=> item.id !== id)
-    setUpcomingAppointmentsInfo(filteredArray)
+    const filteredArray = upcomingAppointmentsInfo.filter(item=> item.id !== id)
+    storeUpcomingAppointmentsInfo(filteredArray)
   }
   const renderItemUpcomingAppointments = ({item}) => (
     <PatientAppCard
@@ -67,7 +42,7 @@ const UpcomingApp = ({navigation}) => {
       <ScrollView>
         <SafeAreaView style={{marginTop: wp('5'), marginBottom: wp('5')}}>
           <FlatList
-            data={UpcomingAppointmentsInfo}
+            data={upcomingAppointmentsInfo}
             renderItem={renderItemUpcomingAppointments}
             keyExtractor={item => item.id}
           />

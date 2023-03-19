@@ -17,6 +17,7 @@ import NeoButton from '../../../components/NeoMorphButton/NeoButton';
 import Lottie from 'lottie-react-native';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../../../components/ScreenHeader/Header';
+
 const AppointmentsCards = () => {
   const navigation = useNavigation();
   return (
@@ -31,11 +32,11 @@ const AppointmentsCards = () => {
               stylesText={{color: AppColor.lightPink}}
               buttonColor={AppColor.lightPink}
               lightShadowColor={'rgba(0,0,0,0)'}>
-              {' '}
+              
               {'Appointment'}
             </Header>
           </View>
-          <View style={{ flex: 3.8, justifyContent: 'center'}}>
+          <View style={{flex: 3.8, justifyContent: 'center'}}>
             <Text style={AppointmentStyle.headerTextOne}>Appointment</Text>
             <Text style={AppointmentStyle.headerTextTwo}>
               Effective appointment management in healthcare is crucial for
@@ -56,25 +57,27 @@ const AppointmentsCards = () => {
             height={hp('20')}
             width={wp('90')}
             borderRadius={wp('6')}
-            marginVertical={wp('5')}
+            marginVertical={wp('3.5')}
             backgroundColor={AppColor.blackOpacity4}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View>
+              <View style={{flex: 3.5, justifyContent: 'center'}}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
-                  105
+                  50
                 </Text>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
                   Total Appointment Slot
                 </Text>
               </View>
-              <Lottie
-                style={{width: wp('30'), height: wp('30')}}
-                source={require('../../../assets/animations/slots.json')}
-                loop
-                autoPlay
-              />
+              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+                <Lottie
+                  style={{width: wp('25')}}
+                  source={require('../../../assets/animations/slots.json')}
+                  loop
+                  autoPlay
+                />
+              </View>
             </View>
           </NeoButton>
         </TouchableOpacity>
@@ -86,32 +89,28 @@ const AppointmentsCards = () => {
             height={hp('20')}
             width={wp('90')}
             borderRadius={wp('6')}
-            marginVertical={wp('5')}
+            marginVertical={wp('3.5')}
             backgroundColor={AppColor.darkBrown}
             darkShadowColor={AppColor.black}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View>
+              <View style={{flex: 3.5, justifyContent: 'center'}}>
                 <Text
-                  style={{
-                    fontSize: wp('5'),
-                    fontFamily: 'Poppins-Bold',
-                    color: AppColor.white,
-                  }}>
-                  Add New
+                  style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
+                  Add
                 </Text>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
-                  Schedule
+                  New Schedule
                 </Text>
               </View>
-              <Lottie
-                style={{
-                  height: wp('30'),
-                }}
-                source={require('../../../assets/animations/addNewSchedule.json')}
-                loop
-                autoPlay
-              />
+              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+                <Lottie
+                  style={{width: wp('25')}}
+                  source={require('../../../assets/animations/addNewSchedule.json')}
+                  loop
+                  autoPlay
+                />
+              </View>
             </View>
           </NeoButton>
         </TouchableOpacity>
@@ -123,27 +122,27 @@ const AppointmentsCards = () => {
             height={hp('20')}
             width={wp('90')}
             borderRadius={wp('6')}
-            marginVertical={wp('5')}
+            marginVertical={wp('3.5')}
             backgroundColor={AppColor.darkBlue}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View>
+              <View style={{flex: 3.5, justifyContent: 'center'}}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
-                  105
+                  88
                 </Text>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
                   Completed Appointment
                 </Text>
               </View>
-              <Lottie
-                style={{
-                  height: wp('35'),
-                }}
-                source={require('../../../assets/animations/completedAppointments.json')}
-                loop
-                autoPlay
-              />
+              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+                <Lottie
+                  style={{width: wp('25')}}
+                  source={require('../../../assets/animations/completedAppointments.json')}
+                  loop
+                  autoPlay
+                />
+              </View>
             </View>
           </NeoButton>
         </TouchableOpacity>
@@ -155,27 +154,27 @@ const AppointmentsCards = () => {
             height={hp('20')}
             width={wp('90')}
             borderRadius={wp('6')}
-            marginVertical={wp('5')}
+            marginVertical={wp('3.5')}
             backgroundColor={AppColor.lightPurple}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View>
+              <View style={{flex: 3.5, justifyContent: 'center'}}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
-                  105
+                  50
                 </Text>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
                   Upcoming Appointment
                 </Text>
               </View>
-              <Lottie
-                style={{
-                  height: wp('40'),
-                }}
-                source={require('../../../assets/animations/UpcomingAppointments.json')}
-                loop
-                autoPlay
-              />
+              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+                <Lottie
+                  style={{width: wp('25')}}
+                  source={require('../../../assets/animations/UpcomingAppointments.json')}
+                  loop
+                  autoPlay
+                />
+              </View>
             </View>
           </NeoButton>
         </TouchableOpacity>
@@ -188,27 +187,32 @@ const AppointmentsCards = () => {
             height={hp('20')}
             width={wp('90')}
             borderRadius={wp('6')}
-            marginVertical={wp('5')}
+            marginVertical={wp('3.5')}
             backgroundColor={AppColor.redOpacity1}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View>
+              <View style={{flex: 3.5, justifyContent: 'center'}}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
-                  105
+                  20
                 </Text>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewSecondText}>
                   Cancelled Appointment
                 </Text>
               </View>
-              <Lottie
+              <View
                 style={{
-                  height: wp('30'),
-                }}
-                source={require('../../../assets/animations/cancelledAppointments.json')}
-                loop
-                autoPlay
-              />
+                  flex: 1.5,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Lottie
+                  style={{width: wp('17')}}
+                  source={require('../../../assets/animations/cancelledAppointments.json')}
+                  loop
+                  autoPlay
+                />
+              </View>
             </View>
           </NeoButton>
         </TouchableOpacity>
