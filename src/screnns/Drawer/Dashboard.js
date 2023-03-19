@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   SafeAreaView,
   FlatList,
@@ -22,43 +22,16 @@ import RNFetchBlob from 'rn-fetch-blob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import PatientAppCard from '../../components/Appointments/PatientAppCard';
 import {useNavigation} from '@react-navigation/native';
+import AppContext from '../../assets/context/AppContext';
 
 const Dashboard = ({pressHandler}) => {
   const navigation = useNavigation();
   const [warningCardShow, setWarningCardShow] = useState(true);
-  const [todayAppointmentInfo, setTodayAppointmentInfo] = useState([
-    {
-      id: 1,
-      name: 'Dr. Amanda Johnson Healy',
-      gender: 'Female',
-      age: '23',
-      date: '22 March 2023',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-    {
-      id: 2,
-      name: 'Ellyse Perry',
-      gender: 'Male',
-      age: '32',
-      date: '24 March 2023',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-    {
-      id: 3,
-      name: 'Miranda Jones',
-      gender: 'Female',
-      age: '21',
-      date: '22 March 2023',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-  ]);
+  const {upcomingAppointmentsInfo, storeUpcomingAppointmentsInfo} = useContext(AppContext)
 
   const updateArray = (id) =>{
-    const filteredArray = todayAppointmentInfo.filter(item=> item.id !== id)
-    setTodayAppointmentInfo(filteredArray)
+    const filteredArray = upcomingAppointmentsInfo.filter(item=> item.id !== id)
+    storeUpcomingAppointmentsInfo(filteredArray)
   }
 
   const renderItemUpcomingAppointments = ({item}) => (
@@ -198,7 +171,7 @@ const Dashboard = ({pressHandler}) => {
         />
 
         <FlatList
-          data={todayAppointmentInfo}
+          data={upcomingAppointmentsInfo}
           renderItem={renderItemUpcomingAppointments}
           horizontal={true}
           showsHorizontalScrollIndicator={false}

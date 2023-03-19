@@ -9,9 +9,9 @@ const AppointmentStyle = StyleSheet.create({
      imageBackView: {backgroundColor: AppColor.blackOpacity8, flex: 5},
 
      headerTextOne:{fontFamily:'Poppins-SemiBold', color:AppColor.white,fontSize: wp(8), paddingHorizontal: wp('5')},
-     headerTextTwo:{fontFamily:'Poppins-SemiBold',alignSelf:'center' ,color:AppColor.white,fontSize: wp(3.6), paddingHorizontal: wp('5')},
+     headerTextTwo:{fontFamily:'Poppins-Regular',alignSelf:'center' ,color:AppColor.white,fontSize: wp(3.6), paddingHorizontal: wp('5')},
      viewOneContainer: {alignSelf:"center" ,marginTop: hp(5), marginBottom:hp(5)},
-     viewOneContainerInnerView:{flexDirection:"row", alignItems: 'center', justifyContent: 'space-between', width: wp('80'), overflow: 'hidden' },
+     viewOneContainerInnerView:{flexDirection:"row", width: wp('80')},
      viewOneContainerInnerViewFirstText:{fontSize:wp(10), color:AppColor.white},
      viewOneContainerInnerViewSecondText:{fontFamily:'Poppins-SemiBold',color:AppColor.white},
      viewOneContainerInnerViewTwo: {width: wp(30), height: hp(20)},
