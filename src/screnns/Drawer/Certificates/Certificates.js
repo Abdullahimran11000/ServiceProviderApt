@@ -12,16 +12,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../../assets/colors/AppColors';
-import NeoButton from '../../components/NeoMorphButton/NeoButton';
+import {AppColor} from '../../../assets/colors/AppColors';
+import NeoButton from '../../../components/NeoMorphButton/NeoButton';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {useNavigation} from '@react-navigation/core';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import {CertificatesStyle} from '../../assets/styles/CertificatesStyle';
-import Header from '../../components/ScreenHeader/Header';
+import {CertificatesStyle} from '../../../assets/styles/CertificatesStyle';
+import Header from '../../../components/ScreenHeader/Header';
 
 const Certificates = () => {
   const navigation = useNavigation();

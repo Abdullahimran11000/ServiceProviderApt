@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   View,
-  TextInput,
 } from 'react-native';
 import {AppColor} from '../../../assets/colors/AppColors';
 import {
@@ -22,6 +21,7 @@ import {useNavigation} from '@react-navigation/native';
 import Header from '../../../components/ScreenHeader/Header';
 import CustomModal from '../../../components/Modal/CustomModal';
 import NeoTextInput from '../../../components/NeoMorphTextInput/NeoTextInput';
+
 const NewSchedule = () => {
   const navigation = useNavigation();
   const [amountInput, setAmountInput] = useState('');

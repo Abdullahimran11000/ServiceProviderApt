@@ -103,8 +103,8 @@ export const AppProvider = ({children}) => {
     {id: 2, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 3, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
     {id: 4, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 5, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 6, day: '19', month: 'March', startTime: '8:25', endTime: '8:50'},
+    {id: 5, day: '18', month: 'March', startTime: '8:00', endTime: '8:25'},
+    {id: 6, day: '20', month: 'March', startTime: '8:25', endTime: '8:50'},
   ]);
 
   const storeUpcomingAppointmentsInfo = val => {

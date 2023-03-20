@@ -11,15 +11,13 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Lottie from 'lottie-react-native';
-import {PasswordManagementStyle} from '../../assets/styles/AuthStyle/PasswordManagementStyle';
+import {PasswordManagementStyle} from '../../../assets/styles/AuthStyle/PasswordManagementStyle';
 import Entypo from 'react-native-vector-icons/Entypo';
-import BackButton from '../../components/ScrennHeader/BackButton';
-import Icon from 'react-native-vector-icons/Ionicons';
-import NeoButton from '../../components/NeoMorphButton/NeoButton';
-import {AppColor} from '../../assets/colors/AppColors';
-import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
-import CustomModal from '../../components/Modal/CustomModal';
-import CustomModal1 from '../../components/Modal/CustomModal';
+import BackButton from '../../../components/ScrennHeader/BackButton';
+import NeoButton from '../../../components/NeoMorphButton/NeoButton';
+import {AppColor} from '../../../assets/colors/AppColors';
+import NeoTextInput from '../../../components/NeoMorphTextInput/NeoTextInput';
+import CustomModal from '../../../components/Modal/CustomModal';
 
 const PasswordManagement = ({navigation}) => {
   const [eye, setEye] = useState(false);
@@ -124,7 +122,7 @@ const PasswordManagement = ({navigation}) => {
         contentContainerStyle={{alignItems: 'center'}}>
         <Lottie
           style={PasswordManagementStyle.animationStyle}
-          source={require('../../assets/animations/appIntroRecover.json')}
+          source={require('../../../assets/animations/appIntroRecover.json')}
           autoPlay
         />
 
@@ -250,7 +248,7 @@ const PasswordManagement = ({navigation}) => {
           onBackdropPress={modalHandlerOne}
           modalButtonPress={modalHandlerOne}
           buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/passwordLength.json')}
+          source={require('../../../assets/animations/passwordLength.json')}
           text={'Your New Password has been set.'}
           buttonText={'Back'}
         />

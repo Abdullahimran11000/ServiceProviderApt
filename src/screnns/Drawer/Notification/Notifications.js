@@ -10,9 +10,8 @@ import ii from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ad from 'react-native-vector-icons/AntDesign';
 import fi from 'react-native-vector-icons/Feather';
-import {NotificationStyle} from '../../assets/styles/AnimatedDrawerStyle/NotificationStyle';
-import {CertificatesStyle} from '../../assets/styles/CertificatesStyle';
-import {AppColor} from '../../assets/colors/AppColors';
+import {NotificationStyle} from '../../../assets/styles/AnimatedDrawerStyle/NotificationStyle';
+import {AppColor} from '../../../assets/colors/AppColors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {
@@ -20,9 +19,9 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
-import Header from '../../components/ScreenHeader/Header';
+import Header from '../../../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
-import CustomModal from '../../components/Modal/CustomModal';
+import CustomModal from '../../../components/Modal/CustomModal';
 const Notifications = () => {
   const [readNotificationInModal, setReadNotificationInModal] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -239,7 +238,7 @@ const Notifications = () => {
               setShowModal(false);
             }}
             buttonBackgroundColor={AppColor.primary}
-            source={require('../../assets/animations/sms.json')}
+            source={require('../../../assets/animations/sms.json')}
             lottieStyle={{width: wp('35'), height: wp('35')}}
             text={readNotificationInModal}
             style={{marginTop: wp(10)}}

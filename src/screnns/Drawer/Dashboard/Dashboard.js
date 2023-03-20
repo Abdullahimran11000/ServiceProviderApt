@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
   FlatList,
@@ -9,30 +9,34 @@ import {
   ScrollView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {DashboardStyle} from '../../assets/styles/DashboardStyle/DashboardStyle';
+import {DashboardStyle} from '../../../assets/styles/DashboardStyle/DashboardStyle';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import DoctorBar from '../../components/Bar/DoctorBar';
-import {AppColor} from '../../assets/colors/AppColors';
+import DoctorBar from '../../../components/Bar/DoctorBar';
+import {AppColor} from '../../../assets/colors/AppColors';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import RNFetchBlob from 'rn-fetch-blob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import PatientAppCard from '../../components/Appointments/PatientAppCard';
+import PatientAppCard from '../../../components/Appointments/PatientAppCard';
 import {useNavigation} from '@react-navigation/native';
-import AppContext from '../../assets/context/AppContext';
+import AppContext from '../../../assets/context/AppContext';
 
 const Dashboard = ({pressHandler}) => {
   const navigation = useNavigation();
   const [warningCardShow, setWarningCardShow] = useState(true);
-  const {upcomingAppointmentsInfo, storeUpcomingAppointmentsInfo} = useContext(AppContext)
+  const {upcomingAppointmentsInfo, storeUpcomingAppointmentsInfo} =
+    useContext(AppContext);
+  const {compeletdAppointmentsInfo} = useContext(AppContext)
 
-  const updateArray = (id) =>{
-    const filteredArray = upcomingAppointmentsInfo.filter(item=> item.id !== id)
-    storeUpcomingAppointmentsInfo(filteredArray)
-  }
+  const updateArray = id => {
+    const filteredArray = upcomingAppointmentsInfo.filter(
+      item => item.id !== id,
+    );
+    storeUpcomingAppointmentsInfo(filteredArray);
+  };
 
   const renderItemUpcomingAppointments = ({item}) => (
     <PatientAppCard
@@ -41,9 +45,15 @@ const Dashboard = ({pressHandler}) => {
       nextButtonShow={true}
       buttonColor={'#dafccf'}
       rescheduleBtn={() => {
-        navigation.navigate('TotalAppSlots', {check: true, date: item.date, time: item.time});
+        navigation.navigate('TotalAppSlots', {
+          check: true,
+          date: item.date,
+          time: item.time,
+        });
       }}
-      onPressYes={()=>{updateArray(item.id)}}
+      onPressYes={() => {
+        updateArray(item.id);
+      }}
     />
   );
 
@@ -70,7 +80,7 @@ const Dashboard = ({pressHandler}) => {
         <View style={DashboardStyle.doctorInfoCard}>
           <Image
             style={DashboardStyle.doctorProfileImage}
-            source={require('../../assets/images/selfieOne.jpg')}
+            source={require('../../../assets/images/selfieOne.jpg')}
             resizeMode="cover"
           />
           <View style={{width: wp('60')}}>
@@ -164,33 +174,57 @@ const Dashboard = ({pressHandler}) => {
 
         <DoctorBar
           One={"Today's Appointment"}
-          Two={'See all'}
+          icon={true}
           onPress={() => {
             navigation.navigate('UpcomingApp');
           }}
         />
 
-        <FlatList
-          data={upcomingAppointmentsInfo}
-          renderItem={renderItemUpcomingAppointments}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
+        {upcomingAppointmentsInfo.length > 0 ? (
+          <FlatList
+            data={upcomingAppointmentsInfo}
+            renderItem={renderItemUpcomingAppointments}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        ) : (
+          <Neomorph
+            style={{
+              width: wp('80'),
+              height: wp('20'),
+              backgroundColor: AppColor.whiteShade,
+              shadowRadius: 4,
+              borderRadius: wp('5'),
+              marginHorizontal: wp('10'),
+              marginVertical: wp('5'),
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Bold',
+                color: AppColor.red,
+                fontSize: wp('4'),
+              }}>
+              No Data Found!
+            </Text>
+          </Neomorph>
+        )}
 
-        {/* <DoctorBar
+        <DoctorBar
           One={'Completed Appointment'}
-          Two={'See all'}
+          icon={true}
           onPress={() => {
             navigation.navigate('CompletedApp');
           }}
         />
 
         <FlatList
-          data={todayAppointmentInfo}
+          data={compeletdAppointmentsInfo}
           renderItem={renderItemCompeletedAppointments}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-        /> */}
+        />
       </ScrollView>
     </SafeAreaView>
   );

@@ -21,7 +21,7 @@ const PatientAppCancelModal = ({isVisible, onBackdropPress, onPressNo, onPressYe
               width: wp('80'),
               height: wp('50'),
               borderRadius: wp('10'),
-              shadowRadius: 2,
+              shadowRadius: 1,
               backgroundColor: AppColor.whiteShade,
               flex: 4,
               padding: wp('5'),

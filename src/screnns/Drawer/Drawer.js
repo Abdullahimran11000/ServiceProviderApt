@@ -5,12 +5,11 @@ import {
   TouchableOpacity,
   View,
   Image,
-  SafeAreaView,
   Linking,
 } from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {AppColor} from '../../assets/colors/AppColors';
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import {DrawerStyle} from '../../assets/styles/AnimatedDrawerStyle/DrawerStyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
