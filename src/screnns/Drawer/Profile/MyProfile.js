@@ -7,20 +7,20 @@ import {
   ImageBackground,
   ScrollView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../../assets/colors/AppColors';
+import {AppColor} from '../../../assets/colors/AppColors';
 import {launchImageLibrary} from 'react-native-image-picker';
-import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
-import {MyProfileStyle} from '../../assets/styles/DashboardStyle/MyProfileStyle';
+import NeoTextInput from '../../../components/NeoMorphTextInput/NeoTextInput';
+import {MyProfileStyle} from '../../../assets/styles/DashboardStyle/MyProfileStyle';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import NeoButton from '../../components/NeoMorphButton/NeoButton';
-import Header from '../../components/ScreenHeader/Header';
+import NeoButton from '../../../components/NeoMorphButton/NeoButton';
+import Header from '../../../components/ScreenHeader/Header';
 import {Neomorph} from 'react-native-neomorph-shadows';
-import CustomModal from '../../components/Modal/CustomModal';
+import CustomModal from '../../../components/Modal/CustomModal';
 import ImageZoom from 'react-native-image-pan-zoom';
 import {
   MenuOption,
@@ -397,7 +397,7 @@ const MyProfile = ({navigation}) => {
         onBackdropPress={() => {
           setModalOpen(false);
         }}
-        source={require('../../assets/animations/profile.json')}
+        source={require('../../../assets/animations/profile.json')}
         lottieStyle={{width: wp('35'), height: wp('35')}}
         text={'Your profile is updated successfully.'}
         style={{marginTop: wp('10')}}

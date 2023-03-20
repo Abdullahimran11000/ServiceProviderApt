@@ -17,6 +17,7 @@ import {AppColor} from '../../assets/colors/AppColors';
 import NeoButton from '../../components/NeoMorphButton/NeoButton';
 import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
 import CustomModal from '../../components/Modal/CustomModal';
+
 const ForgotPassword = ({navigation}) => {
   const [showEmailNotificationInModal, setshowEmailNotificationInModal] =
     useState(false);

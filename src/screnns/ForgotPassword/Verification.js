@@ -17,7 +17,6 @@ import BackButton from '../../components/ScrennHeader/BackButton';
 import NeoButton from '../../components/NeoMorphButton/NeoButton';
 import {AppColor} from '../../assets/colors/AppColors';
 import CustomModal from '../../components/Modal/CustomModal';
-import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
 
 const Verification = ({navigation}) => {
   const firstTextInputRef = useRef(null);

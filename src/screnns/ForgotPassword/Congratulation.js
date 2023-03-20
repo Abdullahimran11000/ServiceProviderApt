@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import {
   SafeAreaView,
-  View,
   Text,
-  ScrollView,
   TouchableOpacity,
 } from 'react-native';
 import {

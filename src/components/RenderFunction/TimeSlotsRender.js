@@ -76,7 +76,7 @@ const TimeSlotsRender = ({item, onPress, check}) => {
         </Text>
       </View>
       {check ? (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
           <Neomorph
             style={{
               width: wp('15'),
