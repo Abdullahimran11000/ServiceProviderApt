@@ -65,7 +65,7 @@ const Drawer = () => {
   return (
     <Animated.View style={DrawerStyle.mainView}>
       <Animated.View style={DrawerStyle.topView}>
-        <View style={{flex: 2.5, justifyContent: 'center'}}>
+        <View style={DrawerStyle.firstChild}>
           <TouchableOpacity onPress={pressHandler}>
             <NeoButton
               width={wp('16')}
@@ -82,7 +82,7 @@ const Drawer = () => {
           <Text style={DrawerStyle.designationText}>CEO BTS</Text>
         </View>
 
-        <View style={{flex: 6}}>
+        <View style={DrawerStyle.secondChild}>
           <View style={DrawerStyle.menuItemView}>
             <MaterialCommunityIcons
               name={'view-dashboard-outline'}
@@ -193,13 +193,9 @@ const Drawer = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{flex: 1.5, justifyContent: 'center'}}>
+        <View style={DrawerStyle.thirdChild}>
           <View
-            style={{
-              flexDirection: 'row',
-              width: wp('32'),
-              justifyContent: 'space-between',
-            }}>
+            style={DrawerStyle.iconsView}>
             <TouchableOpacity
               onPress={() => {
                 Linking.openURL('https://www.facebook.com/');

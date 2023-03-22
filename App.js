@@ -42,17 +42,15 @@ const App = () => {
           <Stack.Screen name="Verification" component={Verification} />
           <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
           <Stack.Screen name="Congratulation" component={Congratulation} />
-          <Stack.Screen name="PasswordManagement" component={PasswordManagement} />
           <Stack.Screen name="Drawer" component={Drawer} />
           <Stack.Screen name="Dashboard" component={Dashboard}/>
           <Stack.Screen name="Certificates" component={Certificates}/>
           <Stack.Screen name="Wallet" component={Wallet}/>
           <Stack.Screen name="MyProfile" component={MyProfile} />
-          <Stack.Screen name="Chat" component={Chat} />
-          <Stack.Screen name="VideoCalling" component={VideoCalling} />
           <Stack.Screen name="AppointmentsCards" component={AppointmentsCards}/>
           <Stack.Screen name="NewSchedule" component={NewSchedule}/>
           <Stack.Screen name="Notifications" component={Notifications}/>
+          <Stack.Screen name="PasswordManagement" component={PasswordManagement} />
           <Stack.Screen name="PatientProfile" component={PatientProfile} />
           <Stack.Screen name="TryAnotherWay" component={TryAnotherWay} />
           <Stack.Screen name="TotalAppSlots" component={TotalAppSlots} />

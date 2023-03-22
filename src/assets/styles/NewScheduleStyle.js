@@ -3,18 +3,16 @@ import { widthPercentageToDP as wp , heightPercentageToDP as hp } from "react-na
 import { AppColor } from "../colors/AppColors";
 
 const NewScheduleStyle = StyleSheet.create({
-    viewOne:{marginTop: wp('7'), width: wp('90'), alignSelf: 'center'},
+    mainView: {flex: 10,backgroundColor: AppColor.whiteShade,alignItems: 'center'},
+    headerCont: {flex: 1},
+    bodyCont: {flex: 9},
+    calendarView: {paddingTop: wp('8')},
+    alertText: {fontFamily: 'Poppins-Light',fontSize: wp('3'),color: AppColor.red,},
+    scrollView: {flexGrow: 9, alignItems: 'center', width: wp('100')},
     viewOneText:{fontFamily:'Poppins-SemiBold' , fontSize:wp("4.5") , color:AppColor.whiteOpacity},
-    viewTwo:{flexDirection: "row",width: wp('90'), alignSelf: 'center', justifyContent: 'space-around', marginVertical: wp('4')},
+    viewTwo:{flexDirection: "row",width: wp('90'), alignSelf: 'center', justifyContent: 'space-around'},
+    buttonView: {paddingVertical: wp('5')},
     viewTwoTextOne:{fontFamily:'Poppins-SemiBold' , fontSize:wp(3)},
-    viewTwoTextTwo:{fontFamily:'Poppins-SemiBold' , fontSize:wp(3)},
-    viewThree:{display:"flex" , flexDirection: "row",justifyContent:"space-evenly",marginTop: hp(5),marginRight:wp(10)},
-    viewThreeTextOne:{fontFamily:'Poppins-SemiBold', fontSize:wp(3)},
-    viewThreeTextTwo:{fontFamily:'Poppins-SemiBold', fontSize:wp(3)},
-    viewFour:{},
-    viewFourTextInput:{ width:wp(82), fontFamily:'Poppins-SemiBold'},
-    viewFive:{width: wp('100'), alignItems: 'center', height: hp('8') },
-    viewFiveText:{fontFamily:'Poppins-SemiBold', color: AppColor.white},
-    // icon: {position: 'absolute',right: wp('5'),},
+    buttonText: {fontFamily: 'Poppins-Bold', color: AppColor.white, fontSize: wp('4')}
 })
 export {NewScheduleStyle}

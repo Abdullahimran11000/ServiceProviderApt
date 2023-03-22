@@ -6,32 +6,20 @@ import {
 import { AppColor } from '../../colors/AppColors';
 
 const VerificationStyle = StyleSheet.create({
-  mainView: {backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1},
-  headingView:{alignItems:'center'},
-  animationView: {alignItems: 'center' , marginTop: wp("6")},
+  mainView: {backgroundColor: AppColor.whiteShade, flex: 10},
+  headerCont: {flex:1},
+  bodyCont: {flex:9},
+  scrollView: {alignItems: 'center',flexGrow: 9,justifyContent: 'center'},
   animationStyle: {width: wp('90'), height: hp('35')},
-  tagView: {alignItems: "center" , marginTop: wp('8')},
-  tagText: {fontFamily: 'Poppins-SemiBold', fontSize: wp('4.5'), color: AppColor.black},
-  paraView: {alignItems: 'center', padding: wp('4')},
-  paraText: {color: AppColor.black, fontFamily: 'Poppins-Light',fontSize: wp('4'),textAlign: 'center'},
-  touchableView:{alignItems: "center", marginTop: wp('0')},
-  textStyle:{color: AppColor.black , fontFamily: "Poppins-Regular" , fontSize: wp('3.5'), marginTop: wp('8')},
-  touchableText1: {color: AppColor.red, fontFamily: "Poppins-Regular" , fontSize: wp('3.5'), marginTop: wp('2')},
-  touchableStyle: {width: wp("90") , height: hp('7'), borderRadius: wp('10') , backgroundColor: AppColor.primary , alignItems: 'center', justifyContent: 'center'},
-  touchableText: {color: AppColor.white , fontFamily: "Poppins-Bold" , fontSize: wp('4.2'), textAlign: "center"},
-  textView: {flex: 1 , flexDirection: 'row' , justifyContent: 'space-evenly' , padding: wp('3')},
-  buttonView:{alignItems:'center' , marginTop: wp('6'), marginBottom: wp('5')},
+  tagText: {fontFamily: 'Poppins-SemiBold', fontSize: wp('4.5'), color: AppColor.black, paddingVertical: wp('4')},
+  paraText: {color: AppColor.black, fontFamily: 'Poppins-Light',fontSize: wp('4'),textAlign: 'center', paddingHorizontal: wp('5')},
+  textStyle:{color: AppColor.black , fontFamily: "Poppins-Regular" , fontSize: wp('3.5'), paddingVertical: wp('2')},
+  touchableText1: {color: AppColor.red, fontFamily: "Poppins-Regular" , fontSize: wp('3.5')},
+  touchableText: {color: AppColor.white , fontFamily: "Poppins-Bold"},
+  textInputView: {flexDirection: 'row' , width: wp('90'), justifyContent: 'space-evenly', paddingVertical: wp('5')},
   newInputs: {width: wp("16") , height: wp('16') , borderRadius: wp('5') , backgroundColor: AppColor.white , fontFamily: "Poppins-Bold" , fontSize: wp('7') , padding: wp('1') , textAlign: 'center', color: AppColor.black},
-  viewOne:{
-    width: wp('100'),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textOne: {
-    fontFamily: 'Poppins-Light',
-    fontSize: wp('3.5'),
-    color: AppColor.red,
-  },
+  textOne: {fontFamily: 'Poppins-Light',fontSize: wp('3.5'),color: AppColor.red},
+  buttonStyle: {paddingVertical: wp('3')}
 });
 
 export {VerificationStyle};

@@ -1,9 +1,4 @@
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, View, Text, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 import {
   widthPercentageToDP as wp,
@@ -31,7 +26,7 @@ const LogIn = ({navigation}) => {
     navigation.addListener('focus', () => {
       console.log('LogIn screen is focusing right now!');
     });
-  }, [navigation]);
+  }, []);
 
   const submitHandler = () => {
     if (emailText === '') {
@@ -67,26 +62,17 @@ const LogIn = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: AppColor.whiteShade,
-        flex: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <View style={{flex: 0.2}}></View>
-      <View style={{flex: 1}}>
+    <SafeAreaView style={LoginStyle.mainView}>
+      <View style={LoginStyle.headerCont}>
         <Text style={LoginStyle.headerView}> Log in </Text>
       </View>
-      <View style={{flex: 0.5}}></View>
-      <View style={{flex: 8.3}}>
-        <Text style={LoginStyle.TextStyle}>Email</Text>
+      <View style={LoginStyle.bodyCont}>
+        <Text style={LoginStyle.textStyle}>Email</Text>
         <NeoTextInput
           value={emailText}
           reference={emailRef}
           autoFocus={true}
           placeholder={'Enter your email'}
-          placeholderTextColor={emailLabelText}
           keyboardType={'email-address'}
           onChangeText={text => {
             setEmailText(text);
@@ -97,19 +83,10 @@ const LogIn = ({navigation}) => {
           }}
         />
         {emailLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-              alignSelf: 'center',
-            }}>
-            {emailLabelText}
-          </Text>
+          <Text style={LoginStyle.labelTextStyle}>{emailLabelText}</Text>
         ) : null}
 
-        <Text style={LoginStyle.TextStyle}>Password</Text>
+        <Text style={LoginStyle.textStyle}>Password</Text>
         <NeoTextInput
           value={passwordText}
           reference={passwordRef}
@@ -141,25 +118,14 @@ const LogIn = ({navigation}) => {
           </TouchableOpacity>
         </NeoTextInput>
         {passwordLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-              alignSelf: 'center',
-            }}>
-            {passwordLabelText}
-          </Text>
+          <Text style={LoginStyle.labelTextStyle}>{passwordLabelText}</Text>
         ) : null}
 
         <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={LoginStyle.ForgotText}>Forgot Password?</Text>
+          <Text style={LoginStyle.forgotText}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={{alignItems: 'center'}}
-          onPress={submitHandler}>
+        <TouchableOpacity style={LoginStyle.buttonCont} onPress={submitHandler}>
           <NeoButton
             width={wp('55')}
             height={hp('6')}
@@ -167,20 +133,14 @@ const LogIn = ({navigation}) => {
             borderRadius={wp('10')}
             marginBottom={wp('5')}
             marginTop={wp('5')}>
-            <Text style={LoginStyle.LoginText}>Log In</Text>
+            <Text style={LoginStyle.loginText}>Log In</Text>
           </NeoButton>
         </TouchableOpacity>
 
-        <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              color: AppColor.blackOpacity8,
-            }}>
-            Don't have an account?
-          </Text>
+        <View style={LoginStyle.footerCont}>
+          <Text style={LoginStyle.footerText}>Don't have an account?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={LoginStyle.SignUpText}> Sign Up</Text>
+            <Text style={LoginStyle.signUpText}> Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>

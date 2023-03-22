@@ -1,15 +1,13 @@
 import React, {useContext} from 'react';
-import {SafeAreaView, FlatList, Text} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {SafeAreaView, FlatList} from 'react-native';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {AppColor} from '../../../../assets/colors/AppColors';
 import Header from '../../../../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
 import PatientAppCard from '../../../../components/Appointments/PatientAppCard';
 import AppContext from '../../../../assets/context/AppContext';
-import {Neomorph} from 'react-native-neomorph-shadows';
+import NoDataFound from '../../../../components/NoDataView/NoDatFound';
+import { PatientAppCardStyle } from '../../../../assets/styles/PatientAppCardStyle';
 
 const UpcomingApp = ({navigation}) => {
   const {upcomingAppointmentsInfo, storeUpcomingAppointmentsInfo} =
@@ -37,7 +35,7 @@ const UpcomingApp = ({navigation}) => {
   );
   return (
     <SafeAreaView
-      style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
+      style={PatientAppCardStyle.mainView}>
       <Header
         buttonColor={AppColor.whiteShade}
         styles={{color: AppColor.black}}
@@ -45,38 +43,16 @@ const UpcomingApp = ({navigation}) => {
         backgroundColor={AppColor.whiteShade}>
         {'Upcoming'}
       </Header>
-      <ScrollView>
-        <SafeAreaView style={{marginTop: wp('5'), marginBottom: wp('5')}}>
-          {upcomingAppointmentsInfo.length > 0 ? (
-            <FlatList
-              data={upcomingAppointmentsInfo}
-              renderItem={renderItemUpcomingAppointments}
-              keyExtractor={item => item.id}
-            />
-          ) : (
-            <Neomorph
-              style={{
-                width: wp('80'),
-                height: wp('20'),
-                backgroundColor: AppColor.whiteShade,
-                shadowRadius: 4,
-                borderRadius: wp('5'),
-                marginHorizontal: wp('10'),
-                marginVertical: wp('5'),
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Bold',
-                  color: AppColor.red,
-                  fontSize: wp('4'),
-                }}>
-                No Data Found!
-              </Text>
-            </Neomorph>
-          )}
-        </SafeAreaView>
+      <ScrollView contentContainerStyle={PatientAppCardStyle.scrollView}>
+        {upcomingAppointmentsInfo.length > 0 ? (
+          <FlatList
+            data={upcomingAppointmentsInfo}
+            renderItem={renderItemUpcomingAppointments}
+            keyExtractor={item => item.id}
+          />
+        ) : (
+          <NoDataFound />
+        )}
       </ScrollView>
     </SafeAreaView>
   );

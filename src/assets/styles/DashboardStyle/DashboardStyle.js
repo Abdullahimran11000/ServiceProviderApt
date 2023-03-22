@@ -4,14 +4,26 @@ import { AppColor } from '../../colors/AppColors';
 
 const DashboardStyle = StyleSheet.create({
 
-    headCont: {width: wp('90'), flexDirection: 'row', justifyContent: 'space-between', marginTop: wp('3')},
+    mainView: {flex: 10,backgroundColor: AppColor.whiteShade,alignItems: 'center',justifyContent: 'center'},
+
+    headCont: {width: wp('90'), flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flex: 0.8},
+    scrollView: {alignItems: 'center',flexGrow: 9.2,justifyContent: 'center', width: wp('100')},
+    
     headContInnerCont: {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
     headContMenuCont: {width: wp('11.5'), height: wp('11.5'), borderRadius: wp('14'), position: 'absolute', left:wp('0'), justifyContent: 'center'},
     textCont : {position: 'absolute', right: 0},
     textStyle: {fontFamily: "Poppins-Bold", fontSize: wp('4.5'), color: AppColor.blackOpacity6},
 
-    doctorInfoCard : {width: wp('90'), flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'center', marginVertical: wp('5')},
+    doctorInfoCard : {width: wp('90'), flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'center', paddingVertical: wp('3')},
+    nameCont: {width: wp('60')},
+    professionCont: {flexDirection: 'row',justifyContent: 'space-between',width: wp('45')},
+    ratingCont: {flexDirection: 'row'},
+    
+    certificateButton : {alignItems: 'flex-end', paddingVertical: wp('1')},
+    noDataCont: {width: wp('80'),height: wp('20'),backgroundColor: AppColor.whiteShade,shadowRadius: 4,borderRadius: wp('5'),marginHorizontal: wp('10'),marginVertical: wp('5'),alignItems: 'center',justifyContent: 'center'},
+    noDataText: {fontFamily: 'Poppins-Bold',color: AppColor.red,fontSize: wp('4')},
     doctorInfoInnerCont : {display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
+
 
     doctorProfileImageCont : {width: wp('15'), height: wp('15'), borderRadius: wp('14')},
     doctorProfileImage: {width: wp('15'), height: wp('15'), borderRadius: wp('14')},
