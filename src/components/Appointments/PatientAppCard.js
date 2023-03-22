@@ -11,7 +11,7 @@ import Lottie from 'lottie-react-native';
 import {AppColor} from '../../assets/colors/AppColors';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import NeoButton from '../NeoMorphButton/NeoButton';
-import {AppointmentStyle} from '../../assets/styles/AnimatedDrawerStyle/AppointmentStyle';
+import {PatientAppCardStyle} from '../../assets/styles/PatientAppCardStyle';
 import {useNavigation} from '@react-navigation/native';
 import PatientAppCancelModal from '../Modal/PatientAppCancelModal';
 
@@ -27,7 +27,7 @@ const PatientAppCard = ({
   nextButtonShow,
   buttonColor,
   rescheduleBtn,
-  onPressYes
+  onPressYes,
 }) => {
   const navigation = useNavigation();
   const [cancelModal, setCancelModal] = useState(false);
@@ -47,25 +47,25 @@ const PatientAppCard = ({
   return (
     <Neomorph
       style={[
-        AppointmentStyle.neoCard2Upcoming,
+        PatientAppCardStyle.neoCard2Upcoming,
         {height: buttonShow ? hp('28') : hp('20')},
       ]}
       darkShadowColor={AppColor.black}>
-      <View style={AppointmentStyle.patientCard}>
+      <View style={PatientAppCardStyle.patientCard}>
         <Image
-          style={AppointmentStyle.patientProfileImage}
+          style={PatientAppCardStyle.patientProfileImage}
           source={require('../../assets/images/selfieOne.jpg')}
           resizeMode="cover"
         />
-        <View style={{width: wp('50')}}>
+        <View style={PatientAppCardStyle.patientNameCont}>
           <Text
-            style={AppointmentStyle.patientNameText}
+            style={PatientAppCardStyle.patientNameText}
             ellipsizeMode={'tail'}
             numberOfLines={1}>
             {item.name}
             {p_name}
           </Text>
-          <Text style={AppointmentStyle.patientGenderText}>
+          <Text style={PatientAppCardStyle.patientGenderText}>
             {item.gender}
             {p_gender}, {item.age}
             {p_age} years old
@@ -75,15 +75,10 @@ const PatientAppCard = ({
         {nextButtonShow ? (
           <TouchableOpacity onPress={cardHandler}>
             <Neomorph
-              style={{
-                width: wp('8'),
-                height: wp('8'),
-                borderRadius: wp('8'),
-                backgroundColor: buttonColor,
-                shadowRadius: 2,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
+              style={[
+                PatientAppCardStyle.forwardButtonView,
+                {backgroundColor: buttonColor},
+              ]}>
               <AntDesign
                 name="arrowright"
                 size={wp('4')}
@@ -95,7 +90,7 @@ const PatientAppCard = ({
           <View>
             {buttonColor !== '' ? (
               <Lottie
-                style={AppointmentStyle.lottieStyleUpcoming}
+                style={PatientAppCardStyle.lottieStyleUpcoming}
                 source={
                   buttonColor === '#e4bef7'
                     ? require('../../assets/animations/completedTag.json')
@@ -105,7 +100,7 @@ const PatientAppCard = ({
               />
             ) : (
               <Lottie
-                style={AppointmentStyle.lottieStyleUpcoming}
+                style={PatientAppCardStyle.lottieStyleUpcoming}
                 source={require('../../assets/animations/cancelledTag.json')}
                 autoPlay
               />
@@ -114,35 +109,27 @@ const PatientAppCard = ({
         )}
       </View>
 
-      <View style={AppointmentStyle.detailView}>
-        <View style={{flexDirection: 'row'}}>
+      <View style={PatientAppCardStyle.detailView}>
+        <View style={PatientAppCardStyle.iconTextCont}>
           <Icon size={wp('4')} name="calendar" color={AppColor.black} />
-          <Text style={AppointmentStyle.dateStyle}>
+          <Text style={PatientAppCardStyle.dateStyle}>
             {' '}
             {item.date}
             {p_date}
           </Text>
         </View>
 
-        <View style={{flexDirection: 'row'}}>
-          <Icon
-            size={wp('4')}
-            name="clock-o"
-            style={AppointmentStyle.timeIconStyle}
-          />
-          <Text style={AppointmentStyle.timeStyle}>
+        <View style={PatientAppCardStyle.iconTextCont}>
+          <Icon size={wp('4')} name="clock-o" color={AppColor.black} />
+          <Text style={PatientAppCardStyle.timeStyle}>
             {' '}
             {item.time}
             {p_time}
           </Text>
         </View>
-        <View style={{flexDirection: 'row'}}>
-          <Icon
-            size={wp('4')}
-            name="hospital-o"
-            style={AppointmentStyle.callIconStyle}
-          />
-          <Text style={AppointmentStyle.destinationStyle}>
+        <View style={PatientAppCardStyle.iconTextCont}>
+          <Icon size={wp('4')} name="hospital-o" color={AppColor.black} />
+          <Text style={PatientAppCardStyle.destinationStyle}>
             {' '}
             {item.appDestination}
             {p_appDest}
@@ -150,7 +137,7 @@ const PatientAppCard = ({
         </View>
       </View>
       {buttonShow ? (
-        <View style={AppointmentStyle.buttonView}>
+        <View style={PatientAppCardStyle.buttonView}>
           <TouchableOpacity
             onPress={() => {
               setCancelModal(true);
@@ -162,7 +149,7 @@ const PatientAppCard = ({
               backgroundColor={AppColor.whiteShade}
               lightShadowColor={AppColor.white}>
               <LinearGradient
-                style={AppointmentStyle.buttonTouchStyle}
+                style={PatientAppCardStyle.buttonTouchStyle}
                 colors={[
                   'rgba(181, 27, 27, 0.4)',
                   'rgba(181, 27, 27, 0.5)',
@@ -171,7 +158,7 @@ const PatientAppCard = ({
                 start={{x: 0.3, y: 0}}
                 end={{x: 0.7, y: 1}}
                 locations={[0.1, 0.3, 0.9]}>
-                <Text style={AppointmentStyle.buttonTextStyle}>Cancel</Text>
+                <Text style={PatientAppCardStyle.buttonTextStyle}>Cancel</Text>
               </LinearGradient>
             </NeoButton>
           </TouchableOpacity>
@@ -183,15 +170,21 @@ const PatientAppCard = ({
               borderRadius={wp('6')}
               backgroundColor={AppColor.whiteShade}
               lightShadowColor={AppColor.white}>
-              <Text style={AppointmentStyle.buttonTextStyle}>Reschedule</Text>
+              <Text style={PatientAppCardStyle.buttonTextStyle}>
+                Reschedule
+              </Text>
             </NeoButton>
           </TouchableOpacity>
         </View>
       ) : null}
       <PatientAppCancelModal
         isVisible={cancelModal}
-        onBackdropPress={()=>{setCancelModal(false)}}
-        onPressNo={()=>{setCancelModal(false)}}
+        onBackdropPress={() => {
+          setCancelModal(false);
+        }}
+        onPressNo={() => {
+          setCancelModal(false);
+        }}
         onPressYes={onPressYes}
       />
     </Neomorph>

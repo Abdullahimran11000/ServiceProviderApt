@@ -54,19 +54,14 @@ const ForgotPassword = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView style={ForgotPasswordStyle.safeView}>
-      <View style={{flex: 1}}>
+    <SafeAreaView style={ForgotPasswordStyle.mainView}>
+      <View style={ForgotPasswordStyle.headerCont}>
         <BackButton onPress={() => navigation.goBack()}>
           {'Forgot Password'}
         </BackButton>
       </View>
-      <View style={{flex: 9}}>
-        <ScrollView
-          contentContainerStyle={{
-            alignItems: 'center',
-            flexGrow: 9,
-            justifyContent: 'space-around',
-          }}>
+      <View style={ForgotPasswordStyle.bodyCont}>
+        <ScrollView contentContainerStyle={ForgotPasswordStyle.scrollView}>
           <Lottie
             style={ForgotPasswordStyle.animationStyle}
             source={require('../../assets/animations/appIntroForgot.json')}
@@ -91,15 +86,7 @@ const ForgotPassword = ({navigation}) => {
             onSubmitEditing={sendHandler}
           />
           {emailLabelAlert ? (
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: wp('3.2'),
-                color: AppColor.red,
-                width: wp('90'),
-              }}>
-              {emailLabelText}
-            </Text>
+            <Text style={ForgotPasswordStyle.alertText}>{emailLabelText}</Text>
           ) : null}
 
           <TouchableOpacity
@@ -108,15 +95,14 @@ const ForgotPassword = ({navigation}) => {
               Try another way
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={sendHandler} style={{alignSelf: 'center'}}>
+          <TouchableOpacity onPress={sendHandler}>
             <NeoButton
               darkShadowColor={AppColor.black}
-              marginTop={wp('5')}
               width={wp('55')}
               backgroundColor={AppColor.primary}
               height={hp('6')}
               borderRadius={wp('10')}
-              marginBottom={wp('5')}>
+              marginVertical={wp('5')}>
               <Text style={ForgotPasswordStyle.touchableText}>Send</Text>
             </NeoButton>
           </TouchableOpacity>

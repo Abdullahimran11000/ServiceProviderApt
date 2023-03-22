@@ -21,34 +21,30 @@ import Header from '../../../components/ScreenHeader/Header';
 const AppointmentsCards = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: AppColor.whiteShade}}>
+    <SafeAreaView style={AppointmentStyle.mainView}>
       <ImageBackground
         style={AppointmentStyle.imageBackStyle}
         source={require('../../../assets/images/AppointmentsIntroPic.jpg')}>
-        <View style={AppointmentStyle.imageBackView}>
-          <View style={{flex: 1}}>
-            <Header
-              styles={{color: AppColor.lightPink}}
-              stylesText={{color: AppColor.lightPink}}
-              buttonColor={AppColor.lightPink}
-              lightShadowColor={'rgba(0,0,0,0)'}>
-              
-              {'Appointment'}
-            </Header>
-          </View>
-          <View style={{flex: 3.8, justifyContent: 'center'}}>
-            <Text style={AppointmentStyle.headerTextOne}>Appointment</Text>
-            <Text style={AppointmentStyle.headerTextTwo}>
-              Effective appointment management in healthcare is crucial for
-              ensuring patient satisfaction and improved outcomes. prioritizing
-              timely appointments to build trust and foster strong
-              doctor-patient relationships.
-            </Text>
-          </View>
-          <View style={{flex: 0.2}}></View>
+        <View style={AppointmentStyle.imageHead}>
+          <Header
+            styles={{color: AppColor.lightPink}}
+            stylesText={{color: AppColor.lightPink}}
+            buttonColor={AppColor.lightPink}
+            lightShadowColor={'rgba(0,0,0,0)'}>
+            {'Appointment'}
+          </Header>
+        </View>
+        <View style={AppointmentStyle.imageMiddle}>
+          <Text style={AppointmentStyle.headerTextOne}>Appointment</Text>
+          <Text style={AppointmentStyle.headerTextTwo}>
+            Effective appointment management in healthcare is crucial for
+            ensuring patient satisfaction and improved outcomes. prioritizing
+            timely appointments to build trust and foster strong doctor-patient
+            relationships.
+          </Text>
         </View>
       </ImageBackground>
-      <ScrollView style={{marginHorizontal: wp('5'), width: wp('100')}}>
+      <ScrollView contentContainerStyle={AppointmentStyle.scrollView}>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('TotalAppSlots');
@@ -60,7 +56,7 @@ const AppointmentsCards = () => {
             marginVertical={wp('3.5')}
             backgroundColor={AppColor.blackOpacity4}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View style={{flex: 3.5, justifyContent: 'center'}}>
+              <View style={AppointmentStyle.cardTextCont}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
                   50
@@ -70,7 +66,7 @@ const AppointmentsCards = () => {
                   Total Appointment Slot
                 </Text>
               </View>
-              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+              <View style={AppointmentStyle.cardLottieCont}>
                 <Lottie
                   style={{width: wp('25')}}
                   source={require('../../../assets/animations/slots.json')}
@@ -93,7 +89,7 @@ const AppointmentsCards = () => {
             backgroundColor={AppColor.darkBrown}
             darkShadowColor={AppColor.black}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View style={{flex: 3.5, justifyContent: 'center'}}>
+              <View style={AppointmentStyle.cardTextCont}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
                   Add
@@ -103,7 +99,7 @@ const AppointmentsCards = () => {
                   New Schedule
                 </Text>
               </View>
-              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+              <View style={AppointmentStyle.cardLottieCont}>
                 <Lottie
                   style={{width: wp('25')}}
                   source={require('../../../assets/animations/addNewSchedule.json')}
@@ -125,7 +121,7 @@ const AppointmentsCards = () => {
             marginVertical={wp('3.5')}
             backgroundColor={AppColor.darkBlue}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View style={{flex: 3.5, justifyContent: 'center'}}>
+              <View style={AppointmentStyle.cardTextCont}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
                   88
@@ -135,7 +131,7 @@ const AppointmentsCards = () => {
                   Completed Appointment
                 </Text>
               </View>
-              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+              <View style={AppointmentStyle.cardLottieCont}>
                 <Lottie
                   style={{width: wp('25')}}
                   source={require('../../../assets/animations/completedAppointments.json')}
@@ -157,7 +153,7 @@ const AppointmentsCards = () => {
             marginVertical={wp('3.5')}
             backgroundColor={AppColor.lightPurple}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View style={{flex: 3.5, justifyContent: 'center'}}>
+              <View style={AppointmentStyle.cardTextCont}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
                   50
@@ -167,7 +163,7 @@ const AppointmentsCards = () => {
                   Upcoming Appointment
                 </Text>
               </View>
-              <View style={{flex: 1.5, alignItems: 'flex-end'}}>
+              <View style={AppointmentStyle.cardLottieCont}>
                 <Lottie
                   style={{width: wp('25')}}
                   source={require('../../../assets/animations/UpcomingAppointments.json')}
@@ -190,7 +186,7 @@ const AppointmentsCards = () => {
             marginVertical={wp('3.5')}
             backgroundColor={AppColor.redOpacity1}>
             <View style={AppointmentStyle.viewOneContainerInnerView}>
-              <View style={{flex: 3.5, justifyContent: 'center'}}>
+              <View style={AppointmentStyle.cardTextCont}>
                 <Text
                   style={AppointmentStyle.viewOneContainerInnerViewFirstText}>
                   20

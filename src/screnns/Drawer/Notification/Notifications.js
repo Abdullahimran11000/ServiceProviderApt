@@ -22,6 +22,7 @@ import {useNavigation} from '@react-navigation/native';
 import Header from '../../../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
 import CustomModal from '../../../components/Modal/CustomModal';
+import NotificationRender from '../../../components/RenderFunction/NotificationRender';
 const Notifications = () => {
   const [readNotificationInModal, setReadNotificationInModal] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -143,7 +144,8 @@ const Notifications = () => {
 
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity
+      <NotificationRender
+        item={item}
         onPress={() => {
           submitHandler(
             item.id,
@@ -155,42 +157,7 @@ const Notifications = () => {
             item.iconColor,
             item.iconprovider,
           );
-        }}>
-        <Neomorph style={NotificationStyle.innerItems}>
-          <View style={NotificationStyle.headContImageCont}>
-            <item.iconprovider
-              name={item.iconname}
-              size={wp('5')}
-              color={item.iconColor}
-            />
-          </View>
-          <View>
-            <Text
-              style={NotificationStyle.middleInnerContFirstHeading}
-              ellipsizeMode={'tail'}
-              numberOfLines={2}>
-              {item.title}
-            </Text>
-            <Text style={NotificationStyle.middleInnerContSecondHeading}>
-              {item.time}
-            </Text>
-          </View>
-
-          {item.open ? (
-            <Entypo
-              name="dot-single"
-              size={wp('5')}
-              color={AppColor.whiteShade}
-            />
-          ) : (
-            <Icon
-              name="checkmark-done-circle-outline"
-              size={wp('5')}
-              color={'blue'}
-            />
-          )}
-        </Neomorph>
-      </TouchableOpacity>
+        }}/>
     );
   };
 
@@ -205,12 +172,8 @@ const Notifications = () => {
 
   return (
     <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: AppColor.whiteShade,
-        
-      }}>
-      <View style={{flex: 1}}>
+      style={NotificationStyle.mainView}>
+      <View style={NotificationStyle.headerCont}>
         <Header
           buttonColor={AppColor.whiteShade}
           styles={{color: AppColor.black}}
@@ -218,14 +181,13 @@ const Notifications = () => {
           {'Notification'}
         </Header>
       </View>
-      <View style={{flex: 0.5, paddingHorizontal: wp('5')}}>
-        <TouchableOpacity onPress={submitHandlerTwo}>
+      
+        <TouchableOpacity style={NotificationStyle.middleCont} onPress={submitHandlerTwo}>
           <Text style={NotificationStyle.renderItemHeaderFontFirst}>
             Mark All As Read
           </Text>
         </TouchableOpacity>
-      </View>
-      <View style={{flex: 8.5}}>
+      <View style={NotificationStyle.bodyCont}>
         <ScrollView style={{width: wp('100')}}>
           <FlatList data={TodayData} renderItem={renderItem} />
 

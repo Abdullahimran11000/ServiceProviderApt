@@ -12,6 +12,7 @@ const CongratulationStyle = StyleSheet.create({
   tagText: {fontFamily: 'Poppins-SemiBold', fontSize: wp('4.5'), color: AppColor.black},
   paraText: {color: AppColor.black, fontFamily: 'Poppins-Light',fontSize: wp('3.8'),textAlign: 'center', width: wp('90'), marginVertical: wp('5')},
   touchableText: {color: AppColor.white , fontFamily: "Poppins-Bold" , fontSize: wp('4')},
+  buttonCont: {marginVertical: wp('5')},
 });
 
 export {CongratulationStyle};

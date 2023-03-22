@@ -1,14 +1,11 @@
 import React, {useContext} from 'react';
 import {SafeAreaView, FlatList} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import {AppColor} from '../../../../assets/colors/AppColors';
 import Header from '../../../../components/ScreenHeader/Header';
 import PatientAppCard from '../../../../components/Appointments/PatientAppCard';
 import {ScrollView} from 'react-native-virtualized-view';
 import AppContext from '../../../../assets/context/AppContext';
+import { PatientAppCardStyle } from '../../../../assets/styles/PatientAppCardStyle';
 
 const CancelledApp = () => {
   const {cancelledAppointmentsInfo} = useContext(AppContext)
@@ -16,12 +13,11 @@ const CancelledApp = () => {
     <PatientAppCard
       item={item}
       buttonColor={''}
-     
     />
   );
   return (
     <SafeAreaView
-      style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
+      style={PatientAppCardStyle.mainView}>
       <Header
         buttonColor={AppColor.whiteShade}
         styles={{color: AppColor.black}}
@@ -29,13 +25,11 @@ const CancelledApp = () => {
         backgroundColor={AppColor.whiteShade}>
         {'Cancelled'}
       </Header>
-      <ScrollView>
-        <SafeAreaView style={{marginTop: wp('5'), marginBottom: wp('5')}}>
+      <ScrollView style={PatientAppCardStyle.scrollView}>
           <FlatList
             data={cancelledAppointmentsInfo}
             renderItem={renderItemCancelledAppointments}
           />
-        </SafeAreaView>
       </ScrollView>
     </SafeAreaView>
   );

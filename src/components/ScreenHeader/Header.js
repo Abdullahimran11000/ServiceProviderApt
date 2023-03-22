@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {CertificatesStyle} from '../../assets/styles/CertificatesStyle';
+import { HeaderStyle } from '../../assets/styles/HeaderStyle';
 import NeoButton from '../NeoMorphButton/NeoButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
@@ -21,7 +21,7 @@ const Header = ({
   const navigation = useNavigation();
   return (
     <SafeAreaView
-      style={[CertificatesStyle.headCont, {backgroundColor: backgroundColor}]}>
+      style={[HeaderStyle.headCont, {backgroundColor: backgroundColor}]}>
       <NeoButton
         width={wp('8')}
         height={wp('8')}
@@ -40,8 +40,8 @@ const Header = ({
           />
         </TouchableOpacity>
       </NeoButton>
-      <Text style={[CertificatesStyle.textStyle1, styles]}>Dashboard</Text>
-      <Text style={[CertificatesStyle.textStyle, stylesText]}>{children}</Text>
+      <Text style={[HeaderStyle.textStyle1, styles]}>Dashboard</Text>
+      <Text style={[HeaderStyle.textStyle, stylesText]}>{children}</Text>
     </SafeAreaView>
   );
 };

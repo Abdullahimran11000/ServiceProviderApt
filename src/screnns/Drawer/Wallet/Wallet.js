@@ -50,7 +50,7 @@ const Wallet = () => {
   };
   return (
     <SafeAreaView style={WalletStyle.mainView}>
-      <View style={{flex: 1}}>
+      <View style={WalletStyle.headerView}>
         <Header
           buttonColor={AppColor.whiteShade}
           styles={{color: AppColor.black}}
@@ -59,10 +59,8 @@ const Wallet = () => {
           {'Wallet'}
         </Header>
       </View>
-      <View style={{flex: 9}}>
-        <ScrollView
-          style={{width: wp('100')}}
-          contentContainerStyle={{flexGrow: 9}}>
+      <View style={WalletStyle.bodyCont}>
+        <ScrollView contentContainerStyle={WalletStyle.scrollView}>
           <CustomModal
             isVisible={modalOpen}
             onBackdropPress={() => {
@@ -231,78 +229,39 @@ const Wallet = () => {
             </TouchableOpacity>
           </Neomorph>
           {amountLabelAlert ? (
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: wp('4'),
-                color: AppColor.red,
-                width: wp('90'),
-                alignSelf: 'center',
-              }}>
-              Please enter your amount.
-            </Text>
+            <Text style={WalletStyle.alertText}>Please enter your amount.</Text>
           ) : null}
 
-          <Text
-            style={{
-              width: wp('90'),
-              alignSelf: 'center',
-              fontFamily: 'Poppins-Medium',
-              fontSize: wp('5'),
-              color: AppColor.blackOpacity3,
-            }}>
-            All Withdrawl Requests:
-          </Text>
+          <Text style={WalletStyle.headingText}>All Withdrawl Requests:</Text>
 
           <Neomorph style={WalletStyle.withdrawlMainNeo}>
-            <View
-              style={{
-                width: wp('85'),
-                height: hp('17'),
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <TouchableOpacity style={WalletStyle.amountNeo}>
-                <NeoButton
-                  height={hp('13')}
-                  width={wp('25')}
-                  backgroundColor={AppColor.whiteShade}
-                  borderRadius={wp(5)}>
-                  <Text style={WalletStyle.amountText}>$48</Text>
-                  <Text style={[WalletStyle.cardText, {marginTop: wp('3')}]}>
-                    Amount
-                  </Text>
-                </NeoButton>
-              </TouchableOpacity>
+            <View style={WalletStyle.footerCont}>
+              <NeoButton
+                height={hp('13')}
+                width={wp('25')}
+                backgroundColor={AppColor.whiteShade}
+                borderRadius={wp(5)}>
+                <Text style={WalletStyle.amountText}>$48</Text>
+                <Text style={[WalletStyle.cardText]}>Amount</Text>
+              </NeoButton>
 
-              <TouchableOpacity style={WalletStyle.amountNeo1}>
-                <NeoButton
-                  height={hp('13')}
-                  width={wp('30')}
-                  backgroundColor={AppColor.whiteShade}
-                  borderRadius={wp(5)}>
-                  <Text style={WalletStyle.amountText}>2023-01-12</Text>
-                  <Text style={[WalletStyle.cardText, {marginTop: wp('3')}]}>
-                    Withdraw Date
-                  </Text>
-                </NeoButton>
-              </TouchableOpacity>
+              <NeoButton
+                height={hp('13')}
+                width={wp('30')}
+                backgroundColor={AppColor.whiteShade}
+                borderRadius={wp(5)}>
+                <Text style={WalletStyle.amountText}>2023-01-12</Text>
+                <Text style={[WalletStyle.cardText]}>Withdraw Date</Text>
+              </NeoButton>
 
-              <TouchableOpacity style={WalletStyle.amountNeo}>
-                <NeoButton
-                  height={hp('13')}
-                  width={wp('25')}
-                  backgroundColor={AppColor.whiteShade}
-                  borderRadius={wp(5)}>
-                  <Text style={WalletStyle.amountText}>Requested</Text>
-                  <Text style={[WalletStyle.cardText, {marginTop: wp('3')}]}>
-                    {' '}
-                    Status
-                  </Text>
-                </NeoButton>
-              </TouchableOpacity>
+              <NeoButton
+                height={hp('13')}
+                width={wp('25')}
+                backgroundColor={AppColor.whiteShade}
+                borderRadius={wp(5)}>
+                <Text style={WalletStyle.amountText}>Requested</Text>
+                <Text style={[WalletStyle.cardText]}>Status</Text>
+              </NeoButton>
             </View>
           </Neomorph>
         </ScrollView>
