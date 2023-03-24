@@ -175,7 +175,7 @@ const Verification = ({navigation}) => {
               navigation.navigate('RecoverPassword');
             }}
             buttonBackgroundColor={AppColor.primary}
-            source={require('../../assets/animations/email.json')}
+            source={require('../../assets/animations/otpSuccess.json')}
             text={'OTP has been verified successfully!'}
             buttonText={'Next'}
           />
