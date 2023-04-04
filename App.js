@@ -11,8 +11,6 @@ import Congratulation from './src/screnns/ForgotPassword/Congratulation';
 import Drawer from './src/screnns/Drawer/Drawer';
 import Dashboard from './src/screnns/Drawer/Dashboard/Dashboard';
 import MyProfile from './src/screnns/Drawer/Profile/MyProfile';
-import VideoCalling from './src/screnns/Drawer/AppointmetCard/PatientAppointment/VideoCalling';
-import Chat from './src/screnns/Drawer/AppointmetCard/PatientAppointment/Chat';
 import NewSchedule from './src/screnns/Drawer/Scheduling/NewSchedule';
 import Wallet from './src/screnns/Drawer/Wallet/Wallet';
 import Certificates from './src/screnns/Drawer/Certificates/Certificates';
