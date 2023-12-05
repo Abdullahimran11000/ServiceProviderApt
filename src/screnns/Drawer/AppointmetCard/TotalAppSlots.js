@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {SafeAreaView, View, FlatList} from 'react-native';
 
 import Header from '../../../components/ScreenHeader/Header';
@@ -13,26 +13,21 @@ import moment from 'moment-timezone';
 import TimeSlotsRender from '../../../components/RenderFunction/TimeSlotsRender';
 import {ScrollView} from 'react-native-virtualized-view';
 import {AppColor} from '../../../assets/colors/AppColors';
+import { useRoute } from '@react-navigation/native';
+import AppContext from '../../../assets/context/AppContext';
 
 const TotalAppSlots = ({date}) => {
+  const route = useRoute()
+  const check = route.params === '' || route.params === undefined ? false : route.params.check
   const [selectedDateInCalender, setSelectedDateInCalender] = useState(
     moment(date).format('DD MMMM'),
   );
-
   const [calendarDate, setCalendarDate] = useState(moment());
-
-  const [timeSlots, setTimeSlots] = useState([
-    {id: 1, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 2, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 3, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 4, day: '07', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 5, day: '08', month: 'March', startTime: '8:00', endTime: '8:25'},
-    {id: 6, day: '13', month: 'March', startTime: '8:25', endTime: '8:50'},
-  ]);
+    const {timeSlots, storeTimeSlots} = useContext(AppContext)
 
   const submitHandler = id => {
     const filteredArray = timeSlots.filter(item => item.id !== id);
-    setTimeSlots(filteredArray);
+    storeTimeSlots(filteredArray);
   };
 
   const filteredArray = timeSlots.filter(
@@ -48,12 +43,13 @@ const TotalAppSlots = ({date}) => {
         onPress={() => {
           submitHandler(item.id);
         }}
+        check={check} 
       />
     );
   };
   return (
     <SafeAreaView
-      style={{backgroundColor: AppColor.whiteShade, display: 'flex', flex: 1}}>
+      style={{backgroundColor: AppColor.whiteShade, flex: 1}}>
       <ScrollView>
         <Header
           styles={{color: 'black'}}
@@ -80,7 +76,7 @@ const TotalAppSlots = ({date}) => {
             }}>
             <CalendarStrip
               datesBlacklist={date => {
-                return date.isoWeekday() === 6;
+                return date.isoWeekday() === 7;
               }}
               calendarAnimation={{type: 'sequence', duration: 30}}
               selectedDate={moment()}

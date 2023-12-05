@@ -1,11 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -35,7 +29,7 @@ const Congratulation = () => {
         Your password has been changed. Please log in again with new password
       </Text>
       <TouchableOpacity
-        style={{marginVertical: wp('5')}}
+        style={CongratulationStyle.buttonCont}
         onPress={() => {
           navigation.navigate('LogIn');
         }}>

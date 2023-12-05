@@ -26,7 +26,7 @@ const CustomModal = ({
         <View style={{flex: 1.5}}></View>
         <View
         style={{
-          flex: 6,
+          flex: 7,
           borderRadius: wp('15'),
           backgroundColor: AppColor.whiteShade,
           alignItems: 'center',

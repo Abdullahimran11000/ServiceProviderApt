@@ -17,7 +17,7 @@ const AppColor = {
   whiteDark1: '#EEEEEE',
   whiteCream: '#F6ECF4',
   darkBrown: '#b0704d',
-  darkBlue: '#8af2c4',
+  darkBlue: '#62789e',
   lightPurple: '#a18eab',
   railBorderColor: 'rgba(227, 191, 245, 1)',
   railFillColor: 'rgba(184, 138, 207, 1)',

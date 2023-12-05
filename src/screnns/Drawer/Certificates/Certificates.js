@@ -12,16 +12,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppColor} from '../../assets/colors/AppColors';
-import NeoButton from '../../components/NeoMorphButton/NeoButton';
+import {AppColor} from '../../../assets/colors/AppColors';
+import NeoButton from '../../../components/NeoMorphButton/NeoButton';
 import Feather from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {useNavigation} from '@react-navigation/core';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import {CertificatesStyle} from '../../assets/styles/CertificatesStyle';
-import Header from '../../components/ScreenHeader/Header';
+import {CertificatesStyle} from '../../../assets/styles/CertificatesStyle';
+import Header from '../../../components/ScreenHeader/Header';
 
 const Certificates = () => {
   const navigation = useNavigation();
@@ -92,7 +92,7 @@ const Certificates = () => {
 
   return (
     <SafeAreaView style={CertificatesStyle.mainView}>
-      <ScrollView>
+      <View style={CertificatesStyle.headerCont}>
         <Header
           buttonColor={AppColor.whiteShade}
           styles={{color: AppColor.black}}
@@ -100,38 +100,37 @@ const Certificates = () => {
           backgroundColor={AppColor.whiteShade}>
           {'Certificate'}
         </Header>
-
-        <View style={CertificatesStyle.imageViewCard}>
+      </View>
+      <View style={CertificatesStyle.bodyCont}>
+        <ScrollView contentContainerStyle={CertificatesStyle.scrollView}>
           <Neomorph style={CertificatesStyle.imageNeumorphCard}>
             {selectedImageUri === '' ? (
-              <View style={CertificatesStyle.noImageView}>
-                <Feather
-                  name="camera-off"
-                  size={wp('50')}
-                  color={AppColor.black}
-                />
-              </View>
+              <Feather
+                name="camera-off"
+                size={wp('50')}
+                color={AppColor.black}
+              />
             ) : (
-              <View style={CertificatesStyle.noImageView}>
-                <ImageViewer
-                  imageUrls={uploadImageListForZoom}
-                  style={{width: wp('90'), height: hp('60')}}
-                  backgroundColor={AppColor.whiteShade}
-                />
-              </View>
+              <ImageViewer
+                imageUrls={uploadImageListForZoom}
+                style={CertificatesStyle.imageView}
+                backgroundColor={AppColor.whiteShade}
+              />
             )}
           </Neomorph>
-        </View>
 
-        <FlatList
-          renderItem={renderImageList}
-          data={uploadImageList}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
+          <View style={CertificatesStyle.flatListView}>
+            <FlatList
+              renderItem={renderImageList}
+              data={uploadImageList}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
 
-        <View style={CertificatesStyle.buttonView}>
-          <TouchableOpacity onPress={imagePickerHandler}>
+          <TouchableOpacity
+            style={CertificatesStyle.buttonView}
+            onPress={imagePickerHandler}>
             <NeoButton
               width={wp('55')}
               height={hp('6')}
@@ -140,8 +139,8 @@ const Certificates = () => {
               <Text style={CertificatesStyle.buttonText}>UPLOAD</Text>
             </NeoButton>
           </TouchableOpacity>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

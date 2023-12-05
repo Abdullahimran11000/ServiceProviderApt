@@ -11,15 +11,13 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Lottie from 'lottie-react-native';
-import {PasswordManagementStyle} from '../../assets/styles/AuthStyle/PasswordManagementStyle';
+import {PasswordManagementStyle} from '../../../assets/styles/AuthStyle/PasswordManagementStyle';
 import Entypo from 'react-native-vector-icons/Entypo';
-import BackButton from '../../components/ScrennHeader/BackButton';
-import Icon from 'react-native-vector-icons/Ionicons';
-import NeoButton from '../../components/NeoMorphButton/NeoButton';
-import {AppColor} from '../../assets/colors/AppColors';
-import NeoTextInput from '../../components/NeoMorphTextInput/NeoTextInput';
-import CustomModal from '../../components/Modal/CustomModal';
-import CustomModal1 from '../../components/Modal/CustomModal';
+import BackButton from '../../../components/ScrennHeader/BackButton';
+import NeoButton from '../../../components/NeoMorphButton/NeoButton';
+import {AppColor} from '../../../assets/colors/AppColors';
+import NeoTextInput from '../../../components/NeoMorphTextInput/NeoTextInput';
+import CustomModal from '../../../components/Modal/CustomModal';
 
 const PasswordManagement = ({navigation}) => {
   const [eye, setEye] = useState(false);
@@ -69,10 +67,10 @@ const PasswordManagement = ({navigation}) => {
             setShowPasswordMessageInModal(true);
             setPasswordLabelAlert(false);
             setConfirmPasswordLabelAlert(false);
-            setConfirmPasswordLabelAlert(false)
+            setConfirmPasswordLabelAlert(false);
             setPasswordText('');
             setConfirmPasswordText('');
-            setCurrentPassword('')
+            setCurrentPassword('');
           } else {
             setConfirmPasswordLabelAlert(true);
             setPasswordLabelAlert(false);
@@ -119,23 +117,17 @@ const PasswordManagement = ({navigation}) => {
         }}>
         {'Password Management'}
       </BackButton>
-      <ScrollView
-        style={{width: wp('100')}}
-        contentContainerStyle={{alignItems: 'center'}}>
+      <ScrollView contentContainerStyle={PasswordManagementStyle.scrollView}>
         <Lottie
           style={PasswordManagementStyle.animationStyle}
-          source={require('../../assets/animations/appIntroRecover.json')}
+          source={require('../../../assets/animations/appIntroRecover.json')}
           autoPlay
         />
 
-        <View style={PasswordManagementStyle.headingView}>
-          <Text style={PasswordManagementStyle.tagText}>
-            Create new password
-          </Text>
-          <Text style={PasswordManagementStyle.paraText}>
-            Please enter your current & new password.
-          </Text>
-        </View>
+        <Text style={PasswordManagementStyle.tagText}>Create new password</Text>
+        <Text style={PasswordManagementStyle.paraText}>
+          Please enter your current & new password.
+        </Text>
         <Text style={PasswordManagementStyle.textViewOne}>
           Current Password
         </Text>
@@ -154,13 +146,7 @@ const PasswordManagement = ({navigation}) => {
           }}
         />
         {currentPasswordLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
+          <Text style={PasswordManagementStyle.alertText}>
             Please enter your current password.
           </Text>
         ) : null}
@@ -196,13 +182,7 @@ const PasswordManagement = ({navigation}) => {
           </TouchableOpacity>
         </NeoTextInput>
         {passwordLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
+          <Text style={PasswordManagementStyle.alertText}>
             {passwordLabelText}
           </Text>
         ) : null}
@@ -222,13 +202,7 @@ const PasswordManagement = ({navigation}) => {
           onChangeText={text => setConfirmPasswordText(text)}
         />
         {confirmPasswordLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-            }}>
+          <Text style={PasswordManagementStyle.alertText}>
             {confirmPasswordLabelText}
           </Text>
         ) : null}
@@ -250,7 +224,7 @@ const PasswordManagement = ({navigation}) => {
           onBackdropPress={modalHandlerOne}
           modalButtonPress={modalHandlerOne}
           buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/passwordLength.json')}
+          source={require('../../../assets/animations/passwordLength.json')}
           text={'Your New Password has been set.'}
           buttonText={'Back'}
         />

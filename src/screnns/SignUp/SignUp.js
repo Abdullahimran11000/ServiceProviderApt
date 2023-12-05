@@ -65,11 +65,11 @@ const SignUp = ({navigation}) => {
           setEmailText('');
           setPasswordText('');
           setshowConfirmationMessageInModal(true);
-          nameInputRef.current.focus()
+          nameInputRef.current.focus();
         } else {
           setEmailLabelAlert(true);
-          setEmailLabelText('Please enter valid email.')
-          emailInputRef.current.focus()
+          setEmailLabelText('Please enter valid email.');
+          emailInputRef.current.focus();
         }
       }
     }
@@ -82,15 +82,11 @@ const SignUp = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: AppColor.whiteShade,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <BackButton onPress={() => navigation.goBack()}>{'Sign Up'}</BackButton>
-      <View style={{marginTop: wp('10')}}>
+    <SafeAreaView style={SignUpStyle.mainView}>
+      <View style={SignUpStyle.headerCont}>
+        <BackButton onPress={() => navigation.goBack()}>{'Sign Up'}</BackButton>
+      </View>
+      <View style={SignUpStyle.bodyCont}>
         <Text style={SignUpStyle.text}>Full Name</Text>
         <NeoTextInput
           value={nameText}
@@ -107,14 +103,7 @@ const SignUp = ({navigation}) => {
           }}
         />
         {nameLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-            }}>
-            Please enter your name.
-          </Text>
+          <Text style={SignUpStyle.labelText}>Please enter your name.</Text>
         ) : null}
         <Text style={SignUpStyle.text}>Email</Text>
         <NeoTextInput
@@ -131,14 +120,7 @@ const SignUp = ({navigation}) => {
           }}
         />
         {emailLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-            }}>
-            {emailLabelText}
-          </Text>
+          <Text style={SignUpStyle.labelText}>{emailLabelText}</Text>
         ) : null}
         <Text style={SignUpStyle.text}>Password</Text>
         <NeoTextInput
@@ -169,29 +151,17 @@ const SignUp = ({navigation}) => {
           </TouchableOpacity>
         </NeoTextInput>
         {passwordLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-            }}>
-            Please enter your password.
-          </Text>
+          <Text style={SignUpStyle.labelText}>Please enter your password.</Text>
         ) : null}
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={SignUpStyle.checkboxCont}>
           <Checkbox status="checked" color={AppColor.primary} />
-          <Text
-            style={{
-              fontSize: wp('4'),
-              fontFamily: 'Poppins-Light',
-              color: AppColor.black,
-            }}>
-            I agree with <Text style={{fontFamily: 'Poppins-Bold'}}>terms</Text>{' '}
-            & <Text style={{fontFamily: 'Poppins-Bold'}}>conditions</Text>
+          <Text style={SignUpStyle.checkBoxText}>
+            I agree with <Text style={SignUpStyle.spanText}>terms</Text> &{' '}
+            <Text style={SignUpStyle.spanText}>conditions</Text>
           </Text>
         </View>
         <TouchableOpacity
-          style={{alignItems: 'center', marginVertical: wp('5')}}
+          style={SignUpStyle.buttonCont}
           onPress={signUpHandler}>
           <NeoButton
             lightShadowColor={AppColor.white}
@@ -199,7 +169,7 @@ const SignUp = ({navigation}) => {
             height={hp('6')}
             borderRadius={wp('10')}
             backgroundColor={AppColor.primary}>
-            <Text style={SignUpStyle.SignUpText}>Sign Up</Text>
+            <Text style={SignUpStyle.signUpText}>Sign Up</Text>
           </NeoButton>
         </TouchableOpacity>
       </View>

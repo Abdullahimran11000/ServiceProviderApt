@@ -4,8 +4,9 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const TimeSlotsRender = ({item, onPress}) => {
+const TimeSlotsRender = ({item, onPress, check}) => {
   return (
     <Neomorph
       style={{
@@ -18,7 +19,7 @@ const TimeSlotsRender = ({item, onPress}) => {
         marginVertical: wp('3'),
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
       }}>
       <Neomorph
         style={{
@@ -74,20 +75,37 @@ const TimeSlotsRender = ({item, onPress}) => {
           <Text style={{fontSize: wp('3')}}> pm</Text>
         </Text>
       </View>
-      <TouchableOpacity onPress={onPress}>
-        <Neomorph
-          style={{
-            width: wp('13'),
-            height: wp('15'),
-            borderRadius: wp('3'),
-            shadowRadius: 2,
-            backgroundColor: AppColor.railFillColor,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <FontAwesome name="trash" size={wp('6')} color={AppColor.white} />
-        </Neomorph>
-      </TouchableOpacity>
+      {check ? (
+        <TouchableOpacity onPress={onPress}>
+          <Neomorph
+            style={{
+              width: wp('15'),
+              height: wp('15'),
+              borderRadius: wp('3'),
+              shadowRadius: 2,
+              backgroundColor: AppColor.whiteShade,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <MaterialIcons name="done-all" size={wp('8')} color={'#4db86d'} />
+          </Neomorph>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={onPress}>
+          <Neomorph
+            style={{
+              width: wp('13'),
+              height: wp('15'),
+              borderRadius: wp('3'),
+              shadowRadius: 2,
+              backgroundColor: AppColor.railFillColor,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <FontAwesome name="trash" size={wp('6')} color={AppColor.white} />
+          </Neomorph>
+        </TouchableOpacity>
+      )}
     </Neomorph>
   );
 };

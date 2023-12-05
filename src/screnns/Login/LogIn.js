@@ -1,9 +1,4 @@
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, View, Text, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 import {
   widthPercentageToDP as wp,
@@ -22,7 +17,7 @@ const LogIn = ({navigation}) => {
   const [emailLabelAlert, setEmailLabelAlert] = useState(false);
   const [passwordText, setPasswordText] = useState('1234');
   const [passwordLabelText, setPasswordLabelText] = useState('');
-  const [passwordLabelAlert, setPasswordLabelAlert] = useState(false)
+  const [passwordLabelAlert, setPasswordLabelAlert] = useState(false);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -31,35 +26,35 @@ const LogIn = ({navigation}) => {
     navigation.addListener('focus', () => {
       console.log('LogIn screen is focusing right now!');
     });
-  }, [navigation]);
+  }, []);
 
   const submitHandler = () => {
     if (emailText === '') {
-      setEmailLabelAlert(true)
-      setPasswordLabelAlert(false)
+      setEmailLabelAlert(true);
+      setPasswordLabelAlert(false);
       setEmailLabelText('Please enter your email.');
       emailRef.current.focus();
     } else if (passwordText === '') {
       setPasswordLabelText('Please enter your password.');
-      setPasswordLabelAlert(true)
-      setEmailLabelAlert(false)
+      setPasswordLabelAlert(true);
+      setEmailLabelAlert(false);
       passwordRef.current.focus();
     } else {
       if (emailText != '' && passwordText != '') {
-        setEmailLabelAlert(false)
-        setPasswordLabelAlert(false)
+        setEmailLabelAlert(false);
+        setPasswordLabelAlert(false);
         if (
           emailText.includes('@gmail.com') ||
           emailText.includes('@outlook.com')
         ) {
-          setEmailLabelAlert(false)
-          setPasswordLabelAlert(false)
+          setEmailLabelAlert(false);
+          setPasswordLabelAlert(false);
           navigation.navigate('Drawer');
           setEmailText('');
           setPasswordText('');
         } else {
           setEmailLabelAlert(true);
-          setEmailLabelText("Please enter valid email.")
+          setEmailLabelText('Please enter valid email.');
           emailRef.current.focus();
         }
       }
@@ -67,22 +62,17 @@ const LogIn = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: AppColor.whiteShade,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <Text style={LoginStyle.headerView}> Log in </Text>
-      <View style={{marginTop: wp('10')}}>
-        <Text style={LoginStyle.TextStyle}>Email</Text>
+    <SafeAreaView style={LoginStyle.mainView}>
+      <View style={LoginStyle.headerCont}>
+        <Text style={LoginStyle.headerView}> Log in </Text>
+      </View>
+      <View style={LoginStyle.bodyCont}>
+        <Text style={LoginStyle.textStyle}>Email</Text>
         <NeoTextInput
           value={emailText}
           reference={emailRef}
           autoFocus={true}
           placeholder={'Enter your email'}
-          placeholderTextColor={emailLabelText}
           keyboardType={'email-address'}
           onChangeText={text => {
             setEmailText(text);
@@ -93,19 +83,10 @@ const LogIn = ({navigation}) => {
           }}
         />
         {emailLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-              alignSelf: 'center',
-            }}>
-            {emailLabelText}
-          </Text>
+          <Text style={LoginStyle.labelTextStyle}>{emailLabelText}</Text>
         ) : null}
 
-        <Text style={LoginStyle.TextStyle}>Password</Text>
+        <Text style={LoginStyle.textStyle}>Password</Text>
         <NeoTextInput
           value={passwordText}
           reference={passwordRef}
@@ -137,25 +118,14 @@ const LogIn = ({navigation}) => {
           </TouchableOpacity>
         </NeoTextInput>
         {passwordLabelAlert ? (
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: wp('3'),
-              color: AppColor.red,
-              width: wp('90'),
-              alignSelf: 'center',
-            }}>
-            {passwordLabelText}
-          </Text>
+          <Text style={LoginStyle.labelTextStyle}>{passwordLabelText}</Text>
         ) : null}
 
         <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={LoginStyle.ForgotText}>Forgot Password?</Text>
+          <Text style={LoginStyle.forgotText}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={{alignItems: 'center'}}
-          onPress={submitHandler}>
+        <TouchableOpacity style={LoginStyle.buttonCont} onPress={submitHandler}>
           <NeoButton
             width={wp('55')}
             height={hp('6')}
@@ -163,20 +133,14 @@ const LogIn = ({navigation}) => {
             borderRadius={wp('10')}
             marginBottom={wp('5')}
             marginTop={wp('5')}>
-            <Text style={LoginStyle.LoginText}>Log In</Text>
+            <Text style={LoginStyle.loginText}>Log In</Text>
           </NeoButton>
         </TouchableOpacity>
 
-        <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              color: AppColor.blackOpacity8,
-            }}>
-            Don't have an account?
-          </Text>
+        <View style={LoginStyle.footerCont}>
+          <Text style={LoginStyle.footerText}>Don't have an account?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={LoginStyle.SignUpText}> Sign Up</Text>
+            <Text style={LoginStyle.signUpText}> Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>

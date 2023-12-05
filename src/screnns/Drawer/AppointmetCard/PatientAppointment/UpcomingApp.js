@@ -1,62 +1,41 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import {SafeAreaView, FlatList} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {AppColor} from '../../../../assets/colors/AppColors';
 import Header from '../../../../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
 import PatientAppCard from '../../../../components/Appointments/PatientAppCard';
+import AppContext from '../../../../assets/context/AppContext';
+import NoDataFound from '../../../../components/NoDataView/NoDatFound';
+import { PatientAppCardStyle } from '../../../../assets/styles/PatientAppCardStyle';
+
 const UpcomingApp = ({navigation}) => {
-  const [UpcomingAppointmentsInfo, setUpcomingAppointmentsInfo] = useState([
-    {
-      id: 1,
-      name: 'Amanda Johnson',
-      gender: 'Female',
-      age: '23',
-      date: '22 March 2022',
-      time: '10:30',
-      appDestination: 'Hospital',
-    },
-    {
-      id: 2,
-      name: 'Ellyse Perry',
-      gender: 'Male',
-      age: '32',
-      date: '24 March 2022',
-      time: '10:30',
-      appDestination: 'Chat',
-    },
-    {
-      id: 3,
-      name: 'Miranda Jones',
-      gender: 'Female',
-      age: '21',
-      date: '22 March 2022',
-      time: '10:30',
-      appDestination: 'Call',
-    },
-  ]);
+  const {upcomingAppointmentsInfo, storeUpcomingAppointmentsInfo} =
+    useContext(AppContext);
+
+  const updateArray = id => {
+    const filteredArray = upcomingAppointmentsInfo.filter(
+      item => item.id !== id,
+    );
+    storeUpcomingAppointmentsInfo(filteredArray);
+  };
   const renderItemUpcomingAppointments = ({item}) => (
     <PatientAppCard
       item={item}
       buttonShow={true}
       nextButtonShow={true}
       buttonColor={'#dafccf'}
-      nav={() => {
-        if (item.appDestination === 'Chat') {
-          navigation.navigate('Chat');
-        }
-        if (item.appDestination === 'Call') {
-          navigation.navigate('VideoCalling');
-        }
+      onPressYes={() => {
+        updateArray(item.id);
+      }}
+      rescheduleBtn={() => {
+        navigation.navigate('TotalAppSlots', {check: false});
       }}
     />
   );
   return (
     <SafeAreaView
-      style={{display: 'flex', flex: 1, backgroundColor: AppColor.whiteShade}}>
+      style={PatientAppCardStyle.mainView}>
       <Header
         buttonColor={AppColor.whiteShade}
         styles={{color: AppColor.black}}
@@ -64,14 +43,16 @@ const UpcomingApp = ({navigation}) => {
         backgroundColor={AppColor.whiteShade}>
         {'Upcoming'}
       </Header>
-      <ScrollView>
-        <SafeAreaView style={{marginTop: wp('5'), marginBottom: wp('5')}}>
+      <ScrollView contentContainerStyle={PatientAppCardStyle.scrollView}>
+        {upcomingAppointmentsInfo.length > 0 ? (
           <FlatList
-            data={UpcomingAppointmentsInfo}
+            data={upcomingAppointmentsInfo}
             renderItem={renderItemUpcomingAppointments}
             keyExtractor={item => item.id}
           />
-        </SafeAreaView>
+        ) : (
+          <NoDataFound />
+        )}
       </ScrollView>
     </SafeAreaView>
   );

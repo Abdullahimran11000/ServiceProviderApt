@@ -10,19 +10,19 @@ import ii from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ad from 'react-native-vector-icons/AntDesign';
 import fi from 'react-native-vector-icons/Feather';
-import {NotificationStyle} from '../../assets/styles/AnimatedDrawerStyle/NotificationStyle';
-import {CertificatesStyle} from '../../assets/styles/CertificatesStyle';
-import {AppColor} from '../../assets/colors/AppColors';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {NotificationStyle} from '../../../assets/styles/AnimatedDrawerStyle/NotificationStyle';
+import {AppColor} from '../../../assets/colors/AppColors';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {Neomorph} from 'react-native-neomorph-shadows';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
-import Header from '../../components/ScreenHeader/Header';
+import Header from '../../../components/ScreenHeader/Header';
 import {ScrollView} from 'react-native-virtualized-view';
-import CustomModal from '../../components/Modal/CustomModal';
+import CustomModal from '../../../components/Modal/CustomModal';
+import NotificationRender from '../../../components/RenderFunction/NotificationRender';
 const Notifications = () => {
   const [readNotificationInModal, setReadNotificationInModal] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -144,7 +144,8 @@ const Notifications = () => {
 
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity
+      <NotificationRender
+        item={item}
         onPress={() => {
           submitHandler(
             item.id,
@@ -156,40 +157,7 @@ const Notifications = () => {
             item.iconColor,
             item.iconprovider,
           );
-        }}>
-        <Neomorph style={NotificationStyle.innerItems}>
-          <View style={NotificationStyle.headContImageCont}>
-            <item.iconprovider
-              name={item.iconname}
-              size={wp('5')}
-              color={item.iconColor}
-            />
-          </View>
-          <View>
-            <Text
-              style={NotificationStyle.middleInnerContFirstHeading}
-              ellipsizeMode={'tail'}
-              numberOfLines={2}>
-              {item.title}
-            </Text>
-            <Text style={NotificationStyle.middleInnerContSecondHeading}>
-              {item.time}
-            </Text>
-          </View>
-
-          {item.open ? <Icon
-              name="checkmark-done-circle-outline"
-              size={wp('0')}
-              color={'blue'}
-            /> : (
-            <Icon
-              name="checkmark-done-circle-outline"
-              size={wp('5')}
-              color={'blue'}
-            />
-          )}
-        </Neomorph>
-      </TouchableOpacity>
+        }}/>
     );
   };
 
@@ -204,42 +172,42 @@ const Notifications = () => {
 
   return (
     <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: AppColor.whiteShade,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Header
-        buttonColor={AppColor.whiteShade}
-        styles={{color: AppColor.black}}
-        stylesText={{color: AppColor.black}}>
-        {'Notification'}
-      </Header>
-      <ScrollView style={{width: wp('100')}}>
-        <TouchableOpacity onPress={submitHandlerTwo}>
+      style={NotificationStyle.mainView}>
+      <View style={NotificationStyle.headerCont}>
+        <Header
+          buttonColor={AppColor.whiteShade}
+          styles={{color: AppColor.black}}
+          stylesText={{color: AppColor.black}}>
+          {'Notification'}
+        </Header>
+      </View>
+      
+        <TouchableOpacity style={NotificationStyle.middleCont} onPress={submitHandlerTwo}>
           <Text style={NotificationStyle.renderItemHeaderFontFirst}>
             Mark All As Read
           </Text>
         </TouchableOpacity>
-        <FlatList data={TodayData} renderItem={renderItem} />
+      <View style={NotificationStyle.bodyCont}>
+        <ScrollView style={{width: wp('100')}}>
+          <FlatList data={TodayData} renderItem={renderItem} />
 
-        <CustomModal
-          isVisible={showModal}
-          onBackdropPress={() => {
-            setShowModal(false);
-          }}
-          modalButtonPress={() => {
-            setShowModal(false);
-          }}
-          buttonBackgroundColor={AppColor.primary}
-          source={require('../../assets/animations/sms.json')}
-          lottieStyle={{width: wp('35'), height: wp('35')}}
-          text={readNotificationInModal}
-          style={{marginTop: wp(10)}}
-          buttonText={'Close'}
-        />
-      </ScrollView>
+          <CustomModal
+            isVisible={showModal}
+            onBackdropPress={() => {
+              setShowModal(false);
+            }}
+            modalButtonPress={() => {
+              setShowModal(false);
+            }}
+            buttonBackgroundColor={AppColor.primary}
+            source={require('../../../assets/animations/sms.json')}
+            lottieStyle={{width: wp('35'), height: wp('35')}}
+            text={readNotificationInModal}
+            style={{marginTop: wp(10)}}
+            buttonText={'Close'}
+          />
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
